@@ -46,6 +46,8 @@ def filter_query(self, query):
     # respect effective/expiration date
     query['show_inactive'] = False
     # respect navigation root
+    # We remove this because we want to see all results in the catalog
+    # at all times, not getting a fallback to plone as default
 #    if 'path' not in query:
 #        query['path'] = getNavigationRoot(self.context)
 

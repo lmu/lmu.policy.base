@@ -1,1 +1,1 @@
-import plone_app_search_browser_path_patch
+import plone_app_search_browser_path_patchimport collective_solr_flare_PloneFlare_getURL_patch
