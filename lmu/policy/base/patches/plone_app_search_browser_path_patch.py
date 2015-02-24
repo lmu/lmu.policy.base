@@ -1,4 +1,4 @@
-from plone.app.search.browser import Search, EVER
+from plone.app.search.browser import Search, EVER, quote_chars
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 import logging
@@ -26,7 +26,7 @@ def filter_query(self, query):
         if v and ((k in valid_keys) or k.startswith('facet.')):
             query[k] = v
     if text:
-        query['SearchableText'] = Search.quote_chars(text)
+        query['SearchableText'] = quote_chars(text)
 
     # don't filter on created at all if we want all results
     created = query.get('created')
