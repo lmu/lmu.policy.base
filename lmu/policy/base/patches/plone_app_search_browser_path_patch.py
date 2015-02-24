@@ -46,8 +46,8 @@ def filter_query(self, query):
     # respect effective/expiration date
     query['show_inactive'] = False
     # respect navigation root
-    if 'path' not in query:
-        query['path'] = getNavigationRoot(self.context)
+#    if 'path' not in query:
+#        query['path'] = getNavigationRoot(self.context)
 
     return query
 
