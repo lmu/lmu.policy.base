@@ -1,7 +1,9 @@
-from plone.app.search import Search, EVER
+from plone.app.search.browser import Search, EVER
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+import logging
 
+logger = logging.getLogger('Search Patch')
 
 def filter_query(self, query):
     request = self.request
@@ -50,3 +52,4 @@ def filter_query(self, query):
     return query
 
 Search.filter_query = filter_query
+logger.info("Patching plone.app.search.Search.filter_query")

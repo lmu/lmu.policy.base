@@ -1,1 +1,1 @@
-import plone.app.search.browser_path_patch
+import plone_app_search_browser_path_patch
