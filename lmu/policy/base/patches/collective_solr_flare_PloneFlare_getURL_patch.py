@@ -14,6 +14,8 @@ def getURL(self, relative=False):
         url = self.request.physicalPathToURL(path, relative)
     except AttributeError:
         url = path2url(path.split('/'))
+    except TypeError:
+    	url = "/missing/value"
     return url
 
 PloneFlare.getURL = getURL
