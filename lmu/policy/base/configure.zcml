@@ -6,12 +6,22 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lmu">
 
-  <!--genericsetup:registerProfile
+  <genericsetup:registerProfile
       name="default"
-      title="LMU Theme for ZUV-Intranet"
+      title="LMU Policy"
       directory="profiles/default"
-      description="Extension profile for LMU Theme for ZUV-Intranet"
+      description="Extension profile for LMU Policy"
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      /-->
+      />
+
+
+    <browser:page
+        name="search"
+        class=".browser.Search"
+        permission="zope2.View"
+        for="*"
+        template="templates/search.pt"
+        layer=".interfaces.IProductLayer"
+        />
 
 </configure>

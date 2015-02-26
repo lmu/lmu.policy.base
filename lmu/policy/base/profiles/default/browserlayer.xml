@@ -1,0 +1,8 @@
+<layers>
+    <layer
+        name="lmu.policy.base"
+        interface="lmu.policy.base.interfaces.IProductLayer"
+        />
+</layers>
+
+
