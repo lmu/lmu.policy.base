@@ -8,15 +8,23 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="LMU Policy"
+      title="LMU Base-Policy"
       directory="profiles/default"
-      description="Extension profile for LMU Policy"
+      description="Extension profile for LMU Base Policy - never install standalone use a specific instead."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-
     <browser:page
         name="search"
+        class=".browser.Search"
+        permission="zope2.View"
+        for="*"
+        template="templates/search.pt"
+        layer=".interfaces.IProductLayer"
+        />
+
+    <browser:page
+        name="@@search"
         class=".browser.Search"
         permission="zope2.View"
         for="*"

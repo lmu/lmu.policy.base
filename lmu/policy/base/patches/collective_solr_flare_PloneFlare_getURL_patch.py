@@ -5,7 +5,6 @@ import logging
 logger = logging.getLogger('Search Patch')
 
 
-
 def getURL(self, relative=False):
     """ convert the physical path into a url, if it was stored """
     path = self.getPath()
@@ -15,7 +14,7 @@ def getURL(self, relative=False):
     except AttributeError:
         url = path2url(path.split('/'))
     except TypeError:
-    	url = "/missing/value"
+        url = "/missing/value"
     return url
 
 PloneFlare.getURL = getURL
