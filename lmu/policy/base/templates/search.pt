@@ -28,7 +28,7 @@
   <div id="content-core" metal:fill-slot="main">
 
     <form name="searchform"
-          action="@@search"
+          action="search"
           class="searchPage enableAutoFocus"
           tal:define="portal context/@@plone_portal_state/portal;
                       first_call not:request/advanced_search|nothing;
