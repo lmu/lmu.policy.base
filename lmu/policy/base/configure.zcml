@@ -6,13 +6,18 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lmu">
 
-  <genericsetup:registerProfile
-      name="default"
-      title="LMU Base-Policy"
-      directory="profiles/default"
-      description="Extension profile for LMU Base Policy - never install standalone use a specific instead."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    <genericsetup:registerProfile
+        name="default"
+        title="LMU Base-Policy"
+        directory="profiles/default"
+        description="Extension profile for LMU Base Policy - never install standalone use a specific instead."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <browser:jbot
+        directory="template_overrides"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        />
 
     <browser:page
         name="search"
@@ -20,7 +25,7 @@
         permission="zope2.View"
         for="*"
         template="templates/search.pt"
-        layer=".interfaces.IProductLayer"
+        layer=".interfaces.ILMUBaseThemeLayer"
         />
 
     <browser:page
@@ -29,7 +34,7 @@
         permission="zope2.View"
         for="*"
         template="templates/search.pt"
-        layer=".interfaces.IProductLayer"
+        layer=".interfaces.ILMUBaseThemeLayer"
         />
 
 </configure>

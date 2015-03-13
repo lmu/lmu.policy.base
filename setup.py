@@ -11,8 +11,8 @@ setup(name='lmu.policy.base',
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
-        "Programming Language :: Python",
-        ],
+          "Programming Language :: Python",
+      ],
       keywords='',
       author='',
       author_email='',
@@ -25,6 +25,7 @@ setup(name='lmu.policy.base',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
+          'z3c.jbot',
       ],
       entry_points="""
       # -*- Entry points: -*-
