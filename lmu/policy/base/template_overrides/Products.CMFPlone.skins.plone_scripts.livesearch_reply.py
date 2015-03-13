@@ -36,7 +36,11 @@ MAX_DESCRIPTION = 150
 catalog = context.portal_catalog
 
 friendly_types = ploneUtils.getUserFriendlyTypes()
+if siteProperties is not None:
+    extra_types = siteProperties.getProperty('extra_types_searched', [])
+    friendly_types += extra_types
 
+context.plone_log(str(friendly_types))
 
 def quotestring(s):
     return '"%s"' % s
@@ -83,7 +87,7 @@ else:
 
 # search limit+1 results to know if limit is exceeded
 #context.plone_log(str(params))
-results = catalog(REQUEST, **params)
+pre_results = catalog(REQUEST, **params)
 
 searchterm_query = '?searchterm=%s' % url_quote_plus(q)
 
@@ -103,6 +107,16 @@ label_show_all = _('label_show_all', default='Show all items')
 
 ts = getToolByName(context, 'translation_service')
 
+results = []
+
+
+for result in pre_results:
+    # Only show Fiona Content in results that are from 'sp'
+    if result['path_string'].startswith('/prototyp-1/sp'):
+        results.append(result)
+
+
+
 output = []
 
 
@@ -114,11 +128,15 @@ if not results:
     write('''<div class="LSIEFix">''')
     write('''<div id="LSNothingFound">%s</div>'''
             % ts.translate(label_no_results_found, context=REQUEST))
-    write('''<div class="LSRow">''')
+
+    write('''<ul class="LSTable">''')
+
+    write('''<li class="LSRow">''')
     write('<a href="%s" class="advancedsearchlink">%s</a>' %
             (portal_url + '/search',
             ts.translate(label_advanced_search, context=REQUEST)))
-    write('''</div>''')
+    write('''</li>''')
+    write('''</ul>''')
     write('''</div>''')
 else:
     write('''<div class="LSIEFix">''')
@@ -131,6 +149,8 @@ else:
             itemUrl += '/view'
 
         itemUrl = itemUrl + searchterm_query
+
+        itemUrl = itemUrl.replace('/functions/prototyp-1/sp', '')
 
         write('''<li class="LSRow">''')
         write(icon.html_tag() or '')
@@ -178,3 +198,4 @@ else:
     write('''</div>''')
 
 return '\n'.join(output).encode('utf-8')
+
