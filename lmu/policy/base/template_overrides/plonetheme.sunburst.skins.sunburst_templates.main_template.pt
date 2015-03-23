@@ -2,23 +2,23 @@
 <tal:doctype tal:replace="structure string:&lt;!DOCTYPE html&gt;" />
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-    tal:define="portal_state context/@@plone_portal_state;
-        context_state context/@@plone_context_state;
-        plone_view context/@@plone;
-        lang portal_state/language;
-        view nocall:view | nocall: plone_view;
-        dummy python: plone_view.mark_view(view);
-        portal_url portal_state/portal_url;
-        checkPermission nocall: context/portal_membership/checkPermission;
-        site_properties nocall:context/portal_properties/site_properties;
-        ajax_load request/ajax_load | nothing;
-        ajax_include_head request/ajax_include_head | nothing;
-        dummy python:request.RESPONSE.setHeader('X-UA-Compatible', 'IE=edge,chrome=1');"
-    tal:attributes="lang lang;">
+      tal:define="portal_state context/@@plone_portal_state;
+                  context_state context/@@plone_context_state;
+                  plone_view context/@@plone;
+                  lang portal_state/language;
+                  view nocall:view | nocall: plone_view;
+                  dummy python: plone_view.mark_view(view);
+                  portal_url portal_state/portal_url;
+                  checkPermission nocall: context/portal_membership/checkPermission;
+                  site_properties nocall:context/portal_properties/site_properties;
+                  ajax_load request/ajax_load | nothing;
+                  ajax_include_head request/ajax_include_head | nothing;
+                  dummy python:request.RESPONSE.setHeader('X-UA-Compatible', 'IE=edge,chrome=1');"
+      tal:attributes="lang lang;">
 
-    <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
+  <metal:cache use-macro="context/global_cache_settings/macros/cacheheaders">
     Get the global cache headers located in global_cache_settings.
-    </metal:cache>
+  </metal:cache>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -64,6 +64,7 @@
   </div>
 </header>
 <main id="main" class="row" >
+  <div class="small-12 large-10 large-centered columns" >
   <div id="portal-columns" class="row">
 
     <div id="portal-column-content" class="cell" tal:attributes="class classes/content">
@@ -155,6 +156,7 @@
         </metal:portlets>
       </div>
     </tal:notajax>
+  </div>
   </div>
 </main>
 <footer id="footer">
