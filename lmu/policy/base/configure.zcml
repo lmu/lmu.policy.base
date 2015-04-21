@@ -14,27 +14,4 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <browser:jbot
-        directory="template_overrides"
-        layer=".interfaces.ILMUBaseThemeLayer"
-        />
-
-    <browser:page
-        name="search"
-        class=".browser.Search"
-        permission="zope2.View"
-        for="*"
-        template="templates/search.pt"
-        layer=".interfaces.ILMUBaseThemeLayer"
-        />
-
-    <browser:page
-        name="@@search"
-        class=".browser.Search"
-        permission="zope2.View"
-        for="*"
-        template="templates/search.pt"
-        layer=".interfaces.ILMUBaseThemeLayer"
-        />
-
 </configure>
