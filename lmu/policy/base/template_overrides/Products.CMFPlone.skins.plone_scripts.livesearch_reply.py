@@ -111,8 +111,11 @@ results = []
 
 
 for result in pre_results:
+    context.plone_log(result)    
     # Only show Fiona Content in results that are from 'sp'
-    if result['path_string'].startswith('/prototyp-1/sp'):
+    if not result.has_key('path_string'):
+        continue
+    elif result['path_string'].startswith('/prototyp-1/sp'):
         results.append(result)
 
 
