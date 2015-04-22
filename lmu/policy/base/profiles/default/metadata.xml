@@ -3,6 +3,7 @@
   <version>1</version>
   <dependencies>
       <!--<dependency>profile-Products.CMFPlone:default</dependency>-->
+      <dependency>profile-plone.app.contenttypes:default</dependency>
       <dependency>profile-collective.solr:default</dependency>
   </dependencies>
 </metadata>
