@@ -26,10 +26,16 @@ setup(name='lmu.policy.base',
           'setuptools',
           # -*- Extra requirements: -*-
           'z3c.jbot',
+          'collective.solr',
+          'collective.indexing',
+          'collective.quickupload',
+          'plone.app.changeownership',
+          # -*- Extra requirements for Plone 4 -*-
+          'wildcard.foldercontents',
       ],
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]
-      target = lmu
+      target = plone
       """,
       )

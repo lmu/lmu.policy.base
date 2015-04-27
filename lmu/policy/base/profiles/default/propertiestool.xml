@@ -1,46 +1,74 @@
 <?xml version="1.0"?>
 <object name="portal_properties" meta_type="Plone Properties Tool">
-  <object name="site_properties" meta_type="Plone Property Sheet">
+    <object name="imaging_properties" meta_type="Plone Property Sheet">
+        <property name="title">Image handling properties</property>
+        <property name="allowed_sizes" type="lines">
+            <element value="large 768:768"/>
+            <element value="preview 400:400"/>
+            <element value="mini 200:200"/>
+            <element value="thumb 128:128"/>
+            <element value="tile 64:64"/>
+            <element value="icon 32:32"/>
+            <element value="listing 16:16"/>
+            <element value="fmini 500:1500"/>
+        </property>
+        <property name="quality" type="int">88</property>
+    </object>
+    <object name="site_properties" meta_type="Plone Property Sheet">
+        <property name="extra_types_searched" type="lines">
+            <element value="zuv_person"/>
+            <element value="Document"/>
+            <element value="Folder"/>
+            <element value="Generic"/>
+            <element value="Homepage"/>
+            <element value="Image"/>
+            <element value="NamedLink"/>
+            <element value="OfficeDocument"/>
+            <element value="Publication"/>
+            <element value="zuv_aktuelles"/>
+            <element value="zuv_assets_container"/>
+            <element value="zuv_bilderordner"/>
+            <element value="zuv_einrichtung"/>
+            <element value="zuv_einrichtung_personen"/>
+            <element value="zuv_einrichtungsuebersicht"/>
+            <element value="zuv_footer"/>
+            <element value="zuv_glossar"/>
+            <element value="zuv_glossar_container"/>
+            <element value="zuv_kontaktformular"/>
+            <element value="zuv_meldung"/>
+            <element value="zuv_meldung_container"/>
+            <element value="zuv_person"/>
+            <element value="zuv_person_container"/>
+            <element value="zuv_person_referenz"/>
+            <element value="zuv_person_referenz_container"/>
+            <element value="zuv_portrait"/>
+            <element value="zuv_service"/>
+            <element value="zuv_service_container"/>
+            <element value="zuv_service_themenfeld"/>
+            <element value="zuv_service_themengruppe"/>
+            <element value="zuv_service_themenuebersicht"/>
+            <element value="zuv_servicevariante"/>
+            <element value="zuv_standard"/>
+            <element value="zuv_startseite"/>
+            <element value="zuv_statement"/>
+            <element value="zuv_task"/>
+            <element value="zuv_task_container"/>
+        </property>
 
-    <property name="extra_types_searched" type="lines">
-        <element value="zuv_person"/>
-        <element value="Document"/>
-        <element value="Folder"/>
-        <element value="Generic"/>
-        <element value="Homepage"/>
-        <element value="Image"/>
-        <element value="NamedLink"/>
-        <element value="OfficeDocument"/>
-        <element value="Publication"/>
-        <element value="zuv_aktuelles"/>
-        <element value="zuv_assets_container"/>
-        <element value="zuv_bilderordner"/>
-        <element value="zuv_einrichtung"/>
-        <element value="zuv_einrichtung_personen"/>
-        <element value="zuv_einrichtungsuebersicht"/>
-        <element value="zuv_footer"/>
-        <element value="zuv_glossar"/>
-        <element value="zuv_glossar_container"/>
-        <element value="zuv_kontaktformular"/>
-        <element value="zuv_meldung"/>
-        <element value="zuv_meldung_container"/>
-        <element value="zuv_person"/>
-        <element value="zuv_person_container"/>
-        <element value="zuv_person_referenz"/>
-        <element value="zuv_person_referenz_container"/>
-        <element value="zuv_portrait"/>
-        <element value="zuv_service"/>
-        <element value="zuv_service_container"/>
-        <element value="zuv_service_themenfeld"/>
-        <element value="zuv_service_themengruppe"/>
-        <element value="zuv_service_themenuebersicht"/>
-        <element value="zuv_servicevariante"/>
-        <element value="zuv_standard"/>
-        <element value="zuv_startseite"/>
-        <element value="zuv_statement"/>
-        <element value="zuv_task"/>
-        <element value="zuv_task_container"/>
-    </property>
+        <property name="many_users" type="boolean">False</property>
+        <property name="many_groups" type="boolean">False</property>
 
-  </object>
+        <property name="enable_livesearch" type="boolean">True</property>
+
+        <property name="calendar_starting_year" type="int">2000</property>
+        <property name="calendar_future_years_available" type="int">5</property>
+
+        <property name="enable_sitemap" type="boolean">False</property>
+
+        <property name="webstats_js" type="text"></property>
+
+        <property name="icon_visibility" type="string">enabled</property>
+
+        <property name="redirect_links" type="boolean">True</property>
+    </object>
 </object>
