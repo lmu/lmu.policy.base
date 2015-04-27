@@ -28,7 +28,7 @@ class Search(BaseSearch):
         return types + self.extra_types()
 
 
-class LivesearchReply(BrowserView):
+class LivesearchReply(Search):
 
     def __call__(self):
         q = self.request.get('q', '')
@@ -51,15 +51,6 @@ class LivesearchReply(BrowserView):
         MAX_DESCRIPTION = 150
 
         # generate a result set for the query
-        catalog = self.context.portal_catalog
-
-        friendly_types = ploneUtils.getUserFriendlyTypes()
-        if siteProperties is not None:
-            extra_types = siteProperties.getProperty(
-                'extra_types_searched', [])
-            friendly_types += extra_types
-
-        self.context.plone_log(str(friendly_types))
 
         def quotestring(s):
             return '"%s"' % s
@@ -94,18 +85,11 @@ class LivesearchReply(BrowserView):
         REQUEST = self.context.REQUEST
         params = {'SearchableText': r,
                   'sort_limit': limit + 1}
-        if 'portal_type' not in REQUEST:
-            params['portal_type'] = friendly_types
 
-        if path is None:
-            pass
-        #    params['path'] = getNavigationRoot(self.context)
-        else:
+        if path is not None:
             params['path'] = path
 
-        # search limit+1 results to know if limit is exceeded
-        #self.context.plone_log(str(params))
-        pre_results = catalog(REQUEST, **params)
+        pre_results = self.results(query=params, b_size=limit)
 
         searchterm_query = '?searchterm=%s' % url_quote_plus(q)
 
@@ -129,9 +113,11 @@ class LivesearchReply(BrowserView):
         for result in pre_results:
             self.context.plone_log(result)
             # Only show Fiona Content in results that are from 'sp'
-            if not 'path_string' in result:
+            if not result.getPath():
                 continue
-            elif result['path_string'].startswith('/prototyp-1/sp'):
+            elif not result.getPath().startswith('/prototyp-1'):
+                results.append(result)
+            elif result.getPath().startswith('/prototyp-1/sp'):
                 results.append(result)
 
         output = []
@@ -170,7 +156,7 @@ class LivesearchReply(BrowserView):
                 write('''<li class="LSRow">''')
                 write(icon.html_tag() or '')
                 #full_title = safe_unicode(pretty_title_or_id(result))
-                full_title = safe_unicode(result.Title) #get('Title','No Title set'))
+                full_title = safe_unicode(result.Title()) #get('Title','No Title set'))
                 if full_title and len(full_title) > MAX_TITLE:
                     display_title = ''.join((full_title[:MAX_TITLE], '...'))
                 else:
@@ -181,7 +167,7 @@ class LivesearchReply(BrowserView):
                         % ploneUtils.normalizeString(result.portal_type)
                 write('''<a href="%s" title="%s" class="%s">%s</a>'''
                       % (itemUrl, full_title, klass, display_title))
-                display_description = safe_unicode(result.Description)
+                display_description = safe_unicode(result.Description())
                 if (display_description and
                         len(display_description) > MAX_DESCRIPTION):
                     display_description = ''.join(
