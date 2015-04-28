@@ -1,0 +1,45 @@
+<div i18n:domain="plone" class="LSIEFix" tal:condition="not:view/live_results">
+    <div id="LSNothingFound" i18n:translate="label_no_results_found">No matching results found.</div>
+
+    <ul class="LSTable">
+
+        <li class="LSRow">
+            <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search">Advanced Search&#8230;</a>
+        </li>
+    </ul>
+</div>
+
+<div i18n:domain="plone" class="LSIEFix" tal:condition="view/live_results">
+    <ul class="LSTable" tal:define="use_view_action site_properties/typesUseViewActionInListings|python:();
+                                    plone_view nocall:context/@@plone;
+                                    num_results python:len(view.live_results);
+                                    limit request/limit|nothing;
+                                    limit python:limit or 10;
+                                    searchterm_query view/searchterm_query">
+        <tal:result tal:repeat="result view/live_results">
+        <li class="LSRow"
+            tal:define="item_type result/portal_type;
+                        item_url result/getURL;
+                        item_url python:item_type in use_view_action and (item_url + '/view') or item_url;
+                        item_url python:item_url + searchterm_query;
+                        item_url python:item_url.replace('/functions/prototyp-1/sp', '');
+                        display_title python:view.display_title(result.Title());
+                        display_description python:view.display_description(result.Description());
+                        klass python:'contenttype-' + plone_view.normalizeString(item_type);
+                        ">
+            <tal:icon replace="structure python:plone_view.getIcon(result).html_tag()" />
+            <a href="#" title="" class="contenttype"
+               tal:attributes="title result/Title; href item_url; class klass"
+               tal:content="display_title" />
+            <div class="LSDescr" tal:content="display_description" />
+        </li>
+        </tal:result>
+        <li class="LSRow">
+            <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search">Advanced Search&#8230;</a>
+        </li>
+        <li class="LSRow" tal:condition="not:view/live_results/islastpage">
+            <a href="#" class="advancedsearchlink show-all-items"
+                tal:attributes="href string:search?SearchableText=${view/searchterms}&path=${request/path}" i18n:translate="label_show_all">Show all items</a>
+        </li>
+    </ul>
+</div>
