@@ -37,7 +37,7 @@
         <li class="LSRow">
             <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search">Advanced Search&#8230;</a>
         </li>
-        <li class="LSRow" tal:condition="python:num_results > limit">
+        <li class="LSRow" tal:condition="not:view/live_results/islastpage">
             <a href="#" class="advancedsearchlink show-all-items"
                 tal:attributes="href string:search?SearchableText=${view/searchterms}&path=${request/path}" i18n:translate="label_show_all">Show all items</a>
         </li>

@@ -1,4 +1,5 @@
 from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
 from plone.app.search.browser import Search as BaseSearch
@@ -16,8 +17,8 @@ class Search(BaseSearch):
     def filter_query(self, query):
         query = super(Search, self).filter_query(query)
         if query:
-            if 'path' in query:
-                del query['path']
+            # Only show Fiona Content in results that are from 'sp'
+            query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
             query['portal_type'] += self.extra_types()
         return query
 
@@ -85,23 +86,10 @@ class LivesearchReply(Search):
         if path is not None:
             params['path'] = path
 
-        pre_results = self.results(query=params, b_size=limit)
+        self.live_results = self.results(query=params, b_size=limit)
 
         REQUEST = self.context.REQUEST
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
 
-        results = []
-
-        for result in pre_results:
-            self.context.plone_log(result)
-            # Only show Fiona Content in results that are from 'sp'
-            if not result.getPath():
-                continue
-            elif not result.getPath().startswith('/prototyp-1'):
-                results.append(result)
-            elif result.getPath().startswith('/prototyp-1/sp'):
-                results.append(result)
-
-        self.live_results = results
         return self.template()
