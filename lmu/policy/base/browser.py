@@ -1,7 +1,7 @@
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone import PloneMessageFactory as _
 from Products.CMFPlone.utils import safe_unicode
-from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import html_quote
 from Products.PythonScripts.standard import url_quote_plus
 from plone.app.search.browser import Search as BaseSearch
@@ -30,27 +30,21 @@ class Search(BaseSearch):
 
 class LivesearchReply(Search):
 
-    def __call__(self):
+    template = ViewPageTemplateFile('templates/livesearch_reply2.pt')
+
+    MAX_TITLE = 50
+    MAX_DESCRIPTION = 150
+
+    def searchterm_query(self):
         q = self.request.get('q', '')
-        limit = self.request.get('limit', 10)
-        path = self.request.get('path', None)
+        multispace = u'\u3000'.encode('utf-8')
+        for char in ('?', '-', '+', '*', multispace):
+            q = q.replace(char, ' ')
+        searchterm_query = '?searchterm=%s' % url_quote_plus(q)
+        return searchterm_query
 
-        ploneUtils = getToolByName(self.context, 'plone_utils')
-        portal_url = getToolByName(self.context, 'portal_url')()
-        plone_view = self.context.restrictedTraverse('@@plone')
-
-        portalProperties = getToolByName(self.context, 'portal_properties')
-        siteProperties = getattr(portalProperties, 'site_properties', None)
-        useViewAction = []
-        if siteProperties is not None:
-            useViewAction = siteProperties.getProperty(
-                'typesUseViewActionInListings', [])
-
-        # SIMPLE CONFIGURATION
-        MAX_TITLE = 50
-        MAX_DESCRIPTION = 150
-
-        # generate a result set for the query
+    def searchterms(self, quote=True):
+        q = self.request.get('q', '')
 
         def quotestring(s):
             return '"%s"' % s
@@ -80,10 +74,32 @@ class LivesearchReply(Search):
         r = q.split()
         r = " AND ".join(r)
         r = quote_bad_chars(r) + '*'
-        searchterms = url_quote_plus(r)
+        if quote:
+            return url_quote_plus(r)
+        else:
+            return r
+
+    def display_title(self, full_title):
+        return self.ellipse(full_title, self.MAX_TITLE)
+
+    def display_description(self, full_description):
+        return self.ellipse(full_description, self.MAX_DESCRIPTION)
+
+    def ellipse(self, full_string, max_len):
+        if (full_string and
+                len(full_string) > max_len):
+            display_string = ''.join(
+                (full_string[:max_len], '...'))
+        else:
+            display_string = full_string
+        return display_string
+
+    def __call__(self):
+        limit = self.request.get('limit', 10)
+        path = self.request.get('path', None)
 
         REQUEST = self.context.REQUEST
-        params = {'SearchableText': r,
+        params = {'SearchableText': self.searchterms(quote=False),
                   'sort_limit': limit + 1}
 
         if path is not None:
@@ -91,22 +107,8 @@ class LivesearchReply(Search):
 
         pre_results = self.results(query=params, b_size=limit)
 
-        searchterm_query = '?searchterm=%s' % url_quote_plus(q)
-
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-
-        # replace named entities with their numbered counterparts, in the xml
-        # the named ones are not correct
-        #   &darr;      --> &#8595;
-        #   &hellip;    --> &#8230;
-        label_no_results_found = _('label_no_results_found',
-                                   default='No matching results found.')
-        label_advanced_search = _('label_advanced_search',
-                                  default='Advanced Search&#8230;')
-        label_show_all = _('label_show_all', default='Show all items')
-
-        ts = getToolByName(self.context, 'translation_service')
 
         results = []
 
@@ -120,87 +122,5 @@ class LivesearchReply(Search):
             elif result.getPath().startswith('/prototyp-1/sp'):
                 results.append(result)
 
-        output = []
-
-        def write(s):
-            output.append(safe_unicode(s))
-
-        if not results:
-            write('''<div class="LSIEFix">''')
-            write('''<div id="LSNothingFound">%s</div>'''
-                  % ts.translate(label_no_results_found, context=REQUEST))
-
-            write('''<ul class="LSTable">''')
-
-            write('''<li class="LSRow">''')
-            write('<a href="%s" class="advancedsearchlink">%s</a>' %
-                  (portal_url + '/search',
-                  ts.translate(label_advanced_search, context=REQUEST)))
-            write('''</li>''')
-            write('''</ul>''')
-            write('''</div>''')
-        else:
-            write('''<div class="LSIEFix">''')
-            write('''<ul class="LSTable">''')
-            for result in results[:limit]:
-                #self.context.plone_log(str(result))
-                icon = plone_view.getIcon(result)
-                itemUrl = result.getURL()
-                if result.portal_type in useViewAction:
-                    itemUrl += '/view'
-
-                itemUrl = itemUrl + searchterm_query
-
-                itemUrl = itemUrl.replace('/functions/prototyp-1/sp', '')
-
-                write('''<li class="LSRow">''')
-                write(icon.html_tag() or '')
-                #full_title = safe_unicode(pretty_title_or_id(result))
-                full_title = safe_unicode(result.Title()) #get('Title','No Title set'))
-                if full_title and len(full_title) > MAX_TITLE:
-                    display_title = ''.join((full_title[:MAX_TITLE], '...'))
-                else:
-                    display_title = full_title
-
-                full_title = full_title.replace('"', '&quot;')
-                klass = 'contenttype-%s' \
-                        % ploneUtils.normalizeString(result.portal_type)
-                write('''<a href="%s" title="%s" class="%s">%s</a>'''
-                      % (itemUrl, full_title, klass, display_title))
-                display_description = safe_unicode(result.Description())
-                if (display_description and
-                        len(display_description) > MAX_DESCRIPTION):
-                    display_description = ''.join(
-                        (display_description[:MAX_DESCRIPTION], '...'))
-
-                # need to quote it, to avoid injection of html containing
-                # javascript and other evil stuff
-                display_description = html_quote(display_description)
-                write('''<div class="LSDescr">%s</div>''' %
-                      (display_description))
-                write('''</li>''')
-                full_title, display_title, display_description = (
-                    None, None, None)
-
-            write('''<li class="LSRow">''')
-            write('<a href="%s" class="advancedsearchlink advanced-search">'
-                  '%s</a>' %
-                  (portal_url + '/search',
-                  ts.translate(label_advanced_search, context=REQUEST)))
-            write('''</li>''')
-
-            if len(results) > limit:
-                # add a more... row
-                write('''<li class="LSRow">''')
-                searchquery = 'search?SearchableText=%s&path=%s' \
-                    % (searchterms, params['path'])
-                write('<a href="%s" class="advancedsearchlink show-all-items">'
-                      '%s</a>' % (
-                      searchquery,
-                      ts.translate(label_show_all, context=REQUEST)))
-                write('''</li>''')
-
-            write('''</ul>''')
-            write('''</div>''')
-
-        return '\n'.join(output).encode('utf-8')
+        self.live_results = results
+        return self.template()
