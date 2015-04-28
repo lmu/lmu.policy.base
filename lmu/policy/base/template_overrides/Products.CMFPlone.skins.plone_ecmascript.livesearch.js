@@ -31,8 +31,8 @@ var livesearch = (function () {
             $cache = {},
             $$result = $form.find('div.LSResult'),
             $querytarget = $form.attr('action').replace(
-                $form.data('action') || '@@search',
-                $$result.data('livesearch') || 'livesearch_reply'),
+                $form.data('action') || 'search',
+                $$result.data('livesearch') || 'livesearch_reply2'),
             $shadow = $form.find('div.LSShadow'),
             $path = $form.find('input[name="path"]');
 
