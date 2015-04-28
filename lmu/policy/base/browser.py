@@ -1,10 +1,8 @@
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import PloneMessageFactory as _
-from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from Products.PythonScripts.standard import html_quote
 from Products.PythonScripts.standard import url_quote_plus
 from plone.app.search.browser import Search as BaseSearch
+from plone.app.search.browser import quote_chars
 
 
 class Search(BaseSearch):
@@ -37,28 +35,14 @@ class LivesearchReply(Search):
 
     def searchterm_query(self):
         q = self.request.get('q', '')
-        multispace = u'\u3000'.encode('utf-8')
-        for char in ('?', '-', '+', '*', multispace):
+        for char in ('?', '-', '+', '*'):
             q = q.replace(char, ' ')
+        q = quote_chars(q)
         searchterm_query = '?searchterm=%s' % url_quote_plus(q)
         return searchterm_query
 
     def searchterms(self, quote=True):
         q = self.request.get('q', '')
-
-        def quotestring(s):
-            return '"%s"' % s
-
-        def quote_bad_chars(s):
-            bad_chars = ["(", ")"]
-            for char in bad_chars:
-                s = s.replace(char, quotestring(char))
-            return s
-
-        # for now we just do a full search to prove a point, this is not the
-        # way to do this in the future, we'd use a in-memory probability based
-        # result set.
-        # convert queries to zctextindex
 
         # XXX really if it contains + * ? or -
         # it will not be right since the catalog ignores all non-word
@@ -66,14 +50,11 @@ class LivesearchReply(Search):
         # so we don't even attept to make that right.
         # But we strip these and these so that the catalog does
         # not interpret them as metachars
-        # See http://dev.plone.org/plone/ticket/9422 for an explanation of
-        # '\u3000'
-        multispace = u'\u3000'.encode('utf-8')
-        for char in ('?', '-', '+', '*', multispace):
+        for char in ('?', '-', '+', '*'):
             q = q.replace(char, ' ')
         r = q.split()
         r = " AND ".join(r)
-        r = quote_bad_chars(r) + '*'
+        r = quote_chars(r) + '*'
         if quote:
             return url_quote_plus(r)
         else:
@@ -98,7 +79,6 @@ class LivesearchReply(Search):
         limit = self.request.get('limit', 10)
         path = self.request.get('path', None)
 
-        REQUEST = self.context.REQUEST
         params = {'SearchableText': self.searchterms(quote=False),
                   'sort_limit': limit + 1}
 
@@ -107,6 +87,7 @@ class LivesearchReply(Search):
 
         pre_results = self.results(query=params, b_size=limit)
 
+        REQUEST = self.context.REQUEST
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
 
