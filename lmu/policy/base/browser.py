@@ -1,9 +1,12 @@
+# -*- coding: utf-8 -*-
+
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
+from zope.component import getMultiAdapter
 
 
 class Search(BaseSearch):
@@ -25,6 +28,23 @@ class Search(BaseSearch):
     def types_list(self):
         types = super(Search, self).types_list()
         return types + self.extra_types()
+
+    def breadcrumbs(self, item):
+        try:
+            obj = item.getObject()
+            view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
+            # cut off the item itself
+            breadcrumbs = list(view.breadcrumbs())[:-1]
+            if len(breadcrumbs) == 0:
+                # don't show breadcrumbs if we only have a single element
+                return None
+            if len(breadcrumbs) > 3:
+                # if we have too long breadcrumbs, emit the middle elements
+                empty = {'absolute_url': '', 'Title': unicode('…', 'utf-8')}
+                breadcrumbs = [breadcrumbs[0], empty] + breadcrumbs[-2:]
+            return breadcrumbs
+        except:
+            return None
 
 
 class LivesearchReply(Search):
