@@ -18,4 +18,4 @@ def getURL(self, relative=False):
     return url
 
 PloneFlare.getURL = getURL
-logger.info("Patching collective.solr.flare.getURL")
+logger.info("Patching collective.solr.flare.PloneFlare.getURL")
