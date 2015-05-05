@@ -91,7 +91,7 @@
                  class="cell width-full position-0"
                  tal:define="b_start python:0;
                              b_start request/b_start | b_start;
-                             batch python: view.results(b_start=b_start);
+                             batch python: view.results(query={'hl': 'true'}, b_start=b_start);
                              normalizeString nocall:context/@@plone/normalizeString;">
 
                 <div id="search-results-bar">
@@ -354,6 +354,16 @@
                                         Cropped description
                                       </div>
 
+                                      <tal:highlighting condition="python:hasattr(batch._sequence._basesequence,'highlighting')">
+                                      <p class="fragment"
+                                         tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
+                                         tal:repeat="snippets python:batch._sequence._basesequence.highlighting[item.uuid()].values()">
+                                          &hellip;&nbsp;
+                                          <tal:snippets repeat="snippet snippets">
+                                            <tal:snippet content="structure snippet">highlighted snippet</tal:snippet>&nbsp;&hellip;
+                                          </tal:snippets>
+                                      </p>
+                                      </tal:highlighting>
                                       <cite class="documentLocation link-location"
                                             tal:on-error="string: no breadcrumbs available"
                                             tal:define="breadcrumbs python: view.breadcrumbs(item);
