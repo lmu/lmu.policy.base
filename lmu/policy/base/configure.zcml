@@ -22,6 +22,18 @@
         layer=".interfaces.ILMUBaseThemeLayer"
         />
 
+    <browser:resourceDirectory
+        name="lmu.policy.base.js"
+        directory="js"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        />
+
+    <browser:resourceDirectory
+        name="lmu.policy.base.css"
+        directory="css"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        />
+
     <include file="overrides.zcml" />
 
 </configure>
