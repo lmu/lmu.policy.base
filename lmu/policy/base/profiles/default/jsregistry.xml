@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<object name="portal_javascripts">
+ <javascript cacheable="True" compression="safe" cookable="True"
+    enabled="True" expression="" id="++resource++lmu.policy.base.js/search-suggestions.js" inline="False"/>
+</object>

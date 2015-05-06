@@ -1,0 +1,19 @@
+#suggestion-area {
+  position: relative;
+  z-index: 8000;
+}
+
+#suggestions {
+  padding: 1em;
+}
+
+#suggestions li {
+  font-weight: bold;
+  list-style: none;
+  color: #01679A;
+  cursor: pointer;
+}
+
+.searchPage #searchfields {
+    overflow: visible;
+}
