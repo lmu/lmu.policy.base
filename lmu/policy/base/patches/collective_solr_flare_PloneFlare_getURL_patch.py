@@ -11,10 +11,10 @@ def getURL(self, relative=False):
     path = path.encode('utf-8')
 
     try:
-        if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
-            path = path[len('/prototyp-1/sp'):]
-
         url = self.request.physicalPathToURL(path, relative)
+        if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
+            url = url.replace('/functions/prototyp-1/sp', '')
+            url = url.replace('/functions/prototyp-1/in', '')
     except AttributeError:
         url = path2url(path.split('/'))
     except TypeError:
