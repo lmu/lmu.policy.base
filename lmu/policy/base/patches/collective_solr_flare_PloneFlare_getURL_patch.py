@@ -9,7 +9,11 @@ def getURL(self, relative=False):
     """ convert the physical path into a url, if it was stored """
     path = self.getPath()
     path = path.encode('utf-8')
+
     try:
+        if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
+            path = path[len('/prototyp-1/sp'):]
+
         url = self.request.physicalPathToURL(path, relative)
     except AttributeError:
         url = path2url(path.split('/'))

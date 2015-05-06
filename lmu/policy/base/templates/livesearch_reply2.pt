@@ -27,7 +27,7 @@
                         display_description python:view.display_description(result.Description());
                         klass python:'contenttype-' + plone_view.normalizeString(item_type);
                         ">
-            <tal:icon replace="structure python:plone_view.getIcon(result).html_tag()" />
+            <tal:icon replace="structure python:plone_view.getIcon(result).html_tag()" tal:condition="python: False" />
             <a href="#" title="" class="contenttype"
                tal:attributes="title result/Title; href item_url; class klass"
                tal:content="display_title" />

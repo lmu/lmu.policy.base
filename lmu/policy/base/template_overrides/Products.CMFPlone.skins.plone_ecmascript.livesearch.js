@@ -196,7 +196,7 @@ var livesearch = (function () {
 
     jQuery(function() {
         // find all search fields and set them up
-        jQuery("#searchGadget,input.portlet-search-gadget").each(_setup);
+        jQuery("#quicksearch").each(_setup);
     });
 
     return {
