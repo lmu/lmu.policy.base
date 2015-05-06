@@ -10,7 +10,7 @@ $(function() {
 
                 $(data).each( function (index, value) {
                     if ( value.constructor == Object ) {
-                        suggestions.append("<li>"+value.value+"</li>");
+                        suggestions.append("<li>"+value.value.word+"</li>");
                     }
                 });
 
