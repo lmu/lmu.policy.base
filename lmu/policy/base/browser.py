@@ -2,8 +2,10 @@
 
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
+from plone import api
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
 from zope.component import getMultiAdapter
@@ -21,7 +23,12 @@ class Search(BaseSearch):
         query = super(Search, self).filter_query(query)
         if query:
             # Only show Fiona Content in results that are from 'sp'
-            query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
+            if getNavigationRoot(self.context) == '/intranet':
+                query['path'] = [getNavigationRoot(self.context), '/prototyp-1/in']
+            elif getNavigationRoot(self.context) == '/serviceportal':
+                query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
+            else:
+                query['path'] = [getNavigationRoot(self.context)]
             query['portal_type'] += self.extra_types()
         return query
 
@@ -112,4 +119,24 @@ class LivesearchReply(Search):
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
 
+        return self.template()
+
+
+class UserInfo(BrowserView):
+
+    template = ViewPageTemplateFile('templates/user_info.pt')
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def __call__(self):
+        user = api.user.get_current()
+        pm = api.portal.get_tool('portal_membership')
+        REQUEST = self.context.REQUEST
+        RESPONSE = REQUEST.RESPONSE
+        RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
+        #import ipdb; ipdb.set_trace()
+        self.username = user.getProperty('fullname')
+        self.portrait = pm.getPersonalPortrait()
         return self.template()

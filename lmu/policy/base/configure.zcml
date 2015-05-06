@@ -22,6 +22,14 @@
         layer=".interfaces.ILMUBaseThemeLayer"
         />
 
+    <browser:page
+        for="*"
+        name="user_info.include"
+        class=".browser.UserInfo"
+        permission="zope2.View"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        />
+
     <browser:resourceDirectory
         name="lmu.policy.base.js"
         directory="js"
