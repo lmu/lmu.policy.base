@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
 
+import StringIO
+
+from OFS import Image as OFSImage
+from PIL import Image as PILImage
+from Products.PlonePAS.utils import scale_image
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.Five.browser import BrowserView
@@ -136,7 +141,13 @@ class UserInfo(BrowserView):
         REQUEST = self.context.REQUEST
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-        #import ipdb; ipdb.set_trace()
+
         self.username = user.getProperty('fullname')
-        self.portrait = pm.getPersonalPortrait()
+        portrait = pm.getPersonalPortrait()
+        #image = Image.open(StringIO.StringIO(portrait.data))
+        #self.portrait = image.resize((30, 30))
+        #import ipdb; ipdb.set_trace()
+        #small_portrait, mimetype = scale_image(StringIO.StringIO(portrait.data), (30, 30))
+        #self.portrait = OFSImage.Image(id=user.getUserName(), file=small_portrait, title='')
+        self.portrait = portrait
         return self.template()

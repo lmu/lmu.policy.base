@@ -1,5 +1,5 @@
 <div id="portal-searchbox"
-     i18n:domain="plone">
+     i18n:domain="lmu.policy.base">
     <form name="searchform"
           action="search"
           tal:attributes="action string:${view/site_url}/search">
