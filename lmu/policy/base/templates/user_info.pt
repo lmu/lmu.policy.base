@@ -9,7 +9,8 @@
 <body>
     <div id="user" >
         <span tal:replace="view/username" ></span>
-        <img tal:replace="structure view/portrait" />
+        
+        <img tal:replace="structure view/portrait" tal:condition="nothing"/>
     </div>
 </body>
 </html>
