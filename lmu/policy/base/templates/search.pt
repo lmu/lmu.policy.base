@@ -101,6 +101,14 @@
                         items matching your search terms.
                     </span>
 
+                    <span i18n:translate="batch_within_seconds" i18n:domain="plone">
+                        within 
+                        <strong i18n:name="time" id="search-results-time"
+                                tal:content="batch/qtime/total_seconds|string:0">234</strong>
+                        seconds.
+                    </span>
+
+
                     <dl class="actionMenu deactivated"
                         tal:attributes="class python:view.show_advanced_search() and 'actionMenu activated' or 'actionMenu deactivated'">
 

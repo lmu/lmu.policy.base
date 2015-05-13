@@ -1,22 +1,56 @@
 # -*- coding: utf-8 -*-
 
-import StringIO
+#import StringIO
 
-from OFS import Image as OFSImage
-from PIL import Image as PILImage
-from Products.PlonePAS.utils import scale_image
+from datetime import timedelta
+from collective.solr.parser import SolrResponse
+#from OFS import Image as OFSImage
+#from PIL import Image as PILImage
+#from Products.PlonePAS.utils import scale_image
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
+from Products.ZCTextIndex.ParseTree import ParseError
 from plone import api
+from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
 from zope.component import getMultiAdapter
 
 
 class Search(BaseSearch):
+
+    def results(self, query=None, batch=True, b_size=10, b_start=0):
+        """ Get properly wrapped search results from the catalog.
+        Everything in Plone that performs searches should go through this view.
+        'query' should be a dictionary of catalog parameters.
+        """
+        if query is None:
+            query = {}
+        if batch:
+            query['b_start'] = b_start = int(b_start)
+            query['b_size'] = b_size
+        query = self.filter_query(query)
+
+        if query is None:
+            results = []
+        else:
+            catalog = getToolByName(self.context, 'portal_catalog')
+            try:
+                results = catalog(**query)
+            except ParseError:
+                return []
+        qtime = timedelta(0)
+        if isinstance(results, SolrResponse) and results.responseHeader and 'QTime' in results.responseHeader:
+            qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
+        results = IContentListing(results)
+        if batch:
+            results = Batch(results, b_size, b_start)
+        results.qtime = qtime
+        return results
 
     def extra_types(self):
         ptool = getToolByName(self, 'portal_properties')
@@ -55,7 +89,7 @@ class Search(BaseSearch):
                 empty = {'absolute_url': '', 'Title': unicode('…', 'utf-8')}
                 breadcrumbs = [breadcrumbs[0], empty] + breadcrumbs[-2:]
             return breadcrumbs
-        except:
+        except Exception:
             return None
 
 
