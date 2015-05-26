@@ -44,6 +44,26 @@
         layer=".interfaces.ILMUBaseThemeLayer"
         />
 
+    <utility
+        component=".controlpanel.AvailableLanguagesVocabularyFactory"
+        name="lmu.policy.base.AvailableLanguages"
+        />
+
+    <browser:page
+        name="lmu-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class=".controlpanel.LMUControlPanelView"
+        />
+
+    <browser:viewlet
+        name="lmu.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".browser.PathBarViewlet"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        permission="zope2.View"
+        />
+
     <include file="overrides.zcml" />
 
 </configure>
