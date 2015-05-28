@@ -2,17 +2,28 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lmu.policy.base">
 
     <i18n:registerTranslations directory="locales" />
 
+    <five:registerPackage package="." />
+
     <genericsetup:registerProfile
         name="default"
         title="LMU Base-Policy"
         directory="profiles/default"
         description="Extension profile for LMU Base Policy - never install standalone use a specific instead."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="uninstall"
+        title="Uninstall LMU Base-Policy"
+        directory="profiles/uninstall"
+        description="Uninstall profile for LMU Base Policy"
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
@@ -42,6 +53,26 @@
         name="lmu.policy.base.css"
         directory="css"
         layer=".interfaces.ILMUBaseThemeLayer"
+        />
+
+    <utility
+        component=".controlpanel.AvailableLanguagesVocabularyFactory"
+        name="lmu.policy.base.AvailableLanguages"
+        />
+
+    <browser:page
+        name="lmu-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        permission="cmf.ManagePortal"
+        class=".controlpanel.LMUControlPanelView"
+        />
+
+    <browser:viewlet
+        name="lmu.path_bar"
+        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+        class=".browser.PathBarViewlet"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        permission="zope2.View"
         />
 
     <include file="overrides.zcml" />

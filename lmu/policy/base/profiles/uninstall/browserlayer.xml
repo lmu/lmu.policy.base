@@ -1,0 +1,10 @@
+<layers>
+    <layer
+        name="lmu.policy.base"
+        interface="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        remove="True"
+        />
+</layers>
+
+
+

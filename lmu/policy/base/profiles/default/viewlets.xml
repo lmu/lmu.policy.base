@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object>
+  <order manager="plone.abovecontent" skinname="*">
+    <viewlet name="lmu.path_bar" insert-before="*" />
+  </order>
+
+  <hidden manager="plone.abovecontent" skinname="*">
+    <viewlet name="plone.path_bar" />
+  </hidden>
+</object>

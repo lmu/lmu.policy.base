@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object>
+  <hidden manager="plone.abovecontent" skinname="*">
+    <viewlet name="plone.path_bar" remove="True" />
+  </hidden>
+</object>
+

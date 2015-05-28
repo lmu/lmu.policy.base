@@ -14,11 +14,18 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
 from Products.ZCTextIndex.ParseTree import ParseError
+from lmu.policy.base.controlpanel import ILMUSettings
 from plone import api
 from plone.app.contentlisting.interfaces import IContentListing
+from plone.app.layout.viewlets import common
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
+from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
+from zope.component import getUtility
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class Search(BaseSearch):
@@ -185,3 +192,29 @@ class UserInfo(BrowserView):
         #self.portrait = OFSImage.Image(id=user.getUserName(), file=small_portrait, title='')
         self.portrait = portrait
         return self.template()
+
+
+class PathBarViewlet(common.PathBarViewlet):
+    """Replace the "Home" breadcrumb with the overrides from the control
+       panel."""
+    render = ViewPageTemplateFile('templates/path_bar.pt')
+
+    def update(self):
+        super(PathBarViewlet, self).update()
+
+        registry = getUtility(IRegistry)
+        try:
+            self.lmu_settings = registry.forInterface(ILMUSettings)
+        except Exception as e:
+            log.exception(e)
+            return
+
+        portal_state = api.content.get_view(
+            name='plone_portal_state',
+            context=self.context,
+            request=self.request)
+        self.current_language = portal_state.locale().getLocaleID()
+
+        self.is_any_override_active = (
+            self.lmu_settings.show_breadcrumb_1 or
+            self.lmu_settings.show_breadcrumb_2)
