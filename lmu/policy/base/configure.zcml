@@ -60,7 +60,7 @@
         name="lmu.path_bar"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
         class=".browser.PathBarViewlet"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        layer=".interfaces.IProductLayer"
         permission="zope2.View"
         />
 

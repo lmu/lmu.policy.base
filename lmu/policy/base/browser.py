@@ -14,7 +14,7 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
 from Products.ZCTextIndex.ParseTree import ParseError
-from lmu.policy.base.interfaces import ILMUSettings
+from lmu.policy.base.controlpanel import ILMUSettings
 from plone import api
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets import common
@@ -23,6 +23,9 @@ from plone.app.search.browser import quote_chars
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class Search(BaseSearch):
@@ -200,7 +203,11 @@ class PathBarViewlet(common.PathBarViewlet):
         super(PathBarViewlet, self).update()
 
         registry = getUtility(IRegistry)
-        self.lmu_settings = registry.forInterface(ILMUSettings)
+        try:
+            self.lmu_settings = registry.forInterface(ILMUSettings)
+        except Exception as e:
+            log.exception(e)
+            return
 
         portal_state = api.content.get_view(
             name='plone_portal_state',
