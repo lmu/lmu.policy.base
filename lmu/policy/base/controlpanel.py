@@ -46,7 +46,7 @@ class ITitleLanguagePair(Interface):
     text = schema.TextLine(title=_(u"Title"))
 
 
-class TitleLanguagePair:
+class TitleLanguagePair(object):
     implements(ITitleLanguagePair)
 
     def __init__(self, language='', text=''):
@@ -66,9 +66,6 @@ class ILMUSettings(Interface):
     breadcrumb_1_title = schema.List(
         title=_(u"Breadcrumb override level 1 - Title"),
         description=_(u""),
-        default=[
-            TitleLanguagePair('de', u'LMU'),
-        ],
         value_type=PersistentObject(
             ITitleLanguagePair,
             title=u"Title by Language"),
@@ -77,12 +74,11 @@ class ILMUSettings(Interface):
     breadcrumb_1_url = schema.TextLine(
         title=_(u"Breadcrumb override level 1 - Link"),
         description=_(u""),
-        default=u"http://www.lmu-muenchen.de",
         required=False
     )
     show_breadcrumb_1 = schema.Bool(
         title=_(u"Show Breadcrumb override level 1"),
-        default=True,
+        default=False,
         description=_(u""),
         required=False
     )
@@ -90,9 +86,6 @@ class ILMUSettings(Interface):
     breadcrumb_2_title = schema.List(
         title=_(u"Breadcrumb override level 2 - Title"),
         description=_(u""),
-        default=[
-            TitleLanguagePair('de', u'LMU'),
-        ],
         value_type=PersistentObject(
             ITitleLanguagePair,
             title=u"Title by Language"),
@@ -101,12 +94,11 @@ class ILMUSettings(Interface):
     breadcrumb_2_url = schema.TextLine(
         title=_(u"Breadcrumb override level 2 - Link"),
         description=_(u""),
-        default=u"http://www.lmu-muenchen.de",
         required=False
     )
     show_breadcrumb_2 = schema.Bool(
         title=_(u"Show Breadcrumb override level 2"),
-        default=True,
+        default=False,
         description=_(u""),
         required=False
     )
