@@ -30,33 +30,33 @@
     <browser:page
         for="*"
         name="livesearch_reply2"
-        class=".browser.LivesearchReply"
+        class="lmu.policy.base.browser.LivesearchReply"
         permission="zope2.View"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
     <browser:page
         for="*"
         name="user_info.include"
-        class=".browser.UserInfo"
+        class="lmu.policy.base.browser.UserInfo"
         permission="zope2.View"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
     <browser:resourceDirectory
         name="lmu.policy.base.js"
         directory="js"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
     <browser:resourceDirectory
         name="lmu.policy.base.css"
         directory="css"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
     <utility
-        component=".controlpanel.AvailableLanguagesVocabularyFactory"
+        component="lmu.policy.base.controlpanel.AvailableLanguagesVocabularyFactory"
         name="lmu.policy.base.AvailableLanguages"
         />
 
@@ -64,14 +64,14 @@
         name="lmu-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
         permission="cmf.ManagePortal"
-        class=".controlpanel.LMUControlPanelView"
+        class="lmu.policy.base.controlpanel.LMUControlPanelView"
         />
 
     <browser:viewlet
         name="lmu.path_bar"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class=".browser.PathBarViewlet"
-        layer=".interfaces.ILMUBaseThemeLayer"
+        class="lmu.policy.base.browser.PathBarViewlet"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         permission="zope2.View"
         />
 

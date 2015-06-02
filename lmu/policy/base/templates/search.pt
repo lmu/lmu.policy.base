@@ -25,7 +25,9 @@
 
 <body>
 
-  <div id="content-core" metal:fill-slot="main">
+<main id="content" metal:fill-slot="content">
+  <div class="row">
+    <div class="columns small-12 large-10 large-centered helper-margin-top-xl" >
 
     <form name="searchform"
           action="search"
@@ -411,10 +413,10 @@
             </div>
         </div>
 
-        <div class="visualClear"><!-- --></div>
+        <div class="visualClear clearfix"><!-- --></div>
     </form>
-
+    </div>
   </div>
-
+</main>
 </body>
 </html>
