@@ -3,27 +3,25 @@
      tal:define="breadcrumbs view/breadcrumbs;
                  is_rtl view/is_rtl">
 
-    <span id="breadcrumbs-you-are-here" i18n:translate="you_are_here">You
-are here:</span>
-    <span id="breadcrumbs-home" tal:condition="not:view/is_any_override_active">
+    <span id="breadcrumbs-home" tal:condition="not:view/is_any_override_active" tal:omit-tag="python: True">>
         <a i18n:translate="tabs_home"
-           tal:attributes="href view/navigation_root_url">Home</a>
+           tal:attributes="href view/navigation_root_url"><i class="fi-home" >Home</i></a>
         <span tal:condition="breadcrumbs" class="breadcrumbSeparator">
             <tal:ltr condition="not: is_rtl">/</tal:ltr>
             <tal:rtl condition="is_rtl">\</tal:rtl>
         </span>
     </span>
-    <span id="breadcrumbs-override-1" tal:condition="view/lmu_settings/show_breadcrumb_1">
+    <span id="breadcrumbs-override-1" tal:condition="view/lmu_settings/show_breadcrumb_1" tal:omit-tag="python: True">
         <tal:title_pair tal:repeat="title_pair view/lmu_settings/breadcrumb_1_title">
-        <a class="global-home" tal:condition="python:title_pair.language == view.current_language"
-           tal:attributes="href view/lmu_settings/breadcrumb_1_url" tal:content="title_pair/text">Level 1</a>
+        <a class="global-home breadcrumb-home" tal:condition="python:title_pair.language == view.current_language"
+           tal:attributes="href view/lmu_settings/breadcrumb_1_url" ><i class="fi-home"></i> <span class="show-for-sr" tal:content="title_pair/text">Level 1</span></a>
         </tal:title_pair>
         <span class="breadcrumbSeparator">
             <tal:ltr condition="not: view/is_rtl">/</tal:ltr>
             <tal:rtl condition="view/is_rtl">/</tal:rtl>
         </span>
     </span>
-    <span id="breadcrumbs-override-2" tal:condition="view/lmu_settings/show_breadcrumb_2">
+    <span id="breadcrumbs-override-2" tal:condition="view/lmu_settings/show_breadcrumb_2" tal:omit-tag="python: True">
         <tal:title_pair tal:repeat="title_pair view/lmu_settings/breadcrumb_2_title">
         <a class="global-home" tal:condition="python:title_pair.language == view.current_language"
            tal:attributes="href view/lmu_settings/breadcrumb_2_url" tal:content="title_pair/text">Level 1</a>
@@ -35,14 +33,17 @@ are here:</span>
     </span>
     <span tal:repeat="crumb breadcrumbs"
           tal:attributes="dir python:is_rtl and 'rtl' or 'ltr';
-                          id string:breadcrumbs-${repeat/crumb/number}">
+                          id string:breadcrumbs-${repeat/crumb/number}"
+           tal:omit-tag="python: True">
         <tal:item tal:define="is_last repeat/crumb/end;
                               url crumb/absolute_url;
                               title crumb/Title">
             <a href="#"
                tal:omit-tag="not: url"
                tal:condition="python:not is_last"
-               tal:attributes="href url"
+               tal:attributes="href url;
+                               dir python:is_rtl and 'rtl' or 'ltr';
+                               id string:breadcrumbs-${repeat/crumb/number}"
                tal:content="title">
                 crumb
             </a>
@@ -51,8 +52,10 @@ are here:</span>
                 <tal:rtl condition="is_rtl">\</tal:rtl>
             </span>
             <span id="breadcrumbs-current"
+                  class="active"
                   tal:condition="is_last"
                   tal:content="title">crumb</span>
+            <div class="clearfix" tal:condition="is_last" />
          </tal:item>
     </span>
 

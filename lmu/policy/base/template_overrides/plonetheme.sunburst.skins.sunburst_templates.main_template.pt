@@ -239,6 +239,9 @@
            tal:condition="show_border"
            tal:content="structure provider:plone.contentviews" />
 
+      <div id="breadcrumb"
+           tal:content="structure provider:plone.abovecontent" />
+
     </div>
   </div>
 </body>
