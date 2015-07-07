@@ -6,20 +6,24 @@
       metal:use-macro="context/main_template/macros/master"
       i18n:domain="plone">
 
-<body tal:define="portal_url context/@@plone_portal_state/portal_url;
-                  navigation_root_url context/@@plone_portal_state/navigation_root_url;
-                  url python:context.remoteUrl.replace('${navigation_root_url}', navigation_root_url).replace('${portal_url}', portal_url)">
+<body>
 
-    <metal:head fill-slot="head-slot">
-      <meta http-equiv="refresh" tal:attributes="content string:20\;url=${url}" />
+    <metal:head fill-slot="head_slot" 
+                tal:define="portal_url context/@@plone_portal_state/portal_url;
+                            navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                            url python:context.remoteUrl.replace('${navigation_root_url}', navigation_root_url).replace('${portal_url}', portal_url);">
+      <meta http-equiv="refresh" tal:attributes="content string:20;;url=${url}" />
     </metal:head>
 
     <metal:header fill-slot="header">
         <dl class="portalMessage info"
-            tal:define="redirect_links context/portal_properties/site_properties/redirect_links|nothing;"
+            tal:define="redirect_links context/portal_properties/site_properties/redirect_links|nothing;
+                        portal_url context/@@plone_portal_state/portal_url;
+                        navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                        url python:context.remoteUrl.replace('${navigation_root_url}', navigation_root_url).replace('${portal_url}', portal_url);"
             tal:condition="python: redirect_links and checkPermission('Modify portal content', context)">
             <dt i18n:translate="">Info</dt>
-            <dd i18n:translate="message_permissions_blocking_link_redirect">
+            <dd i18n:translate="">
               You see this page because you have permission to edit this link.
               Others will be immediately redirected to the link's target URL (<a tal:content="url" tal:attributes="href url">URL</a>).
               You will be redirected to the link's target URL within 20 seconds. 
@@ -29,7 +33,9 @@
 
     <metal:content-core fill-slot="content-core">
         <metal:block define-macro="content-core">
-        <p >
+        <p tal:define="portal_url context/@@plone_portal_state/portal_url;
+                       navigation_root_url context/@@plone_portal_state/navigation_root_url;
+                       url python:context.remoteUrl.replace('${navigation_root_url}', navigation_root_url).replace('${portal_url}', portal_url);">
             <span i18n:translate="link_address">The link address is:</span>
             <a href="#" tal:attributes="href url"
                         tal:content="context/remoteUrl">remote url</a>
