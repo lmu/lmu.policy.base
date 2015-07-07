@@ -3,9 +3,8 @@
      tal:define="breadcrumbs view/breadcrumbs;
                  is_rtl view/is_rtl">
 
-    <span id="breadcrumbs-home" tal:condition="not:view/is_any_override_active" tal:omit-tag="python: True">>
-        <a i18n:translate="tabs_home"
-           tal:attributes="href view/navigation_root_url"><i class="fi-home" >Home</i></a>
+    <span id="breadcrumbs-home" tal:condition="not:view/is_any_override_active" tal:omit-tag="python: True">
+        <a tal:attributes="href view/navigation_root_url"><i class="fi-home" ></i> <span class="show-for-sr" i18n:translate="tabs_home" >Home</span></a>
         <span tal:condition="breadcrumbs" class="breadcrumbSeparator">
             <tal:ltr condition="not: is_rtl">/</tal:ltr>
             <tal:rtl condition="is_rtl">\</tal:rtl>
