@@ -29,7 +29,7 @@
 
     <tal:notajax tal:condition="python:not ajax_load or ajax_include_head">
         <div tal:replace="structure provider:plone.htmlhead" />
-        <link tal:replace="structure provider:plone.htmlhead.links" />
+        <link tal:replace="structure provider:plone.htmlhead.links" tal:on-error="string:"/>
 
         <tal:comment replace="nothing">
             Various slots where you can insert elements in the header from a template.
