@@ -153,7 +153,9 @@ else:
 
         itemUrl = itemUrl + searchterm_query
 
-        itemUrl = itemUrl.replace('/functions/prototyp-1/sp', '')
+        itemUrl = itemUrl.replace('/prototyp-1/sp', '')
+        itemUrl = itemUrl.replace('/prototyp-1/in', '')
+        itemUrl = itemUrl.replace('/functions', '')
 
         write('''<li class="LSRow">''')
         write(icon.html_tag() or '')
