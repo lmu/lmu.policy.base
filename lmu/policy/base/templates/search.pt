@@ -27,76 +27,77 @@
 
 <main id="content" metal:fill-slot="content">
   <div class="row">
-    <div class="columns small-12 large-10 large-centered helper-margin-top-xl" >
+    <div class="columns small-12 large-10 large-centered helper-margin-top-l" >
+      <form name="searchform"
+            action="search"
+            class="searchPage enableAutoFocus"
+            tal:define="portal context/@@plone_portal_state/portal;
+                        first_call not:request/advanced_search|nothing;
+                        st python:request.get('SearchableText', '');
+                        DateTime python:modules['DateTime'].DateTime;
+                        navigation_root_url view/navroot_url;">
+          <input type="hidden" name="advanced_search" value="False" />
+          <input type="hidden" name="sort_on" value="" />
 
-    <form name="searchform"
-          action="search"
-          class="searchPage enableAutoFocus"
-          tal:define="portal context/@@plone_portal_state/portal;
-                      first_call not:request/advanced_search|nothing;
-                      st python:request.get('SearchableText', '');
-                      DateTime python:modules['DateTime'].DateTime;
-                      navigation_root_url view/navroot_url;"> 
+          <fieldset id="search-field" i18n:domain="plone" class="noborder"> 
+            <legend i18n:translate="">Search</legend>
+              <input class="searchPage"
+                     name="SearchableText"
+                     type="text"
+                     size="25"
+                     title="Search Site"
+                     i18n:attributes="title title_search_title;"
+                     tal:attributes="value st;"
+                     />
+              <input class="searchPage searchButton allowMultiSubmit"
+                     type="submit"
+                     value="Search" 
+                     tal:condition="nothing"
+                     i18n:attributes="value label_search;"/>
+              <button type="submit" class="searchPage searchButton allowMultiSubmit">
+                <i class="fi-magnifying-glass"></i><span class="show-for-sr" i18n:translate="" >Search</span>
+              </button>
+          </fieldset>
 
-        <input type="hidden" name="advanced_search" value="False" />
-        <input type="hidden" name="sort_on" value="" />
-
-        <fieldset id="search-field" i18n:domain="plone" class="noborder">
-            <input class="searchPage"
-                   name="SearchableText"
-                   type="text"
-                   size="25"
-                   title="Search Site"
-                   i18n:attributes="title title_search_title;"
-                   tal:attributes="value st;"
-                   />
-            <input class="searchPage searchButton allowMultiSubmit"
-                   type="submit"
-                   value="Search"
-                   i18n:attributes="value label_search;"/>
-        </fieldset>
-
-        <div class="row">
-
-            <div class="cell width-full position-0">
-                <h1 class="documentFirstHeading"
-                    i18n:translate=""
-                    tal:condition="not:st">
-                    Search results
-                </h1>
-                <h1 class="documentFirstHeading"
-                    i18n:translate=""
-                    tal:condition="st">
-                    Search results for
-                    <strong id="search-term" tal:content="st" i18n:name="term">
-                        Search Term
-                    </strong>
-                </h1>
-
-                <p id="rss-subscription" i18n:domain="plone"
-                   tal:define="syndication context/@@tools/syndication|nothing"
-                   tal:condition="syndication/isSiteSyndicationAllowed|nothing">
-                      <img src="" alt="RSS"
-                           tal:attributes="src string:${portal_url}/rss.gif"/>
-                    <a href=""
-                       class="link-feed"
-                       tal:define="here_url context/@@plone_context_state/object_url"
-                       tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}">
-                        <span i18n:translate="title_subscribe_rss_feed">
-                          Subscribe to an always-updated RSS feed.
-                        </span>
-                    </a>
-                </p>
+          <div class="row">
+            <div class="columns small-12">
+              <h1 class="documentFirstHeading"
+                  i18n:translate=""
+                  tal:condition="not:st">
+                  Search results
+              </h1>
+              <h1 class="documentFirstHeading"
+                  i18n:translate=""
+                  tal:condition="st">
+                  Search results for
+                  <strong id="search-term" tal:content="st" i18n:name="term">
+                      Search Term
+                  </strong>
+              </h1>
+              <p id="rss-subscription" i18n:domain="plone"
+                 tal:define="syndication context/@@tools/syndication|nothing"
+                 tal:condition="syndication/isSiteSyndicationAllowed|nothing">
+                <img src="" alt="RSS"
+                         tal:attributes="src string:${portal_url}/rss.gif"/>
+                <a href=""
+                   class="link-feed"
+                   tal:define="here_url context/@@plone_context_state/object_url"
+                   tal:attributes="href string:$here_url/search_rss?${request/QUERY_STRING}">
+                  <span i18n:translate="title_subscribe_rss_feed">
+                    Subscribe to an always-updated RSS feed.
+                  </span>
+                </a>
+              </p>
             </div>
             <div class="visualClear"><!-- --></div>
             <div id="search-results-wrapper"
-                 class="cell width-full position-0"
                  tal:define="b_start python:0;
                              b_start request/b_start | b_start;
                              batch python: view.results(query={'hl': 'true'}, b_start=b_start);
                              normalizeString nocall:context/@@plone/normalizeString;">
 
-                <div id="search-results-bar">
+                <div id="search-results-bar"
+                     class="columns small-12">
                     <span i18n:translate="batch_x_items_matching_your_criteria" i18n:domain="plone">
                         <strong i18n:name="number" id="search-results-number"
                                 tal:content="batch/sequence_length|string:0">234</strong>
@@ -271,6 +272,7 @@
 
                 <metal:searchresults define-macro="search_results">
                     <div id="search-results"
+                         class="helper-margin-top-m columns small-12 large-8"
                          tal:define="navigation_root_url context/@@plone_portal_state/navigation_root_url;">
 
                         <metal:noresults tal:condition="not: batch">
@@ -323,7 +325,6 @@
                                                           modification_date item/ModificationDate">
 
                                             <span class="documentPublished" tal:condition="python: publication_date != 'None'">
-                                              &mdash;
                                               <span i18n:translate="box_published">
                                                 published
                                               </span>
@@ -414,7 +415,7 @@
         </div>
 
         <div class="visualClear clearfix"><!-- --></div>
-    </form>
+      </form>
     </div>
   </div>
 </main>
