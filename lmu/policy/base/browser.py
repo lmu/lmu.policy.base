@@ -3,6 +3,7 @@
 #import StringIO
 
 from datetime import timedelta
+from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.parser import SolrResponse
 #from OFS import Image as OFSImage
 #from PIL import Image as PILImage
@@ -23,6 +24,7 @@ from plone.app.search.browser import quote_chars
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component import queryUtility
 import logging
 
 log = logging.getLogger(__name__)
@@ -40,6 +42,11 @@ class Search(BaseSearch):
         if batch:
             query['b_start'] = b_start = int(b_start)
             query['b_size'] = b_size
+        config = queryUtility(ISolrConnectionConfig)
+        if config:
+            query['facet'] = 'true'
+            query['facet.field'] = config.facets
+
         query = self.filter_query(query)
 
         if query is None:
