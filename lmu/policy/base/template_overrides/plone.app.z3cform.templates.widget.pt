@@ -7,39 +7,44 @@
                error_class python:error and ' error' or '';
                empty_values python: (None, '', [], ('', '', '', '00', '00', ''), ('', '', ''));
                empty_class python: (widget.value in empty_values) and ' empty' or '';
-               fieldname_class string:kssattr-fieldname-${widget/name};"
+               fieldname_class string:kssattr-fieldname-${widget/name};
+               description widget/field/description"
    tal:attributes="class string:row field z3cformInlineValidation ${fieldname_class}${error_class}${empty_class};
                    data-fieldname widget/name;
                    id string:formfield-${widget/id};">
-  <div class="column small-12 medium-2" >
-    <label for="" class="horizontal"
-        tal:attributes="for widget/id"
+  <div class="column small-12 medium-2"
+       tal:condition="not:hidden">
+    <label for="" class="horizontal inline"
+        tal:attributes="for widget/id; class string:horizontal${error_class} inline"
         tal:condition="not:hidden">
         <span i18n:translate="" tal:replace="widget/label">label</span>
 
         <span class="required horizontal" title="Required"
               tal:condition="python:widget.required and widget.mode == 'input'"
-              i18n:attributes="title title_required;">&nbsp;</span>
+              i18n:attributes="title title_required;"></span>
 
     </label>
   </div>
-    <div class="fieldErrorBox"
-        tal:content="structure error/render|nothing">
-        Error
-    </div>
 
-  <div class="column small-12 medium-7" >
-    <input type="text" tal:replace="structure widget/render"
+  <div class="column small-12 medium-7"
+       tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-7 large-7 end'">
+    <input type="text"
+           class="inline"
+           tal:replace="structure widget/render"
            metal:define-slot="widget" />
+    <small class="fieldErrorBox error"
+           tal:content="structure error/render|nothing"
+           tal:condition="python: error">
+      Error
+    </small>
   </div>
 
-  <div class="column small-12 medium-3" class="info-box">
-    <span class="formHelp"
-        tal:define="description widget/field/description"
+  <div class="column small-12 medium-3"
+       tal:condition="python:description and not hidden">
+    <div class="formHelp inline"
         i18n:translate=""
-        tal:content="structure description"
-        tal:condition="python:description and not hidden"
-        >field description
-    </span>
+        tal:content="structure description">
+      field description
+    </div>
   </div>
 </div>
