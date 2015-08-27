@@ -27,7 +27,7 @@
   </div>
 
   <div class="column small-12 medium-7"
-       tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-7 large-7 end'">
+       tal:attributes="class python: hidden and 'column widget-column small-11' or 'column widget-column small-11 medium-9 large-9 end'">
     <input type="text"
            class="inline"
            tal:replace="structure widget/render"
@@ -39,12 +39,27 @@
     </small>
   </div>
 
-  <div class="column small-12 medium-3"
+  <div class="column small-1"
        tal:condition="python:description and not hidden">
-    <div class="formHelp inline"
-        i18n:translate=""
-        tal:content="structure description">
-      field description
+    <a class="toogle inline right"
+       href="#"
+       style="font-size: 2em;"
+       data-reveal-id="widget-id-help"
+       tal:attributes="data-reveal-id string:${widget/id}-help;" >
+        <i class="fi-info"></i>
+        <span class="show-for-sr" i18n:translate="">Help</span>
+    </a>
+  </div>
+  <div id="widget-id-help"
+       class="formHelp reveal-modal xlarge"
+       data-reveal
+       aria-labelledby=""
+       aria-hidden="true"
+       role="dialog"
+       tal:attributes="id string:${widget/id}-help;" >
+    <div i18n:translate="" tal:content="structure description" >
+    field description
     </div>
+    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
   </div>
 </div>
