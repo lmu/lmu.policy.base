@@ -162,7 +162,7 @@
     </div>
 
     <div id="portal-footer-wrapper"
-         class="row"
+         class="row visualClear"
          i18n:domain="plone"
          tal:condition="not:ajax_load">
       <div class="cell width-full position-0">
