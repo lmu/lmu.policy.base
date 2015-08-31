@@ -9,7 +9,7 @@
                empty_class python: (widget.value in empty_values) and ' empty' or '';
                fieldname_class string:kssattr-fieldname-${widget/name};
                description widget/field/description"
-   tal:attributes="class string:row field z3cformInlineValidation ${fieldname_class}${error_class}${empty_class};
+   tal:attributes="class string:row field z3cformInlineValidation helper-margin-bottom-m ${fieldname_class}${error_class}${empty_class};
                    data-fieldname widget/name;
                    id string:formfield-${widget/id};">
   <div class="column small-12 medium-2"
@@ -27,7 +27,16 @@
   </div>
 
   <div class="column small-12 medium-7"
-       tal:attributes="class python: hidden and 'column widget-column small-11' or 'column widget-column small-11 medium-9 large-9 end'">
+       tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-10 large-10 end'">
+    <a class="toogle formHelpToggle inline right helper-margin-left-s"
+       href="#"
+       style="font-size: 2em;"
+       data-reveal-id="widget-id-help"
+       tal:condition="python:description and not hidden"
+       tal:attributes="data-reveal-id string:${widget/id}-help;" >
+        <i class="fi-info"></i>
+        <span class="show-for-sr" i18n:translate="">Help</span>
+    </a>
     <input type="text"
            class="inline"
            tal:replace="structure widget/render"
@@ -39,17 +48,10 @@
     </small>
   </div>
 
-  <div class="column small-1"
+  <!--div class="column small-1 "
        tal:condition="python:description and not hidden">
-    <a class="toogle inline right"
-       href="#"
-       style="font-size: 2em;"
-       data-reveal-id="widget-id-help"
-       tal:attributes="data-reveal-id string:${widget/id}-help;" >
-        <i class="fi-info"></i>
-        <span class="show-for-sr" i18n:translate="">Help</span>
-    </a>
-  </div>
+
+  </div-->
   <div id="widget-id-help"
        class="formHelp reveal-modal xlarge"
        data-reveal

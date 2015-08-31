@@ -184,9 +184,23 @@
                   Visual Header
                 </metal:header>
 
+                <div id="plone-extras" class="visualClear clearfix"
+                     tal:define="show_border context/@@plone/showEditableBorder; show_border python:show_border and not ajax_load"
+                     tal:attributes="class python:show_border and 'documentEditable visualClear clearfix' or ''">
+
+                  <div metal:use-macro="context/global_statusmessage/macros/portal_message">
+                    Status message
+                  </div>
+
+                  <div id="edit-bar"
+                       tal:condition="show_border"
+                       tal:content="structure provider:plone.contentviews" />
+
+                </div>
+
                 <metal:bodytext define-slot="main">
 
-                  <div id="viewlet-above-content-title" tal:content="structure provider:plone.abovecontenttitle" tal:condition="not:ajax_load" />
+                  <div id="viewlet-above-content-title" tal:content="structure provider:plone.abovecontenttitle" tal:condition="not:ajax_load" class="clear" />
 
                   <metal:title define-slot="content-title">
                     <metal:comment tal:content="nothing">
