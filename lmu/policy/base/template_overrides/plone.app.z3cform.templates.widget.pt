@@ -28,7 +28,8 @@
 
   <div class="column small-12 medium-7"
        tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-10 large-10 end'">
-    <!--a class="toogle formHelpToggle inline right helper-margin-left-s"
+<tal:comment tal:condition="nothing">
+    <a class="toogle formHelpToggle inline right helper-margin-left-s"
        href="#"
        style="font-size: 2em;"
        data-reveal-id="widget-id-help"
@@ -36,7 +37,7 @@
        tal:attributes="data-reveal-id string:${widget/id}-help;" >
         <i class="fi-info"></i>
         <span class="show-for-sr" i18n:translate="">Help</span>
-    </a-->
+    </a>
     <span data-tooltip
           data-options="hover_delay: 50;"
           aria-haspopup="true" 
@@ -47,7 +48,7 @@
         <i class="fi-info"></i>
         <span class="show-for-sr" i18n:translate="">Help</span>
     </span>
-
+</tal:comment>
     <div class="widget-field-wrapper"
          data-tooltip
          class="has-tip inline"
@@ -71,17 +72,14 @@
     </div>
   </div>
 
-  <!--div class="column small-1 "
-       tal:condition="python:description and not hidden">
-
-  </div-->
   <div id="widget-id-help"
        class="formHelp reveal-modal xlarge"
        data-reveal
        aria-labelledby=""
        aria-hidden="true"
        role="dialog"
-       tal:attributes="id string:${widget/id}-help;" >
+       tal:attributes="id string:${widget/id}-help;"
+       tal:condition="nothing" >
     <div i18n:translate="" tal:content="structure description" >
     field description
     </div>

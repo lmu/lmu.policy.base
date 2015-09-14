@@ -33,7 +33,6 @@
     <z3c:widgetTemplate
         mode="input"
         widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
-        layer=".interfaces.ILMUBaseThemeLayer"
         template="template_overrides/plone.formwidget.namedfile.image_input.pt"
         />
 
