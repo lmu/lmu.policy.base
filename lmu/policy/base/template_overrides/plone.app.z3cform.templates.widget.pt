@@ -28,7 +28,7 @@
 
   <div class="column small-12 medium-7"
        tal:attributes="class python: hidden and 'column widget-column small-12' or 'column widget-column small-12 medium-10 large-10 end'">
-    <a class="toogle formHelpToggle inline right helper-margin-left-s"
+    <!--a class="toogle formHelpToggle inline right helper-margin-left-s"
        href="#"
        style="font-size: 2em;"
        data-reveal-id="widget-id-help"
@@ -36,16 +36,39 @@
        tal:attributes="data-reveal-id string:${widget/id}-help;" >
         <i class="fi-info"></i>
         <span class="show-for-sr" i18n:translate="">Help</span>
-    </a>
-    <input type="text"
-           class="inline"
-           tal:replace="structure widget/render"
-           metal:define-slot="widget" />
-    <small class="fieldErrorBox error"
-           tal:content="structure error/render|nothing"
-           tal:condition="python: error">
-      Error
-    </small>
+    </a-->
+    <span data-tooltip
+          data-options="hover_delay: 50;"
+          aria-haspopup="true" 
+          class="has-tip inline right helper-margin-left-s"
+          style="font-size: 2em;"
+          tal:attributes="title description"
+          tal:condition="python:description and not hidden" >
+        <i class="fi-info"></i>
+        <span class="show-for-sr" i18n:translate="">Help</span>
+    </span>
+
+    <div class="widget-field-wrapper"
+         data-tooltip
+         class="has-tip inline"
+         tal:define="show_tooltip python: description and not hidden;"
+         tal:attributes="title description; 
+                         class python: 'has-tip tip-top inline' if show_tooltip else 'inline';
+                         aria-haspopup python: 'true' if show_tooltip else None;
+                         data-tooltip python: 'true' if show_tooltip else None;
+                         data-options python: 'hover_delay: 50' if show_tooltip else None;
+                         "
+         >
+      <input type="text"
+             class="inline"
+             tal:replace="structure widget/render"
+             metal:define-slot="widget" />
+      <small class="fieldErrorBox error"
+             tal:content="structure error/render|nothing"
+             tal:condition="python: error">
+        Error
+      </small>
+    </div>
   </div>
 
   <!--div class="column small-1 "

@@ -2,6 +2,7 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lmu">
@@ -27,6 +28,13 @@
         for="*"
         template="templates/search.pt"
         layer=".interfaces.ILMUBaseThemeLayer"
+        />
+
+    <z3c:widgetTemplate
+        mode="input"
+        widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
+        layer=".interfaces.ILMUBaseThemeLayer"
+        template="template_overrides/plone.formwidget.namedfile.image_input.pt"
         />
 
 </configure>

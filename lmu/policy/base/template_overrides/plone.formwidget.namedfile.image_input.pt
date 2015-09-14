@@ -31,10 +31,11 @@
 
     <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
     <span tal:condition="python:exists and download_url and action=='nochange'">
-        <img
-            tal:attributes="src download_url;
-                            width view/thumb_width"
-            /><br />
+        <div class="helper-border helper-padding-s"
+            <img tal:attributes="src download_url;
+                                 width view/thumb_width" />
+        </div>
+        <br />
         <img tal:condition="icon" src="" alt=""
              tal:attributes="src icon;
                              alt doc_type;
