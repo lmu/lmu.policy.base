@@ -28,8 +28,8 @@
                 allow_nochange view/allow_nochange;
                 doc_type view/file_content_type;
                 icon view/file_icon;">
-    <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
     <span tal:condition="python:exists and download_url and action=='nochange'">
+        <a href="#" tal:attributes="href string:${context/absolute_url}/@@croppingeditor">Bild zuschneiden</a>
         <div class="helper-border helper-padding-s" >
             <img tal:attributes="src download_url;
                                  width view/thumb_width" />

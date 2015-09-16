@@ -3,13 +3,14 @@
    i18n:domain="plone"
    tal:define="widget nocall:context;
                hidden python:widget.mode == 'hidden';
+               marginb python: '' if hidden else 'helper-margin-bottom-m';
                error widget/error;
                error_class python:error and ' error' or '';
                empty_values python: (None, '', [], ('', '', '', '00', '00', ''), ('', '', ''));
                empty_class python: (widget.value in empty_values) and ' empty' or '';
                fieldname_class string:kssattr-fieldname-${widget/name};
                description widget/field/description"
-   tal:attributes="class string:row field z3cformInlineValidation helper-margin-bottom-m ${fieldname_class}${error_class}${empty_class};
+   tal:attributes="class string:row field z3cformInlineValidation ${marginb} ${fieldname_class}${error_class}${empty_class};
                    data-fieldname widget/name;
                    id string:formfield-${widget/id};">
   <div class="column small-12 medium-2"
