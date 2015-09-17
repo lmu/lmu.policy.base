@@ -57,7 +57,7 @@
          tal:attributes="title description; 
                          class python: 'has-tip tip-top inline' if show_tooltip else 'inline';
                          aria-haspopup python: 'true' if show_tooltip else None;
-                         data-tooltip python: 'true' if show_tooltip else None;
+                         data-tooltip python: '' if show_tooltip else None;
                          data-options python: 'hover_delay: 50' if show_tooltip else None;
                          "
          >
