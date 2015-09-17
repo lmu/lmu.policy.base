@@ -59,6 +59,8 @@
                          aria-haspopup python: 'true' if show_tooltip else None;
                          data-tooltip python: 'true' if show_tooltip else None;
                          data-options python: 'hover_delay: 50' if show_tooltip else None;
+                         data-selector string:tooltip-${widget/id};
+                         aria-describedby string:tooltip-${widget/id};
                          "
          >
       <input type="text"

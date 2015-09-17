@@ -21,9 +21,9 @@
             tal:define="mtype message/type | nothing;
                         mtypek python: mtype.replace('info success','success');"
             tal:attributes="class string:portalMessage ${mtypek} alert-box;">
-            <dt><span tal:replace="python:mtype.capitalize()"
+            <dt><span 
                 i18n:translate="">
-                Info</span>  <a href="#" class="close">&times;</a>
+                Info</span> <span tal:replace="python:mtype.capitalize()" tal:condition="nothing" /> <a href="#" class="close">&times;</a>
             </dt>
             <dd tal:content="message/message | nothing"
                 i18n:translate="">
