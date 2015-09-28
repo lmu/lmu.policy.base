@@ -84,11 +84,6 @@
                           tal:define="show_default_label show_default_label|nothing;
                                       has_groups has_groups|nothing">
 
-                          <fieldset id="fieldset-default" tal:omit-tag="not:show_default_label">
-
-                              <legend tal:condition="show_default_label"
-                                      tal:attributes="id string:fieldsetlegend-default"
-                                      tal:content="default_fieldset_label">Form name</legend>
 
                               <metal:define define-macro="widget_rendering">
                                   <tal:widgets repeat="widget view/widgets/values">
@@ -99,29 +94,11 @@
                                       </metal:field-slot>
                                   </tal:widgets>
                               </metal:define>
-                          </fieldset>
+
 
                           <!-- Secondary fieldsets -->
                           <tal:block tal:repeat="group groups" condition="has_groups">
-                              <fieldset
-                                  tal:define="normalizeString nocall:context/@@plone/normalizeString;
-                                              fieldset_label group/label;
-                                              fieldset_name python:getattr(group, '__name__', False) or getattr(group.label, 'default', False) or fieldset_label;
-                                              fieldset_name python:normalizeString(fieldset_name);"
-                                  tal:attributes="id string:fieldset-${fieldset_name};
-                                                  class string:kssattr-fieldset-${fieldset_name};
-                                                  data-fieldset fieldset_name">
 
-                                      <legend tal:condition="fieldset_label"
-                                              tal:attributes="id string:fieldsetlegend-${fieldset_name}"
-                                              tal:content="fieldset_label">Form name</legend>
-
-                                      <p i18n:translate=""
-                                         tal:define="group_description group/description|nothing"
-                                         tal:condition="group_description"
-                                         tal:content="structure group_description">
-                                          Description
-                                      </p>
 
                                       <tal:block tal:define="errors group/widgets/errors"
                                                  tal:condition="errors"
@@ -136,7 +113,6 @@
                                           <metal:block use-macro="context/@@ploneform-macros/widget_rendering" />
                                       </tal:block>
 
-                              </fieldset>
                           </tal:block>
 
                       </metal:define>

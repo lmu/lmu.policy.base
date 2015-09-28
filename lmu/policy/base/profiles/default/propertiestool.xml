@@ -10,7 +10,9 @@
             <element value="tile 64:64"/>
             <element value="icon 32:32"/>
             <element value="listing 16:16"/>
-            <element value="fmini 500:1500"/>
+            <element value="listing_teaser 320:180"/>
+            <element value="entry_teaser 720:405"/>
+            <element value="listing_thumb 80:80" />
         </property>
         <property name="quality" type="int">88</property>
     </object>
