@@ -3,6 +3,8 @@
   <version>2015-04-24-1</version>
   <dependencies>
       <!--<dependency>profile-Products.CMFPlone:default</dependency>-->
+      <dependency>profile-Products.ShibbolethPermissions:default</dependency>
+      <dependency>profile-Products.AutoRoleFromHostHeader:default</dependency>
       <dependency>profile-plone.app.contenttypes:default</dependency>
       <dependency>profile-plone.app.changeownership:default</dependency>
       <dependency>profile-wildcard.foldercontents:default</dependency>
