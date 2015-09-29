@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<import-steps>
+ <import-step id="lmu.policy.base--default" version="20150929-01"
+              handler="lmu.policy.base.setuphandlers.setupVarious"
+              title="lmu.policy.base default">
+    lmu.policy.base default installation step.
+ </import-step>
+</import-steps>
