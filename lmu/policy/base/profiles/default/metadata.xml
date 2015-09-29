@@ -5,6 +5,7 @@
       <!--<dependency>profile-Products.CMFPlone:default</dependency>-->
       <dependency>profile-Products.ShibbolethPermissions:default</dependency>
       <dependency>profile-Products.AutoRoleFromHostHeader:default</dependency>
+      <dependency>profile-Products.AutoUserMakerPASPlugin:default</dependency>
       <dependency>profile-plone.app.contenttypes:default</dependency>
       <dependency>profile-plone.app.changeownership:default</dependency>
       <dependency>profile-wildcard.foldercontents:default</dependency>
