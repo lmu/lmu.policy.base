@@ -2,6 +2,9 @@ import logging
 import transaction
 
 from plone import api
+from StringIO import StringIO
+from Products.PlonePAS.Extensions.Install import activatePluginInterface
+from Products.AutoRoleFromHostHeader.plugins.AutoRole import AutoRole
 
 log = logging.getLogger(__name__)
 
@@ -23,11 +26,16 @@ def setupVarious(context):
 
 def _setupAutoRoleHeader(context):
     acl_users = api.portal.get_tool('acl_users')
+    portal = api.portal.get()
 
     #import ipdb; ipdb.set_trace()
+    out = StringIO()
 
-    factory = acl_users.manage_addProduct['AutoRoleFromHostHeader']
-    factory.manage_addAutoRoleForm('auto_role_header_cms-admins')
+    arh_cmsadmins = AutoRole('auto_role_header_cms-admins',
+                             title='AutoRole for CMS-Admins',
+                             match_roles=('Groupmembership; cms-admins-insp; Site Administrator'))
+
+    activatePluginInterface(portal, arh_cmsadmins, out)
 
     auto_role = acl_users['auto_role_header']
     auto_role.manage_changeProperties(
