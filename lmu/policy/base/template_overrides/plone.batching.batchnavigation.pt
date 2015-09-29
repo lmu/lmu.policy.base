@@ -1,0 +1,71 @@
+<!-- Navigation -->
+<tal:batchnavigation define="batch view/batch|nothing;"
+                   condition="batch"
+                   metal:define-macro="navigation"
+                   >
+<div class="pagination-centered">
+<ul class="pagination listingBar"
+     i18n:domain="plone"
+     tal:condition="batch/multiple_pages">
+    <li class="arrow"
+        tal:condition="batch/has_previous">
+        <a href=""
+           tal:attributes="href python:view.make_link(batch.previouspage)">
+           &laquo;
+        </a>
+    </li>
+
+    <!-- Link to first -->
+    <tal:link tal:condition="batch/show_link_to_first">
+        <li>
+        <a href=""
+           tal:attributes="href python:view.make_link(1)">1</a>
+        </li>
+        <li class="unavailable" tal:condition="batch/second_page_not_in_navlist">
+           <a href="">&hellip;</a>
+        </li>
+    </tal:link>
+
+    <!-- Pagelist with links to previous pages for quick navigation -->
+    <li tal:repeat="pagenumber batch/previous_pages"
+          >
+      <a href="" tal:content="pagenumber"
+         tal:attributes="href python:view.make_link(pagenumber)"/>
+    </li>
+
+    <!-- Current page -->
+    <li tal:condition="batch/navlist"
+        class="current"
+          >
+        <a tal:content="batch/pagenumber">Current page number</a>
+    </li>
+
+    <!-- Pagelist with links to next pages for quick navigation -->
+    <li tal:repeat="pagenumber batch/next_pages"
+           >
+      <a href="" tal:content="pagenumber"
+         tal:attributes="href python:view.make_link(pagenumber)"/>
+    </li>
+
+    <!-- Link to last -->
+    <tal:link condition="batch/show_link_to_last">
+        <li class="unavailable" tal:condition="batch/before_last_page_not_in_navlist">
+           <a href="">&hellip;</a>
+        </li>
+        <li>
+        <a href=""
+           tal:attributes="href python:view.make_link(batch.lastpage)"
+           tal:content="batch/lastpage">3457</a>
+        </li>
+    </tal:link>
+
+    <li class="arrow" tal:condition="batch/has_next">
+        <a href=""
+           tal:attributes="href python:view.make_link(batch.nextpage)">
+           &raquo;
+        </a>
+    </li>
+
+</ul>
+</div>
+</tal:batchnavigation>
