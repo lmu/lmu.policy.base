@@ -55,13 +55,13 @@
                      value="1"
                      />
 
-              <input class="destructive button small radius"
+              <input class="button small radius"
                      type="submit"
                      value="Delete"
                      tal:condition="not:item_locked"
                      i18n:attributes="value;"
                      />
-              <input class="standalone"
+              <input class="button small radius"
                      type="submit"
                      value="Cancel"
                      name="form.button.Cancel"
