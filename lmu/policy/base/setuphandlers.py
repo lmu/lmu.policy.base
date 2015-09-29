@@ -1,7 +1,13 @@
 import logging
+import transaction
+
 from plone import api
 
 log = logging.getLogger(__name__)
+
+PRODUCT_DEPENDENCIES = (
+    'Products.AutoUserMakerPASPlugin',
+)
 
 
 def setupVarious(context):
@@ -11,15 +17,18 @@ def setupVarious(context):
     if context.readDataFile('lmu.policy.base_default.txt') is None:
         return
 
-    _setupAutoRoleHeader(context)
     _setupAutoUserMaker(context)
+    _setupAutoRoleHeader(context)
 
 
 def _setupAutoRoleHeader(context):
     acl_users = api.portal.get_tool('acl_users')
-    if 'auto_role_header' not in acl_users.objectIds():
-        log.warn('auto_role_header not found, please install'
-                 ' AutoRoleFromHostHeader!')
+
+    #import ipdb; ipdb.set_trace()
+
+    factory = acl_users.manage_addProduct['AutoRoleFromHostHeader']
+    factory.manage_addAutoRoleForm('auto_role_header_cms-admins')
+
     auto_role = acl_users['auto_role_header']
     auto_role.manage_changeProperties(
         match_roles=('Groupmembership; cms-admins-insp; Site Administrator',)
@@ -27,14 +36,20 @@ def _setupAutoRoleHeader(context):
 
 
 def _setupAutoUserMaker(context):
+    portal_quickinstaller = api.portal.get_tool('portal_quickinstaller')
+    for product in PRODUCT_DEPENDENCIES:
+        if not portal_quickinstaller.isProductInstalled(product):
+            portal_quickinstaller.installProduct(product)
+            transaction.savepoint()
     acl_users = api.portal.get_tool('acl_users')
     if 'AutoUserMakerPASPlugin' not in acl_users.objectIds():
         log.warn('AutoUserMakerPASPlugin not found, please install'
                  ' AutoUserMakerPASPlugin!')
-    auto_user = acl_users['AutoUserMakerPASPlugin']
-    auto_user.manage_changeProperties(
-        http_remote_user='HTTP_EDUPersonPrincipalName',
-        http_commonname='HTTP_DISPLAYNAME',
-        http_email='HTTP_MAIL',
-        auto_update_user_properties=1,
-    )
+    else:
+        auto_user = acl_users['AutoUserMakerPASPlugin']
+        auto_user.manage_changeProperties(
+            http_remote_user='HTTP_EDUPersonPrincipalName',
+            http_commonname='HTTP_DISPLAYNAME',
+            http_email='HTTP_MAIL',
+            auto_update_user_properties=1,
+        )

@@ -25,7 +25,7 @@ setup(name='lmu.policy.base',
       install_requires=[
           'setuptools',
           # -*- Extra requirements: -*-
-          'Products.ShibbolethPermissions',
+          #'Products.ShibbolethPermissions',
           'Products.AutoRoleFromHostHeader',
           'z3c.jbot',
           'collective.solr',
