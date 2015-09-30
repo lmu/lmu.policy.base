@@ -3,7 +3,7 @@ import transaction
 
 from plone import api
 from StringIO import StringIO
-from Products.PlonePAS.Extensions.Install import activatePluginInterface
+#from Products.PlonePAS.Extensions.Install import activatePluginInterface
 from Products.AutoRoleFromHostHeader.plugins.AutoRole import AutoRole
 
 log = logging.getLogger(__name__)
@@ -35,7 +35,7 @@ def _setupAutoRoleHeader(context):
                              title='AutoRole for CMS-Admins',
                              match_roles=('Groupmembership; cms-admins-insp; Site Administrator'))
 
-    activatePluginInterface(portal, arh_cmsadmins, out)
+#    activatePluginInterface(portal, arh_cmsadmins, out)
 
     auto_role = acl_users['auto_role_header']
     auto_role.manage_changeProperties(
@@ -56,7 +56,7 @@ def _setupAutoUserMaker(context):
     else:
         auto_user = acl_users['AutoUserMakerPASPlugin']
         auto_user.manage_changeProperties(
-            http_remote_user='HTTP_EDUPersonPrincipalName',
+            http_remote_user='HTTP_EDUPERSONPRINCIPALNAME',
             http_commonname='HTTP_DISPLAYNAME',
             http_email='HTTP_MAIL',
             auto_update_user_properties=1,
