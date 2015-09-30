@@ -100,7 +100,7 @@
                           <tal:block tal:repeat="group groups" condition="has_groups">
 
 
-                                      <tal:block tal:define="errors group/widgets/errors"
+                                      <tal:block tal:define="errors group/widgets/errors | nothing"
                                                  tal:condition="errors"
                                                  tal:repeat="error errors">
                                           <div class="field error"
