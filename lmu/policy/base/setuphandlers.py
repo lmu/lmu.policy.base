@@ -56,7 +56,7 @@ def _setupAutoUserMaker(context):
     else:
         auto_user = acl_users['AutoUserMakerPASPlugin']
         auto_user.manage_changeProperties(
-            http_remote_user='HTTP_EDUPersonPrincipalName',
+            http_remote_user='HTTP_EDUPERSONPRINCIPALNAME',
             http_commonname='HTTP_DISPLAYNAME',
             http_email='HTTP_MAIL',
             auto_update_user_properties=1,

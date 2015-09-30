@@ -11,7 +11,7 @@
       <dependency>profile-wildcard.foldercontents:default</dependency>
       <dependency>profile-collective.quickupload:default</dependency>
       <dependency>profile-collective.deletepermission:default</dependency>
-<!--       <dependency>profile-collective.solr:default</dependency> -->
+      <dependency>profile-collective.solr:default</dependency>
   </dependencies>
 </metadata>
 
