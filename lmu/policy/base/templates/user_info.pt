@@ -8,8 +8,10 @@
 </head>
 <body>
     <div id="user" >
-        <span tal:replace="view/username" ></span>
-        
+        <span style="font-size: 12px;" class="fi-torso"></span>
+        <span tal:define="username view/username;
+                          username python: username if username else 'Failover System'" 
+              tal:replace="username"></span>
         <img tal:replace="structure view/portrait" tal:condition="nothing"/>
     </div>
 </body>
