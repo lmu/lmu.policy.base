@@ -102,6 +102,19 @@ class ILMUSettings(Interface):
         description=_(u""),
         required=False
     )
+    domain = schema.List(
+        title=_(u"Domain(s)"),
+        description=_(u"Domain(s) that the content of this site is valid for"),
+        value_type=schema.TextLine(),
+        required=False,
+    )
+    cms_system = schema.TextLine(
+        title=_(u"CMS System"),
+        description=_(u"Name that this CMS system uses to be identified among"
+                      " others that may be used in parallel"),
+        required=False,
+        default=u"Plone",
+    )
 
 
 class LMUControlPanelForm(RegistryEditForm):
