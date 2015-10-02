@@ -515,106 +515,81 @@ class CustomUploadRenderer(Renderer):
         return ''
 
 
-class BlogFileEditForm(edit.DefaultEditForm):
+class ContainedObjectEditForm(edit.DefaultEditForm):
 
     description = None
+
+    def __call__(self):
+        formHelper(self,
+                   fields_to_show=['image'],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective',
+                                   'IPublication.expires',
+                                   'ICategorization.subjects',
+                                   'ICategorization.language',
+                                   'IRelatedItems.relatedItems',
+                                   'IOwnership.creators',
+                                   'IOwnership.contributors',
+                                   'IOwnership.rights',
+                                   'IAllowDiscussion.allow_discussion',
+                                   'IExcludeFromNavigation.exclude_from_nav',
+                                   ],
+                   fields_to_omit=['IVersionable.changeNote'])
+
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.__name__ == 'save':
+                button.title = _(u'Save')
+        return super(ContainedObjectEditForm, self).__call__()
+
+    def label(self):
+        return None
+
+
+class ContainedFileEditForm(ContainedObjectEditForm):
 
     portal_type = 'File'
 
-    def __call__(self):
-        formHelper(self,
-                   fields_to_show=['image'],
-                   fields_to_input=['title', 'description'],
-                   fields_to_hide=['IPublication.effective',
-                                   'IPublication.expires',
-                                   'ICategorization.subjects',
-                                   'ICategorization.language',
-                                   'IRelatedItems.relatedItems',
-                                   'IOwnership.creators',
-                                   'IOwnership.contributors',
-                                   'IOwnership.rights',
-                                   'IAllowDiscussion.allow_discussion',
-                                   'IExcludeFromNavigation.exclude_from_nav',
-                                   ],
-                   fields_to_omit=['IVersionable.changeNote'])
 
-        buttons = self.buttons
-        for button in buttons.values():
-            #button.klass = u' button large round'
-            if button.__name__ == 'save':
-                button.title = _(u'Save')
-        return super(BlogFileEditForm, self).__call__()
+class ContainedImageEditForm(ContainedObjectEditForm):
 
-    def label(self):
-        return None
-
-
-class BlogImageEditForm(edit.DefaultEditForm):
-
-    description = None
     portal_type = 'Image'
 
-    def __call__(self):
-        formHelper(self,
-                   fields_to_show=['image'],
-                   fields_to_input=['title', 'description'],
-                   fields_to_hide=['IPublication.effective',
-                                   'IPublication.expires',
-                                   'ICategorization.subjects',
-                                   'ICategorization.language',
-                                   'IRelatedItems.relatedItems',
-                                   'IOwnership.creators',
-                                   'IOwnership.contributors',
-                                   'IOwnership.rights',
-                                   'IAllowDiscussion.allow_discussion',
-                                   'IExcludeFromNavigation.exclude_from_nav',
-                                   ],
-                   fields_to_omit=['IVersionable.changeNote'])
 
-        buttons = self.buttons
-        for button in buttons.values():
-            #button.klass = u' button large round'
-            if button.__name__ == 'save':
-                button.title = _(u'Save')
-
-        return super(BlogImageEditForm, self).__call__()
-
-    def label(self):
-        return None
-
-
-class BlogCommentAddForm(add.DefaultAddForm):
+class LMUCommentAddForm(add.DefaultAddForm):
 
     template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
 
     def __init__(self, context, request, ti=None):
         alsoProvides(self.request, ILMUCommentFormLayer)
-        super(BlogCommentAddForm, self).__init__(context, request, ti=ti)
+        super(LMUCommentAddForm, self).__init__(context, request, ti=ti)
 
     def __call__(self):
         self.portal_type = self.context.portal_type
         text = self.schema.get('text')
         text.widget = RichTextWidgetConfig()
         self.updateWidgets()
-        return super(BlogCommentAddForm, self).__call__()
+        return super(LMUCommentAddForm, self).__call__()
 
 
-class BlogRenderWidget(RenderWidget):
+class LMURenderWidget(RenderWidget):
     index = ViewPageTemplateFile('templates/widget.pt')
 
 
-class BlogCommentsViewlet(CommentsViewlet):
+class LMUCommentsViewlet(CommentsViewlet):
 
     def update(self):
         alsoProvides(self.request, ILMUCommentFormLayer)
-        super(BlogCommentsViewlet, self).update()
+        super(LMUCommentsViewlet, self).update()
 
     def can_reply(self):
         is_blog_entry = (self.context.portal_type == 'Blog Entry')
+        is_pinnwand_entry = (self.context.portal_type == 'Pinnwand Entry')
         is_private = (api.content.get_state(self.context) == 'private')
-        if is_blog_entry and is_private:
+        if (is_blog_entry or is_pinnwand_entry) and is_private:
             return False
-        return super(BlogCommentsViewlet, self).can_reply()
+        return super(LMUCommentsViewlet, self).can_reply()
 
 
 def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):

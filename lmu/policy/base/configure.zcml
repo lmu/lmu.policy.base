@@ -99,30 +99,30 @@
 
     <browser:page
         for="plone.app.contenttypes.interfaces.IFile"
-        name="blog_file_edit"
+        name="contained_file_edit"
         permission="cmf.ModifyPortalContent"
-        class=".browser.BlogFileEditForm"
+        class=".browser.ContainedFileEditForm"
         />
 
     <browser:page
         for="plone.app.contenttypes.interfaces.IImage"
-        name="blog_image_edit"
+        name="contained_image_edit"
         permission="cmf.ModifyPortalContent"
-        class=".browser.BlogImageEditForm"
+        class=".browser.ContainedImageEditForm"
         />
 
     <browser:page
         for="plone.app.discussion.interfaces.IComment"
         name="add"
         permission="cmf.ModifyPortalContent"
-        class=".browser.BlogCommentAddForm"
+        class=".browser.LMUCommentAddForm"
         />
 
     <browser:page
         name="ploneform-render-widget"
         for="z3c.form.interfaces.IWidget"
         layer=".interfaces.ILMUCommentFormLayer"
-        class=".browser.BlogRenderWidget"
+        class=".browser.LMURenderWidget"
         permission="zope.Public"
         />
 
@@ -132,7 +132,7 @@
         layer="lmu.policy.base.interfaces.IProductLayer"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
         view="plone.app.layout.globals.interfaces.IViewView"
-        class=".browser.BlogCommentsViewlet"
+        class=".browser.LMUCommentsViewlet"
         permission="zope2.View"
         />
 
