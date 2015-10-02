@@ -2,7 +2,10 @@
 
 #import StringIO
 
+from datetime import datetime
 from datetime import timedelta
+from collective.quickupload.portlet.quickuploadportlet import Assignment
+from collective.quickupload.portlet.quickuploadportlet import Renderer
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.parser import SolrResponse
 #from OFS import Image as OFSImage
@@ -17,17 +20,28 @@ from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
 from Products.ZCTextIndex.ParseTree import ParseError
+from lmu.contenttypes.blog import MESSAGE_FACTORY as _  # XXX move translations
 from lmu.policy.base.controlpanel import ILMUSettings
+from lmu.policy.base.interfaces import ILMUCommentFormLayer
 from plone import api
+from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets import common
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
 from plone.app.textfield.interfaces import ITransformer
+from plone.app.z3cform.templates import RenderWidget
+from plone.dexterity.browser import add
+from plone.dexterity.browser import edit
 from plone.registry.interfaces import IRegistry
+from z3c.form.interfaces import HIDDEN_MODE
+from z3c.form.interfaces import DISPLAY_MODE
+from z3c.form.interfaces import INPUT_MODE
+from zope.interface import alsoProvides
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
+import json
 import logging
 
 
@@ -370,3 +384,270 @@ class _EntryViewMixin(object):
 
     def isInternallyPublished(self):
         return api.content.get_state(obj=self.context) in ['internally_published']
+
+
+class RichTextWidgetConfig(object):
+    allow_buttons = ('style',
+                     'bold',
+                     'italic',
+                     'numlist',
+                     'bullist',
+                     'link',
+                     'unlink',
+                     )
+    redefine_parastyles = True
+    parastyles = (_('Heading') + '|h2|',
+                  _('Subheading') + '|h3|',
+                  )
+
+
+class _AbstractLMUBaseContentEditForm(edit.DefaultEditForm):
+
+    def __call__(self):
+        self.updateWidgets()
+
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+
+        formHelper(self,
+                   fields_to_show=[],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
+                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
+
+        buttons = self.buttons
+
+        for button in buttons.values():
+            if button.__name__ == 'save':
+                button.title = _(u'Preview')
+
+        return super(_AbstractLMUBaseContentEditForm, self).__call__()
+
+
+class EntryContentView(_AbstractLMUBaseContentView):
+
+    template = ViewPageTemplateFile('templates/entry_content_view.pt')
+
+    def __call__(self):
+        omit = self.request.get('full')
+        self.omit = not str2bool(omit)
+        return self.template()
+
+    def content(self, mode='files'):
+        if mode == 'images':
+            type_test = lambda typ: typ == 'Image'
+        else:
+            plone_layout = getMultiAdapter((self.context, self.request),
+                                           name='plone_layout')
+            type_test = lambda typ: typ != 'Image'
+        items = []
+        previous = -1
+        for current, obj in enumerate(self.context.objectValues()):
+            if type_test(obj.portal_type):
+                item = {'url': obj.absolute_url(),
+                        'id': obj.getId(),
+                        'title': obj.Title()}
+                if mode == 'files':
+                    item['tag'] = plone_layout.getIcon(obj).html_tag()
+                    item['type'] = self.getFileType(obj)
+                    item['size'] = self.getFileSize(obj)
+                elif mode == 'images':
+                    scales = api.content.get_view(
+                        context=obj,
+                        request=self.request,
+                        name='images')
+                    item['tag'] = scales.tag('image', width=80, height=80,
+                                             direction='down')
+                if previous > -1:
+                    item['delta_up'] = previous - current
+                items.append(item)
+                previous = current
+            else:
+                items.append({})
+        previous = -1
+        for current, obj in enumerate(reversed(self.context.objectValues())):
+            if type_test(obj.portal_type):
+                if previous > -1:
+                    items[-1 - current]['delta_down'] = current - previous
+                previous = current
+        return [i for i in items if i]
+
+    def render_quickupload(self):
+        ass = Assignment(header=_(''))
+        renderer = CustomUploadRenderer(
+            self.context, self.request, self, None, ass)
+        renderer.update()
+        return renderer.render()
+
+    def timestamp(self):
+        return datetime.now().isoformat()
+
+    def subset_ids(self):
+        return json.dumps(self.context.objectIds())
+
+    def mode_label(self):
+        return self.mode[0].upper() + self.mode[1:]
+
+    def content_sortinfo(self):
+        return self.content(mode=self.mode)
+
+
+class EntrySortFilesView(EntryContentView):
+
+    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+    mode = 'files'
+
+    def __call__(self):
+        return self.template()
+
+
+class EntrySortImagesView(EntryContentView):
+
+    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+    mode = 'images'
+
+    def __call__(self):
+        return self.template()
+
+
+class CustomUploadRenderer(Renderer):
+    def javascript(self):
+        return ''
+
+
+class BlogFileEditForm(edit.DefaultEditForm):
+
+    description = None
+
+    portal_type = 'File'
+
+    def __call__(self):
+        formHelper(self,
+                   fields_to_show=['image'],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective',
+                                   'IPublication.expires',
+                                   'ICategorization.subjects',
+                                   'ICategorization.language',
+                                   'IRelatedItems.relatedItems',
+                                   'IOwnership.creators',
+                                   'IOwnership.contributors',
+                                   'IOwnership.rights',
+                                   'IAllowDiscussion.allow_discussion',
+                                   'IExcludeFromNavigation.exclude_from_nav',
+                                   ],
+                   fields_to_omit=['IVersionable.changeNote'])
+
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.__name__ == 'save':
+                button.title = _(u'Save')
+        return super(BlogFileEditForm, self).__call__()
+
+    def label(self):
+        return None
+
+
+class BlogImageEditForm(edit.DefaultEditForm):
+
+    description = None
+    portal_type = 'Image'
+
+    def __call__(self):
+        formHelper(self,
+                   fields_to_show=['image'],
+                   fields_to_input=['title', 'description'],
+                   fields_to_hide=['IPublication.effective',
+                                   'IPublication.expires',
+                                   'ICategorization.subjects',
+                                   'ICategorization.language',
+                                   'IRelatedItems.relatedItems',
+                                   'IOwnership.creators',
+                                   'IOwnership.contributors',
+                                   'IOwnership.rights',
+                                   'IAllowDiscussion.allow_discussion',
+                                   'IExcludeFromNavigation.exclude_from_nav',
+                                   ],
+                   fields_to_omit=['IVersionable.changeNote'])
+
+        buttons = self.buttons
+        for button in buttons.values():
+            #button.klass = u' button large round'
+            if button.__name__ == 'save':
+                button.title = _(u'Save')
+
+        return super(BlogImageEditForm, self).__call__()
+
+    def label(self):
+        return None
+
+
+class BlogCommentAddForm(add.DefaultAddForm):
+
+    template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
+
+    def __init__(self, context, request, ti=None):
+        alsoProvides(self.request, ILMUCommentFormLayer)
+        super(BlogCommentAddForm, self).__init__(context, request, ti=ti)
+
+    def __call__(self):
+        self.portal_type = self.context.portal_type
+        text = self.schema.get('text')
+        text.widget = RichTextWidgetConfig()
+        self.updateWidgets()
+        return super(BlogCommentAddForm, self).__call__()
+
+
+class BlogRenderWidget(RenderWidget):
+    index = ViewPageTemplateFile('templates/widget.pt')
+
+
+class BlogCommentsViewlet(CommentsViewlet):
+
+    def update(self):
+        alsoProvides(self.request, ILMUCommentFormLayer)
+        super(BlogCommentsViewlet, self).update()
+
+    def can_reply(self):
+        is_blog_entry = (self.context.portal_type == 'Blog Entry')
+        is_private = (api.content.get_state(self.context) == 'private')
+        if is_blog_entry and is_private:
+            return False
+        return super(BlogCommentsViewlet, self).can_reply()
+
+
+def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):
+
+    form.updateWidgets()
+
+    form.updateFields()
+    fields = form.fields
+    groups = form.groups
+
+    for field in fields.values():
+        if field.__name__ in fields_to_omit:
+            field.omitted = True
+        if field.__name__ in fields_to_hide:
+            field.omitted = False
+            field.mode = HIDDEN_MODE
+        if field.__name__ in fields_to_show:
+            field.omitted = False
+            field.mode = DISPLAY_MODE
+        if field.__name__ in fields_to_input:
+            field.omitted = False
+            field.mode = INPUT_MODE
+
+    for group in groups:
+        for field in group.fields.values():
+            if field.__name__ in fields_to_omit:
+                field.omitted = True
+            if field.__name__ in fields_to_hide:
+                field.omitted = False
+                field.mode = HIDDEN_MODE
+            if field.__name__ in fields_to_show:
+                field.omitted = False
+                field.mode = DISPLAY_MODE
+            if field.__name__ in fields_to_input:
+                field.omitted = False
+                field.mode = INPUT_MODE

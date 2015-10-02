@@ -76,6 +76,66 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="content_view"
+        for="lmu.policy.base.interfaces.ILMUContent"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.EntryContentView"
+        />
+
+    <browser:page
+        name="content_sort_files_view"
+        for="lmu.policy.base.interfaces.ILMUContent"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.EntrySortFilesView"
+        />
+
+    <browser:page
+        name="content_sort_images_view"
+        for="lmu.policy.base.interfaces.ILMUContent"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.EntrySortImagesView"
+        />
+
+    <browser:page
+        for="plone.app.contenttypes.interfaces.IFile"
+        name="blog_file_edit"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.BlogFileEditForm"
+        />
+
+    <browser:page
+        for="plone.app.contenttypes.interfaces.IImage"
+        name="blog_image_edit"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.BlogImageEditForm"
+        />
+
+    <browser:page
+        for="plone.app.discussion.interfaces.IComment"
+        name="add"
+        permission="cmf.ModifyPortalContent"
+        class=".browser.BlogCommentAddForm"
+        />
+
+    <browser:page
+        name="ploneform-render-widget"
+        for="z3c.form.interfaces.IWidget"
+        layer=".interfaces.ILMUCommentFormLayer"
+        class=".browser.BlogRenderWidget"
+        permission="zope.Public"
+        />
+
+    <browser:viewlet
+        name="plone.comments"
+        for="Products.CMFCore.interfaces.IContentish"
+        layer="lmu.policy.base.interfaces.IProductLayer"
+        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        view="plone.app.layout.globals.interfaces.IViewView"
+        class=".browser.BlogCommentsViewlet"
+        permission="zope2.View"
+        />
+
     <adapter name="domain" factory=".indexers.domain" />
     <adapter name="cms_system" factory=".indexers.cms_system" />
 
