@@ -263,7 +263,6 @@ class _AbstractLMUBaseContentView(BrowserView):
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
         #images = [item.getObject() for item in image_brains]
-        #import ipdb; ipdb.set_trace()
         images = [item for item in self.context.values() if item.portal_type == 'Image']
         if None in images:
             images.remove(None)
@@ -273,7 +272,6 @@ class _AbstractLMUBaseContentView(BrowserView):
         files = [item for item in self.context.values() if item.portal_type == 'File']
         if None in files:
             files.remove(None)
-        #import ipdb; ipdb.set_trace()
         return files
 
     def getFileSize(self, fileobj):
@@ -314,7 +312,6 @@ class _FrontPageIncludeMixin(object):
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
             RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-        # import ipdb; ipdb.set_trace()
         return self.template()
 
 
@@ -324,7 +321,8 @@ class _EntryViewMixin(object):
         return True
 
     def can_edit(self):
-        return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context)
+        return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context) and \
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context))
 
     def can_remove(self):
         """Only show the delete-button if the user has the permission to delete
@@ -337,13 +335,24 @@ class _EntryViewMixin(object):
             return True
 
     def can_publish(self):
-        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
+            api.content.get_state(obj=self.context) in ['private']
 
-    def can_set_private(self):
-        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+    def can_hide(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
+            any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
+            api.content.get_state(obj=self.context) in ['internally_published']
+
+    def can_reject(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
+            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
+            api.content.get_state(obj=self.context) in ['internally_published']
 
     def can_lock(self):
-        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
+            any(role in ['Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
+            api.content.get_state(obj=self.context) in ['internally_published']
 
     def isOwner(self):
         user = api.user.get_current()
@@ -354,5 +363,10 @@ class _EntryViewMixin(object):
         return 'Reviewer' in user.getRolesInContext(self.context)
 
     def isManager(self):
-        user = api.user.get_current()
-        return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
+        return any(role in ['Manager', 'SiteAdmin'] for role in api.user.get_roles(obj=self.context))
+
+    def isPrivate(self):
+        return api.content.get_state(obj=self.context) in ['private']
+
+    def isInternallyPublished(self):
+        return api.content.get_state(obj=self.context) in ['internally_published']
