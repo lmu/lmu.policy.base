@@ -8,8 +8,10 @@ from collective.solr.parser import SolrResponse
 #from OFS import Image as OFSImage
 #from PIL import Image as PILImage
 #from Products.PlonePAS.utils import scale_image
+from Products.CMFCore import permissions
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
+from Products.CMFPlone.browser.ploneview import Plone
 from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -21,11 +23,16 @@ from plone.app.contentlisting.interfaces import IContentListing
 from plone.app.layout.viewlets import common
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
+from plone.app.textfield.interfaces import ITransformer
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
 import logging
+
+
+def str2bool(v):
+    return v is not None and v.lower() in ['true', '1']
 
 log = logging.getLogger(__name__)
 
@@ -225,3 +232,127 @@ class PathBarViewlet(common.PathBarViewlet):
         self.is_any_override_active = (
             self.lmu_settings.show_breadcrumb_1 or
             self.lmu_settings.show_breadcrumb_2)
+
+
+class _AbstractLMUBaseContentView(BrowserView):
+
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
+
+    def get_memberdata(self, item):
+        pmt = api.portal.get_tool(name='portal_membership')
+        member_id = item.Creator()
+        member = pmt.getMemberById(member_id)
+        return member
+
+    def strip_text(self, item, length=500):
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        striped_length = len(transformedValue)
+        if striped_length > length:
+            striped_length = transformedValue.rfind(' ', 0, length)
+            transformedValue = transformedValue[:striped_length] + '...'
+        return transformedValue
+
+    def _strip_text(self, item, length=500, ellipsis='...'):
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        return Plone.cropText(transformedValue, length=length, ellipsis=ellipsis)
+
+    def images(self):
+        #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
+        #images = [item.getObject() for item in image_brains]
+        #import ipdb; ipdb.set_trace()
+        images = [item for item in self.context.values() if item.portal_type == 'Image']
+        if None in images:
+            images.remove(None)
+        return images
+
+    def files(self):
+        files = [item for item in self.context.values() if item.portal_type == 'File']
+        if None in files:
+            files.remove(None)
+        #import ipdb; ipdb.set_trace()
+        return files
+
+    def getFileSize(self, fileobj):
+        size = fileobj.file.getSize()
+        if size < 1000:
+            size = str(size) + ' Byte'
+        elif size > 1024 and size/1024 < 1000:
+            size = str(fileobj.file.getSize() / 1024) + ' KB'
+        else:
+            size = str(fileobj.file.getSize() / 1024 / 1024) + ' MB'
+        return size
+
+    def getFileType(self, fileobj):
+        ctype = fileobj.file.contentType
+        ctype = ctype.split('/')
+        return str.upper(ctype[1])
+
+    def _check_permission(self, permission, item):
+        pmt = api.portal.get_tool(name='portal_membership')
+        return pmt.checkPermission(permission, item)
+
+
+class _FrontPageIncludeMixin(object):
+
+    def update(self):
+        """
+        """
+        # Hide the editable-object border
+        request = self.request
+        request.set('disable_border', True)
+
+    def __call__(self):
+        omit = self.request.get('full')
+        self.omit = not str2bool(omit)
+        author = self.request.get('author')
+        self.author = bool(author)
+        if self.omit:
+            REQUEST = self.context.REQUEST
+            RESPONSE = REQUEST.RESPONSE
+            RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
+        # import ipdb; ipdb.set_trace()
+        return self.template()
+
+
+class _EntryViewMixin(object):
+
+    def can_see_history(self):
+        return True
+
+    def can_edit(self):
+        return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context)
+
+    def can_remove(self):
+        """Only show the delete-button if the user has the permission to delete
+        items and the workflow_state fulfills a condition.
+        """
+        state = api.content.get_state(obj=self.context)
+        can_delete = api.user.has_permission(
+            permissions.DeleteObjects, obj=self.context)
+        if can_delete and state not in ['banned']:
+            return True
+
+    def can_publish(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def can_set_private(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def can_lock(self):
+        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context)
+
+    def isOwner(self):
+        user = api.user.get_current()
+        return 'Owner' in user.getRolesInContext(self.context)
+
+    def isReviewer(self):
+        user = api.user.get_current()
+        return 'Reviewer' in user.getRolesInContext(self.context)
+
+    def isManager(self):
+        user = api.user.get_current()
+        return any(role in user.getRolesInContext(self.context) for role in ['Manager', 'SiteAdmin'])
