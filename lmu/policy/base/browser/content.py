@@ -247,7 +247,7 @@ class EntryContentView(_AbstractLMUBaseContentView):
 
 class EntrySortFilesView(EntryContentView):
 
-    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+    template = ViewPageTemplateFile('templates/entry_sort_items_view.pt')
     mode = 'files'
 
     def __call__(self):
@@ -256,7 +256,7 @@ class EntrySortFilesView(EntryContentView):
 
 class EntrySortImagesView(EntryContentView):
 
-    template = ViewPageTemplateFile('templates/entry_sort_images_view.pt')
+    template = ViewPageTemplateFile('templates/entry_sort_items_view.pt')
     mode = 'images'
 
     def __call__(self):
