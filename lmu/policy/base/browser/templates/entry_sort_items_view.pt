@@ -50,19 +50,19 @@
                       </div>
 
                       <div class="column small-2">
-                          <form class="itemorder" action="fc-itemOrder" method="post" tal:attributes="id string:functions-${item/id}">
-                              <input type="hidden" name="id" value="test.png" tal:attributes="value item/id" />
-                              <input type="hidden" name="subset_ids" value="['test.png']" tal:attributes="value view/subset_ids" />
+                          <form class="itemorder" action="folder_moveitem" method="post" tal:attributes="id string:functions-${item/id}">
+                              <input type="hidden" name="item_id" value="test.png" tal:attributes="value item/id" />
+                              <input type="hidden" name="subset_ids:list" value="test.png" tal:attributes="value subset_id" tal:repeat="subset_id view/subset_ids" />
                               <span tal:replace="structure context/@@authenticator/authenticator" />
 
                               <ul class="inline-list right">
                                   <li tal:condition="item/delta_up|nothing">
-                                    <button type="submit" name="delta" value="1" class="small" tal:attributes="value item/delta_up">
+                                    <button type="submit" name="delta:int" value="1" class="small" tal:attributes="value item/delta_up">
                                       <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
                                     </button>
                                   </li>
                                   <li tal:condition="item/delta_down|nothing">
-                                    <button type="submit" name="delta" value="-1" class="small" tal:attributes="value item/delta_down">
+                                    <button type="submit" name="delta:int" value="-1" class="small" tal:attributes="value item/delta_down">
                                       <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
                                     </button>
                                   </li>
