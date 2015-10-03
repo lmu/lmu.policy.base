@@ -609,7 +609,7 @@ class ContainedImageEditForm(ContainedObjectEditForm):
 
 class LMUCommentAddForm(add.DefaultAddForm):
 
-    template = ViewPageTemplateFile('templates/blog_entry_edit.pt')
+    template = ViewPageTemplateFile('templates/entry_edit.pt')
 
     def __init__(self, context, request, ti=None):
         alsoProvides(self.request, ILMUCommentFormLayer)
