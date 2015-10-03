@@ -28,22 +28,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <browser:page
-        for="*"
-        name="livesearch_reply2"
-        class="lmu.policy.base.browser.LivesearchReply"
-        permission="zope2.View"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        />
-
-    <browser:page
-        for="*"
-        name="user_info.include"
-        class="lmu.policy.base.browser.UserInfo"
-        permission="zope2.View"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        />
-
     <browser:resourceDirectory
         name="lmu.policy.base.js"
         directory="js"
@@ -68,17 +52,10 @@
         class="lmu.policy.base.controlpanel.LMUControlPanelView"
         />
 
-    <browser:viewlet
-        name="lmu.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class="lmu.policy.base.browser.PathBarViewlet"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        permission="zope2.View"
-        />
-
     <adapter name="domain" factory=".indexers.domain" />
     <adapter name="cms_system" factory=".indexers.cms_system" />
 
+    <include package=".browser" />
     <include file="overrides.zcml" />
 
 </configure>

@@ -27,6 +27,10 @@ from zope.component import getUtility
 from zope.component import queryUtility
 import logging
 
+
+def str2bool(v):
+    return v is not None and v.lower() in ['true', '1']
+
 log = logging.getLogger(__name__)
 
 

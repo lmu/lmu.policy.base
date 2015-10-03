@@ -1,0 +1,245 @@
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit|nothing"
+             tal:omit-tag="omit" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmln:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="lmu.contenttypes.blog"
+      tal:omit-tag="omit" >
+
+<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
+<tal:script tal:replace='structure string:<script type="text/javascript">' />
+(function($) {
+    function reload_folder_contents() {
+        var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
+        $("#folder_contents").load(url + " #folder_contents", set_up_functions);
+    };
+    function close_and_reload_folder_contents() {
+        $('.close a').click();
+        reload_folder_contents();
+    };
+    function reload_sort_previews(mode) {
+        var url;
+        if (mode == 'images') {
+            url = "@@content_sort_images_view";
+        } else {
+            url = "@@content_sort_files_view";
+        }
+        return function() {
+            $('#folder_contents_sort #listing').load(
+                url + " #folder_contents_sort #listing",
+                ajaxify_sort_form(mode)
+            );
+        }
+    }
+    function ajaxify_overlay_form() {
+        $('.overlay form').ajaxForm({
+            success: close_and_reload_folder_contents
+        });
+    };
+    function ajaxify_sort_form(mode) {
+        return function() {
+            $('.overlay form').ajaxForm({
+                success: reload_sort_previews(mode)
+            });
+        }
+    };
+
+    function set_up_functions() {
+        $("a[href$='@@contained_image_edit'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.buttons.cancel']",
+            afterpost:reload_folder_contents,
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+
+        $("a[href$='@@contained_file_edit'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.buttons.cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a[href$='delete_confirmation'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a#image_sort_button").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"a.close-reveal-modal",
+            config: {
+                onLoad: ajaxify_sort_form("images"),
+                onClose: reload_folder_contents
+            }
+        });
+        $("a#file_sort_button").prepOverlay({
+            subtype:'ajax',
+            selector:'#content',
+            closeselector:"a.close-reveal-modal",
+            config: {
+                onLoad: ajaxify_sort_form("files"),
+                onClose: reload_folder_contents
+            }
+        });
+    }
+    $(function() {
+        set_up_functions();
+        // workaround this MSIE bug :
+        // https://dev.plone.org/plone/ticket/10894
+        if ($.browser.msie) $("#settings").remove();
+        Browser.onUploadComplete = reload_folder_contents;
+        loadUploader = function() {
+            var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
+            ulContainer.each(function(){
+                var uploadUrl =  $('.uploadUrl', this).val();
+                var uploadData =  $('.uploadData', this).val();
+                var UlDiv = $(this);
+            $.ajax({
+                type: 'GET',
+                url: uploadUrl,
+                data: uploadData,
+                dataType: 'html',
+                contentType: 'text/html; charset=utf-8',
+                success: function(html) {
+                    if (html.indexOf('quick-uploader') != -1) {
+                        UlDiv.html(html);
+                    }
+                } });
+            });
+        }
+    $(document).ready(loadUploader);
+
+    })
+})(jQuery);
+<tal:script tal:replace='structure string:</script>' />
+
+
+<div class="field">
+    <div class="row field">
+        <div class="column small-12 medium-2">
+            <label for="" class="horizontal inline" i18n:translate="">
+                Upload Images and Files
+            </label>
+        </div>
+        <div class="column small-12 medium-10" >
+            <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei).">
+              <div tal:replace="structure view/render_quickupload"></div>
+              <p> Das erste Bild wird auf den Übersichtsseiten und groß im Blog-Beitrag dargestellt.</p>
+            </div>
+
+            <div id="folder_contents">
+                <div class="clearfix helper-margin-top-l">
+                  <a class="toogle button radius small right helper-margin-bottom-s inline"
+                     id="image_sort_button"
+                     href="@@content_sort_images_view"
+                     i18n:translate="" 
+                     tal:define="images view/images;
+                                 nimages python: len(images);"
+                     tal:condition="python: nimages > 1">Sort Images</a>
+                    <h2 i18n:translate="" class="inline">Images</h2>
+                </div>
+                <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
+                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
+                      <div class="column small-2" >
+
+                        <a class="th" role="button" aria-label="Thumbnails" 
+                           tal:attributes="href item/absolute_url;" 
+                           tal:on-error=" item">
+
+                          <img tal:define="scales item/@@images;"
+                               tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
+                        </a>
+
+                      </div>
+                      <div class="column small-8" >
+                          <h3 tal:content="item/title" >Titel</h3>
+                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      </div>
+                      <div class="column small-2">
+                          <ul class="inline-list right">
+                              <li>
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit">
+                                      <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                                    <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                                  </a>
+                              </li>
+                              <li tal:condition="nothing">
+                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
+                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
+                                  </a>
+                              </li>
+                          </ul>
+                      </div>
+
+                  </div>
+
+                </div>
+                <div id="images" class="image_listing" tal:condition="not: view/images">
+                    <div class="row helper-border-top helper-margin-bottom-s" >
+                        <div class="column small-10" >
+                            <p i18n:translate="">No Images Uploaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="clearfix">
+                  <a class="toogle button radius small right"
+                     id="file_sort_button"
+                     href="@@content_sort_files_view"
+                     i18n:translate="" 
+                     tal:define="files view/files;
+                                 nfiles python: len(files);"
+                     tal:condition="python: nfiles > 1">Sort Files</a>
+                  <h2 i18n:translate="" >Files</h2>
+                </div>
+                <div id="files" class="file_listing" tal:condition="view/files">
+                  <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
+                    <div class="column small-10" >
+                      <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="python: view.getFileType(item)" />, <span tal:replace="python: view.getFileSize(item)" />)</small></h3>
+                      <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                    </div>
+                    <div class="column small-2">
+                      <ul class="inline-list right">
+                        <li>
+                          <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_file_edit">
+                              <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                          </a>
+                        </li>
+                        <li>
+                            <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                              <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                            </a>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+                <div id="files" class="file_listing" tal:condition="not: view/files">
+                    <div class="row helper-border-top helper-margin-bottom-s" >
+                        <div class="column small-10" >
+                            <p i18n:translate="">No Files Uploaded</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
+</tal:doctype>

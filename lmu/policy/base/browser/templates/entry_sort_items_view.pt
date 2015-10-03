@@ -1,0 +1,90 @@
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit|nothing">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmln:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="lmu.contenttypes.blog"
+      tal:omit-tag="omit" >
+
+    <metal:block fill-slot="javascript_head_slot">
+        <tal:script tal:replace='structure string:<script type="text/javascript">' />
+        (function($) {
+            function set_up_functions() {
+                $('.itemorder').ajaxForm({
+                    success: function () {
+                        $.ajax().done(
+                            function(html) {
+                                $("#listing").replaceWith($(html).find("#listing"));
+                                set_up_functions();
+                            }
+                        );
+                    }
+                });
+            }
+            $(function() {
+                set_up_functions();
+            })
+        })(jQuery);
+        <tal:script tal:replace='structure string:</script>' />
+    </metal:block>
+
+    <metal:block fill-slot="main">
+        <div id="content-core">
+            <div id="folder_contents_sort">
+                <h2 i18n:translate="" class="helper-no-margin-top" tal:content="view/mode_label">Images</h2>
+                <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
+
+                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/content_sortinfo">
+                      <div class="column small-2" tal:condition="python: view.mode == 'images'">
+                          <img tal:replace="structure item/tag" tal:on-error="string: Kein Bild Scale"/>
+                      </div>
+                      <div class="column small-8" tal:condition="python: view.mode == 'images'">
+                          <h3 tal:content="item/title" >Titel</h3>
+                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      </div>
+
+                      <div class="column small-10" tal:condition="python: view.mode == 'files'">
+                          <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="item/type" />, <span tal:replace="item/size" />)</small></h3>
+                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      </div>
+
+                      <div class="column small-2">
+                          <form class="itemorder" action="fc-itemOrder" method="post" tal:attributes="id string:functions-${item/id}">
+                              <input type="hidden" name="id" value="test.png" tal:attributes="value item/id" />
+                              <input type="hidden" name="subset_ids" value="['test.png']" tal:attributes="value view/subset_ids" />
+                              <span tal:replace="structure context/@@authenticator/authenticator" />
+
+                              <ul class="inline-list right">
+                                  <li tal:condition="item/delta_up|nothing">
+                                    <button type="submit" name="delta" value="1" class="small" tal:attributes="value item/delta_up">
+                                      <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
+                                    </button>
+                                  </li>
+                                  <li tal:condition="item/delta_down|nothing">
+                                    <button type="submit" name="delta" value="-1" class="small" tal:attributes="value item/delta_down">
+                                      <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
+                                    </button>
+                                  </li>
+                              </ul>
+                          </form>
+                      </div>
+
+                  </div>
+                </div>
+                <div id="listing" tal:condition="not: view/content_sortinfo" >
+                    <div class="row helper-border-top helper-margin-bottom-s" >
+                        <div class="column small-10" >
+                            <p i18n:translate="">No <tal:label replace="view/mode_label">Images</tal:label> Uploaded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="button small close-reveal-modal" href="#" tal:attributes="href string:${context/absolute_url}/edit" i18n:translate="">Done</a>
+
+            </div>
+        </div>
+
+    </metal:block>
+</html>
+</tal:doctype>
