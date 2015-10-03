@@ -12,24 +12,6 @@
         layer=".interfaces.ILMUBaseThemeLayer"
         />
 
-    <browser:page
-        name="search"
-        class=".browser.Search"
-        permission="zope2.View"
-        for="*"
-        template="templates/search.pt"
-        layer=".interfaces.ILMUBaseThemeLayer"
-        />
-
-    <browser:page
-        name="@@search"
-        class=".browser.Search"
-        permission="zope2.View"
-        for="*"
-        template="templates/search.pt"
-        layer=".interfaces.ILMUBaseThemeLayer"
-        />
-
     <z3c:widgetTemplate
         mode="input"
         widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"

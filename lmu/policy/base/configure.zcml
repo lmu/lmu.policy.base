@@ -28,22 +28,6 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
-    <browser:page
-        for="*"
-        name="livesearch_reply2"
-        class="lmu.policy.base.browser.LivesearchReply"
-        permission="zope2.View"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        />
-
-    <browser:page
-        for="*"
-        name="user_info.include"
-        class="lmu.policy.base.browser.UserInfo"
-        permission="zope2.View"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        />
-
     <browser:resourceDirectory
         name="lmu.policy.base.js"
         directory="js"
@@ -68,77 +52,10 @@
         class="lmu.policy.base.controlpanel.LMUControlPanelView"
         />
 
-    <browser:viewlet
-        name="lmu.path_bar"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class="lmu.policy.base.browser.PathBarViewlet"
-        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-        permission="zope2.View"
-        />
-
-    <browser:page
-        name="content_view"
-        for="lmu.policy.base.interfaces.ILMUContent"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.EntryContentView"
-        />
-
-    <browser:page
-        name="content_sort_files_view"
-        for="lmu.policy.base.interfaces.ILMUContent"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.EntrySortFilesView"
-        />
-
-    <browser:page
-        name="content_sort_images_view"
-        for="lmu.policy.base.interfaces.ILMUContent"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.EntrySortImagesView"
-        />
-
-    <browser:page
-        for="plone.app.contenttypes.interfaces.IFile"
-        name="contained_file_edit"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.ContainedFileEditForm"
-        />
-
-    <browser:page
-        for="plone.app.contenttypes.interfaces.IImage"
-        name="contained_image_edit"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.ContainedImageEditForm"
-        />
-
-    <browser:page
-        for="plone.app.discussion.interfaces.IComment"
-        name="add"
-        permission="cmf.ModifyPortalContent"
-        class=".browser.LMUCommentAddForm"
-        />
-
-    <browser:page
-        name="ploneform-render-widget"
-        for="z3c.form.interfaces.IWidget"
-        layer=".interfaces.ILMUCommentFormLayer"
-        class=".browser.LMURenderWidget"
-        permission="zope.Public"
-        />
-
-    <browser:viewlet
-        name="plone.comments"
-        for="Products.CMFCore.interfaces.IContentish"
-        layer="lmu.policy.base.interfaces.IProductLayer"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        view="plone.app.layout.globals.interfaces.IViewView"
-        class=".browser.LMUCommentsViewlet"
-        permission="zope2.View"
-        />
-
     <adapter name="domain" factory=".indexers.domain" />
     <adapter name="cms_system" factory=".indexers.cms_system" />
 
+    <include package=".browser" />
     <include file="overrides.zcml" />
 
 </configure>
