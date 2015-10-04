@@ -154,27 +154,27 @@ class RichTextWidgetConfig(object):
                   )
 
 
-class _AbstractLMUBaseContentEditForm(edit.DefaultEditForm):
-
-    def __call__(self):
-        self.updateWidgets()
-
-        text = self.schema.get('text')
-        text.widget = RichTextWidgetConfig()
-
-        formHelper(self,
-                   fields_to_show=[],
-                   fields_to_input=['title', 'description'],
-                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
-                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
-
-        buttons = self.buttons
-
-        for button in buttons.values():
-            if button.__name__ == 'save':
-                button.title = _(u'Preview')
-
-        return super(_AbstractLMUBaseContentEditForm, self).__call__()
+#class _AbstractLMUBaseContentEditForm(edit.DefaultEditForm):
+#
+#    def __call__(self):
+#        self.updateWidgets()
+#
+#        text = self.schema.get('text')
+#        text.widget = RichTextWidgetConfig()
+#
+#        formHelper(self,
+#                   fields_to_show=[],
+#                   fields_to_input=['title', 'description'],
+#                   fields_to_hide=['IPublication.effective', 'IPublication.expires', ],
+#                   fields_to_omit=['IPublication.effective', 'IPublication.expires', 'IVersionable.changeNote'])
+#
+#        buttons = self.buttons
+#
+#        for button in buttons.values():
+#            if button.__name__ == 'save':
+#                button.title = _(u'Preview')
+#
+#        return super(_AbstractLMUBaseContentEditForm, self).__call__()
 
 
 class EntryContentView(_AbstractLMUBaseContentView):
