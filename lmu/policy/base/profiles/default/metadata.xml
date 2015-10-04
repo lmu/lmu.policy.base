@@ -8,7 +8,6 @@
       <!--dependency>profile-Products.AutoUserMakerPASPlugin:default</dependency-->
       <dependency>profile-plone.app.contenttypes:default</dependency>
       <dependency>profile-plone.app.changeownership:default</dependency>
-      <dependency>profile-wildcard.foldercontents:default</dependency>
       <dependency>profile-collective.quickupload:default</dependency>
       <dependency>profile-collective.deletepermission:default</dependency>
       <dependency>profile-collective.solr:default</dependency>

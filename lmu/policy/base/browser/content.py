@@ -236,7 +236,7 @@ class EntryContentView(_AbstractLMUBaseContentView):
         return datetime.now().isoformat()
 
     def subset_ids(self):
-        return json.dumps(self.context.objectIds())
+        return self.context.objectIds()
 
     def mode_label(self):
         return self.mode[0].upper() + self.mode[1:]
