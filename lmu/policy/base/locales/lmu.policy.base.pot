@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-07 22:16+0000\n"
+"POT-Creation-Date: 2015-10-04 19:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,79 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
+
+#: ./browser/content.py:229
+#: ./controlpanel.py:68
+msgid ""
+msgstr ""
+
+#: ./controlpanel.py:75
+msgid "Breadcrumb override level 1 - Link"
+msgstr ""
+
+#: ./controlpanel.py:67
+msgid "Breadcrumb override level 1 - Title"
+msgstr ""
+
+#: ./controlpanel.py:95
+msgid "Breadcrumb override level 2 - Link"
+msgstr ""
+
+#: ./controlpanel.py:87
+msgid "Breadcrumb override level 2 - Title"
+msgstr ""
+
+#: ./controlpanel.py:112
+msgid "CMS System"
+msgstr ""
+
+#: ./controlpanel.py:106
+msgid "Domain(s)"
+msgstr ""
+
+#: ./controlpanel.py:107
+msgid "Domain(s) that the content of this site is valid for"
+msgstr ""
+
+#: ./browser/content.py:152
+msgid "Heading"
+msgstr ""
+
+#: ./profiles/default/controlpanel.xml
+msgid "LMU Settings"
+msgstr ""
+
+#: ./controlpanel.py:43
+msgid "Language"
+msgstr ""
+
+#: ./controlpanel.py:113
+msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
+msgstr ""
+
+#: ./browser/content.py:175
+msgid "Preview"
+msgstr ""
+
+#: ./browser/content.py:296
+msgid "Save"
+msgstr ""
+
+#: ./controlpanel.py:80
+msgid "Show Breadcrumb override level 1"
+msgstr ""
+
+#: ./controlpanel.py:100
+msgid "Show Breadcrumb override level 2"
+msgstr ""
+
+#: ./browser/content.py:153
+msgid "Subheading"
+msgstr ""
+
+#: ./controlpanel.py:46
+msgid "Title"
+msgstr ""
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104

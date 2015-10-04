@@ -31,6 +31,8 @@
 
     <metal:block fill-slot="main">
         <div id="content-core">
+            <h1 i18n:translate="" >Sort</h1>
+            <p i18n:translate="" >Sort your Content</p>
             <div id="folder_contents_sort">
                 <h2 i18n:translate="" class="helper-no-margin-top" tal:content="view/mode_label">Images</h2>
                 <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
@@ -55,14 +57,14 @@
                               <input type="hidden" name="subset_ids:list" value="test.png" tal:attributes="value subset_id" tal:repeat="subset_id view/subset_ids" />
                               <span tal:replace="structure context/@@authenticator/authenticator" />
 
-                              <ul class="inline-list right">
+                              <ul class="inline-list right helper-no-margin-left">
                                   <li tal:condition="item/delta_up|nothing">
-                                    <button type="submit" name="delta:int" value="1" class="small" tal:attributes="value item/delta_up">
+                                    <button type="submit" name="delta:int" value="1" class="tiny" tal:attributes="value item/delta_up">
                                       <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
                                     </button>
                                   </li>
                                   <li tal:condition="item/delta_down|nothing">
-                                    <button type="submit" name="delta:int" value="-1" class="small" tal:attributes="value item/delta_down">
+                                    <button type="submit" name="delta:int" value="-1" class="tiny" tal:attributes="value item/delta_down">
                                       <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
                                     </button>
                                   </li>

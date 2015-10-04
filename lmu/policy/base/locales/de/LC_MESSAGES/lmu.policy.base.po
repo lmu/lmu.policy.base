@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-05-07 22:16+0000\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,44 +14,112 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./controlpanel.py:75
+msgid "Breadcrumb override level 1 - Link"
+msgstr ""
+
+#: ./controlpanel.py:67
+msgid "Breadcrumb override level 1 - Title"
+msgstr ""
+
+#: ./controlpanel.py:95
+msgid "Breadcrumb override level 2 - Link"
+msgstr ""
+
+#: ./controlpanel.py:87
+msgid "Breadcrumb override level 2 - Title"
+msgstr ""
+
+#: ./controlpanel.py:112
+msgid "CMS System"
+msgstr "CMS-System"
+
+#: ./controlpanel.py:106
+msgid "Domain(s)"
+msgstr "Domain(s)"
+
+#: ./controlpanel.py:107
+msgid "Domain(s) that the content of this site is valid for"
+msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
+
+#: ./browser/content.py:152
+msgid "Heading"
+msgstr "Überschrift"
+
+#: ./profiles/default/controlpanel.xml
+msgid "LMU Settings"
+msgstr "LMU Einstellungen"
+
+#: ./controlpanel.py:43
+msgid "Language"
+msgstr "Sprache"
+
+#: ./controlpanel.py:113
+msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
+msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
+
+#: ./browser/content.py:175
+msgid "Preview"
+msgstr "Vorschau"
+
+#: ./browser/content.py:296
+msgid "Save"
+msgstr "Speichern"
+
+#: ./controlpanel.py:80
+msgid "Show Breadcrumb override level 1"
+msgstr "Zeige 'Breadcrumb' Überschreiber für Level 1"
+
+#: ./controlpanel.py:100
+msgid "Show Breadcrumb override level 2"
+msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
+
+#: ./browser/content.py:153
+msgid "Subheading"
+msgstr "Unterüberschrieft"
+
+#: ./controlpanel.py:46
+msgid "Title"
+msgstr "Titel"
+
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
 msgid "label_advanced_search"
-msgstr ""
+msgstr "Erweiterte Suche"
 
 #. Default: "No matching results found."
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:102
 msgid "label_no_results_found"
-msgstr ""
+msgstr "Keine Ergebnisse gefunden"
 
 #. Default: "Search"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:22
 msgid "label_search"
-msgstr ""
+msgstr "Suche"
 
 #. Default: "only in current section"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:34
 msgid "label_searchbox_currentfolder_only"
-msgstr ""
+msgstr "Nur im aktuellen Bereich Suchen"
 
 #. Default: "Show all items"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:106
 msgid "label_show_all"
-msgstr ""
+msgstr "Zeige alle Beiträge"
 
 #. Default: "LiveSearch &#8595;"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:101
 msgid "legend_livesearch"
-msgstr ""
+msgstr "Live Suche &#8595;"
 
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:7
 msgid "text_search"
-msgstr ""
+msgstr "Such Seite"
 
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:11
 msgid "title_search_site"
-msgstr ""
+msgstr "Such Seite"
 

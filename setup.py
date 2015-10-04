@@ -41,6 +41,7 @@ setup(name='lmu.policy.base',
           'zope.interface',
           'zope.schema',
           # -*- Extra requirements for Plone 4 -*-
+          'wildcard.foldercontents',
       ],
       entry_points="""
       # -*- Entry points: -*-
