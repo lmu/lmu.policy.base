@@ -4,7 +4,7 @@
       xmln:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="lmu.contenttypes.blog"
+      i18n:domain="lmu.policy.base"
       tal:omit-tag="omit" >
 
     <metal:block fill-slot="javascript_head_slot">
@@ -31,10 +31,8 @@
 
     <metal:block fill-slot="main">
         <div id="content-core">
-            <h1 i18n:translate="" >Sort</h1>
-            <p i18n:translate="" >Sort your Content</p>
+            <h1 i18n:translate="" class="helper-margin-bottom-l">Sort</h1>
             <div id="folder_contents_sort">
-                <h2 i18n:translate="" class="helper-no-margin-top" tal:content="view/mode_label">Images</h2>
                 <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
 
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/content_sortinfo">

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-04 19:56+0000\n"
+"POT-Creation-Date: 2015-10-05 17:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,15 @@ msgstr ""
 msgid "CMS System"
 msgstr ""
 
+#: ./browser/templates/entry_content_view.pt:182
+msgid "Crop Image"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:177
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
+msgid "Delete"
+msgstr ""
+
 #: ./controlpanel.py:106
 msgid "Domain(s)"
 msgstr ""
@@ -50,8 +59,24 @@ msgstr ""
 msgid "Domain(s) that the content of this site is valid for"
 msgstr ""
 
+#: ./browser/templates/entry_sort_items_view.pt:85
+msgid "Done"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:172
+msgid "Edit"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:207
+msgid "Files"
+msgstr ""
+
 #: ./browser/content.py:152
 msgid "Heading"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:149
+msgid "Images"
 msgstr ""
 
 #: ./profiles/default/controlpanel.xml
@@ -66,12 +91,24 @@ msgstr ""
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
 
-#: ./browser/content.py:175
-msgid "Preview"
+#: ./browser/templates/entry_sort_items_view.pt:80
+msgid "No ${DYNAMIC_CONTENT} Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:235
+msgid "No Files Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:194
+msgid "No Images Uploaded"
 msgstr ""
 
 #: ./browser/content.py:296
 msgid "Save"
+msgstr ""
+
+#: ./browser/templates/entry_edit.pt:10
+msgid "Show Blog Rules"
 msgstr ""
 
 #: ./controlpanel.py:80
@@ -82,6 +119,22 @@ msgstr ""
 msgid "Show Breadcrumb override level 2"
 msgstr ""
 
+#: ./browser/templates/entry_sort_items_view.pt:34
+msgid "Sort"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:200
+msgid "Sort Files"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:142
+msgid "Sort Images"
+msgstr ""
+
+#: ./browser/templates/entry_sort_items_view.pt:35
+msgid "Sort your Content"
+msgstr ""
+
 #: ./browser/content.py:153
 msgid "Subheading"
 msgstr ""
@@ -90,10 +143,43 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
+#: ./browser/templates/entry_content_view.pt:130
+msgid "Upload Images and Files"
+msgstr ""
+
+#. Default: "This item can not be deleted because it is currently locked by another user."
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:18
+msgid "alert_deleting_locked_item"
+msgstr ""
+
+#. Default: "(This will delete a total of ${number_of_items_to_delete} items.)"
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:31
+msgid "alert_deleting_x_number_of_items"
+msgstr ""
+
+#. Default: "Do you really want to delete this item?"
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:35
+msgid "alert_really_delete"
+msgstr ""
+
+#. Default: "Do you really want to delete this folder and all its contents?"
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:27
+msgid "alert_really_delete_folder"
+msgstr ""
+
+#: ./browser/templates/entry_sort_items_view.pt:68
+msgid "down"
+msgstr ""
+
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
 msgid "label_advanced_search"
+msgstr ""
+
+#. Default: "Cancel"
+#: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:64
+msgid "label_cancel"
 msgstr ""
 
 #. Default: "No matching results found."
@@ -129,5 +215,9 @@ msgstr ""
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:11
 msgid "title_search_site"
+msgstr ""
+
+#: ./browser/templates/entry_sort_items_view.pt:63
+msgid "up"
 msgstr ""
 

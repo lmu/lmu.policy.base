@@ -48,7 +48,7 @@ def _setupAutoUserMaker(context):
     for product in PRODUCT_DEPENDENCIES:
         if not portal_quickinstaller.isProductInstalled(product):
             portal_quickinstaller.installProduct(product)
-            #transaction.savepoint(True)
+            transaction.savepoint(True)
     acl_users = api.portal.get_tool('acl_users')
     if 'AutoUserMakerPASPlugin' not in acl_users.objectIds():
         log.warn('AutoUserMakerPASPlugin not found, please install'
@@ -56,8 +56,10 @@ def _setupAutoUserMaker(context):
     else:
         auto_user = acl_users['AutoUserMakerPASPlugin']
         auto_user.manage_changeProperties(
+            strip_domain_names=1,
+            strip_domain_name_list="""lmu.de\n""",
             http_remote_user='HTTP_EDUPERSONPRINCIPALNAME',
-            http_commonname='HTTP_DISPLAYNAME',
+            http_commonname='HTTP_CN',
             http_email='HTTP_MAIL',
             auto_update_user_properties=1,
         )
