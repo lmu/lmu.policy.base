@@ -149,8 +149,8 @@ class RichTextWidgetConfig(object):
                      'unlink',
                      )
     redefine_parastyles = True
-    parastyles = (_('Heading') + '|h2|',
-                  _('Subheading') + '|h3|',
+    parastyles = (_(u'&Uuml;berschrift 1') + u'|h2|',
+                  _(u'&Uuml;berschrift 2') + u'|h3|',
                   )
 
 

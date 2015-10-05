@@ -36,7 +36,7 @@ msgstr "CMS-System"
 
 #: ./browser/templates/entry_content_view.pt:182
 msgid "Crop Image"
-msgstr ""
+msgstr "Bild zuschneiden"
 
 #: ./browser/templates/entry_content_view.pt:177
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
@@ -51,7 +51,7 @@ msgstr "Domain(s)"
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
-#: ./browser/templates/entry_sort_items_view.pt:85
+#: ./browser/templates/entry_sort_items_view.pt:83
 msgid "Done"
 msgstr "Fertig"
 
@@ -83,7 +83,7 @@ msgstr "Sprache"
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
-#: ./browser/templates/entry_sort_items_view.pt:80
+#: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
@@ -123,10 +123,6 @@ msgstr "Dateien sortieren"
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./browser/templates/entry_sort_items_view.pt:35
-msgid "Sort your Content"
-msgstr "Sortieren Sie Ihre Inhalte"
-
 #: ./browser/content.py:153
 msgid "Subheading"
 msgstr "Unterüberschrift"
@@ -159,7 +155,7 @@ msgstr "Möchten Sie dieses Element löschen?"
 msgid "alert_really_delete_folder"
 msgstr "Möchten Sie diesen Eintrag samt aller Inhalte löschen?"
 
-#: ./browser/templates/entry_sort_items_view.pt:68
+#: ./browser/templates/entry_sort_items_view.pt:66
 msgid "down"
 msgstr "runter"
 
@@ -209,7 +205,7 @@ msgstr "Such Seite"
 msgid "title_search_site"
 msgstr "Such Seite"
 
-#: ./browser/templates/entry_sort_items_view.pt:63
+#: ./browser/templates/entry_sort_items_view.pt:61
 msgid "up"
 msgstr "hoch"
 

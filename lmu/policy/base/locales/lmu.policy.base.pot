@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-05 17:21+0000\n"
+"POT-Creation-Date: 2015-10-05 18:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgstr ""
 msgid "Domain(s) that the content of this site is valid for"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:85
+#: ./browser/templates/entry_sort_items_view.pt:83
 msgid "Done"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgstr ""
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:80
+#: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
@@ -131,10 +131,6 @@ msgstr ""
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:35
-msgid "Sort your Content"
-msgstr ""
-
 #: ./browser/content.py:153
 msgid "Subheading"
 msgstr ""
@@ -167,7 +163,7 @@ msgstr ""
 msgid "alert_really_delete_folder"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:68
+#: ./browser/templates/entry_sort_items_view.pt:66
 msgid "down"
 msgstr ""
 
@@ -217,7 +213,7 @@ msgstr ""
 msgid "title_search_site"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:63
+#: ./browser/templates/entry_sort_items_view.pt:61
 msgid "up"
 msgstr ""
 
