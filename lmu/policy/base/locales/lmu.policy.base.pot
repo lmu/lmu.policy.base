@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-05 18:33+0000\n"
+"POT-Creation-Date: 2015-10-05 19:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,14 @@ msgstr ""
 #: ./browser/content.py:229
 #: ./controlpanel.py:68
 msgid ""
+msgstr ""
+
+#: ./browser/content.py:152
+msgid "&Uuml;berschrift 1"
+msgstr ""
+
+#: ./browser/content.py:153
+msgid "&Uuml;berschrift 2"
 msgstr ""
 
 #: ./controlpanel.py:75
@@ -69,10 +77,6 @@ msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:207
 msgid "Files"
-msgstr ""
-
-#: ./browser/content.py:152
-msgid "Heading"
 msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:149
@@ -129,10 +133,6 @@ msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:142
 msgid "Sort Images"
-msgstr ""
-
-#: ./browser/content.py:153
-msgid "Subheading"
 msgstr ""
 
 #: ./controlpanel.py:46

@@ -14,6 +14,14 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./browser/content.py:152
+msgid "&Uuml;berschrift 1"
+msgstr "Überschrift 1"
+
+#: ./browser/content.py:153
+msgid "&Uuml;berschrift 2"
+msgstr "Überschrift 2"
+
 #: ./controlpanel.py:75
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
@@ -62,10 +70,6 @@ msgstr "Bearbeiten"
 #: ./browser/templates/entry_content_view.pt:207
 msgid "Files"
 msgstr "Dateien"
-
-#: ./browser/content.py:152
-msgid "Heading"
-msgstr "Überschrift"
 
 #: ./browser/templates/entry_content_view.pt:149
 msgid "Images"
@@ -122,10 +126,6 @@ msgstr "Dateien sortieren"
 #: ./browser/templates/entry_content_view.pt:142
 msgid "Sort Images"
 msgstr "Bilder sortieren"
-
-#: ./browser/content.py:153
-msgid "Subheading"
-msgstr "Unterüberschrift"
 
 #: ./controlpanel.py:46
 msgid "Title"
