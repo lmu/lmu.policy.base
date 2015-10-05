@@ -309,6 +309,14 @@ class ContainedImageEditForm(ContainedObjectEditForm):
 
     portal_type = 'Image'
 
+#    def __call__(self):
+#        self.updateFields()
+#        fields = self.fields
+#        des = fields.get('description')
+#        des.field.title = u'Bildunterschrift'
+#
+#        return super(ContainedImageEditForm, self).__call__()
+
 
 class LMUCommentAddForm(add.DefaultAddForm):
 
