@@ -131,10 +131,11 @@
                 Upload Images and Files
             </label>
         </div>
-        <div class="column small-12 medium-10" >
-            <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei).">
+        <div class="column small-12 medium-10" tal:define="portal_type python:context.translate(context.portal_type)">
+            <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei)."
+                 tal:attributes="title string:Laden Sie Bilder oder Dokumente zu Ihrem ${portal_type} hoch (Maximal 10 MB pro Datei).">
               <div tal:replace="structure view/render_quickupload"></div>
-              <p> Das erste Bild wird auf den Übersichtsseiten und groß im Blog-Beitrag dargestellt.</p>
+              <p> Das erste Bild wird auf den Übersichtsseiten und groß im <tal:type replace="context/portal_type" i18n:translate="" /> dargestellt.</p>
             </div>
 
             <div id="folder_contents">
