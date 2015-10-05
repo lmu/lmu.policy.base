@@ -107,7 +107,7 @@ class _EntryViewMixin(object):
             api.content.get_state(obj=self.context) in ['private']
 
     def can_hide(self):
-        return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
+        return api.user.has_permission(permissions.RequestReview, obj=self.context) and \
             any(role in ['Owner', 'Site Manager', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['internally_published']
 
