@@ -78,14 +78,15 @@ class Search(BaseSearch):
 
     def filter_query(self, query):
         query = super(Search, self).filter_query(query)
+        #import ipdb; ipdb.set_trace()
         if query:
             # Only show Fiona Content in results that are from 'sp'
-            if getNavigationRoot(self.context) == '/intranet':
-                query['path'] = [getNavigationRoot(self.context), '/prototyp-1/in']
-            elif getNavigationRoot(self.context) == '/serviceportal':
-                query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
-            else:
-                query['path'] = [getNavigationRoot(self.context)]
+            #if getNavigationRoot(self.context) == '/intranet':
+            #    query['path'] = [getNavigationRoot(self.context), '/prototyp-1/in']
+            #elif getNavigationRoot(self.context) == '/serviceportal':
+            #    query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
+            #else:
+            #    query['path'] = [getNavigationRoot(self.context)]
             query['portal_type'] += self.extra_types()
         return query
 

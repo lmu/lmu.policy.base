@@ -12,10 +12,11 @@ def getURL(self, relative=False):
 
     try:
         url = self.request.physicalPathToURL(path, relative)
-        if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
-            url = url.replace('/prototyp-1/sp', '')
-            url = url.replace('/prototyp-1/in', '')
-            url = url.replace('fucntions', '')
+        #import ipdb; ipdb.set_trace()
+        #if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
+        #    url = url.replace('/prototyp-1/sp', '')
+        #    url = url.replace('/prototyp-1/in', '')
+        #    url = url.replace('fucntions', '')
     except AttributeError:
         url = path2url(path.split('/'))
     except TypeError:
