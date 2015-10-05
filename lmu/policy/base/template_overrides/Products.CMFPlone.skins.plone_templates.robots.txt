@@ -6,5 +6,6 @@ Sitemap: /sitemap.xml.gz
 # By default we allow robots to access all areas of our site 
 # already accessible to anonymous users
 
+# For Intranets we do not allow any robots to access our site
 User-agent: *
 Disallow: /
