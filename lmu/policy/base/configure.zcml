@@ -51,10 +51,10 @@
         permission="cmf.ManagePortal"
         class="lmu.policy.base.controlpanel.LMUControlPanelView"
         />
-
+<!--
     <adapter name="domain" factory=".indexers.domain" />
     <adapter name="cms_system" factory=".indexers.cms_system" />
-
+-->
     <include package=".browser" />
     <include file="overrides.zcml" />
 

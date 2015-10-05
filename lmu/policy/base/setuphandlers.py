@@ -48,7 +48,7 @@ def _setupAutoUserMaker(context):
     for product in PRODUCT_DEPENDENCIES:
         if not portal_quickinstaller.isProductInstalled(product):
             portal_quickinstaller.installProduct(product)
-            transaction.savepoint()
+            #transaction.savepoint(True)
     acl_users = api.portal.get_tool('acl_users')
     if 'AutoUserMakerPASPlugin' not in acl_users.objectIds():
         log.warn('AutoUserMakerPASPlugin not found, please install'

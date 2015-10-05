@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <object name="solr">
     <connection>
-        <active value="True"/>
+        <active value="False"/>
         <host value="search3.verwaltung.uni-muenchen.de"/>
         <port value="8983"/>
         <base value="/solr/plone"/>
