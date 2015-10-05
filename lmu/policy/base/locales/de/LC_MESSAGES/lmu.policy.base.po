@@ -152,7 +152,7 @@ msgstr ""
 #. Default: "Do you really want to delete this item?"
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:35
 msgid "alert_really_delete"
-msgstr ""
+msgstr "Möchten Sie dieses Element löschen?"
 
 #. Default: "Do you really want to delete this folder and all its contents?"
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:27
