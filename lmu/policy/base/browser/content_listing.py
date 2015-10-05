@@ -25,6 +25,8 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
 
         self.content_filter = {'portal_type': self.portal_type}
         self.pcatalog = self.context.portal_catalog
+        if self.request.get('author'):
+            self.content_filter['Creator'] = self.request.get('author')
 
     def absolute_length(self):
         return len(self.pcatalog.searchResults(self.content_filter))
