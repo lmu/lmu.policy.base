@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-05 19:58+0000\n"
+"POT-Creation-Date: 2015-10-06 10:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,6 +111,18 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: ./browser/templates/search.pt:43
+msgid "Search"
+msgstr ""
+
+#: ./browser/templates/search.pt:64
+msgid "Search results"
+msgstr ""
+
+#: ./browser/templates/search.pt:73
+msgid "Search results for ${term}"
+msgstr ""
+
 #: ./browser/templates/entry_edit.pt:10
 msgid "Show Blog Rules"
 msgstr ""
@@ -163,8 +175,37 @@ msgstr ""
 msgid "alert_really_delete_folder"
 msgstr ""
 
+#. Default: "within ${time} seconds."
+#: ./browser/templates/search.pt:109
+msgid "batch_within_seconds"
+msgstr ""
+
+#. Default: "${number} items matching your search terms."
+#: ./browser/templates/search.pt:102
+msgid "batch_x_items_matching_your_criteria"
+msgstr ""
+
+#. Default: "last modified"
+#: ./browser/templates/search.pt:198
+msgid "box_last_modified"
+msgstr ""
+
+#. Default: "published"
+#: ./browser/templates/search.pt:188
+msgid "box_published"
+msgstr ""
+
+#. Default: "No results were found."
+#: ./browser/templates/search.pt:143
+msgid "description_no_results_found"
+msgstr ""
+
 #: ./browser/templates/entry_sort_items_view.pt:66
 msgid "down"
+msgstr ""
+
+#: ./browser/templates/search.pt:212
+msgid "filed under:"
 msgstr ""
 
 #. Default: "Advanced Search…"
@@ -184,6 +225,7 @@ msgid "label_no_results_found"
 msgstr ""
 
 #. Default: "Search"
+#: ./browser/templates/search.pt:52
 #: ./template_overrides/collective.solr.browser.searchbox.pt:22
 msgid "label_search"
 msgstr ""
@@ -203,14 +245,34 @@ msgstr ""
 msgid "legend_livesearch"
 msgstr ""
 
+#. Default: "Sort by"
+#: ./browser/templates/search.pt:115
+msgid "sort_by"
+msgstr ""
+
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:7
 msgid "text_search"
 msgstr ""
 
+#. Default: "Located in"
+#: ./browser/templates/search.pt:243
+msgid "text_searchitem_location"
+msgstr ""
+
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:11
 msgid "title_search_site"
+msgstr ""
+
+#. Default: "Search Site"
+#: ./browser/templates/search.pt:44
+msgid "title_search_title"
+msgstr ""
+
+#. Default: "Subscribe to an always-updated RSS feed."
+#: ./browser/templates/search.pt:86
+msgid "title_subscribe_rss_feed"
 msgstr ""
 
 #: ./browser/templates/entry_sort_items_view.pt:61

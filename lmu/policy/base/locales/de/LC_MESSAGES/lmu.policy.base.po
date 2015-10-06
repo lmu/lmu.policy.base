@@ -103,6 +103,18 @@ msgstr "Keine Bilder hochgeladen"
 msgid "Save"
 msgstr "Speichern"
 
+#: ./browser/templates/search.pt:43
+msgid "Search"
+msgstr "Suche"
+
+#: ./browser/templates/search.pt:64
+msgid "Search results"
+msgstr "Suchergebnisse"
+
+#: ./browser/templates/search.pt:73
+msgid "Search results for ${term}"
+msgstr "Suchergebnisse für ${term}"
+
 #: ./browser/templates/entry_edit.pt:10
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
@@ -155,9 +167,38 @@ msgstr "Möchten Sie dieses Element löschen?"
 msgid "alert_really_delete_folder"
 msgstr "Möchten Sie diesen Eintrag samt aller Inhalte löschen?"
 
+#. Default: "within ${time} seconds."
+#: ./browser/templates/search.pt:109
+msgid "batch_within_seconds"
+msgstr "innerhalb von ${time} Sekunden"
+
+#. Default: "${number} items matching your search terms."
+#: ./browser/templates/search.pt:102
+msgid "batch_x_items_matching_your_criteria"
+msgstr "${number} Inhalte gefunden."
+
+#. Default: "last modified"
+#: ./browser/templates/search.pt:198
+msgid "box_last_modified"
+msgstr "zuletzt verändert"
+
+#. Default: "published"
+#: ./browser/templates/search.pt:188
+msgid "box_published"
+msgstr "Veröffentlicht"
+
+#. Default: "No results were found."
+#: ./browser/templates/search.pt:143
+msgid "description_no_results_found"
+msgstr "Keine Inhalte gefunden"
+
 #: ./browser/templates/entry_sort_items_view.pt:66
 msgid "down"
 msgstr "runter"
+
+#: ./browser/templates/search.pt:212
+msgid "filed under:"
+msgstr ""
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
@@ -176,6 +217,7 @@ msgid "label_no_results_found"
 msgstr "Keine Ergebnisse gefunden"
 
 #. Default: "Search"
+#: ./browser/templates/search.pt:52
 #: ./template_overrides/collective.solr.browser.searchbox.pt:22
 msgid "label_search"
 msgstr "Suche"
@@ -195,15 +237,35 @@ msgstr "Zeige alle Beiträge"
 msgid "legend_livesearch"
 msgstr "Live Suche &#8595;"
 
+#. Default: "Sort by"
+#: ./browser/templates/search.pt:115
+msgid "sort_by"
+msgstr "Trefferliste sortieren"
+
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:7
 msgid "text_search"
 msgstr "Such Seite"
 
+#. Default: "Located in"
+#: ./browser/templates/search.pt:243
+msgid "text_searchitem_location"
+msgstr "Existiert in"
+
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:11
 msgid "title_search_site"
 msgstr "Such Seite"
+
+#. Default: "Search Site"
+#: ./browser/templates/search.pt:44
+msgid "title_search_title"
+msgstr "Such Seite"
+
+#. Default: "Subscribe to an always-updated RSS feed."
+#: ./browser/templates/search.pt:86
+msgid "title_subscribe_rss_feed"
+msgstr "RSS Feed abonnieren"
 
 #: ./browser/templates/entry_sort_items_view.pt:61
 msgid "up"

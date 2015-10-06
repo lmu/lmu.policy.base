@@ -4,7 +4,7 @@
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       lang="en"
       metal:use-macro="context/main_template/macros/master"
-      i18n:domain="plone">
+      i18n:domain="lmu.policy.base">
 
 <head>
   <metal:block metal:fill-slot="head_slot">
@@ -39,7 +39,7 @@
           <input type="hidden" name="advanced_search" value="False" />
           <input type="hidden" name="sort_on" value="" />
 
-          <fieldset id="search-field" i18n:domain="plone" class="noborder"> 
+          <fieldset id="search-field" class="noborder"> 
             <legend i18n:translate="">Search</legend>
               <input class="searchPage"
                      name="SearchableText"
@@ -74,7 +74,7 @@
                       Search Term
                   </strong>
               </h1>
-              <p id="rss-subscription" i18n:domain="plone"
+              <p id="rss-subscription" 
                  tal:define="syndication context/@@tools/syndication|nothing"
                  tal:condition="syndication/isSiteSyndicationAllowed|nothing">
                 <img src="" alt="RSS"
@@ -98,13 +98,13 @@
 
                 <div id="search-results-bar"
                      class="columns small-12 helper-margin-bottom-m">
-                    <span i18n:translate="batch_x_items_matching_your_criteria" i18n:domain="plone">
+                    <span i18n:translate="batch_x_items_matching_your_criteria" >
                         <strong i18n:name="number" id="search-results-number"
                                 tal:content="batch/sequence_length|string:0">234</strong>
                         items matching your search terms.
                     </span>
 
-                    <span i18n:translate="batch_within_seconds" i18n:domain="plone">
+                    <span i18n:translate="batch_within_seconds" >
                         within 
                         <strong i18n:name="time" id="search-results-time"
                                 tal:content="batch/qtime/total_seconds|string:0">234</strong>
@@ -140,7 +140,7 @@
                          tal:define="navigation_root_url context/@@plone_portal_state/navigation_root_url;">
 
                         <metal:noresults tal:condition="not: batch">
-                          <p i18n:domain="plone"><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
+                          <p ><strong i18n:translate="description_no_results_found">No results were found.</strong></p>
                         </metal:noresults>
 
                         <metal:results tal:condition="batch"
@@ -162,8 +162,8 @@
                                          tal:content="item/Title | item/getId" />
                                     </dt>
                                     <dd>
-                                      <span class="discreet" i18n:domain="plone"
-                                        tal:condition="show_about">
+                                      <span class="discreet" 
+                                            tal:condition="show_about">
                                         <!--span class="documentAuthor"
                                           i18n:translate="label_by_author"
                                           tal:on-error="string: Cannot identify author">
