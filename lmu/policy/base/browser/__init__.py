@@ -52,7 +52,6 @@ class Search(BaseSearch):
             query['facet.field'] = config.facets
 
         query = self.filter_query(query)
-
         if query is None:
             results = []
         else:
@@ -64,10 +63,15 @@ class Search(BaseSearch):
         qtime = timedelta(0)
         if isinstance(results, SolrResponse) and results.responseHeader and 'QTime' in results.responseHeader:
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
+        #import ipdb;ipdb.set_trace()
+
+        log.info("Raw Results: %s", results.__dict__)
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
+
+        log.info("Processed Results: %s", results.__dict__)
         return results
 
     def extra_types(self):
@@ -87,7 +91,9 @@ class Search(BaseSearch):
             #    query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
             #else:
             #    query['path'] = [getNavigationRoot(self.context)]
+
             query['portal_type'] += self.extra_types()
+        log.info("Search Query: %s", query)
         return query
 
     def types_list(self):
