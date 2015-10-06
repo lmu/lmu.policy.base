@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
-<object name="portal_properties" meta_type="Plone Properties Tool">
+<object name="portal_properties"
+        meta_type="Plone Properties Tool"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="lmu.policy.base">
     <object name="imaging_properties" meta_type="Plone Property Sheet">
         <property name="title">Image handling properties</property>
         <property name="allowed_sizes" type="lines">
@@ -18,43 +21,43 @@
     </object>
     <object name="site_properties" meta_type="Plone Property Sheet">
         <property name="extra_types_searched" type="lines">
-            <element value="zuv_person"/>
-            <element value="Document"/>
-            <element value="Folder"/>
-            <element value="Generic"/>
-            <element value="Homepage"/>
-            <element value="Image"/>
-            <element value="NamedLink"/>
-            <element value="OfficeDocument"/>
-            <element value="Publication"/>
-            <element value="zuv_aktuelles"/>
-            <element value="zuv_assets_container"/>
-            <element value="zuv_bilderordner"/>
-            <element value="zuv_einrichtung"/>
-            <element value="zuv_einrichtung_personen"/>
-            <element value="zuv_einrichtungsuebersicht"/>
-            <element value="zuv_footer"/>
-            <element value="zuv_glossar"/>
-            <element value="zuv_glossar_container"/>
-            <element value="zuv_kontaktformular"/>
-            <element value="zuv_meldung"/>
-            <element value="zuv_meldung_container"/>
-            <element value="zuv_person"/>
-            <element value="zuv_person_container"/>
-            <element value="zuv_person_referenz"/>
-            <element value="zuv_person_referenz_container"/>
-            <element value="zuv_portrait"/>
-            <element value="zuv_service"/>
-            <element value="zuv_service_container"/>
-            <element value="zuv_service_themenfeld"/>
-            <element value="zuv_service_themengruppe"/>
-            <element value="zuv_service_themenuebersicht"/>
-            <element value="zuv_servicevariante"/>
-            <element value="zuv_standard"/>
-            <element value="zuv_startseite"/>
-            <element value="zuv_statement"/>
-            <element value="zuv_task"/>
-            <element value="zuv_task_container"/>
+            <element i18n:attributes="value" value="zuv_person"/>
+            <element i18n:attributes="value" value="Document"/>
+            <element i18n:attributes="value" value="Folder"/>
+            <element i18n:attributes="value" value="Generic"/>
+            <element i18n:attributes="value" value="Homepage"/>
+            <element i18n:attributes="value" value="Image"/>
+            <element i18n:attributes="value" value="NamedLink"/>
+            <element i18n:attributes="value" value="OfficeDocument"/>
+            <element i18n:attributes="value" value="Publication"/>
+            <element i18n:attributes="value" value="zuv_aktuelles"/>
+            <element i18n:attributes="value" value="zuv_assets_container"/>
+            <element i18n:attributes="value" value="zuv_bilderordner"/>
+            <element i18n:attributes="value" value="zuv_einrichtung"/>
+            <element i18n:attributes="value" value="zuv_einrichtung_personen"/>
+            <element i18n:attributes="value" value="zuv_einrichtungsuebersicht"/>
+            <element i18n:attributes="value" value="zuv_footer"/>
+            <element i18n:attributes="value" value="zuv_glossar"/>
+            <element i18n:attributes="value" value="zuv_glossar_container"/>
+            <element i18n:attributes="value" value="zuv_kontaktformular"/>
+            <element i18n:attributes="value" value="zuv_meldung"/>
+            <element i18n:attributes="value" value="zuv_meldung_container"/>
+            <element i18n:attributes="value" value="zuv_person"/>
+            <element i18n:attributes="value" value="zuv_person_container"/>
+            <element i18n:attributes="value" value="zuv_person_referenz"/>
+            <element i18n:attributes="value" value="zuv_person_referenz_container"/>
+            <element i18n:attributes="value" value="zuv_portrait"/>
+            <element i18n:attributes="value" value="zuv_service"/>
+            <element i18n:attributes="value" value="zuv_service_container"/>
+            <element i18n:attributes="value" value="zuv_service_themenfeld"/>
+            <element i18n:attributes="value" value="zuv_service_themengruppe"/>
+            <element i18n:attributes="value" value="zuv_service_themenuebersicht"/>
+            <element i18n:attributes="value" value="zuv_servicevariante"/>
+            <element i18n:attributes="value" value="zuv_standard"/>
+            <element i18n:attributes="value" value="zuv_startseite"/>
+            <element i18n:attributes="value" value="zuv_statement"/>
+            <element i18n:attributes="value" value="zuv_task"/>
+            <element i18n:attributes="value" value="zuv_task_container"/>
         </property>
 
         <property name="many_users" type="boolean">False</property>

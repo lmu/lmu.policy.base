@@ -51,6 +51,10 @@ msgstr "Bild zuschneiden"
 msgid "Delete"
 msgstr "Löschen"
 
+#: ./profiles/default/propertiestool.xml
+msgid "Document"
+msgstr "Dokument"
+
 #: ./controlpanel.py:106
 msgid "Domain(s)"
 msgstr "Domain(s)"
@@ -71,6 +75,22 @@ msgstr "Bearbeiten"
 msgid "Files"
 msgstr "Dateien"
 
+#: ./profiles/default/propertiestool.xml
+msgid "Folder"
+msgstr "Ordner"
+
+#: ./profiles/default/propertiestool.xml
+msgid "Generic"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "Homepage"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "Image"
+msgstr "Bild"
+
 #: ./browser/templates/entry_content_view.pt:149
 msgid "Images"
 msgstr "Bilder"
@@ -87,6 +107,10 @@ msgstr "Sprache"
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
+#: ./profiles/default/propertiestool.xml
+msgid "NamedLink"
+msgstr ""
+
 #: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
@@ -98,6 +122,14 @@ msgstr "Keine Dateien hochgeladen"
 #: ./browser/templates/entry_content_view.pt:194
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
+
+#: ./profiles/default/propertiestool.xml
+msgid "OfficeDocument"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "Publication"
+msgstr ""
 
 #: ./browser/content.py:296
 msgid "Save"
@@ -270,4 +302,116 @@ msgstr "RSS Feed abonnieren"
 #: ./browser/templates/entry_sort_items_view.pt:61
 msgid "up"
 msgstr "hoch"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_aktuelles"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_assets_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_bilderordner"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_einrichtung"
+msgstr "Einrichtung"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_einrichtung_personen"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_einrichtungsuebersicht"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_footer"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_glossar"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_glossar_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_kontaktformular"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_meldung"
+msgstr "Meldung"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_meldung_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_person"
+msgstr "Person"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_person_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_person_referenz"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_person_referenz_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_portrait"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_service"
+msgstr "Service"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_service_container"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_service_themenfeld"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_service_themengruppe"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_service_themenuebersicht"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_servicevariante"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_standard"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_startseite"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_statement"
+msgstr ""
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_task"
+msgstr "Task"
+
+#: ./profiles/default/propertiestool.xml
+msgid "zuv_task_container"
+msgstr ""
 
