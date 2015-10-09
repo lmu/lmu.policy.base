@@ -34,7 +34,7 @@ def setupVarious(context):
         return
 
     _setupAutoUserMaker(context)
-    _setupAutoRoleHeader(context)
+#    _setupAutoRoleHeader(context)
 
 
 def _setupGroups(context):
@@ -58,21 +58,21 @@ def _setupGroups(context):
             )
 
 
-def _setupAutoRoleHeader(context):
-    acl_users = api.portal.get_tool('acl_users')
-
-    #import ipdb; ipdb.set_trace()
-
-    arh_cmsadmins = AutoRole('auto_role_header_cms-admins-insp',
-                             title='AutoRole for CMS-Admins INSP',
-                             match_roles=('Groupmembership; ^(.*?(\b{group_name}\b)[^$]*)$; Site Administrator; python:True'))
-    acl_users['auto_role_header_cms-admins-insp'] = arh_cmsadmins
-
-    arh_supportteam = AutoRole('auto_role_header_supportteam',
-                               title='AutoRole for CMS-Admins INSP',
-                               match_roles=('Groupmembership; ^(.*?(\b{group_name}\b)[^$]*)$; Site Administrator; python:True'))
-
-    acl_users['auto_role_header_supportteam'] = arh_supportteam
+#def _setupAutoRoleHeader(context):
+#    acl_users = api.portal.get_tool('acl_users')
+#
+#    #import ipdb; ipdb.set_trace()
+#
+#    arh_cmsadmins = AutoRole('auto_role_header_cms-admins-insp',
+#                             title='AutoRole for CMS-Admins INSP',
+#                             match_roles=('Groupmembership; ^(.*?(\b{group_name}\b)[^$]*)$; Site Administrator; python:True'))
+#    acl_users['auto_role_header_cms-admins-insp'] = arh_cmsadmins
+#
+#    arh_supportteam = AutoRole('auto_role_header_supportteam',
+#                               title='AutoRole for CMS-Admins INSP',
+#                               match_roles=('Groupmembership; ^(.*?(\b{group_name}\b)[^$]*)$; Site Administrator; python:True'))
+#
+#    acl_users['auto_role_header_supportteam'] = arh_supportteam
 #    activatePluginInterface(portal, arh_cmsadmins, out)
 
 
