@@ -13,16 +13,14 @@
         layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
-    <configure package="plone.app.search">
-        <browser:page
-            name="updated_search"
-            class="lmu.policy.base.browser.Search"
-            permission="zope2.View"
-            for="Products.CMFCore.interfaces.IFolderish"
-            template="updated_search.pt"
-            layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
-            />
-    </configure>
+    <browser:page
+        name="updated_search"
+        class="lmu.policy.base.browser.Search"
+        permission="zope2.View"
+        for="Products.CMFCore.interfaces.IFolderish"
+        template="templates/updated_search.pt"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        />
 
     <browser:page
         for="*"
