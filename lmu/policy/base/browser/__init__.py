@@ -23,6 +23,7 @@ from plone.app.layout.viewlets import common
 from plone.app.search.browser import Search as BaseSearch
 from plone.app.search.browser import quote_chars
 from plone.registry.interfaces import IRegistry
+from urllib import unquote
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
@@ -121,6 +122,9 @@ class Search(BaseSearch):
 
     def strip_text(item, length=500):
         return ustrip_text(item, length=length)
+
+    def unquote(self, string):
+        return unquote(string)
 
 
 class LivesearchReply(Search):
