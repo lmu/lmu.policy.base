@@ -4,9 +4,6 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
-from lmu.contenttypes.blog import MESSAGE_FACTORY as _  # XXX move translations
-from lmu.policy.base.browser import str2bool
-from lmu.policy.base.interfaces import ILMUCommentFormLayer
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.z3cform.templates import RenderWidget
@@ -18,7 +15,10 @@ from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 
+from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
+from lmu.policy.base.browser.utils import str2bool
 from lmu.policy.base.browser.utils import strip_text as ustrip_text
+from lmu.policy.base.interfaces import ILMUCommentFormLayer
 
 
 class _AbstractLMUBaseContentView(BrowserView):

@@ -18,3 +18,7 @@ def _strip_text(item, length=500, ellipsis='...'):
     transformer = ITransformer(item)
     transformedValue = transformer(item.text, 'text/plain')
     return Plone.cropText(transformedValue, length=length, ellipsis=ellipsis)
+
+
+def str2bool(v):
+    return v is not None and v.lower() in ['true', '1']

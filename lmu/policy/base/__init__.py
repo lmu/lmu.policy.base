@@ -3,4 +3,4 @@ import patches
 
 patches  # flake8
 
-LMUMessageFactory = MessageFactory('lmu.poliy.base')
+MESSAGE_FACTORY = MessageFactory('lmu.poliy.base')

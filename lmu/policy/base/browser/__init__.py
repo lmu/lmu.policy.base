@@ -27,16 +27,14 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
 
+from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
 from lmu.policy.base.browser.utils import strip_text as ustrip_text
-
-
-def str2bool(v):
-    return v is not None and v.lower() in ['true', '1']
+from lmu.policy.base.browser.utils import str2bool
 
 log = logging.getLogger(__name__)
 
 
-class Search(BaseSearch):
+class Search(BaseSearch, _AbstractLMUBaseListingView):
 
     def results(self, query=None, batch=True, b_size=10, b_start=0):
         """ Get properly wrapped search results from the catalog.

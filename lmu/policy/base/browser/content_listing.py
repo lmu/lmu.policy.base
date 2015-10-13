@@ -1,6 +1,6 @@
 from Products.CMFCore import permissions
 from Products.CMFPlone.PloneBatch import Batch
-from lmu.policy.base.browser import str2bool
+from lmu.policy.base.browser.utils import str2bool
 from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
 from plone import api
 

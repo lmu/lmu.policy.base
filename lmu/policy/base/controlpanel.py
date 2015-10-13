@@ -1,4 +1,3 @@
-from lmu.policy.base import LMUMessageFactory as _
 from plone import api
 from plone.app.registry.browser.controlpanel import ControlPanelFormWrapper
 from plone.app.registry.browser.controlpanel import RegistryEditForm
@@ -12,6 +11,8 @@ from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
+from lmu.policy.base import MESSAGE_FACTORY as _
 
 
 class AvailableLanguagesVocabulary(object):
