@@ -14,31 +14,35 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/content.py:152
+#: ./browser/content.py:140
 msgid "&Uuml;berschrift 1"
 msgstr "Überschrift 1"
 
-#: ./browser/content.py:153
+#: ./browser/content.py:141
 msgid "&Uuml;berschrift 2"
 msgstr "Überschrift 2"
 
-#: ./controlpanel.py:75
+#: ./profiles/default/propertiestool.xml
+msgid "Blog Entry"
+msgstr "Blog-Beitrag"
+
+#: ./controlpanel.py:76
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
 
-#: ./controlpanel.py:67
+#: ./controlpanel.py:68
 msgid "Breadcrumb override level 1 - Title"
 msgstr ""
 
-#: ./controlpanel.py:95
+#: ./controlpanel.py:96
 msgid "Breadcrumb override level 2 - Link"
 msgstr ""
 
-#: ./controlpanel.py:87
+#: ./controlpanel.py:88
 msgid "Breadcrumb override level 2 - Title"
 msgstr ""
 
-#: ./controlpanel.py:112
+#: ./controlpanel.py:113
 msgid "CMS System"
 msgstr "CMS-System"
 
@@ -55,11 +59,11 @@ msgstr "Löschen"
 msgid "Document"
 msgstr "Dokument"
 
-#: ./controlpanel.py:106
+#: ./controlpanel.py:107
 msgid "Domain(s)"
 msgstr "Domain(s)"
 
-#: ./controlpanel.py:107
+#: ./controlpanel.py:108
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
@@ -81,11 +85,11 @@ msgstr "Ordner"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Generic"
-msgstr ""
+msgstr "Generisch"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Homepage"
-msgstr ""
+msgstr "Startseite"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Image"
@@ -99,17 +103,17 @@ msgstr "Bilder"
 msgid "LMU Settings"
 msgstr "LMU Einstellungen"
 
-#: ./controlpanel.py:43
+#: ./controlpanel.py:44
 msgid "Language"
 msgstr "Sprache"
 
-#: ./controlpanel.py:113
+#: ./controlpanel.py:114
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
 #: ./profiles/default/propertiestool.xml
 msgid "NamedLink"
-msgstr ""
+msgstr "Benannter Link"
 
 #: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
@@ -128,10 +132,14 @@ msgid "OfficeDocument"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "Publication"
-msgstr ""
+msgid "Pinnwand Entry"
+msgstr "Pinnwand-Eintrag"
 
-#: ./browser/content.py:296
+#: ./profiles/default/propertiestool.xml
+msgid "Publication"
+msgstr "Veröffentlichung"
+
+#: ./browser/content.py:284
 msgid "Save"
 msgstr "Speichern"
 
@@ -151,11 +159,11 @@ msgstr "Suchergebnisse für ${term}"
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./controlpanel.py:80
+#: ./controlpanel.py:81
 msgid "Show Breadcrumb override level 1"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 1"
 
-#: ./controlpanel.py:100
+#: ./controlpanel.py:101
 msgid "Show Breadcrumb override level 2"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 
@@ -171,7 +179,7 @@ msgstr "Dateien sortieren"
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./controlpanel.py:46
+#: ./controlpanel.py:47
 msgid "Title"
 msgstr "Titel"
 
@@ -210,12 +218,12 @@ msgid "batch_x_items_matching_your_criteria"
 msgstr "${number} Inhalte gefunden."
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:198
+#: ./browser/templates/search.pt:199
 msgid "box_last_modified"
 msgstr "zuletzt verändert"
 
 #. Default: "published"
-#: ./browser/templates/search.pt:188
+#: ./browser/templates/search.pt:189
 msgid "box_published"
 msgstr "Veröffentlicht"
 
@@ -228,7 +236,7 @@ msgstr "Keine Inhalte gefunden"
 msgid "down"
 msgstr "runter"
 
-#: ./browser/templates/search.pt:212
+#: ./browser/templates/search.pt:213
 msgid "filed under:"
 msgstr ""
 
@@ -280,7 +288,7 @@ msgid "text_search"
 msgstr "Such Seite"
 
 #. Default: "Located in"
-#: ./browser/templates/search.pt:243
+#: ./browser/templates/search.pt:244
 msgid "text_searchitem_location"
 msgstr "Existiert in"
 
@@ -305,7 +313,7 @@ msgstr "hoch"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_aktuelles"
-msgstr ""
+msgstr "Aktuelles"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_assets_container"
@@ -313,7 +321,7 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_bilderordner"
-msgstr ""
+msgstr "Bilderordner"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_einrichtung"
@@ -321,7 +329,7 @@ msgstr "Einrichtung"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_einrichtung_personen"
-msgstr ""
+msgstr "Einrichtungs-Person"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_einrichtungsuebersicht"
@@ -333,7 +341,7 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_glossar"
-msgstr ""
+msgstr "Glossar"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_glossar_container"
@@ -369,7 +377,7 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_portrait"
-msgstr ""
+msgstr "Portrait"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_service"
