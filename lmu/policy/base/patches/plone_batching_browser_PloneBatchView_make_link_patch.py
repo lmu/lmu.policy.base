@@ -15,8 +15,12 @@ def make_link(self, pagenumber=None):
         batchlinkparams = form.copy()
 
     start = max(pagenumber - 1, 0) * self.batch.pagesize
-    return '%s?%s' % (self.context.absolute_url(),
-                      make_query(batchlinkparams, {self.batch.b_start_str: start}))
+
+    url = self.request.ACTUAL_URL
+    if url.endswith('.include'):
+        url = self.context.absolute_url()
+
+    return '%s?%s' % (url, make_query(batchlinkparams, {self.batch.b_start_str: start}))
 
 PloneBatchView.make_link = make_link
 logger.info("Patching plone.batching.browser.PloneBatchView.make_link")
