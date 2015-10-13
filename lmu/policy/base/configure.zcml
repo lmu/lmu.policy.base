@@ -34,6 +34,12 @@
         layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
+    <browser:resource
+        name="search.js"
+        file="js/search.js"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        />
+
     <browser:resourceDirectory
         name="lmu.policy.base.css"
         directory="css"
