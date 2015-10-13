@@ -22,7 +22,7 @@
                         item_url result/getURL;
                         item_url python:item_type in use_view_action and (item_url + '/view') or item_url;
                         item_url python:item_url + searchterm_query;
-                        item_url python:item_url.replace('/functions/prototyp-1/sp', '');
+                        item_url python:view.unquote(item_url);
                         display_title python:view.display_title(result.Title());
                         display_description python:view.display_description(result.Description());
                         klass python:'contenttype-' + plone_view.normalizeString(item_type);

@@ -35,7 +35,7 @@ from lmu.policy.base.browser.utils import str2bool
 log = logging.getLogger(__name__)
 
 
-class Search(BaseSearch, _AbstractLMUBaseListingView):
+class Search(BaseSearch):
 
     def results(self, query=None, batch=True, b_size=10, b_start=0):
         """ Get properly wrapped search results from the catalog.

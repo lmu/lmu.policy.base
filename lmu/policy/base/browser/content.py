@@ -6,6 +6,7 @@ from collective.quickupload.portlet.quickuploadportlet import Renderer
 from datetime import datetime
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
+from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
@@ -17,7 +18,7 @@ from zope.interface import alsoProvides
 
 from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
 from lmu.policy.base.browser.utils import str2bool
-from lmu.policy.base.browser.utils import strip_text as ustrip_text
+#from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
 
 
@@ -33,8 +34,14 @@ class _AbstractLMUBaseContentView(BrowserView):
         member = pmt.getMemberById(member_id)
         return member
 
-    def strip_text(item, length=500):
-        return ustrip_text(item, length=length)
+    def strip_text(self, item, length=500):
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        striped_length = len(transformedValue)
+        if striped_length > length:
+            striped_length = transformedValue.rfind(' ', 0, length)
+            transformedValue = transformedValue[:striped_length] + '...'
+        return transformedValue
 
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
