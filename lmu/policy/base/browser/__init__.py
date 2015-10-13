@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #import StringIO
+import logging
 
 from datetime import timedelta
 from collective.solr.interfaces import ISolrConnectionConfig
@@ -25,7 +26,8 @@ from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
-import logging
+
+from lmu.policy.base.browser.utils import strip_text as ustrip_text
 
 
 def str2bool(v):
@@ -116,6 +118,9 @@ class Search(BaseSearch):
             return breadcrumbs
         except Exception:
             return None
+
+    def strip_text(item, length=500):
+        return ustrip_text(item, length=length)
 
 
 class LivesearchReply(Search):

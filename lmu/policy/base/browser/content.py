@@ -1,5 +1,4 @@
 from Products.CMFCore import permissions
-from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.quickupload.portlet.quickuploadportlet import Assignment
@@ -10,7 +9,6 @@ from lmu.policy.base.browser import str2bool
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
-from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
@@ -19,7 +17,8 @@ from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import INPUT_MODE
 from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
-import json
+
+from lmu.policy.base.browser.utils import strip_text as ustrip_text
 
 
 class _AbstractLMUBaseContentView(BrowserView):
@@ -34,19 +33,8 @@ class _AbstractLMUBaseContentView(BrowserView):
         member = pmt.getMemberById(member_id)
         return member
 
-    def strip_text(self, item, length=500):
-        transformer = ITransformer(item)
-        transformedValue = transformer(item.text, 'text/plain')
-        striped_length = len(transformedValue)
-        if striped_length > length:
-            striped_length = transformedValue.rfind(' ', 0, length)
-            transformedValue = transformedValue[:striped_length] + '...'
-        return transformedValue
-
-    def _strip_text(self, item, length=500, ellipsis='...'):
-        transformer = ITransformer(item)
-        transformedValue = transformer(item.text, 'text/plain')
-        return Plone.cropText(transformedValue, length=length, ellipsis=ellipsis)
+    def strip_text(item, length=500):
+        return ustrip_text(item, length=length)
 
     def images(self):
         #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')

@@ -231,7 +231,7 @@
                                          tal:repeat="snippets python:batch._sequence._basesequence.highlighting[item.uuid()].values()">
                                           &hellip;&nbsp;
                                           <tal:snippets repeat="snippet snippets">
-                                            <tal:snippet content="structure snippet">highlighted snippet</tal:snippet>&nbsp;&hellip;
+                                            <tal:snippet content="python:view.strip_text(snippet)">highlighted snippet</tal:snippet>&nbsp;&hellip;
                                           </tal:snippets>
                                       </p>
                                       </tal:highlighting>
