@@ -23,6 +23,15 @@
         />
 
     <browser:page
+        for="OFS.interfaces.IFolder"
+        name="search-facets"
+        template="templates/facets.pt"
+        class=".LMUSearchFacetsView"
+        permission="zope2.View"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        />
+
+    <browser:page
         for="*"
         name="livesearch_reply2"
         class="lmu.policy.base.browser.LivesearchReply"
