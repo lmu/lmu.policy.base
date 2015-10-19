@@ -35,7 +35,6 @@
         <field-list>
             <parameter name="UID"/>
             <parameter name="Title"/>
-            <parameter name="default"/>
             <parameter name="Subject"/>
             <parameter name="Description"/>
             <parameter name="path_string"/>

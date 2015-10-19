@@ -28,7 +28,7 @@ jQuery(function ($) {
                         data_search_term = $ajax_search_res.find('#updated-search-term').text(),
                         data_res_number = $ajax_search_res.find('#updated-search-results-number').text(),
                         data_sorting_opt = $ajax_search_res.find('#updated-sorting-options').html(),
-                        data_facets = $ajax_search_res.find('#portal-searchfacets').html();
+                        data_facets = $ajax_search_res.find('#portal-searchfacets').html().replace(/updated_search/g, 'search');
 
                     $container.html($data_res);
                     $container.fadeIn();
