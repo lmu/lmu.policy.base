@@ -14,11 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/content.py:140
+#: ./browser/content.py:147
 msgid "&Uuml;berschrift 1"
 msgstr "Überschrift 1"
 
-#: ./browser/content.py:141
+#: ./browser/content.py:148
 msgid "&Uuml;berschrift 2"
 msgstr "Überschrift 2"
 
@@ -46,11 +46,15 @@ msgstr ""
 msgid "CMS System"
 msgstr "CMS-System"
 
-#: ./browser/templates/entry_content_view.pt:182
+#: ./browser/templates/entry_content_view.pt:188
 msgid "Crop Image"
-msgstr "Bild zuschneiden"
+msgstr "Bild bescheiden"
 
-#: ./browser/templates/entry_content_view.pt:177
+#: ./browser/templates/entry_content_view.pt:143
+msgid "Das erste Bild wird auf den Uebersichtsseiten und gross dargestellt im"
+msgstr "Das erste Bild wird auf den Übersichtsseiten und groß dargestellt im"
+
+#: ./browser/templates/entry_content_view.pt:183
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
@@ -71,11 +75,11 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:172
+#: ./browser/templates/entry_content_view.pt:178
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:207
+#: ./browser/templates/entry_content_view.pt:213
 msgid "Files"
 msgstr "Dateien"
 
@@ -95,7 +99,7 @@ msgstr "Startseite"
 msgid "Image"
 msgstr "Bild"
 
-#: ./browser/templates/entry_content_view.pt:149
+#: ./browser/templates/entry_content_view.pt:155
 msgid "Images"
 msgstr "Bilder"
 
@@ -119,11 +123,11 @@ msgstr "Benannter Link"
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:235
+#: ./browser/templates/entry_content_view.pt:241
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:194
+#: ./browser/templates/entry_content_view.pt:200
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
@@ -139,7 +143,7 @@ msgstr "Pinnwand-Eintrag"
 msgid "Publication"
 msgstr "Veröffentlichung"
 
-#: ./browser/content.py:284
+#: ./browser/content.py:291
 msgid "Save"
 msgstr "Speichern"
 
@@ -171,11 +175,11 @@ msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:200
+#: ./browser/templates/entry_content_view.pt:206
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:142
+#: ./browser/templates/entry_content_view.pt:148
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 

@@ -132,9 +132,15 @@
             </label>
         </div>
         <div class="column small-12 medium-10" >
-            <div class="has-tip tip-top" data-tooltip="true" aria-haspopup="true" title="Laden Sie Bilder oder Dokumente zu Ihrem Blog-Beitrag hoch (Maximal 10 MB pro Datei).">
+            <div class="has-tip tip-top"
+                 data-tooltip="true"
+                 aria-haspopup="true"
+                 tal:define="ct python:context.portal_type;
+                             title string:Laden Sie Bilder oder Dokumente zu Ihrem Eintrag hoch (Maximal 10 MB pro Datei).;"
+                 tal:attributes="title title"
+                 i18n:attributes="title">
               <div tal:replace="structure view/render_quickupload"></div>
-              <p> Das erste Bild wird auf den Übersichtsseiten und groß im Blog-Beitrag dargestellt.</p>
+              <p><span i18n:translate="">Das erste Bild wird auf den Uebersichtsseiten und gross dargestellt im </span> <span tal:replace="ct" i18n:translate="">Blog-Beitrag</span>.</p>
             </div>
 
             <div id="folder_contents">

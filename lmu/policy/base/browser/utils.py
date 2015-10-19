@@ -34,11 +34,10 @@ class _IncludeMixin(object):
         request.set('disable_border', True)
 
     def __call__(self):
-        #import ipdb;  ipdb.set_trace()
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
         if self.omit:
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
-            RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
+            RESPONSE.setHeader('Content-Type', 'application/xml;charset=utf-8')
         return self.template()

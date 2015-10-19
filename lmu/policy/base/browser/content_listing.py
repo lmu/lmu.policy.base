@@ -60,13 +60,6 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
 
 class _FrontPageIncludeMixin(_IncludeMixin):
 
-    def update(self):
-        """
-        """
-        # Hide the editable-object border
-        request = self.request
-        request.set('disable_border', True)
-
     def __call__(self):
         author = self.request.get('author')
         self.author = bool(author)
