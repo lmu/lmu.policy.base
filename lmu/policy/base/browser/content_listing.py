@@ -1,6 +1,7 @@
 from Products.CMFCore import permissions
 from Products.CMFPlone.PloneBatch import Batch
-from lmu.policy.base.browser.utils import str2bool
+#from lmu.policy.base.browser.utils import str2bool
+from lmu.policy.base.browser.utils import _IncludeMixin
 from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
 from plone import api
 
@@ -57,7 +58,7 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
                                        obj=self.context)
 
 
-class _FrontPageIncludeMixin(object):
+class _FrontPageIncludeMixin(_IncludeMixin):
 
     def update(self):
         """
@@ -67,12 +68,6 @@ class _FrontPageIncludeMixin(object):
         request.set('disable_border', True)
 
     def __call__(self):
-        omit = self.request.get('full')
-        self.omit = not str2bool(omit)
         author = self.request.get('author')
         self.author = bool(author)
-        if self.omit:
-            REQUEST = self.context.REQUEST
-            RESPONSE = REQUEST.RESPONSE
-            RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-        return self.template()
+        return super(_FrontPageIncludeMixin, self).__call__()

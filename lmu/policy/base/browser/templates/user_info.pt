@@ -1,12 +1,20 @@
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit"
+             tal:condition="not:omit" >
+<!DOCTYPE html >
+</tal:doctype>
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
       xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="lmu.policy.base"
       lang="en"
-      i18n:domain="lmu.policy.base" >
-<head>
+      tal:define="omit view/omit"
+      tal:omit-tag="omit" >
+<head tal:condition="not:omit">
 
 </head>
-<body>
+<body tal:omit-tag="omit" >
     <div id="user" >
         <span style="font-size: 12px;" class="fi-torso"></span>
         <span tal:define="username view/username;

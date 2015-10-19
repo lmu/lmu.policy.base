@@ -10,7 +10,7 @@ from collective.solr.parser import SolrResponse
 #from PIL import Image as PILImage
 #from Products.PlonePAS.utils import scale_image
 from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone.browser.navtree import getNavigationRoot
+#from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -28,9 +28,10 @@ from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.component import queryUtility
 
-from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
+#from lmu.policy.base.browser.content_listing import _AbstractLMUBaseListingView
 from lmu.policy.base.browser.utils import strip_text as ustrip_text
-from lmu.policy.base.browser.utils import str2bool
+#from lmu.policy.base.browser.utils import str2bool
+from lmu.policy.base.browser.utils import _IncludeMixin
 
 log = logging.getLogger(__name__)
 
@@ -193,7 +194,7 @@ class LivesearchReply(Search):
         return self.template()
 
 
-class UserInfo(BrowserView):
+class UserInfo(BrowserView, _IncludeMixin):
 
     template = ViewPageTemplateFile('templates/user_info.pt')
 
@@ -204,10 +205,6 @@ class UserInfo(BrowserView):
     def __call__(self):
         user = api.user.get_current()
         pm = api.portal.get_tool('portal_membership')
-        REQUEST = self.context.REQUEST
-        RESPONSE = REQUEST.RESPONSE
-        RESPONSE.setHeader('Content-Type', 'text/xml;charset=utf-8')
-
         self.username = user.getProperty('fullname')
         portrait = pm.getPersonalPortrait()
         #image = Image.open(StringIO.StringIO(portrait.data))
@@ -216,7 +213,7 @@ class UserInfo(BrowserView):
         #small_portrait, mimetype = scale_image(StringIO.StringIO(portrait.data), (30, 30))
         #self.portrait = OFSImage.Image(id=user.getUserName(), file=small_portrait, title='')
         self.portrait = portrait
-        return self.template()
+        return super(UserInfo, self).__call__()
 
 
 class PathBarViewlet(common.PathBarViewlet):
