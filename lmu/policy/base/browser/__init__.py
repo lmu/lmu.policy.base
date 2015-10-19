@@ -205,7 +205,8 @@ class UserInfo(BrowserView, _IncludeMixin):
     def __call__(self):
         user = api.user.get_current()
         pm = api.portal.get_tool('portal_membership')
-        self.username = user.getProperty('fullname')
+        #self.username = user.getProperty('fullname')
+        self.username = user.getProperty('description')
         portrait = pm.getPersonalPortrait()
         #image = Image.open(StringIO.StringIO(portrait.data))
         #self.portrait = image.resize((30, 30))
