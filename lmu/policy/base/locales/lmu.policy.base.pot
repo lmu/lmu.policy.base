@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-19 15:01+0000\n"
+"POT-Creation-Date: 2015-10-19 15:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,7 +59,7 @@ msgid "Crop Image"
 msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:143
-msgid "Das erste Bild wird auf den Uebersichtsseiten und gross dargestellt im"
+msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:183
@@ -237,6 +237,10 @@ msgstr ""
 #. Default: "published"
 #: ./browser/templates/search.pt:189
 msgid "box_published"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:143
+msgid "dargestellt"
 msgstr ""
 
 #. Default: "No results were found."

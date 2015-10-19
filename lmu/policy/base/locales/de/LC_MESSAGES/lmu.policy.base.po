@@ -51,8 +51,8 @@ msgid "Crop Image"
 msgstr "Bild bescheiden"
 
 #: ./browser/templates/entry_content_view.pt:143
-msgid "Das erste Bild wird auf den Uebersichtsseiten und gross dargestellt im"
-msgstr "Das erste Bild wird auf den Übersichtsseiten und groß dargestellt im"
+msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
+msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
 #: ./browser/templates/entry_content_view.pt:183
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
@@ -230,6 +230,10 @@ msgstr "zuletzt verändert"
 #: ./browser/templates/search.pt:189
 msgid "box_published"
 msgstr "Veröffentlicht"
+
+#: ./browser/templates/entry_content_view.pt:143
+msgid "dargestellt"
+msgstr "dargestellt"
 
 #. Default: "No results were found."
 #: ./browser/templates/search.pt:143

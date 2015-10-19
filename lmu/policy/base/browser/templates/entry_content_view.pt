@@ -140,7 +140,7 @@
                  tal:attributes="title title"
                  i18n:attributes="title">
               <div tal:replace="structure view/render_quickupload"></div>
-              <p><span i18n:translate="">Das erste Bild wird auf den Uebersichtsseiten und gross dargestellt im </span> <span tal:replace="ct" i18n:translate="">Blog-Beitrag</span>.</p>
+              <p><span i18n:translate="">Das erste Bild wird auf den Uebersichtsseiten und gross im</span> <span tal:replace="ct" i18n:translate="">Blog-Beitrag</span> <span i18n:translate="">dargestellt</span>.</p>
             </div>
 
             <div id="folder_contents">
