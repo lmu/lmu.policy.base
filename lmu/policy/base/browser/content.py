@@ -18,6 +18,7 @@ from zope.interface import alsoProvides
 
 from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
 from lmu.policy.base.browser.utils import str2bool
+from lmu.policy.base.browser.utils import _IncludeMixin
 #from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
 
@@ -179,6 +180,11 @@ class EntryContentView(_AbstractLMUBaseContentView):
     def __call__(self):
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
+        REQUEST = self.context.REQUEST
+        RESPONSE = REQUEST.RESPONSE
+        RESPONSE.setHeader('Cache-Control', 'private, max-age=0, no-cache')
+        RESPONSE.setHeader('Pragma', 'no-cache')
+        RESPONSE.setHeader('Expires', '-1')
         return self.template()
 
     def content(self, mode='files'):
