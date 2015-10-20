@@ -14,7 +14,7 @@
             tal:attributes="title item/title" i18n:attributes="title" />
       <a tal:attributes="href string:${request/ACTUAL_URL}?${item/query}"
         title="Remove this search limit..." i18n:attributes="title"
-        i18n:domain="solr">
+        i18n:translate="" i18n:domain="lmu.policy.base" >
         &otimes;
       </a>
     </div>
@@ -31,8 +31,8 @@
         <dd tal:content="item/count" />
         <div class="visualClear"><!-- --></div>
       </tal:counts>
-      <tal:other condition="count_other">
-        <dt i18n:translate="">
+      <tal:other condition="count_other" i18n:domain="lmu.policy.base">
+        <dt i18n:translate="" class="others hide">
             Other
         </dt>
         <dd tal:content="count_other" />

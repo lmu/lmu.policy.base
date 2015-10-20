@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-20 12:42+0000\n"
+"POT-Creation-Date: 2015-10-20 15:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,16 +17,16 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/content.py:230
+#: ./browser/content.py:241
 #: ./controlpanel.py:69
 msgid ""
 msgstr ""
 
-#: ./browser/content.py:148
+#: ./browser/content.py:153
 msgid "&Uuml;berschrift 1"
 msgstr ""
 
-#: ./browser/content.py:149
+#: ./browser/content.py:154
 msgid "&Uuml;berschrift 2"
 msgstr ""
 
@@ -54,15 +54,15 @@ msgstr ""
 msgid "CMS System"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:188
+#: ./browser/templates/entry_content_view.pt:191
 msgid "Crop Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:143
+#: ./browser/templates/entry_content_view.pt:146
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:183
+#: ./browser/templates/entry_content_view.pt:186
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
@@ -83,11 +83,11 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:178
+#: ./browser/templates/entry_content_view.pt:181
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:213
+#: ./browser/templates/entry_content_view.pt:216
 msgid "Files"
 msgstr ""
 
@@ -107,7 +107,7 @@ msgstr ""
 msgid "Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:155
+#: ./browser/templates/entry_content_view.pt:158
 msgid "Images"
 msgstr ""
 
@@ -131,16 +131,20 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:241
+#: ./browser/templates/entry_content_view.pt:244
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:200
+#: ./browser/templates/entry_content_view.pt:203
 msgid "No Images Uploaded"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "OfficeDocument"
+msgstr ""
+
+#: ./browser/templates/facets.pt:35
+msgid "Other"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -151,7 +155,7 @@ msgstr ""
 msgid "Publication"
 msgstr ""
 
-#: ./browser/content.py:297
+#: ./browser/content.py:308
 msgid "Save"
 msgstr ""
 
@@ -183,11 +187,11 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:206
+#: ./browser/templates/entry_content_view.pt:209
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:148
+#: ./browser/templates/entry_content_view.pt:151
 msgid "Sort Images"
 msgstr ""
 
@@ -195,7 +199,7 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:130
+#: ./browser/templates/entry_content_view.pt:133
 msgid "Upload Images and Files"
 msgstr ""
 
@@ -239,7 +243,7 @@ msgstr ""
 msgid "box_published"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:143
+#: ./browser/templates/entry_content_view.pt:146
 msgid "dargestellt"
 msgstr ""
 

@@ -14,11 +14,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/content.py:148
+#: ./browser/content.py:153
 msgid "&Uuml;berschrift 1"
 msgstr "Überschrift 1"
 
-#: ./browser/content.py:149
+#: ./browser/content.py:154
 msgid "&Uuml;berschrift 2"
 msgstr "Überschrift 2"
 
@@ -46,15 +46,15 @@ msgstr ""
 msgid "CMS System"
 msgstr "CMS-System"
 
-#: ./browser/templates/entry_content_view.pt:188
+#: ./browser/templates/entry_content_view.pt:191
 msgid "Crop Image"
 msgstr "Bild bescheiden"
 
-#: ./browser/templates/entry_content_view.pt:143
+#: ./browser/templates/entry_content_view.pt:146
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:183
+#: ./browser/templates/entry_content_view.pt:186
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
@@ -75,11 +75,11 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:178
+#: ./browser/templates/entry_content_view.pt:181
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:213
+#: ./browser/templates/entry_content_view.pt:216
 msgid "Files"
 msgstr "Dateien"
 
@@ -99,7 +99,7 @@ msgstr "Startseite"
 msgid "Image"
 msgstr "Bild"
 
-#: ./browser/templates/entry_content_view.pt:155
+#: ./browser/templates/entry_content_view.pt:158
 msgid "Images"
 msgstr "Bilder"
 
@@ -123,17 +123,21 @@ msgstr "Benannter Link"
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:241
+#: ./browser/templates/entry_content_view.pt:244
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:200
+#: ./browser/templates/entry_content_view.pt:203
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
 #: ./profiles/default/propertiestool.xml
 msgid "OfficeDocument"
 msgstr ""
+
+#: ./browser/templates/facets.pt:35
+msgid "Other"
+msgstr "Sonstige"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Pinnwand Entry"
@@ -143,7 +147,7 @@ msgstr "Pinnwand-Eintrag"
 msgid "Publication"
 msgstr "Veröffentlichung"
 
-#: ./browser/content.py:297
+#: ./browser/content.py:308
 msgid "Save"
 msgstr "Speichern"
 
@@ -175,11 +179,11 @@ msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:206
+#: ./browser/templates/entry_content_view.pt:209
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:148
+#: ./browser/templates/entry_content_view.pt:151
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
@@ -187,7 +191,7 @@ msgstr "Bilder sortieren"
 msgid "Title"
 msgstr "Titel"
 
-#: ./browser/templates/entry_content_view.pt:130
+#: ./browser/templates/entry_content_view.pt:133
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
 
@@ -231,7 +235,7 @@ msgstr "zuletzt verändert"
 msgid "box_published"
 msgstr "Veröffentlicht"
 
-#: ./browser/templates/entry_content_view.pt:143
+#: ./browser/templates/entry_content_view.pt:146
 msgid "dargestellt"
 msgstr "dargestellt"
 
