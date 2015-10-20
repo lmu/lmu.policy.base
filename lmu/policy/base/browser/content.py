@@ -185,8 +185,10 @@ class EntryContentView(_AbstractLMUBaseContentView):
     def __call__(self):
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
-        tz = tzinfo()
-        nowdt = datetime.now(tz)
+        #import ipdb; ipdb.set_trace()
+        #tz = tzinfo()
+        #nowdt = datetime.now(tz) if tz else datetime.now()
+        nowdt = datetime.now()
         nowtuple = nowdt.timetuple()
         nowtimestamp = time.mktime(nowtuple)
         REQUEST = self.context.REQUEST
