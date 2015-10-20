@@ -4,6 +4,8 @@
 import logging
 
 from datetime import timedelta
+from collective.solr.browser.facets import SearchFacetsView
+from collective.solr.browser.facets import convertFacets
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.parser import SolrResponse
 #from OFS import Image as OFSImage
@@ -124,6 +126,30 @@ class Search(BaseSearch):
 
     def unquote(self, string):
         return unquote(string)
+
+
+class LMUSearchFacetsView(SearchFacetsView):
+
+    @property
+    def shown_types(self):
+        ptool = getToolByName(self, 'portal_properties')
+        siteProperties = getattr(ptool, 'site_properties')
+        shown_types = siteProperties.getProperty(
+            'types_search_facets', [])
+        return list(shown_types)
+
+    def facets(self):
+        """ prepare and return facetting info for the given SolrResponse """
+        results = self.kw.get('results', None)
+        fcs = getattr(results, 'facet_counts', None)
+        shown_types = self.shown_types
+        if results is not None and fcs is not None:
+            def facet_filter(name, count):
+                return name and name in shown_types and count > 0
+            return convertFacets(
+                fcs.get('facet_fields', {}), self, facet_filter)
+        else:
+            return None
 
 
 class LivesearchReply(Search):
