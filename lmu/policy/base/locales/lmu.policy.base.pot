@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-20 15:13+0000\n"
+"POT-Creation-Date: 2015-10-20 15:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,6 +87,10 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#: ./profiles/default/propertiestool.xml
+msgid "File"
+msgstr ""
+
 #: ./browser/templates/entry_content_view.pt:216
 msgid "Files"
 msgstr ""
@@ -97,14 +101,6 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "Generic"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "Homepage"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "Image"
 msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:158
@@ -123,10 +119,6 @@ msgstr ""
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
 
-#: ./profiles/default/propertiestool.xml
-msgid "NamedLink"
-msgstr ""
-
 #: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
@@ -139,11 +131,7 @@ msgstr ""
 msgid "No Images Uploaded"
 msgstr ""
 
-#: ./profiles/default/propertiestool.xml
-msgid "OfficeDocument"
-msgstr ""
-
-#: ./browser/templates/facets.pt:35
+#: ./browser/templates/facets.pt:37
 msgid "Other"
 msgstr ""
 
@@ -336,11 +324,11 @@ msgid "zuv_aktuelles"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_assets_container"
+msgid "zuv_baukasten"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_bilderordner"
+msgid "zuv_betriebsstoerung"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -356,15 +344,7 @@ msgid "zuv_einrichtungsuebersicht"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_footer"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
 msgid "zuv_glossar"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_glossar_container"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -376,35 +356,15 @@ msgid "zuv_meldung"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_meldung_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
 msgid "zuv_person"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_person_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_person_referenz"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_person_referenz_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_portrait"
+msgid "zuv_projekt"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_service"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_service_container"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -428,18 +388,10 @@ msgid "zuv_standard"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_startseite"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_statement"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
 msgid "zuv_task"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_task_container"
+msgid "zuv_weiterbildung"
 msgstr ""
 

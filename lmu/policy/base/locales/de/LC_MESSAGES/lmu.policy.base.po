@@ -79,6 +79,10 @@ msgstr "Fertig"
 msgid "Edit"
 msgstr "Bearbeiten"
 
+#: ./profiles/default/propertiestool.xml
+msgid "File"
+msgstr "Datei"
+
 #: ./browser/templates/entry_content_view.pt:216
 msgid "Files"
 msgstr "Dateien"
@@ -90,14 +94,6 @@ msgstr "Ordner"
 #: ./profiles/default/propertiestool.xml
 msgid "Generic"
 msgstr "Generisch"
-
-#: ./profiles/default/propertiestool.xml
-msgid "Homepage"
-msgstr "Startseite"
-
-#: ./profiles/default/propertiestool.xml
-msgid "Image"
-msgstr "Bild"
 
 #: ./browser/templates/entry_content_view.pt:158
 msgid "Images"
@@ -115,10 +111,6 @@ msgstr "Sprache"
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
-#: ./profiles/default/propertiestool.xml
-msgid "NamedLink"
-msgstr "Benannter Link"
-
 #: ./browser/templates/entry_sort_items_view.pt:78
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
@@ -131,11 +123,7 @@ msgstr "Keine Dateien hochgeladen"
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
-#: ./profiles/default/propertiestool.xml
-msgid "OfficeDocument"
-msgstr ""
-
-#: ./browser/templates/facets.pt:35
+#: ./browser/templates/facets.pt:37
 msgid "Other"
 msgstr "Sonstige"
 
@@ -328,12 +316,12 @@ msgid "zuv_aktuelles"
 msgstr "Aktuelles"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_assets_container"
-msgstr ""
+msgid "zuv_baukasten"
+msgstr "Standardseite"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_bilderordner"
-msgstr "Bilderordner"
+msgid "zuv_betriebsstoerung"
+msgstr "Betriebsstörung"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_einrichtung"
@@ -345,59 +333,31 @@ msgstr "Einrichtungs-Person"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_einrichtungsuebersicht"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_footer"
-msgstr ""
+msgstr "Einrichtungsübersicht"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_glossar"
 msgstr "Glossar"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_glossar_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
 msgid "zuv_kontaktformular"
-msgstr ""
+msgstr "Kontaktformular"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_meldung"
 msgstr "Meldung"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_meldung_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
 msgid "zuv_person"
 msgstr "Person"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_person_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_person_referenz"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_person_referenz_container"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_portrait"
-msgstr "Portrait"
+msgid "zuv_projekt"
+msgstr "Projekt"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_service"
 msgstr "Service"
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_service_container"
-msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_service_themenfeld"
@@ -413,25 +373,17 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_servicevariante"
-msgstr ""
+msgstr "Servicevariante"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_standard"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_startseite"
-msgstr ""
-
-#: ./profiles/default/propertiestool.xml
-msgid "zuv_statement"
-msgstr ""
+msgstr "Standard"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_task"
 msgstr "Task"
 
 #: ./profiles/default/propertiestool.xml
-msgid "zuv_task_container"
-msgstr ""
+msgid "zuv_weiterbildung"
+msgstr "Weiterbildung"
 
