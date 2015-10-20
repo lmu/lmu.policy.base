@@ -93,6 +93,9 @@
         });
     }
     $(function() {
+        $.ajax({cache: false});
+        $.ajaxSetup({cache: false});
+
         set_up_functions();
         // workaround this MSIE bug :
         // https://dev.plone.org/plone/ticket/10894

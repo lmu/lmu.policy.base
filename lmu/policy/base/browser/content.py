@@ -1,9 +1,14 @@
+import time
+
+from email import utils
+from datetime import datetime
+from datetime import tzinfo
+
 from Products.CMFCore import permissions
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
-from datetime import datetime
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.textfield.interfaces import ITransformer
@@ -180,11 +185,15 @@ class EntryContentView(_AbstractLMUBaseContentView):
     def __call__(self):
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
+        tz = tzinfo()
+        nowdt = datetime.now(tz)
+        nowtuple = nowdt.timetuple()
+        nowtimestamp = time.mktime(nowtuple)
         REQUEST = self.context.REQUEST
         RESPONSE = REQUEST.RESPONSE
         RESPONSE.setHeader('Cache-Control', 'private, max-age=0, no-cache')
         RESPONSE.setHeader('Pragma', 'no-cache')
-        RESPONSE.setHeader('Expires', '-1')
+        RESPONSE.setHeader('Expires', utils.formatdate(nowtimestamp))
         return self.template()
 
     def content(self, mode='files'):
