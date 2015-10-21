@@ -2,3 +2,4 @@ from lmu.policy.base.patches import collective_solr_flare_PloneFlare_getURL_patc
 from lmu.policy.base.patches import collective_solr_flare_PloneFlare_EffectiveDate_patch
 from lmu.policy.base.patches import collective_solr_contentlisting_FlareContentListingObject_effectiveDate_patch
 from lmu.policy.base.patches import plone_batching_browser_PloneBatchView_make_link_patch
+from lmu.policy.base.patches import z3c_form_form_applyChanges_patch
