@@ -387,3 +387,22 @@ msgstr "Task"
 msgid "zuv_weiterbildung"
 msgstr "Weiterbildung"
 
+#: .template_overrides/Products.CMFPlone.skins.plone_form_scripts.content_status_modify.cpy
+msgid "was"
+msgstr "wurde"
+
+#: .template_overrides/Products.CMFPlone.skins.plone_form_scripts.content_status_modify.cpy
+msgid "published"
+msgstr "veröffentlicht"
+
+#: .template_overrides/Products.CMFPlone.skins.plone_form_scripts.content_status_modify.cpy
+msgid "hidden"
+msgstr "zurückgezogen"
+
+#: .template_overrides/Products.CMFPlone.skins.plone_form_scripts.content_status_modify.cpy
+msgid "banned"
+msgstr "gesperrt"
+
+#: .template_overrides/Products.CMFPlone.skins.plone_form_scripts.content_status_modify.cpy
+msgid "rejected"
+msgstr "zurückgewiesen"

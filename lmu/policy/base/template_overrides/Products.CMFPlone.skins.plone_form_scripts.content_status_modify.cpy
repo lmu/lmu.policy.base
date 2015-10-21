@@ -84,15 +84,16 @@ if plone_utils.isDefaultPage(new_context):
         pass
 
 verbs = {
-    'publish_internally': 'veroeffentlicht',
-    'hide': 'zurueckgezogen',
-    'banned': 'gesperrt',
-    'reject': 'zurueckgewiesen',
+    'publish_internally': 'published',
+    'hide': 'hidden',
+    'banned': 'banned',
+    'reject': 'rejected',
 }
 if workflow_action in verbs:
     context.plone_utils.addPortalMessage(
         translate(_(new_context.portal_type), context=new_context.REQUEST) +
-        ' wurde ' + _(verbs[workflow_action]))
+        ' ' + translate(_('was'), context=new_context.REQUEST) + ' ' +
+        translate(_(verbs[workflow_action]), context=new_context.REQUEST))
 else:
     context.plone_utils.addPortalMessage(_('Item status changed.'))
 return state.set(context=wfcontext)
