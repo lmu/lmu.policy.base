@@ -5,4 +5,5 @@ import patches
 patches  # flake8
 
 allow_module('lmu.policy.base')
+allow_module('zope.i18n')
 MESSAGE_FACTORY = MessageFactory('lmu.policy.base')

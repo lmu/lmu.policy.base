@@ -12,6 +12,7 @@ from ZODB.POSException import ConflictError
 from DateTime import DateTime
 from Products.CMFPlone.utils import transaction_note
 from lmu.policy.base import MESSAGE_FACTORY as _
+from zope.i18n import translate
 from AccessControl import Unauthorized
 from Products.CMFCore.utils import getToolByName
 
@@ -90,7 +91,8 @@ verbs = {
 }
 if workflow_action in verbs:
     context.plone_utils.addPortalMessage(
-        _(new_context.portal_type) + ' wurde ' + _(verbs[workflow_action]))
+        translate(_(new_context.portal_type), context=new_context.REQUEST) +
+        ' wurde ' + _(verbs[workflow_action]))
 else:
     context.plone_utils.addPortalMessage(_('Item status changed.'))
 return state.set(context=wfcontext)
