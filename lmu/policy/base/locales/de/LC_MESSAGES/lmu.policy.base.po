@@ -385,5 +385,5 @@ msgstr "Task"
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_weiterbildung"
-msgstr "Weiterbildung"
+msgstr "Weiterbildungsangebot"
 
