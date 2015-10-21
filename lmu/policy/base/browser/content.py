@@ -302,11 +302,6 @@ class ContainedObjectEditForm(edit.DefaultEditForm):
                                    ],
                    fields_to_omit=['IVersionable.changeNote'])
 
-        buttons = self.buttons
-        for button in buttons.values():
-            #button.klass = u' button large round'
-            if button.__name__ == 'save':
-                button.title = _(u'Save')
         return super(ContainedObjectEditForm, self).__call__()
 
     def label(self):
@@ -321,14 +316,6 @@ class ContainedFileEditForm(ContainedObjectEditForm):
 class ContainedImageEditForm(ContainedObjectEditForm):
 
     portal_type = 'Image'
-
-#    def __call__(self):
-#        self.updateFields()
-#        fields = self.fields
-#        des = fields.get('description')
-#        des.field.title = u'Bildunterschrift'
-#
-#        return super(ContainedImageEditForm, self).__call__()
 
 
 class LMUCommentAddForm(add.DefaultAddForm):
