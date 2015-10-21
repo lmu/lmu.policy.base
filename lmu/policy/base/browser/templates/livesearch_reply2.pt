@@ -35,7 +35,7 @@
         </li>
         </tal:result>
         <li class="LSRow">
-            <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search">Advanced Search&#8230;</a>
+            <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search?SearchableText=${view/searchterms}">Advanced Search&#8230;</a>
         </li>
         <li class="LSRow" tal:condition="not:view/live_results/islastpage">
             <a href="#" class="advancedsearchlink show-all-items"

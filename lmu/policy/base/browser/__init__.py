@@ -69,13 +69,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.info("Raw Results: %s", results.__dict__)
+        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.info("Processed Results: %s", results.__dict__)
+        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
