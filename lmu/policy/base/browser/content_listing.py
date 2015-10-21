@@ -48,7 +48,7 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
             self.entries(),
             size=self.b_size,
             start=self.b_start,
-            orphan=0
+            orphan=0 if self.b_size < 10 else 1
         )
         return batch
 
