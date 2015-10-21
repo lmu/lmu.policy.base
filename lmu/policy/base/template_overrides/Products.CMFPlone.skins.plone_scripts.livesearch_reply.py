@@ -111,7 +111,7 @@ results = []
 
 
 for result in pre_results:
-    context.plone_log(result)    
+    context.plone_log(result)
     # Only show Fiona Content in results that are from 'sp'
     if not result.has_key('path_string'):
         continue

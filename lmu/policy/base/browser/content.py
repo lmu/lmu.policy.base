@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import time
 
 from email import utils
@@ -150,8 +151,8 @@ class RichTextWidgetConfig(object):
                      'unlink',
                      )
     redefine_parastyles = True
-    parastyles = (_(u'&Uuml;berschrift 1') + u'|h2|',
-                  _(u'&Uuml;berschrift 2') + u'|h3|',
+    parastyles = (_(u'Überschrift 1') + u'|h2|',
+                  _(u'Überschrift 2') + u'|h3|',
                   )
 
 
