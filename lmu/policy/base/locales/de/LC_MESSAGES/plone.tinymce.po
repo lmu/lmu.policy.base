@@ -16,5 +16,5 @@ msgstr ""
 
 #: TinyMCE/utility.py:746
 msgid "Style..."
-msgstr "Formate..."
+msgstr "Absatzformatierung..."
 
