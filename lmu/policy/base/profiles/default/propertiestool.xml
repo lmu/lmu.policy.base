@@ -58,7 +58,6 @@
             <element i18n:attributes="value" value="zuv_person"/>
             <element i18n:attributes="value" value="zuv_projekt"/>
             <element i18n:attributes="value" value="zuv_service"/>
-            <element i18n:attributes="value" value="zuv_task"/>
             <element i18n:attributes="value" value="zuv_weiterbildung"/>
         </property>
 

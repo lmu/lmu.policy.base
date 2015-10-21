@@ -23,7 +23,7 @@
   </div>
 
   <div tal:repeat="facet facets" i18n:domain="solr">
-    <h5 tal:content="facet/title" i18n:translate="" />
+    <h5 tal:content="facet/title" i18n:translate="" tal:condition="nothing" />
     <dl tal:define="count_other python:len(view.kw['results']) - sum([f['count'] for f in facet['counts']])">
       <tal:counts repeat="item facet/counts">
         <dt>
