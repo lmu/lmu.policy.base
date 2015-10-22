@@ -69,13 +69,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
@@ -86,7 +86,6 @@ class Search(BaseSearch):
 
     def filter_query(self, query):
         query = super(Search, self).filter_query(query)
-        #import ipdb; ipdb.set_trace()
         if query:
             # Only show Fiona Content in results that are from 'sp'
             #if getNavigationRoot(self.context) == '/intranet':
@@ -97,7 +96,7 @@ class Search(BaseSearch):
             #    query['path'] = [getNavigationRoot(self.context)]
 
             query['portal_type'] += self.extra_types()
-        log.info("Search Query: %s", query)
+        log.debug("Search Query: %s", query)
         return query
 
     def types_list(self):
