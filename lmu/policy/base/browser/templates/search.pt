@@ -49,13 +49,13 @@
                      i18n:attributes="title title_search_title;"
                      tal:attributes="value st;"
                      />
-              <input class="searchPage searchButton allowMultiSubmit"
+              <input class="searchPage searchButton allowMultiSubmit inline"
                      type="submit"
                      value="Search" 
                      tal:condition="nothing"
                      i18n:attributes="value label_search;"/>
-              <button type="submit" class="searchPage searchButton allowMultiSubmit">
-                <i class="fi-magnifying-glass"></i><span class="show-for-sr" i18n:translate="" >Search</span>
+              <button type="submit" class="button postfix inline searchPage searchButton allowMultiSubmit">
+                <i class="fi-magnifying-glass helper-font-size-large"></i><span class="show-for-sr" i18n:translate="" >Search</span>
               </button>
           </fieldset>
 
@@ -97,38 +97,40 @@
                              normalizeString nocall:context/@@plone/normalizeString;">
 
                 <div id="search-results-bar"
-                     class="columns small-12 helper-margin-bottom-m">
-                    <span i18n:translate="batch_x_items_matching_your_criteria" >
-                        <strong i18n:name="number" id="search-results-number"
-                                tal:content="batch/sequence_length|string:0">234</strong>
-                        items matching your search terms.
-                    </span>
+                     class="columns small-12 helper-margin-bottom-l">
+                    <div class="helper-margin-bottom-m">
+                      <span i18n:translate="batch_x_items_matching_your_criteria" >
+                          <strong i18n:name="number" id="search-results-number"
+                                  tal:content="batch/sequence_length|string:0">234</strong>
+                          items matching your search terms.
+                      </span>
 
-                    <span i18n:translate="batch_within_seconds" >
-                        within 
-                        <strong i18n:name="time" id="search-results-time"
-                                tal:content="batch/qtime/total_seconds|string:0">234</strong>
-                        seconds.
-                    </span>
+                      <span i18n:translate="batch_within_seconds" tal:condition="nothing">
+                          within 
+                          <strong i18n:name="time" id="search-results-time"
+                                  tal:content="batch/qtime/total_seconds|string:0">234</strong>
+                          seconds.
+                      </span>
+                    </div>
 
-                    <span id="searchResultsSort">
-                      <span i18n:translate="sort_by">Sort by</span>
-                          <span id="sorting-options">
-                              <metal:sorting define-macro="sorting">
-                                  <tal:block repeat="item view/sort_options">
-                                      <tal:item define="selected item/selected">
-                                      <a data-sort=""
-                                         tal:condition="not:selected"
-                                         tal:content="item/title"
-                                         tal:attributes="href item/url;
-                                                         data-sort python:item.sortkey and item.sortkey or None"></a>
-                                      <strong tal:condition="selected" tal:content="item/title"></strong>
-                                      <span tal:condition="not:repeat/item/end">&middot;</span>
-                                      </tal:item>
-                                  </tal:block>
-                              </metal:sorting>
-                          </span>
-                    </span>
+                    <div id="searchResultsSort" class="helper-margin-top-m">
+                      <span i18n:translate="sort_by" tal:condition="nothing">Sort by</span>
+                      <span id="sorting-options">
+                          <metal:sorting define-macro="sorting">
+                              <tal:block repeat="item view/sort_options">
+                                  <tal:item define="selected item/selected">
+                                  <a data-sort=""
+                                     tal:condition="not:selected"
+                                     tal:content="item/title"
+                                     tal:attributes="href item/url;
+                                                     data-sort python:item.sortkey and item.sortkey or None"></a>
+                                  <strong tal:condition="selected" tal:content="item/title"></strong>
+                                  <span tal:condition="not:repeat/item/end">&nbsp;&ndash;&nbsp;</span>
+                                  </tal:item>
+                              </tal:block>
+                          </metal:sorting>
+                      </span>
+                    </div>
                 </div>
 
                 <div class="visualClear"><!-- --></div>
@@ -183,7 +185,8 @@
 
                                         <span tal:on-error="string: Fiona Date missing" 
                                               tal:define="publication_date item/EffectiveDate;
-                                                          modification_date item/ModificationDate">
+                                                          modification_date item/ModificationDate"
+                                              class="helper-font-serif">
 
                                             <span class="documentPublished" tal:condition="python: publication_date != 'None'">
                                               <span i18n:translate="box_published">
