@@ -14,14 +14,6 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./browser/content.py:153
-msgid "&Uuml;berschrift 1"
-msgstr "Überschrift 1"
-
-#: ./browser/content.py:154
-msgid "&Uuml;berschrift 2"
-msgstr "Überschrift 2"
-
 #: ./profiles/default/propertiestool.xml
 msgid "Blog Entry"
 msgstr "Blog-Beitrag"
@@ -135,10 +127,6 @@ msgstr "Pinnwand-Eintrag"
 msgid "Publication"
 msgstr "Veröffentlichung"
 
-#: ./browser/content.py:308
-msgid "Save"
-msgstr "Speichern"
-
 #: ./browser/templates/search.pt:43
 msgid "Search"
 msgstr "Suche"
@@ -204,22 +192,22 @@ msgid "alert_really_delete_folder"
 msgstr "Möchten Sie diesen Eintrag samt aller Inhalte löschen?"
 
 #. Default: "within ${time} seconds."
-#: ./browser/templates/search.pt:109
+#: ./browser/templates/search.pt:110
 msgid "batch_within_seconds"
 msgstr "innerhalb von ${time} Sekunden"
 
 #. Default: "${number} items matching your search terms."
-#: ./browser/templates/search.pt:102
+#: ./browser/templates/search.pt:103
 msgid "batch_x_items_matching_your_criteria"
 msgstr "${number} Inhalte gefunden."
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:199
+#: ./browser/templates/search.pt:230
 msgid "box_last_modified"
 msgstr "zuletzt verändert"
 
 #. Default: "published"
-#: ./browser/templates/search.pt:189
+#: ./browser/templates/search.pt:220
 msgid "box_published"
 msgstr "Veröffentlicht"
 
@@ -228,7 +216,7 @@ msgid "dargestellt"
 msgstr "dargestellt"
 
 #. Default: "No results were found."
-#: ./browser/templates/search.pt:143
+#: ./browser/templates/search.pt:145
 msgid "description_no_results_found"
 msgstr "Keine Inhalte gefunden"
 
@@ -236,15 +224,20 @@ msgstr "Keine Inhalte gefunden"
 msgid "down"
 msgstr "runter"
 
-#: ./browser/templates/search.pt:213
+#: ./browser/templates/search.pt:244
 msgid "filed under:"
-msgstr ""
+msgstr "Keywords"
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
 msgid "label_advanced_search"
 msgstr "Erweiterte Suche"
+
+#. Default: "by ${author}"
+#: ./browser/templates/search.pt:204
+msgid "label_by_author"
+msgstr "Autor: ${author}"
 
 #. Default: "Cancel"
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:64
@@ -278,7 +271,7 @@ msgid "legend_livesearch"
 msgstr "Live Suche &#8595;"
 
 #. Default: "Sort by"
-#: ./browser/templates/search.pt:115
+#: ./browser/templates/search.pt:117
 msgid "sort_by"
 msgstr "Trefferliste sortieren"
 
@@ -286,11 +279,6 @@ msgstr "Trefferliste sortieren"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:7
 msgid "text_search"
 msgstr "Such Seite"
-
-#. Default: "Located in"
-#: ./browser/templates/search.pt:244
-msgid "text_searchitem_location"
-msgstr "Existiert in"
 
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:11
@@ -386,4 +374,12 @@ msgstr "Task"
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_weiterbildung"
 msgstr "Weiterbildungsangebot"
+
+#: ./browser/content.py:154
+msgid "Überschrift 1"
+msgstr "Überschrift 1"
+
+#: ./browser/content.py:155
+msgid "Überschrift 2"
+msgstr "Überschrift 2"
 

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-10-20 15:48+0000\n"
+"POT-Creation-Date: 2015-11-12 16:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,17 +17,9 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/content.py:241
+#: ./browser/content.py:242
 #: ./controlpanel.py:69
 msgid ""
-msgstr ""
-
-#: ./browser/content.py:153
-msgid "&Uuml;berschrift 1"
-msgstr ""
-
-#: ./browser/content.py:154
-msgid "&Uuml;berschrift 2"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -143,10 +135,6 @@ msgstr ""
 msgid "Publication"
 msgstr ""
 
-#: ./browser/content.py:308
-msgid "Save"
-msgstr ""
-
 #: ./browser/templates/search.pt:43
 msgid "Search"
 msgstr ""
@@ -212,22 +200,22 @@ msgid "alert_really_delete_folder"
 msgstr ""
 
 #. Default: "within ${time} seconds."
-#: ./browser/templates/search.pt:109
+#: ./browser/templates/search.pt:110
 msgid "batch_within_seconds"
 msgstr ""
 
 #. Default: "${number} items matching your search terms."
-#: ./browser/templates/search.pt:102
+#: ./browser/templates/search.pt:103
 msgid "batch_x_items_matching_your_criteria"
 msgstr ""
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:199
+#: ./browser/templates/search.pt:230
 msgid "box_last_modified"
 msgstr ""
 
 #. Default: "published"
-#: ./browser/templates/search.pt:189
+#: ./browser/templates/search.pt:220
 msgid "box_published"
 msgstr ""
 
@@ -236,7 +224,7 @@ msgid "dargestellt"
 msgstr ""
 
 #. Default: "No results were found."
-#: ./browser/templates/search.pt:143
+#: ./browser/templates/search.pt:145
 msgid "description_no_results_found"
 msgstr ""
 
@@ -244,7 +232,7 @@ msgstr ""
 msgid "down"
 msgstr ""
 
-#: ./browser/templates/search.pt:213
+#: ./browser/templates/search.pt:244
 msgid "filed under:"
 msgstr ""
 
@@ -252,6 +240,11 @@ msgstr ""
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
 msgid "label_advanced_search"
+msgstr ""
+
+#. Default: "by ${author}"
+#: ./browser/templates/search.pt:204
+msgid "label_by_author"
 msgstr ""
 
 #. Default: "Cancel"
@@ -286,18 +279,13 @@ msgid "legend_livesearch"
 msgstr ""
 
 #. Default: "Sort by"
-#: ./browser/templates/search.pt:115
+#: ./browser/templates/search.pt:117
 msgid "sort_by"
 msgstr ""
 
 #. Default: "Search Site"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:7
 msgid "text_search"
-msgstr ""
-
-#. Default: "Located in"
-#: ./browser/templates/search.pt:244
-msgid "text_searchitem_location"
 msgstr ""
 
 #. Default: "Search Site"
@@ -393,5 +381,13 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "zuv_weiterbildung"
+msgstr ""
+
+#: ./browser/content.py:154
+msgid "Überschrift 1"
+msgstr ""
+
+#: ./browser/content.py:155
+msgid "Überschrift 2"
 msgstr ""
 

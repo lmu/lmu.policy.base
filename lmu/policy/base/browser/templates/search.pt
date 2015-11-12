@@ -41,22 +41,23 @@
 
           <fieldset id="search-field" class="noborder"> 
             <legend i18n:translate="">Search</legend>
-              <input class="searchPage"
-                     name="SearchableText"
-                     type="text"
-                     size="25"
-                     title="Search Site"
-                     i18n:attributes="title title_search_title;"
-                     tal:attributes="value st;"
-                     />
-              <input class="searchPage searchButton allowMultiSubmit inline"
-                     type="submit"
-                     value="Search" 
-                     tal:condition="nothing"
-                     i18n:attributes="value label_search;"/>
-              <button type="submit" class="button postfix inline searchPage searchButton allowMultiSubmit">
-                <i class="fi-magnifying-glass helper-font-size-large"></i><span class="show-for-sr" i18n:translate="" >Search</span>
-              </button>
+            <div class="row collapse">
+              <div class="small-11 columns ">
+                <input class="searchPage"
+                       name="SearchableText"
+                       type="text"
+                       size="25"
+                       title="Search Site"
+                       i18n:attributes="title title_search_title;"
+                       tal:attributes="value st;"
+                       />
+              </div>
+              <div class="small-1 columns" >
+                <button type="submit" class="button postfix large searchPage searchButton allowMultiSubmit">
+                  <i class="fi-magnifying-glass"></i><span class="show-for-sr" i18n:translate="" >Search</span>
+                </button>
+              </div>
+            </div>
           </fieldset>
 
           <div class="row">
@@ -152,69 +153,102 @@
                                                    use_view_action site_properties/typesUseViewActionInListings|python:();
                                                    allowAnonymousViewAbout site_properties/allowAnonymousViewAbout;
                                                    show_about python:not isAnon or allowAnonymousViewAbout;">
-                          <dl class="searchResults">
+                          <ul class="searchResults listing">
                               <tal:results repeat="item batch">
-                                    <dt tal:attributes="class item/ContentTypeClass">
+                                    <li tal:define="item_url item/getURL;
+                                                    item_url python:view.unquote(item_url);
+                                                    item_type item/PortalType;
+                                                    klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top"
+                                        tal:attributes="class klass">
                                       <!--img tal:replace="structure item/getIcon" /-->
-                                      <a href="#"
-                                         tal:define="item_url item/getURL;
-                                                     item_url python:view.unquote(item_url);
-                                                     item_type item/PortalType"
-                                         tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
-                                                         class string:state-${item/review_state}"
-                                         tal:content="item/Title | item/getId" />
-                                    </dt>
-                                    <dd>
-                                      <span class="discreet" 
-                                            tal:condition="show_about">
-                                        <!--span class="documentAuthor"
-                                          i18n:translate="label_by_author"
-                                          tal:on-error="string: Cannot identify author">
-                                        by
+                                      <header class="helper-margin-bottom-m">
+                                        <div class="documentLocation link-location helper-font-size-small"
+                                             tal:on-error="string: no breadcrumbs available"
+                                             tal:define="breadcrumbs python: view.breadcrumbs(item);
+                                                         is_rtl context/@@plone_portal_state/is_rtl;"
+                                             tal:attributes="dir python:is_rtl and 'rtl' or 'ltr';" 
+                                             tal:condition='breadcrumbs'>
+                                          <tal:items tal:repeat="crumb breadcrumbs" >
+                                            <tal:item tal:define="is_last repeat/crumb/end;
+                                                                  url crumb/absolute_url;
+                                                                  title crumb/Title">
+                                              <a href="#"
+                                                 class="helper-font-light"
+                                                 tal:omit-tag="not: url"
+                                                 tal:attributes="href url"
+                                                 tal:content="title">
+                                                  crumb
+                                              </a>
+                                              <span class="breadcrumbSeparatorSearch" tal:condition="not: is_last">
+                                                <tal:ltr condition="not: is_rtl">&nbsp;&rsaquo;&nbsp;</tal:ltr><tal:rtl condition="is_rtl">&nbsp;&lsaquo;&nbsp;</tal:rtl>
+                                              </span>
+                                            </tal:item>
+                                          </tal:items>
+                                        </div>
+
+                                        <h2 class="helper-no-margin-bottom">
+                                          <a href="#"
+                                           tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
+                                                           class string:state-${item/review_state}"
+                                           tal:content="item/Title | item/getId" >Title</a>
+                                        </h2>
+
+                                        <div class="link document-link helper-font-size-small">
+                                          <a tal:attributes="href item_url" tal:content="item_url" class="link helper-font-light">Link</a>
+                                        </div>
+
+                                        <div class="discreet helper-font-light" 
+                                             tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry') and show_about">
+                                          <span class="documentAuthor"
+                                                i18n:translate="label_by_author"
+                                                tal:condition="item/Creator"
+                                                tal:on-error="string: Cannot identify author">
+                                            by
                                             <tal:block tal:condition="item/Creator"
                                                 tal:define="author python:context.portal_membership.getMemberInfo(item.Creator())">
                                               <a href="#"
-                                                 tal:attributes="href string:$navigation_root_url/author/${item/Creator}"
+                                                 tal:attributes="href string:${navigation_root_url}/resources/iuk/redirect/goto/person/${item/Creator};"
                                                  tal:content="python:author and author['fullname'] or item.Creator()"
                                                  tal:omit-tag="not:item/Creator"
                                                  i18n:name="author">
                                                 Bob Dobalina
                                               </a>
                                             </tal:block>
-                                        </span-->
+                                          </span>
 
-                                        <span tal:on-error="string: Fiona Date missing" 
-                                              tal:define="publication_date item/EffectiveDate;
-                                                          modification_date item/ModificationDate"
-                                              class="helper-font-serif">
+                                          <span tal:on-error="string: Fiona Date missing" 
+                                                tal:define="publication_date item/EffectiveDate;
+                                                            modification_date item/ModificationDate"
+                                                class="helper-font-serif">
 
-                                            <span class="documentPublished" tal:condition="python: publication_date != 'None'">
-                                              <span i18n:translate="box_published">
-                                                published
+                                              <span class="documentPublished" tal:condition="python: publication_date != 'None'">
+                                                <span i18n:translate="box_published">
+                                                  published
+                                                </span>
+                                                <tile tal:content="python:toLocalizedTime(publication_date, long_format=0)">
+                                                  August 16, 2001 at 23:35:59
+                                                </tile>
                                               </span>
-                                              <span tal:replace="python:toLocalizedTime(publication_date, long_format=0)">
-                                                August 16, 2001 at 23:35:59
-                                              </span>
-                                            </span>
 
-                                            <span class="documentModified" tal:condition="python: modification_date != publication_date">
-                                              &mdash;
-                                              <span i18n:translate="box_last_modified">
-                                                last modified
+                                              <span class="documentModified" tal:condition="python: modification_date != publication_date">
+                                                &mdash;
+                                                <i18n:label i18n:translate="box_last_modified">
+                                                  last modified
+                                                </i18n:label>
+                                                <time tal:content="python:toLocalizedTime(modification_date, long_format=1)">
+                                                  August 16, 2001 at 23:35:59
+                                                </time>
                                               </span>
-                                              <span tal:replace="python:toLocalizedTime(modification_date, long_format=1)">
-                                                August 16, 2001 at 23:35:59
-                                              </span>
-                                            </span>
 
-                                        </span>
+                                          </span>
+                                        </div>
 
-                                        <span tal:on-error="string: Fiona Subject Error"
-                                              tal:define="categories item/Subject|nothing"
-                                              tal:condition="categories">
-                                          &mdash;
+                                        <div tal:on-error="string: Fiona Subject Error"
+                                             tal:define="categories item/Subject|nothing"
+                                             tal:condition="categories"
+                                             class="categories helper-font-light">
                                           <tal:filedunder i18n:translate="">filed under:</tal:filedunder>
-                                          <span tal:repeat="category categories">
+                                          <tal:items tal:repeat="category categories">
                                             <a href=""
                                                class="link-category"
                                                rel="tag"
@@ -222,54 +256,29 @@
                                                tal:attributes="href string:$navigation_root_url/search?Subject%3Alist=${category}">
                                               Category
                                             </a><tal:separator condition="not: repeat/category/end">,</tal:separator>
-                                          </span>
-                                        </span>
-                                      </span>
-                                      <div tal:content="item/CroppedDescription">
+                                          </tal:items>
+                                        </div>
+                                      </header>
+                                      <div tal:content="item/CroppedDescription" tal:condition="item/CroppedDescription">
                                         Cropped description
                                       </div>
 
                                       <tal:highlighting condition="python:hasattr(batch._sequence._basesequence,'highlighting')">
-                                      <p class="fragment"
+                                      <div class="fragment"
                                          tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
                                          tal:repeat="snippets python:batch._sequence._basesequence.highlighting[item.uuid()].values()">
+                                        <p class="fragment snippet">
                                           &hellip;&nbsp;
                                           <tal:snippets repeat="snippet snippets">
                                             <tal:snippet content="structure snippet">highlighted snippet</tal:snippet>&nbsp;&hellip;
                                           </tal:snippets>
-                                      </p>
+                                        </p>
+                                      </div>
                                       </tal:highlighting>
-                                      <cite class="documentLocation link-location"
-                                            tal:on-error="string: no breadcrumbs available"
-                                            tal:define="breadcrumbs python: view.breadcrumbs(item);
-                                                        is_rtl context/@@plone_portal_state/is_rtl;"
-                                            tal:condition='breadcrumbs'>
-                                          <span i18n:translate="text_searchitem_location">
-                                              Located in
-                                          </span>
-                                          <span tal:repeat="crumb breadcrumbs"
-                                                tal:attributes="dir python:is_rtl and 'rtl' or 'ltr';">
-                                              <tal:item tal:define="is_last repeat/crumb/end;
-                                                                    url crumb/absolute_url;
-                                                                    title crumb/Title">
-                                                  <a href="#"
-                                                     tal:omit-tag="not: url"
-                                                     tal:attributes="href url"
-                                                     tal:content="title">
-                                                      crumb
-                                                  </a>
-                                                  <span class="breadcrumbSeparator" tal:condition="not: is_last">
-                                                      <tal:ltr condition="not: is_rtl">/</tal:ltr>
-                                                      <tal:rtl condition="is_rtl">/</tal:rtl>
-                                                  </span>
-                                               </tal:item>
-                                          </span>
 
-                                      </cite>
-
-                                    </dd>
+                                    </li>
                               </tal:results>
-                          </dl>
+                          </ul>
                           <div metal:use-macro="context/batch_macros/macros/navigation" />
                         </metal:results>
                     </div>
