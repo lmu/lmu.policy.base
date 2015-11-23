@@ -35,11 +35,16 @@
         <field-list>
             <parameter name="UID"/>
             <parameter name="Title"/>
+            <parameter name="nav_title"/>
             <parameter name="Subject"/>
             <parameter name="Description"/>
+            <parameter name="domain"/>
+            <parameter name="context_path_string"/>
             <parameter name="path_string"/>
             <parameter name="path_depth"/>
             <parameter name="path_parents"/>
+            <parameter name="breadcrumb_parent_titles"/>
+            <parameter name="cms_system"/>
             <parameter name="Type"/>
             <parameter name="portal_type"/>
             <parameter name="review_state"/>
