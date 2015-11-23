@@ -340,6 +340,8 @@ class LMURenderWidget(RenderWidget):
 
 class LMUCommentsViewlet(CommentsViewlet):
 
+    index = ViewPageTemplateFile('templates/comments.pt')
+
     def update(self):
         alsoProvides(self.request, ILMUCommentFormLayer)
         super(LMUCommentsViewlet, self).update()

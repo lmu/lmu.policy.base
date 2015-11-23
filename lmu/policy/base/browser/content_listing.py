@@ -61,6 +61,5 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
 class _FrontPageIncludeMixin(_IncludeMixin):
 
     def __call__(self):
-        author = self.request.get('author')
-        self.author = bool(author)
+        self.author = self.request.get('author')
         return super(_FrontPageIncludeMixin, self).__call__()
