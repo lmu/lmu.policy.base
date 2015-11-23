@@ -8,6 +8,7 @@ from collective.solr.browser.facets import SearchFacetsView
 from collective.solr.browser.facets import convertFacets
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.parser import SolrResponse
+from Missing import Value as MissingValue
 #from OFS import Image as OFSImage
 #from PIL import Image as PILImage
 #from Products.PlonePAS.utils import scale_image
@@ -109,6 +110,18 @@ class Search(BaseSearch):
             view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
             # cut off the item itself
             breadcrumbs = list(view.breadcrumbs())[:-1]
+            domain = item.flare.get('domain', [])
+
+            if domain and not isinstance(domain, type(MissingValue)):
+                log.info('Insert Breadcrumb for Portal-Root: "%s"', domain[0])
+                if domain[0] == 'www.intranet.verwaltung.uni-muenchen.de':
+                    portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('ZUV-Intranet', 'utf-8')}
+                elif domain[0] == 'www.serviceportal.verwaltung.uni-muenchen.de':
+                    portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('Serviceportal', 'utf-8')}
+                else:
+                    portal_root_breadcrumb = {'absolute_url': 'https://' + domain[0] + '/', 'Title': unicode('Portal', 'utf-8')}
+                breadcrumbs.insert(0, portal_root_breadcrumb)
+
             if len(breadcrumbs) == 0:
                 # don't show breadcrumbs if we only have a single element
                 return None

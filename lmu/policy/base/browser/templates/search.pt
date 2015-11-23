@@ -158,7 +158,7 @@
                                     <li tal:define="item_url item/getURL;
                                                     item_url python:view.unquote(item_url);
                                                     item_type item/PortalType;
-                                                    klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top"
+                                                    klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
                                         tal:attributes="class klass">
                                       <!--img tal:replace="structure item/getIcon" /-->
                                       <header class="helper-margin-bottom-m">
@@ -218,8 +218,7 @@
 
                                           <span tal:on-error="string: Fiona Date missing" 
                                                 tal:define="publication_date item/EffectiveDate;
-                                                            modification_date item/ModificationDate"
-                                                class="helper-font-serif">
+                                                            modification_date item/ModificationDate" >
 
                                               <span class="documentPublished" tal:condition="python: publication_date != 'None'">
                                                 <span i18n:translate="box_published">
@@ -259,6 +258,17 @@
                                           </tal:items>
                                         </div>
                                       </header>
+
+                                      <tal:img tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry')" >
+                                      <span class="th left helper-margin-right-m"
+                                            tal:define="obj item/getObject;
+                                                        images obj/images;
+                                                        first_image python: images[0];
+                                                        scales first_image/@@images;">
+                                        <img tal:replace="structure python: scales.tag('image', scale='listing_thumb', direction='down')" />
+                                      </span>
+                                      </tal:img>
+
                                       <div tal:content="item/CroppedDescription" tal:condition="item/CroppedDescription">
                                         Cropped description
                                       </div>
