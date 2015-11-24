@@ -76,13 +76,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
@@ -103,7 +103,7 @@ class Search(BaseSearch):
             #    query['path'] = [getNavigationRoot(self.context)]
 
             query['portal_type'] += self.extra_types()
-        log.info("Search Query: %s", query)
+        log.debug("Search Query: %s", query)
         return query
 
     def types_list(self):
@@ -136,7 +136,7 @@ class Search(BaseSearch):
                     breadcrumbs = list(view.breadcrumbs())[:-1]
 
             if domain and not isinstance(domain, type(MissingValue)):
-                log.info('Insert Breadcrumb for Portal-Root: "%s"', domain)
+                log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)
                 if domain == 'www.intranet.verwaltung.uni-muenchen.de':
                     portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('ZUV-Intranet', 'utf-8')}
                 elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
