@@ -156,7 +156,7 @@
                           <ul class="searchResults listing">
                               <tal:results repeat="item batch">
                                     <li tal:define="item_url item/getURL;
-                                                    item_url python:view.unquote(item_url);
+                                                    item_url python:view.unquote(item_url) if item_url else None;
                                                     item_type item/PortalType;
                                                     klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
                                         tal:attributes="class klass">
@@ -259,7 +259,7 @@
                                         </div>
                                       </header>
 
-                                      <tal:img tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry')" >
+                                      <tal:img tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry')" tal:on-error="string:">
                                       <span class="th left helper-margin-right-m"
                                             tal:define="obj item/getObject;
                                                         images obj/images;

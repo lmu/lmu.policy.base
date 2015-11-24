@@ -39,6 +39,12 @@ from lmu.policy.base.browser.utils import _IncludeMixin
 log = logging.getLogger(__name__)
 
 
+def cms_system():
+    registry = getUtility(IRegistry)
+    lmu_settings = registry.forInterface(ILMUSettings)
+    return lmu_settings.cms_system
+
+
 class Search(BaseSearch):
 
     def results(self, query=None, batch=True, b_size=10, b_start=0):
@@ -70,13 +76,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
+        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.debug("Processed Results: %s", getattr(results, '__dict__', {}))
+        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
@@ -97,7 +103,7 @@ class Search(BaseSearch):
             #    query['path'] = [getNavigationRoot(self.context)]
 
             query['portal_type'] += self.extra_types()
-        log.debug("Search Query: %s", query)
+        log.info("Search Query: %s", query)
         return query
 
     def types_list(self):
@@ -105,21 +111,38 @@ class Search(BaseSearch):
         return types + self.extra_types()
 
     def breadcrumbs(self, item):
+        breadcrumbs = []
         try:
-            obj = item.getObject()
-            view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
-            # cut off the item itself
-            breadcrumbs = list(view.breadcrumbs())[:-1]
+            # Lookup primary Domain Name:
             domain = item.flare.get('domain', [])
+            if domain and not isinstance(domain, type(MissingValue)):
+                domain = domain[0]
+                domain = domain.replace('https://', '')
+                domain = domain.replace('http://', '')
+
+            if item.flare.get('cms_system') != cms_system():
+                urls = item.flare.get('path_parents')
+                titles = item.flare.get('breadcrumb_parent_titles')
+                while titles:
+                    title = titles.pop()
+                    url = urls.pop()
+                    url = url.replace(urls[1], '')
+                    breadcrumbs.insert(0, {'absolute_url': 'https://' + domain + url, 'Title': unicode(title, 'utf-8')})
+
+            else:
+                    obj = item.getObject()
+                    view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
+                    # cut off the item itself
+                    breadcrumbs = list(view.breadcrumbs())[:-1]
 
             if domain and not isinstance(domain, type(MissingValue)):
-                log.info('Insert Breadcrumb for Portal-Root: "%s"', domain[0])
-                if domain[0] == 'www.intranet.verwaltung.uni-muenchen.de':
+                log.info('Insert Breadcrumb for Portal-Root: "%s"', domain)
+                if domain == 'www.intranet.verwaltung.uni-muenchen.de':
                     portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('ZUV-Intranet', 'utf-8')}
-                elif domain[0] == 'www.serviceportal.verwaltung.uni-muenchen.de':
+                elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
                     portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('Serviceportal', 'utf-8')}
                 else:
-                    portal_root_breadcrumb = {'absolute_url': 'https://' + domain[0] + '/', 'Title': unicode('Portal', 'utf-8')}
+                    portal_root_breadcrumb = {'absolute_url': 'https://' + domain + '/', 'Title': unicode('Portal', 'utf-8')}
                 breadcrumbs.insert(0, portal_root_breadcrumb)
 
             if len(breadcrumbs) == 0:
@@ -129,9 +152,9 @@ class Search(BaseSearch):
                 # if we have too long breadcrumbs, emit the middle elements
                 empty = {'absolute_url': '', 'Title': unicode('…', 'utf-8')}
                 breadcrumbs = [breadcrumbs[0], empty] + breadcrumbs[-2:]
-            return breadcrumbs
         except Exception:
             return None
+        return breadcrumbs
 
     def strip_text(item, length=500):
         return ustrip_text(item, length=length)

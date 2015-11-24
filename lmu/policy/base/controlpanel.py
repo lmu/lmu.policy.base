@@ -11,8 +11,10 @@ from zope.interface import implements
 from zope.schema.interfaces import IVocabularyFactory
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+from zope.i18nmessageid import MessageFactory
 
-from lmu.policy.base import MESSAGE_FACTORY as _
+#from lmu.policy.base import MESSAGE_FACTORY as _
+_ = MessageFactory('lmu.poliy.base')
 
 
 class AvailableLanguagesVocabulary(object):
