@@ -10,12 +10,17 @@ def getURL(self, relative=False):
     """ convert the physical path into a url, if it was stored """
     path = self.getPath()
     path = path.encode('utf-8')
+    schema = 'https://'
 
     try:
         url = self.request.physicalPathToURL(path, relative)
         #import ipdb; ipdb.set_trace()
         if self.get('cms_system') != cms_system():
-            url = self.get('domain')[0] + self.get('context_path_string')
+            domain = self.get('domain')[0]
+            if '://' in domain:
+                url = domain + self.get('context_path_string')
+            else:
+                url = schema + domain + self.get('context_path_string')
 
         #if path.startswith(('/prototyp-1/sp', '/prototyp-1/in')):
         #    url = url.replace('/prototyp-1/sp', '')
