@@ -5,6 +5,13 @@
     i18n_domain="lmu.policy.base">
 
     <browser:page
+        name="repair"
+        class=".Repair"
+        permission="cmf.ManagePortal"
+        for="*"
+        />
+
+    <browser:page
         name="search"
         class=".Search"
         permission="zope2.View"

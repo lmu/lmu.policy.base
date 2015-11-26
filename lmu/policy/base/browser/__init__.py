@@ -314,3 +314,11 @@ class PathBarViewlet(common.PathBarViewlet):
         self.is_any_override_active = (
             self.lmu_settings.show_breadcrumb_1 or
             self.lmu_settings.show_breadcrumb_2)
+
+
+class Repair(BrowserView):
+
+    def __call__(self):
+        registry = getUtility(IRegistry)
+        registry.registerInterface(ILMUSettings)
+        return "Update erfolgreich"
