@@ -101,7 +101,7 @@ class Search(BaseSearch):
         query = super(Search, self).filter_query(query)
         if query:
             #import ipdb; ipdb.set_trace()
-            if query['path'] == getNavigationRoot(self.context):
+            if query['path'] == getNavigationRoot(self.context) or query['path'] is None:
                 query['path'] = search_paths()
                 log.info('Make general path search, request was for "%s".', getNavigationRoot(self.context))
             else:
@@ -252,7 +252,7 @@ class LivesearchReply(Search):
         limit = self.request.get('limit', 10)
         path = self.request.get('path', None)
 
-        params = {'SearchableText': self.searchterms(quote=False),
+        params = {'SearchableText': self.request.get('q', ''),  # self.searchterms(quote=False),
                   'sort_limit': limit + 1}
 
         if path is not None:
