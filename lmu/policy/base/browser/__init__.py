@@ -13,7 +13,7 @@ from Missing import Value as MissingValue
 #from PIL import Image as PILImage
 #from Products.PlonePAS.utils import scale_image
 from Products.CMFCore.utils import getToolByName
-#from Products.CMFPlone.browser.navtree import getNavigationRoot
+from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.PloneBatch import Batch
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -43,6 +43,12 @@ def cms_system():
     registry = getUtility(IRegistry)
     lmu_settings = registry.forInterface(ILMUSettings)
     return lmu_settings.cms_system
+
+
+def search_paths():
+    registry = getUtility(IRegistry)
+    lmu_settings = registry.forInterface(ILMUSettings)
+    return lmu_settings.search_paths
 
 
 class Search(BaseSearch):
@@ -76,13 +82,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
+        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.debug("Processed Results: %s", getattr(results, '__dict__', {}))
+        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
@@ -94,16 +100,15 @@ class Search(BaseSearch):
     def filter_query(self, query):
         query = super(Search, self).filter_query(query)
         if query:
-            # Only show Fiona Content in results that are from 'sp'
-            #if getNavigationRoot(self.context) == '/intranet':
-            #    query['path'] = [getNavigationRoot(self.context), '/prototyp-1/in']
-            #elif getNavigationRoot(self.context) == '/serviceportal':
-            #    query['path'] = [getNavigationRoot(self.context), '/prototyp-1/sp']
-            #else:
-            #    query['path'] = [getNavigationRoot(self.context)]
+            #import ipdb; ipdb.set_trace()
+            if query['path'] == getNavigationRoot(self.context):
+                query['path'] = search_paths()
+                log.info('Make general path search, request was for "%s".', getNavigationRoot(self.context))
+            else:
+                log.info('Make specific path ("%s") search.', query['path'])
 
             query['portal_type'] += self.extra_types()
-        log.debug("Search Query: %s", query)
+        log.info("Search Query: %s", query)
         return query
 
     def types_list(self):
@@ -112,28 +117,31 @@ class Search(BaseSearch):
 
     def breadcrumbs(self, item):
         breadcrumbs = []
+        schema = 'https://'
         try:
+            flare = getattr(item, 'flare', {})
             # Lookup primary Domain Name:
-            domain = item.flare.get('domain', [])
+            domain = flare.get('domain', [])
             if domain and not isinstance(domain, type(MissingValue)):
                 domain = domain[0]
                 domain = domain.replace('https://', '')
                 domain = domain.replace('http://', '')
 
-            if item.flare.get('cms_system') != cms_system():
-                urls = item.flare.get('path_parents')
-                titles = item.flare.get('breadcrumb_parent_titles')
+            if flare and flare.get('cms_system') != cms_system():
+                urls = flare.get('path_parents')
+                titles = flare.get('breadcrumb_parent_titles')
                 while titles:
                     title = titles.pop()
                     url = urls.pop()
-                    url = url.replace(urls[1], '')
-                    breadcrumbs.insert(0, {'absolute_url': 'https://' + domain + url, 'Title': unicode(title, 'utf-8')})
+                    if title:
+                        url = url.replace(urls[1], '')
+                        breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': unicode(title, 'utf-8')})
 
             else:
-                    obj = item.getObject()
-                    view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
-                    # cut off the item itself
-                    breadcrumbs = list(view.breadcrumbs())[:-1]
+                obj = item.getObject()
+                view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
+                # cut off the item itself
+                breadcrumbs = list(view.breadcrumbs())[:-1]
 
             if domain and not isinstance(domain, type(MissingValue)):
                 log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)
@@ -142,17 +150,21 @@ class Search(BaseSearch):
                 elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
                     portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('Serviceportal', 'utf-8')}
                 else:
-                    portal_root_breadcrumb = {'absolute_url': 'https://' + domain + '/', 'Title': unicode('Portal', 'utf-8')}
+                    portal_root_breadcrumb = {'absolute_url': schema + domain + '/', 'Title': unicode('Portal', 'utf-8')}
                 breadcrumbs.insert(0, portal_root_breadcrumb)
 
             if len(breadcrumbs) == 0:
                 # don't show breadcrumbs if we only have a single element
                 return None
-            if len(breadcrumbs) > 3:
+            if len(breadcrumbs) > 4:
                 # if we have too long breadcrumbs, emit the middle elements
                 empty = {'absolute_url': '', 'Title': unicode('…', 'utf-8')}
-                breadcrumbs = [breadcrumbs[0], empty] + breadcrumbs[-2:]
-        except Exception:
+                breadcrumbs = [breadcrumbs[0], breadcrumbs[1], empty] + breadcrumbs[-2:]
+        except AttributeError as e:
+            log.warn('During Breadcrumb generation has happend an Attribute error, "%s" is not found', e)
+        except Exception as e:
+            #import ipdb; ipdb.set_trace()
+            log.warn('%s during Breadcrumb generation, %s', type(e), e)
             return None
         return breadcrumbs
 

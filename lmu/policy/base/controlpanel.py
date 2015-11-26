@@ -111,6 +111,12 @@ class ILMUSettings(Interface):
         value_type=schema.TextLine(),
         required=False,
     )
+    search_paths = schema.List(
+        title=_(u"Search Path(s)"),
+        description=_(u"Solr Path_parrents that should be searched"),
+        value_type=schema.TextLine(),
+        required=False,
+    )
     cms_system = schema.TextLine(
         title=_(u"CMS System"),
         description=_(u"Name that this CMS system uses to be identified among"

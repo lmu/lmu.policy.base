@@ -29,8 +29,8 @@
         <highlight_fields>
             <parameter name="SearchableText"/>
         </highlight_fields>
-        <highlight_formatter_pre value="["/>
-        <highlight_formatter_post value="]"/>
+        <highlight_formatter_pre value="<mark>"/>
+        <highlight_formatter_post value="</mark>"/>
         <highlight_fragsize value="100"/>
         <field-list>
             <parameter name="UID"/>

@@ -269,10 +269,19 @@
                                       </span>
                                       </tal:img>
 
+                                      <tal:img tal:condition="python: (item_type == 'Image')" tal:on-error="string:">
+                                      <span class="th left helper-margin-right-m"
+                                            tal:define="obj item/getObject;
+                                                        scales obj/@@images;">
+                                        <img tal:replace="structure python: scales.tag('image', scale='listing_thumb', direction='down')" />
+                                      </span>
+                                      </tal:img>
+
                                       <div tal:content="item/CroppedDescription" tal:condition="item/CroppedDescription">
                                         Cropped description
                                       </div>
 
+                                      <tal:show_fragment tal:condition="python: item_type not in ['Image']" >
                                       <tal:highlighting condition="python:hasattr(batch._sequence._basesequence,'highlighting')">
                                       <div class="fragment"
                                          tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
@@ -285,6 +294,7 @@
                                         </p>
                                       </div>
                                       </tal:highlighting>
+                                      </tal:show_fragment>
 
                                     </li>
                               </tal:results>
