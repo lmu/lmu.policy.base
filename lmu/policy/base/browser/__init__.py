@@ -3,6 +3,7 @@
 #import StringIO
 import logging
 
+from AccessControl import Unauthorized
 from datetime import timedelta
 from collective.solr.browser.facets import SearchFacetsView
 from collective.solr.browser.facets import convertFacets
@@ -147,10 +148,13 @@ class Search(BaseSearch):
                         breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(title, 'utf-8')})
 
             else:
-                obj = item.getObject()
-                view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
-                # cut off the item itself
-                breadcrumbs = list(view.breadcrumbs())[:-1]
+                try:
+                    obj = item.getObject()
+                    view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
+                    # cut off the item itself
+                    breadcrumbs = list(view.breadcrumbs())[:-1]
+                except Unauthorized:
+                    log.info('Unauthorizized Exception for  item: "%s"', item.uuid())
 
                 #if domain != portal_domains()[0]:
                 #    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
