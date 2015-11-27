@@ -15,6 +15,7 @@ from Missing import Value as MissingValue
 from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.browser.navtree import getNavigationRoot
 from Products.CMFPlone.PloneBatch import Batch
+from Products.CMFPlone.utils import safe_unicode
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.PythonScripts.standard import url_quote_plus
@@ -138,12 +139,12 @@ class Search(BaseSearch):
                 urls = flare.get('path_parents')
                 titles = flare.get('breadcrumb_parent_titles')
                 root_url = urls[1]
-                while titles and len(titles) >= len(urls):
+                while titles:
                     title = titles.pop()
                     url = urls.pop()
                     if title:
                         url = url.replace(root_url, '')
-                        breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': unicode(title, 'utf-8')})
+                        breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(title, 'utf-8')})
 
             else:
                 obj = item.getObject()
@@ -151,17 +152,17 @@ class Search(BaseSearch):
                 # cut off the item itself
                 breadcrumbs = list(view.breadcrumbs())[:-1]
 
-                if domain != portal_domains[0]:
+                if domain != portal_domains()[0]:
                     log.info('Wrong url in breadcrumb: %s', breadcrumbs)
 
             if domain and not isinstance(domain, type(MissingValue)):
                 log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)
                 if domain == 'www.intranet.verwaltung.uni-muenchen.de':
-                    portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('ZUV-Intranet', 'utf-8')}
+                    portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': safe_unicode('ZUV-Intranet', 'utf-8')}
                 elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
-                    portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': unicode('Serviceportal', 'utf-8')}
+                    portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': safe_unicode('Serviceportal', 'utf-8')}
                 else:
-                    portal_root_breadcrumb = {'absolute_url': schema + domain + '/', 'Title': unicode('Portal', 'utf-8')}
+                    portal_root_breadcrumb = {'absolute_url': schema + domain + '/', 'Title': safe_unicode('Portal', 'utf-8')}
                 breadcrumbs.insert(0, portal_root_breadcrumb)
 
             if len(breadcrumbs) == 0:
@@ -169,13 +170,13 @@ class Search(BaseSearch):
                 return None
             if len(breadcrumbs) > 4:
                 # if we have too long breadcrumbs, emit the middle elements
-                empty = {'absolute_url': '', 'Title': unicode('…', 'utf-8')}
+                empty = {'absolute_url': '', 'Title': safe_unicode('…', 'utf-8')}
                 breadcrumbs = [breadcrumbs[0], breadcrumbs[1], empty] + breadcrumbs[-2:]
         except AttributeError as e:
             log.warn('During Breadcrumb generation has happend an Attribute error, "%s" is not found', e)
         except Exception as e:
+            log.warn('%s during Breadcrumb generation for UID: "%s" => %s', type(e), item.uuid(), e)
             #import ipdb; ipdb.set_trace()
-            log.warn('%s during Breadcrumb generation, %s', type(e), e)
             return None
         return breadcrumbs
 
