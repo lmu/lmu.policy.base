@@ -51,6 +51,12 @@ def search_paths():
     return lmu_settings.search_paths
 
 
+def portal_domains():
+    registry = getUtility(IRegistry)
+    lmu_settings = registry.forInterface(ILMUSettings)
+    return lmu_settings.domain
+
+
 class Search(BaseSearch):
 
     def results(self, query=None, batch=True, b_size=10, b_start=0):
@@ -142,6 +148,9 @@ class Search(BaseSearch):
                 view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
                 # cut off the item itself
                 breadcrumbs = list(view.breadcrumbs())[:-1]
+
+                if domain != portal_domains[0]:
+                    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
 
             if domain and not isinstance(domain, type(MissingValue)):
                 log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)

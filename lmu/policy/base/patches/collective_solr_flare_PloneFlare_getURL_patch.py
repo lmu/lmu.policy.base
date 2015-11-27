@@ -1,5 +1,6 @@
 from collective.solr.flare import PloneFlare
 from lmu.policy.base.browser import cms_system
+from lmu.policy.base.browser import portal_domains
 from OFS.Traversable import path2url
 import logging
 
@@ -15,8 +16,9 @@ def getURL(self, relative=False):
     try:
         url = self.request.physicalPathToURL(path, relative)
         #import ipdb; ipdb.set_trace()
-        if self.get('cms_system') != cms_system():
-            domain = self.get('domain')[0]
+        domain = self.get('domain')[0]
+
+        if self.get('cms_system') != cms_system() or domain != portal_domains()[0]:
             if '://' in domain:
                 url = domain + self.get('context_path_string')
             else:
