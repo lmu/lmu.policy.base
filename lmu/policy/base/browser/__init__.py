@@ -88,13 +88,13 @@ class Search(BaseSearch):
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
         #import ipdb;ipdb.set_trace()
 
-        log.info("Raw Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
         if batch:
             results = Batch(results, b_size, b_start)
         results.qtime = qtime
 
-        log.info("Processed Results: %s", getattr(results, '__dict__', {}))
+        log.debug("Processed Results: %s", getattr(results, '__dict__', {}))
         return results
 
     def extra_types(self):
@@ -114,7 +114,7 @@ class Search(BaseSearch):
                 log.info('Make specific path ("%s") search.', query['path'])
 
             query['portal_type'] += self.extra_types()
-        log.info("Search Query: %s", query)
+        log.debug("Search Query: %s", query)
         return query
 
     def types_list(self):
@@ -124,6 +124,7 @@ class Search(BaseSearch):
     def breadcrumbs(self, item):
         breadcrumbs = []
         schema = 'https://'
+        #import ipdb; ipdb.set_trace()
         try:
             flare = getattr(item, 'flare', {})
             # Lookup primary Domain Name:
@@ -136,11 +137,12 @@ class Search(BaseSearch):
             if flare and flare.get('cms_system') != cms_system():
                 urls = flare.get('path_parents')
                 titles = flare.get('breadcrumb_parent_titles')
-                while titles:
+                root_url = urls[1]
+                while titles and len(titles) >= len(urls):
                     title = titles.pop()
                     url = urls.pop()
                     if title:
-                        url = url.replace(urls[1], '')
+                        url = url.replace(root_url, '')
                         breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': unicode(title, 'utf-8')})
 
             else:
