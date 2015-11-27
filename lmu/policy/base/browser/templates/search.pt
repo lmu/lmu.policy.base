@@ -159,7 +159,7 @@
                                                     item_url python:view.unquote(item_url) if item_url else None;
                                                     item_type item/PortalType;
                                                     klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
-                                        tal:attributes="class klass">
+                                        tal:attributes="class klass;">
                                       <!--img tal:replace="structure item/getIcon" /-->
                                       <header class="helper-margin-bottom-m">
                                         <div class="documentLocation link-location helper-font-size-small"
@@ -189,8 +189,12 @@
                                         <h2 class="helper-no-margin-bottom">
                                           <a href="#"
                                            tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
-                                                           class string:state-${item/review_state}"
-                                           tal:content="item/Title | item/getId" >Title</a>
+                                                           class string:state-${item/review_state}">
+                                            <span class="helper-font-size-small show-for-sr" >
+                                              <span tal:replace="item_type" i18n:translate="">Type</span>:
+                                            </span>
+                                            <span tal:replace="item/Title | item/getId" >Title</span>
+                                          </a>
                                         </h2>
 
                                         <div class="link document-link helper-font-size-small">
@@ -259,7 +263,7 @@
                                         </div>
                                       </header>
 
-                                      <tal:img tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry')" tal:on-error="string:">
+                                      <tal:img tal:condition="python: (item.ContentTypeClass() == 'contenttype-blog-entry' or item.ContentTypeClass() == 'contenttype-pinnwand-entry')" tal:on-error="string:">
                                       <span class="th left helper-margin-right-m"
                                             tal:define="obj item/getObject;
                                                         images obj/images;
@@ -269,7 +273,7 @@
                                       </span>
                                       </tal:img>
 
-                                      <tal:img tal:condition="python: (item_type == 'Image')" tal:on-error="string:">
+                                      <tal:img tal:condition="python: (item.ContentTypeClass() == 'contenttype-image')" tal:on-error="string:">
                                       <span class="th left helper-margin-right-m"
                                             tal:define="obj item/getObject;
                                                         scales obj/@@images;">
@@ -281,7 +285,7 @@
                                         Cropped description
                                       </div>
 
-                                      <tal:show_fragment tal:condition="python: item_type not in ['Image']" >
+                                      <tal:show_fragment tal:condition="python: item.ContentTypeClass() not in ['contenttype-image']" >
                                       <tal:highlighting condition="python:hasattr(batch._sequence._basesequence,'highlighting')">
                                       <div class="fragment"
                                          tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
