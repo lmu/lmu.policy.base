@@ -152,8 +152,8 @@ class Search(BaseSearch):
                 # cut off the item itself
                 breadcrumbs = list(view.breadcrumbs())[:-1]
 
-                if domain != portal_domains()[0]:
-                    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
+                #if domain != portal_domains()[0]:
+                #    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
 
             if domain and not isinstance(domain, type(MissingValue)):
                 log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)
