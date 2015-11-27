@@ -139,7 +139,7 @@ class Search(BaseSearch):
                 urls = flare.get('path_parents')
                 titles = flare.get('breadcrumb_parent_titles')
                 root_url = urls[1]
-                while titles:
+                while titles and not isinstance(titles, type(MissingValue)):
                     title = titles.pop()
                     url = urls.pop()
                     if title:
