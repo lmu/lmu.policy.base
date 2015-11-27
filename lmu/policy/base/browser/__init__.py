@@ -109,9 +109,9 @@ class Search(BaseSearch):
             #import ipdb; ipdb.set_trace()
             if query['path'] == getNavigationRoot(self.context) or query['path'] is None:
                 query['path'] = search_paths()
-                log.info('Make general path search, request was for "%s".', getNavigationRoot(self.context))
+                log.debug('Make general path search, request was for "%s".', getNavigationRoot(self.context))
             else:
-                log.info('Make specific path ("%s") search.', query['path'])
+                log.debug('Make specific path ("%s") search.', query['path'])
 
             query['portal_type'] += self.extra_types()
         log.debug("Search Query: %s", query)
