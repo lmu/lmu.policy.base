@@ -148,13 +148,16 @@ class Search(BaseSearch):
                         breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(title, 'utf-8')})
 
             else:
+                obj = item
                 try:
                     obj = item.getObject()
-                    view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
-                    # cut off the item itself
-                    breadcrumbs = list(view.breadcrumbs())[:-1]
                 except Unauthorized:
                     log.info('Unauthorizized Exception for  item: "%s"', item.uuid())
+                    with api.env.adopt_roles(['Manager']):
+                        obj = item.getObject()
+                view = getMultiAdapter((obj, self.request), name='breadcrumbs_view')
+                # cut off the item itself
+                breadcrumbs = list(view.breadcrumbs())[:-1]
 
                 #if domain != portal_domains()[0]:
                 #    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
