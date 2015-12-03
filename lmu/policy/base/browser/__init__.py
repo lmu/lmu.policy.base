@@ -82,6 +82,7 @@ class Search(BaseSearch):
         else:
             catalog = getToolByName(self.context, 'portal_catalog')
             try:
+                #import ipdb; ipdb.set_trace()
                 results = catalog(**query)
             except ParseError:
                 return []
@@ -146,7 +147,6 @@ class Search(BaseSearch):
                     if title:
                         url = url.replace(root_url, '')
                         breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(title, 'utf-8')})
-
             else:
                 obj = item
                 try:
@@ -159,23 +159,15 @@ class Search(BaseSearch):
                 # cut off the item itself
                 breadcrumbs = list(view.breadcrumbs())[:-1]
 
-                #if domain != portal_domains()[0]:
-                #    log.info('Wrong url in breadcrumb: %s', breadcrumbs)
-
             if domain and not isinstance(domain, type(MissingValue)):
                 log.debug('Insert Breadcrumb for Portal-Root: "%s"', domain)
-                if domain == 'www.intranet.verwaltung.uni-muenchen.de':
-                    portal_root_breadcrumb = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html', 'Title': safe_unicode('ZUV-Intranet', 'utf-8')}
-                elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
-                    portal_root_breadcrumb = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html', 'Title': safe_unicode('Serviceportal', 'utf-8')}
-                else:
-                    portal_root_breadcrumb = {'absolute_url': schema + domain + '/', 'Title': safe_unicode('Portal', 'utf-8')}
+                portal_root_breadcrumb = self.getPortalInfo(item)
                 breadcrumbs.insert(0, portal_root_breadcrumb)
 
             if len(breadcrumbs) == 0:
                 # don't show breadcrumbs if we only have a single element
                 return None
-            if len(breadcrumbs) > 4:
+            elif len(breadcrumbs) > 4:
                 # if we have too long breadcrumbs, emit the middle elements
                 empty = {'absolute_url': '', 'Title': safe_unicode('…', 'utf-8')}
                 breadcrumbs = [breadcrumbs[0], breadcrumbs[1], empty] + breadcrumbs[-2:]
@@ -187,8 +179,54 @@ class Search(BaseSearch):
             return None
         return breadcrumbs
 
-    def strip_text(item, length=500):
-        return ustrip_text(item, length=length)
+    def getPortalIcon(self, item):
+        return None
+
+    def getPortalInfo(self, item):
+        portal_info = None
+        #import ipdb; ipdb.set_trace()
+
+        try:
+            flare = getattr(item, 'flare', {})
+            # Lookup primary Domain Name:
+            domain = flare.get('domain', [])
+            if domain and not isinstance(domain, type(MissingValue)):
+                domain = domain[0]
+                domain = domain.replace('https://', '')
+                domain = domain.replace('http://', '')
+            request_domain = self.request.environ.get('HTTP_HOST')
+
+            if domain == 'www.intranet.verwaltung.uni-muenchen.de':
+                portal_info = {'absolute_url': 'https://www.intranet.verwaltung.uni-muenchen.de/index.html',
+                               'Title': safe_unicode('ZUV-Intranet', 'utf-8'),
+                               'icon_url': None,
+                               'sign': 'IN',
+                               'klass': 'iuk-in',
+                               'own': bool(domain == request_domain),
+                               }
+            elif domain == 'www.serviceportal.verwaltung.uni-muenchen.de':
+                portal_info = {'absolute_url': 'https://www.serviceportal.verwaltung.uni-muenchen.de/index.html',
+                               'Title': safe_unicode('Serviceportal', 'utf-8'),
+                               'icon_url': None,
+                               'sign': 'SP',
+                               'klass': 'iuk-sp',
+                               'own': bool(domain == request_domain),
+                               }
+            else:
+                portal_info = {'absolute_url': 'http://' + domain + '/',
+                               'Title': safe_unicode('Portal', 'utf-8'),
+                               'icon_url': None,
+                               'sign': 'LMU',
+                               'klass': 'lmu-other',
+                               'own': bool(domain == request_domain),
+                               }
+
+        except Exception as e:
+            log.warn('%s during Portal Info generation for UID: "%s" => %s', type(e), item.uuid(), e)
+        return portal_info
+
+    def strip_text(item, length=500, ellipsis='...'):
+        return ustrip_text(item, length=length, ellipsis=ellipsis)
 
     def unquote(self, string):
         return unquote(string)
@@ -222,50 +260,57 @@ class LivesearchReply(Search):
 
     template = ViewPageTemplateFile('templates/livesearch_reply2.pt')
 
-    MAX_TITLE = 50
-    MAX_DESCRIPTION = 150
+    MAX_TITLE = 100
+    MAX_DESCRIPTION = 250
 
     def searchterm_query(self):
+        return '?searchterm=%s' % self.searchterms(True)
+
+    def searchterms(self, quote=True):
         q = self.request.get('q', '')
         for char in ('?', '-', '+', '*'):
             q = q.replace(char, ' ')
         q = quote_chars(q)
-        searchterm_query = '?searchterm=%s' % url_quote_plus(q)
-        return searchterm_query
-
-    def searchterms(self, quote=True):
-        q = self.request.get('q', '')
-
-        # XXX really if it contains + * ? or -
-        # it will not be right since the catalog ignores all non-word
-        # characters equally like
-        # so we don't even attept to make that right.
-        # But we strip these and these so that the catalog does
-        # not interpret them as metachars
-        for char in ('?', '-', '+', '*'):
-            q = q.replace(char, ' ')
-        r = q.split()
-        r = " AND ".join(r)
-        r = quote_chars(r) + '*'
         if quote:
-            return url_quote_plus(r)
-        else:
-            return r
+            return url_quote_plus(q)
+        return q
+
+    # def searchterms(self, quote=True):
+    #     q = self.request.get('q', '')
+
+    #     # XXX really if it contains + * ? or -
+    #     # it will not be right since the catalog ignores all non-word
+    #     # characters equally like
+    #     # so we don't even attept to make that right.
+    #     # But we strip these and these so that the catalog does
+    #     # not interpret them as metachars
+    #     for char in ('?', '-', '+', '*'):
+    #         q = q.replace(char, ' ')
+    #     r = q.split()
+    #     r = " AND ".join(r)
+    #     r = quote_chars(r) + '*'
+    #     if quote:
+    #         return url_quote_plus(r)
+    #     else:
+    #         return r
 
     def display_title(self, full_title):
-        return self.ellipse(full_title, self.MAX_TITLE)
+        # strip_text(item, length=500, ellipsis='...', item_type='richtext')
+        return ustrip_text(full_title, length=self.MAX_TITLE, item_type='plain')
 
     def display_description(self, full_description):
-        return self.ellipse(full_description, self.MAX_DESCRIPTION)
+        if full_description and not isinstance(full_description, type(MissingValue)):
+            return ustrip_text(full_description, length=self.MAX_DESCRIPTION, item_type='plain')
+        return None
 
-    def ellipse(self, full_string, max_len):
-        if (full_string and
-                len(full_string) > max_len):
-            display_string = ''.join(
-                (full_string[:max_len], '...'))
-        else:
-            display_string = full_string
-        return display_string
+    # def ellipse(self, full_string, max_len):
+    #     if (full_string and
+    #             len(full_string) > max_len):
+    #         display_string = ''.join(
+    #             (full_string[:max_len], '...'))
+    #     else:
+    #         display_string = full_string
+    #     return display_string
 
     def __call__(self):
         limit = self.request.get('limit', 10)
@@ -333,11 +378,3 @@ class PathBarViewlet(common.PathBarViewlet):
         self.is_any_override_active = (
             self.lmu_settings.show_breadcrumb_1 or
             self.lmu_settings.show_breadcrumb_2)
-
-
-class Repair(BrowserView):
-
-    def __call__(self):
-        registry = getUtility(IRegistry)
-        registry.registerInterface(ILMUSettings)
-        return "Update erfolgreich"

@@ -1,16 +1,24 @@
-
+from lmu.policy.base.controlpanel import ILMUSettings
 from plone.app.textfield.interfaces import ITransformer
-
+from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.browser.ploneview import Plone
+from Products.Five.browser import BrowserView
+from zope.component import getUtility
 
 
-def strip_text(item, length=500):
-    transformer = ITransformer(item)
-    transformedValue = transformer(item.text, 'text/plain')
-    striped_length = len(transformedValue)
+def strip_text(item, length=500, ellipsis='...', item_type='richtext'):
+    if item_type == 'plain':
+        striped_length = len(item)
+        transformedValue = item
+
+    else:  # item_type is 'richtext'
+        transformer = ITransformer(item)
+        transformedValue = transformer(item.text, 'text/plain')
+        striped_length = len(transformedValue)
+
     if striped_length > length:
         striped_length = transformedValue.rfind(' ', 0, length)
-        transformedValue = transformedValue[:striped_length] + '...'
+        transformedValue = transformedValue[:striped_length] + ellipsis
     return transformedValue
 
 
@@ -41,3 +49,11 @@ class _IncludeMixin(object):
             RESPONSE = REQUEST.RESPONSE
             RESPONSE.setHeader('Content-Type', 'application/xml;charset=utf-8')
         return self.template()
+
+
+class Repair(BrowserView):
+
+    def __call__(self):
+        registry = getUtility(IRegistry)
+        registry.registerInterface(ILMUSettings)
+        return "Update erfolgreich"

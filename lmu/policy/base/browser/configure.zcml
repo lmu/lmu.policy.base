@@ -6,7 +6,7 @@
 
     <browser:page
         name="repair"
-        class=".Repair"
+        class="lmu.policy.base.browser.utils.Repair"
         permission="cmf.ManagePortal"
         for="*"
         />
