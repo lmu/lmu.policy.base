@@ -27,16 +27,20 @@
                         display_title python:view.display_title(result.Title());
                         display_description python:view.display_description(result.Description());
                         klass python:'contenttype-' + plone_view.normalizeString(item_type);
-                        p_klass string:shortcut-icon ${p_info/klass};
+                        p_klass string:shortcut-icon ${p_info/klass} right;
+                        p_own p_info/own;
+                        fshow_psign python: bool(view.request.environ.get('show_psign', False));
+                        show_psign python: False and (not p_own or fshow_psign);
                         ">
             <a href="#" title="" class="contenttype"
                tal:attributes="title result/Title;
                                href item_url;
                                tabindex repeat/result/number;
+                               id string:result${repeat/result/number};
                                class klass">
-                <tal:icon replace="structure python:plone_view.getIcon(result).html_tag()" tal:condition="nothing" class="right" />
-                <tal:icon replace="structure python:view.getPortalIcon(result).html_tag()" tal:condition="nothing" tal:on-error="string:" />
-                <span class="" tal:attributes="class p_klass" tal:content="p_info/sign" tal:condition="not: p_info/own">Shortcut Sign</span>
+                <img replace="structure python:plone_view.getIcon(result).html_tag()" tal:condition="nothing" class="right" />
+                <img replace="structure python:view.getPortalIcon(result).html_tag()" tal:condition="nothing" tal:on-error="string:" />
+                <span class="" tal:attributes="class p_klass" tal:content="p_info/sign" tal:condition="show_psign">Shortcut Sign</span>
                 <span class="helper-font-size-small show-for-sr" >
                     <span tal:replace="item_type" i18n:translate="">Type</span>:
                 </span>
@@ -53,4 +57,15 @@
                 tal:attributes="href string:search?SearchableText=${view/searchterms}&path=${request/path}" i18n:translate="label_show_all">Show all items</a>
         </li>
     </ul>
+    <script tal:condition="nothing" >
+        $('input#quicksearch').on('keydown', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode == 9 || keyCode == 40) {
+                e.preventDefault();
+                $('LSResult').removeClass('hide');
+                $('LSResult').css('display', 'block');
+                $('a#result1').focus();
+            }
+        });
+    </script>
 </div>
