@@ -285,7 +285,8 @@
 
                                       <div tal:define="hdesc item/CroppedDescription;
                                                        desc python:view.strip_tags(hdesc);" 
-                                           tal:content="desc" tal:condition="item/CroppedDescription">
+                                           tal:content="desc"
+                                           tal:condition="item/CroppedDescription">
                                         Cropped description
                                       </div>
 

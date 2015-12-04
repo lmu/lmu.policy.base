@@ -251,7 +251,9 @@ class Search(BaseSearch):
         return unquote(string)
 
     def strip_tags(self, html):
-        return _strip_tags(html)
+        if not isinstance(html, type(MissingValue)):
+            return _strip_tags(html)
+        return None
 
 
 class LMUSearchFacetsView(SearchFacetsView):
