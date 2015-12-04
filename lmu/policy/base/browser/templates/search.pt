@@ -193,7 +193,9 @@
                                             <span class="helper-font-size-small show-for-sr" >
                                               <span tal:replace="item_type" i18n:translate="">Type</span>:
                                             </span>
-                                            <span tal:replace="item/Title | item/getId" >Title</span>
+                                            <span tal:define="item_htitle item/Title | item/getId;
+                                                              item_title python:view.strip_tags(item_htitle);"
+                                                  tal:replace="item_title" >Title</span>
                                           </a>
                                         </h2>
 
@@ -281,7 +283,9 @@
                                       </span>
                                       </tal:img>
 
-                                      <div tal:content="item/CroppedDescription" tal:condition="item/CroppedDescription">
+                                      <div tal:define="hdesc item/CroppedDescription;
+                                                       desc python:view.strip_tags(hdesc);" 
+                                           tal:content="desc" tal:condition="item/CroppedDescription">
                                         Cropped description
                                       </div>
 

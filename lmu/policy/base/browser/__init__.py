@@ -10,6 +10,7 @@ from collective.solr.browser.facets import convertFacets
 from collective.solr.interfaces import ISolrConnectionConfig
 from collective.solr.parser import SolrResponse
 from Missing import Value as MissingValue
+from HTMLParser import HTMLParser
 #from OFS import Image as OFSImage
 #from PIL import Image as PILImage
 #from Products.PlonePAS.utils import scale_image
@@ -39,6 +40,24 @@ from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.browser.utils import _IncludeMixin
 
 log = logging.getLogger(__name__)
+
+
+class MLStripper(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.fed = []
+
+    def handle_data(self, d):
+        self.fed.append(d)
+
+    def get_data(self):
+        return ''.join(self.fed)
+
+
+def _strip_tags(html):
+    s = MLStripper()
+    s.feed(html)
+    return s.get_data()
 
 
 def cms_system():
@@ -231,6 +250,9 @@ class Search(BaseSearch):
     def unquote(self, string):
         return unquote(string)
 
+    def strip_tags(self, html):
+        return _strip_tags(html)
+
 
 class LMUSearchFacetsView(SearchFacetsView):
 
@@ -296,11 +318,11 @@ class LivesearchReply(Search):
 
     def display_title(self, full_title):
         # strip_text(item, length=500, ellipsis='...', item_type='richtext')
-        return ustrip_text(full_title, length=self.MAX_TITLE, item_type='plain')
+        return ustrip_text(self.strip_tags(full_title), length=self.MAX_TITLE, item_type='plain')
 
     def display_description(self, full_description):
         if full_description and not isinstance(full_description, type(MissingValue)):
-            return ustrip_text(full_description, length=self.MAX_DESCRIPTION, item_type='plain')
+            return ustrip_text(self.strip_tags(full_description), length=self.MAX_DESCRIPTION, item_type='plain')
         return None
 
     # def ellipse(self, full_string, max_len):
