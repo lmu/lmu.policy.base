@@ -165,7 +165,7 @@ class Search(BaseSearch):
                     url = urls.pop()
                     if title:
                         url = url.replace(root_url, '')
-                        breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(title, 'utf-8')})
+                        breadcrumbs.insert(0, {'absolute_url': schema + domain + url + '/index.html', 'Title': safe_unicode(self.strip_tags(title), 'utf-8')})
             else:
                 obj = item
                 try:
