@@ -23,7 +23,7 @@
         <property name="extra_types_searched" type="lines">
             <element i18n:attributes="value" value="Document"/>
             <element i18n:attributes="value" value="Folder"/>
-            <element i18n:attributes="value" value="Generic"/>
+            <element i18n:attributes="value" value="generic"/>
             <element i18n:attributes="value" value="Publication"/>
             <element i18n:attributes="value" value="zuv_aktuelles"/>
             <element i18n:attributes="value" value="zuv_baukasten"/>
@@ -51,7 +51,7 @@
             <element i18n:attributes="value" value="Pinnwand Entry"/>
             <element i18n:attributes="value" value="Document"/>
             <element i18n:attributes="value" value="File"/>
-            <element i18n:attributes="value" value="Generic"/>
+            <element i18n:attributes="value" value="generic"/>
             <element i18n:attributes="value" value="zuv_betriebsstoerung"/>
             <element i18n:attributes="value" value="zuv_einrichtung"/>
             <element i18n:attributes="value" value="zuv_meldung"/>

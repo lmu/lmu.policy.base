@@ -18,23 +18,23 @@ msgstr ""
 msgid "Blog Entry"
 msgstr "Blog-Beitrag"
 
-#: ./controlpanel.py:76
+#: ./controlpanel.py:78
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
 
-#: ./controlpanel.py:68
+#: ./controlpanel.py:70
 msgid "Breadcrumb override level 1 - Title"
 msgstr ""
 
-#: ./controlpanel.py:96
+#: ./controlpanel.py:98
 msgid "Breadcrumb override level 2 - Link"
 msgstr ""
 
-#: ./controlpanel.py:88
+#: ./controlpanel.py:90
 msgid "Breadcrumb override level 2 - Title"
 msgstr ""
 
-#: ./controlpanel.py:113
+#: ./controlpanel.py:121
 msgid "CMS System"
 msgstr "CMS-System"
 
@@ -55,11 +55,11 @@ msgstr "Löschen"
 msgid "Document"
 msgstr "Dokument"
 
-#: ./controlpanel.py:107
+#: ./controlpanel.py:109
 msgid "Domain(s)"
 msgstr "Domain(s)"
 
-#: ./controlpanel.py:108
+#: ./controlpanel.py:110
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
@@ -83,10 +83,6 @@ msgstr "Dateien"
 msgid "Folder"
 msgstr "Ordner"
 
-#: ./profiles/default/propertiestool.xml
-msgid "Generic"
-msgstr "Generisch"
-
 #: ./browser/templates/entry_content_view.pt:158
 msgid "Images"
 msgstr "Bilder"
@@ -95,11 +91,11 @@ msgstr "Bilder"
 msgid "LMU Settings"
 msgstr "LMU Einstellungen"
 
-#: ./controlpanel.py:44
+#: ./controlpanel.py:46
 msgid "Language"
 msgstr "Sprache"
 
-#: ./controlpanel.py:114
+#: ./controlpanel.py:122
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
@@ -131,11 +127,15 @@ msgstr "Veröffentlichung"
 msgid "Search"
 msgstr "Suche"
 
-#: ./browser/templates/search.pt:64
+#: ./controlpanel.py:115
+msgid "Search Path(s)"
+msgstr "Such-Pfade"
+
+#: ./browser/templates/search.pt:65
 msgid "Search results"
 msgstr "Suchergebnisse"
 
-#: ./browser/templates/search.pt:73
+#: ./browser/templates/search.pt:74
 msgid "Search results for ${term}"
 msgstr "Suchergebnisse für ${term}"
 
@@ -143,13 +143,17 @@ msgstr "Suchergebnisse für ${term}"
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./controlpanel.py:81
+#: ./controlpanel.py:83
 msgid "Show Breadcrumb override level 1"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 1"
 
-#: ./controlpanel.py:101
+#: ./controlpanel.py:103
 msgid "Show Breadcrumb override level 2"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
+
+#: ./controlpanel.py:116
+msgid "Solr Path_parrents that should be searched"
+msgstr "Solr Pfade die durchsucht werden sollen"
 
 #: ./browser/templates/entry_sort_items_view.pt:34
 msgid "Sort"
@@ -163,7 +167,7 @@ msgstr "Dateien sortieren"
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./controlpanel.py:47
+#: ./controlpanel.py:49
 msgid "Title"
 msgstr "Titel"
 
@@ -192,22 +196,22 @@ msgid "alert_really_delete_folder"
 msgstr "Möchten Sie diesen Eintrag samt aller Inhalte löschen?"
 
 #. Default: "within ${time} seconds."
-#: ./browser/templates/search.pt:110
+#: ./browser/templates/search.pt:111
 msgid "batch_within_seconds"
 msgstr "innerhalb von ${time} Sekunden"
 
 #. Default: "${number} items matching your search terms."
-#: ./browser/templates/search.pt:103
+#: ./browser/templates/search.pt:104
 msgid "batch_x_items_matching_your_criteria"
 msgstr "${number} Inhalte gefunden."
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:230
+#: ./browser/templates/search.pt:240
 msgid "box_last_modified"
 msgstr "zuletzt verändert"
 
 #. Default: "published"
-#: ./browser/templates/search.pt:220
+#: ./browser/templates/search.pt:230
 msgid "box_published"
 msgstr "Veröffentlicht"
 
@@ -216,7 +220,7 @@ msgid "dargestellt"
 msgstr "dargestellt"
 
 #. Default: "No results were found."
-#: ./browser/templates/search.pt:145
+#: ./browser/templates/search.pt:146
 msgid "description_no_results_found"
 msgstr "Keine Inhalte gefunden"
 
@@ -224,9 +228,13 @@ msgstr "Keine Inhalte gefunden"
 msgid "down"
 msgstr "runter"
 
-#: ./browser/templates/search.pt:244
+#: ./browser/templates/search.pt:255
 msgid "filed under:"
 msgstr "Keywords"
+
+#: ./profiles/default/propertiestool.xml
+msgid "generic"
+msgstr "Generisch (Dateien, Bilder, ...)"
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
@@ -235,7 +243,7 @@ msgid "label_advanced_search"
 msgstr "Erweiterte Suche"
 
 #. Default: "by ${author}"
-#: ./browser/templates/search.pt:204
+#: ./browser/templates/search.pt:215
 msgid "label_by_author"
 msgstr "Autor: ${author}"
 
@@ -250,7 +258,6 @@ msgid "label_no_results_found"
 msgstr "Keine Ergebnisse gefunden"
 
 #. Default: "Search"
-#: ./browser/templates/search.pt:52
 #: ./template_overrides/collective.solr.browser.searchbox.pt:22
 msgid "label_search"
 msgstr "Suche"
@@ -271,7 +278,7 @@ msgid "legend_livesearch"
 msgstr "Live Suche &#8595;"
 
 #. Default: "Sort by"
-#: ./browser/templates/search.pt:117
+#: ./browser/templates/search.pt:118
 msgid "sort_by"
 msgstr "Trefferliste sortieren"
 
@@ -286,12 +293,12 @@ msgid "title_search_site"
 msgstr "Such Seite"
 
 #. Default: "Search Site"
-#: ./browser/templates/search.pt:44
+#: ./browser/templates/search.pt:46
 msgid "title_search_title"
 msgstr "Such Seite"
 
 #. Default: "Subscribe to an always-updated RSS feed."
-#: ./browser/templates/search.pt:86
+#: ./browser/templates/search.pt:87
 msgid "title_subscribe_rss_feed"
 msgstr "RSS Feed abonnieren"
 
