@@ -37,6 +37,7 @@
                                href item_url;
                                tabindex repeat/result/number;
                                id string:result${repeat/result/number};
+                               target python:None if p_own else '_blank';
                                class klass">
                 <img replace="structure python:plone_view.getIcon(result).html_tag()" tal:condition="nothing" class="right" />
                 <img replace="structure python:view.getPortalIcon(result).html_tag()" tal:condition="nothing" tal:on-error="string:" />

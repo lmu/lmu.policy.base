@@ -158,6 +158,8 @@
                                     <li tal:define="item_url item/getURL;
                                                     item_url python:view.unquote(item_url) if item_url else None;
                                                     item_type item/PortalType;
+                                                    p_info python: view.getPortalInfo(item);
+                                                    p_own p_info/own;
                                                     klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
                                         tal:attributes="class klass;">
                                       <!--img tal:replace="structure item/getIcon" /-->
@@ -175,7 +177,8 @@
                                               <a href="#"
                                                  class="helper-font-light"
                                                  tal:omit-tag="not: url"
-                                                 tal:attributes="href url"
+                                                 tal:attributes="href url;
+                                                                 target python:None if p_own else '_blank';"
                                                  tal:content="title">
                                                   crumb
                                               </a>
@@ -188,8 +191,9 @@
 
                                         <h2 class="helper-no-margin-bottom">
                                           <a href="#"
-                                           tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
-                                                           class string:state-${item/review_state}">
+                                             tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
+                                                             class string:state-${item/review_state};
+                                                             target python:None if p_own else '_blank';">
                                             <span class="helper-font-size-small show-for-sr" >
                                               <span tal:replace="item_type" i18n:translate="">Type</span>:
                                             </span>
@@ -200,7 +204,9 @@
                                         </h2>
 
                                         <div class="link document-link helper-font-size-small">
-                                          <a tal:attributes="href item_url" tal:content="item_url" class="link helper-font-light">Link</a>
+                                          <a tal:attributes="href item_url;
+                                                             target python:None if p_own else '_blank';"
+                                             tal:content="item_url" class="link helper-font-light">Link</a>
                                         </div>
 
                                         <div class="discreet helper-font-light" 
@@ -213,7 +219,8 @@
                                             <tal:block tal:condition="item/Creator"
                                                 tal:define="author python:context.portal_membership.getMemberInfo(item.Creator())">
                                               <a href="#"
-                                                 tal:attributes="href string:${navigation_root_url}/resources/iuk/redirect/goto/person/${item/Creator};"
+                                                 tal:attributes="href string:${navigation_root_url}/resources/iuk/redirect/goto/person/${item/Creator};
+                                                                 target python:None if p_own else '_blank';"
                                                  tal:content="python:author and author['fullname'] or item.Creator()"
                                                  tal:omit-tag="not:item/Creator"
                                                  i18n:name="author">
