@@ -293,8 +293,8 @@
                                       <tal:show_fragment tal:condition="python: item.ContentTypeClass() not in ['contenttype-image']" >
                                       <tal:highlighting condition="python:hasattr(batch._sequence._basesequence,'highlighting')">
                                       <div class="fragment"
-                                         tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
-                                         tal:repeat="snippets python:batch._sequence._basesequence.highlighting[item.uuid()].values()">
+                                           tal:condition="python:item.uuid() in batch._sequence._basesequence.highlighting"
+                                           tal:repeat="snippets python:batch._sequence._basesequence.highlighting[item.uuid()].values()">
                                         <p class="fragment snippet">
                                           &hellip;&nbsp;
                                           <tal:snippets repeat="snippet snippets">

@@ -1,12 +1,12 @@
 <div id="portal-searchfacets"
-     tal:define="facets view/facets; selected view/selected"
-     tal:condition="python: facets or selected"
+     tal:define="facets view/facets;
+                 selected view/selected;"
      i18n:domain="plone">
-
   <h4 i18n:domain="solr" i18n:translate="heading_search_facets">
     Limit search results...
   </h4>
 
+<tal:facets tal:condition="python: facets or selected" >
   <div i18n:domain="solr" id="selected-facets">
     <div tal:repeat="item selected">
       &raquo;
@@ -42,5 +42,5 @@
       </tal:other>
     </dl>
   </div>
-
+</tal:facets>
 </div>

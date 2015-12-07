@@ -22,8 +22,8 @@
     <metal:results use-macro="context/@@search/search_results" />
 
     <div tal:define="fview nocall: context/@@search-facets | nothing"
-            tal:condition="python: fview"
-            tal:replace="structure python: fview(results=view.results()._sequence._basesequence)" />
+         tal:condition="python: fview"
+         tal:replace="structure python: fview(results=view.results()._sequence._basesequence)" />
 
 </body>
 </html>
