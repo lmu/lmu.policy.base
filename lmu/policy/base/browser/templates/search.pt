@@ -160,6 +160,7 @@
                                                     item_type item/PortalType;
                                                     p_info python: view.getPortalInfo(item);
                                                     p_own p_info/own;
+                                                    own_cms python:view.isPloneCMS(item);
                                                     klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
                                         tal:attributes="class klass;">
                                       <!--img tal:replace="structure item/getIcon" /-->
@@ -254,10 +255,10 @@
 
                                           </span>
                                         </div>
-
-                                        <div tal:on-error="string: Fiona Subject Error"
-                                             tal:define="categories item/Subject|nothing"
-                                             tal:condition="categories"
+                                        <div tal:on-error="string: Subject Error"
+                                             tal:define="categories item/Subject|nothing;
+                                                         show python:own_cms and bool(categories);"
+                                             tal:condition="show"
                                              class="categories helper-font-light">
                                           <tal:filedunder i18n:translate="">filed under:</tal:filedunder>
                                           <tal:items tal:repeat="category categories">

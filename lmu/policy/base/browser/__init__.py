@@ -255,6 +255,12 @@ class Search(BaseSearch):
             return _strip_tags(html)
         return None
 
+    def isPloneCMS(self, item):
+        flare = getattr(item, 'flare', {})
+        # Lookup primary Domain Name:
+        cms = flare.get('cms_system', 'unknown')
+        return bool(cms == cms_system())
+
 
 class LMUSearchFacetsView(SearchFacetsView):
 
