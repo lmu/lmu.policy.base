@@ -234,7 +234,7 @@ msgstr "Keywords"
 
 #: ./profiles/default/propertiestool.xml
 msgid "generic"
-msgstr "Generisch (Dateien, Bilder, ...)"
+msgstr "Dokumente, Dateien und Bilder"
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
