@@ -55,9 +55,12 @@ class MLStripper(HTMLParser):
 
 
 def _strip_tags(html):
-    s = MLStripper()
-    s.feed(html)
-    return s.get_data()
+    html = html.replace('&shy;', '').replace('&amp;', '&')
+    if any([bool(char in html) for char in ['<', '>']]):
+        s = MLStripper()
+        s.feed(html)
+        return s.get_data()
+    return html
 
 
 def cms_system():
