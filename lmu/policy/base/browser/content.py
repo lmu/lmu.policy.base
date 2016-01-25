@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
+import Globals
 
 from email import utils
 from datetime import datetime
@@ -27,6 +28,10 @@ from lmu.policy.base.browser.utils import str2bool
 from lmu.policy.base.browser.utils import _IncludeMixin
 #from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
+
+from logging import getLogger
+
+logging = getLogger(__name__)
 
 
 class _AbstractLMUBaseContentView(BrowserView):
@@ -82,6 +87,13 @@ class _AbstractLMUBaseContentView(BrowserView):
     def _check_permission(self, permission, item):
         pmt = api.portal.get_tool(name='portal_membership')
         return pmt.checkPermission(permission, item)
+
+    def isDBReadOnly(self):
+        conn = Globals.DB.open()
+        isReadOnly = conn.isReadOnly()
+        conn.close()
+        logging.debug("DB is readOnly: %s", isReadOnly)
+        return isReadOnly
 
 
 class _EntryViewMixin(object):
