@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import time
-import Globals
 
 from email import utils
 from datetime import datetime
@@ -25,6 +24,7 @@ from zope.interface import alsoProvides
 
 from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
 from lmu.policy.base.browser.utils import str2bool
+from lmu.policy.base.browser.utils import isDBReadOnly as uIsDBReadOnly
 from lmu.policy.base.browser.utils import _IncludeMixin
 #from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
@@ -89,11 +89,7 @@ class _AbstractLMUBaseContentView(BrowserView):
         return pmt.checkPermission(permission, item)
 
     def isDBReadOnly(self):
-        conn = Globals.DB.open()
-        isReadOnly = conn.isReadOnly()
-        conn.close()
-        logging.debug("DB is readOnly: %s", isReadOnly)
-        return isReadOnly
+        return uIsDBReadOnly()
 
 
 class _EntryViewMixin(object):
@@ -355,11 +351,7 @@ class LMUCommentsViewlet(CommentsViewlet):
     index = ViewPageTemplateFile('templates/comments.pt')
 
     def isDBReadOnly(self):
-        conn = Globals.DB.open()
-        isReadOnly = conn.isReadOnly()
-        conn.close()
-        logging.debug("DB is readOnly: %s", isReadOnly)
-        return isReadOnly
+        return utils.isReadOnly
 
     def update(self):
         alsoProvides(self.request, ILMUCommentFormLayer)
@@ -369,7 +361,7 @@ class LMUCommentsViewlet(CommentsViewlet):
         is_blog_entry = (self.context.portal_type == 'Blog Entry')
         is_pinnwand_entry = (self.context.portal_type == 'Pinnwand Entry')
         is_private = (api.content.get_state(self.context) == 'private')
-        if not self.isDBReadOnly() and (is_blog_entry or is_pinnwand_entry) and is_private:
+        if not uIsDBReadOnly() and (is_blog_entry or is_pinnwand_entry) and is_private:
             return False
         return super(LMUCommentsViewlet, self).can_reply()
 

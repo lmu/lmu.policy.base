@@ -1,9 +1,15 @@
+import Globals
+
 from lmu.policy.base.controlpanel import ILMUSettings
 from plone.app.textfield.interfaces import ITransformer
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser import BrowserView
 from zope.component import getUtility
+
+from logging import getLogger
+
+logging = getLogger(__name__)
 
 
 def strip_text(item, length=500, ellipsis='...', item_type='richtext'):
@@ -30,6 +36,14 @@ def _strip_text(item, length=500, ellipsis='...'):
 
 def str2bool(v):
     return v is not None and v.lower() in ['true', '1']
+
+
+def isDBReadOnly():
+    conn = Globals.DB.open()
+    isReadOnly = conn.isReadOnly()
+    conn.close()
+    logging.debug("DB is readOnly: %s", isReadOnly)
+    return isReadOnly
 
 
 class _IncludeMixin(object):
