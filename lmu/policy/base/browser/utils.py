@@ -1,13 +1,14 @@
 import Globals
 
 from lmu.policy.base.controlpanel import ILMUSettings
+from logging import getLogger
 from plone.app.textfield.interfaces import ITransformer
+from plone.protect.interfaces import IDisableCSRFProtection
 from plone.registry.interfaces import IRegistry
 from Products.CMFPlone.browser.ploneview import Plone
 from Products.Five.browser import BrowserView
 from zope.component import getUtility
-
-from logging import getLogger
+from zope.interface import alsoProvides
 
 logging = getLogger(__name__)
 
@@ -61,7 +62,16 @@ class _IncludeMixin(object):
         if self.omit:
             REQUEST = self.context.REQUEST
             RESPONSE = REQUEST.RESPONSE
-            RESPONSE.setHeader('Content-Type', 'application/xml;charset=utf-8')
+            # RESPONSE.setHeader('Content-Type', 'application/xml;charset=utf-8')
+            RESPONSE.setHeader('X-Theme-Disabled', 'True')
+            RESPONSE.setHeader('X-Theme-Enabled', 'False')
+
+            REQUEST.environ['HTTP_X_THEME_ENABLED'] = False
+            REQUEST.environ['HTTP_X_THEME_DISABLED'] = True
+
+            alsoProvides(REQUEST, IDisableCSRFProtection)
+            # import ipdb; ipdb.set_trace()
+
         return self.template()
 
 
