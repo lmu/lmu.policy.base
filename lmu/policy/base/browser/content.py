@@ -114,22 +114,22 @@ class _EntryViewMixin(object):
     def can_publish(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
             any(role in ['Owner', 'Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
-            api.content.get_state(obj=self.context) in ['private']
+            api.content.get_state(obj=self.context) in ['private', 'closed', 'banned']
 
     def can_hide(self):
         return False and api.user.has_permission(permissions.RequestReview, obj=self.context) and \
             any(role in ['Owner', 'Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
-            api.content.get_state(obj=self.context) in ['internally_published']
+            api.content.get_state(obj=self.context) in ['internally_published', 'open']
 
     def can_reject(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
             any(role in ['Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
-            api.content.get_state(obj=self.context) in ['internally_published']
+            api.content.get_state(obj=self.context) in ['internally_published', 'open']
 
     def can_lock(self):
         return api.user.has_permission(permissions.ReviewPortalContent, obj=self.context) and \
             any(role in ['Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
-            api.content.get_state(obj=self.context) in ['internally_published']
+            api.content.get_state(obj=self.context) in ['internally_published', 'open']
 
     def isOwner(self):
         user = api.user.get_current()
@@ -146,7 +146,7 @@ class _EntryViewMixin(object):
         return api.content.get_state(obj=self.context) in ['private']
 
     def isInternallyPublished(self):
-        return api.content.get_state(obj=self.context) in ['internally_published']
+        return api.content.get_state(obj=self.context) in ['internally_published', 'open']
 
 
 class RichTextWidgetConfig(object):

@@ -57,6 +57,10 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
                                        #'lmu.contenttypes.blog: Add Blog Entry',
                                        obj=self.context)
 
+    def can_edit(self):
+        return api.user.has_permission(permissions.ModifyPortalContent, obj=self.context) and \
+            any(role in ['Owner', 'Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context))
+
 
 class _FrontPageIncludeMixin(_IncludeMixin):
 
