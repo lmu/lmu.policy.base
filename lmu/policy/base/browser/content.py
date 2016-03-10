@@ -186,7 +186,7 @@ class RichTextWidgetConfig(object):
 #
 #        return super(_AbstractLMUBaseContentEditForm, self).__call__()
 
-class NoCacheEntryMixin(BrowserView):
+class _NoCacheEntryMixin(BrowserView):
 
     def __call__(self):
         nowdt = datetime.now()
