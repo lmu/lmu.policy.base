@@ -186,6 +186,19 @@ class RichTextWidgetConfig(object):
 #
 #        return super(_AbstractLMUBaseContentEditForm, self).__call__()
 
+class NoCacheEntryMixin(BrowserView):
+
+    def __call__(self):
+        nowdt = datetime.now()
+        nowtuple = nowdt.timetuple()
+        nowtimestamp = time.mktime(nowtuple)
+        REQUEST = self.context.REQUEST
+        RESPONSE = REQUEST.RESPONSE
+        RESPONSE.setHeader('Cache-Control', 'private, max-age=0, no-cache')
+        RESPONSE.setHeader('Pragma', 'no-cache')
+        RESPONSE.setHeader('Expires', utils.formatdate(nowtimestamp))
+        super(NoCacheEntryMixin, self).__call__()
+
 
 class EntryContentView(_AbstractLMUBaseContentView):
 
