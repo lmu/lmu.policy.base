@@ -188,36 +188,26 @@ class RichTextWidgetConfig(object):
 
 class _NoCacheEntryMixin(BrowserView):
 
-    def __call__(self):
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
         nowdt = datetime.now()
         nowtuple = nowdt.timetuple()
         nowtimestamp = time.mktime(nowtuple)
-        REQUEST = self.context.REQUEST
-        RESPONSE = REQUEST.RESPONSE
+        RESPONSE = request.RESPONSE
         RESPONSE.setHeader('Cache-Control', 'private, max-age=0, no-cache')
         RESPONSE.setHeader('Pragma', 'no-cache')
         RESPONSE.setHeader('Expires', utils.formatdate(nowtimestamp))
-        super(NoCacheEntryMixin, self).__call__()
+        super(_NoCacheEntryMixin, self).__init__(context, request)
 
 
-class EntryContentView(_AbstractLMUBaseContentView):
+class EntryContentView(_AbstractLMUBaseContentView, _NoCacheEntryMixin):
 
     template = ViewPageTemplateFile('templates/entry_content_view.pt')
 
     def __call__(self):
         omit = self.request.get('full')
         self.omit = not str2bool(omit)
-        #import ipdb; ipdb.set_trace()
-        #tz = tzinfo()
-        #nowdt = datetime.now(tz) if tz else datetime.now()
-        nowdt = datetime.now()
-        nowtuple = nowdt.timetuple()
-        nowtimestamp = time.mktime(nowtuple)
-        REQUEST = self.context.REQUEST
-        RESPONSE = REQUEST.RESPONSE
-        RESPONSE.setHeader('Cache-Control', 'private, max-age=0, no-cache')
-        RESPONSE.setHeader('Pragma', 'no-cache')
-        RESPONSE.setHeader('Expires', utils.formatdate(nowtimestamp))
         return self.template()
 
     def content(self, mode='files'):
