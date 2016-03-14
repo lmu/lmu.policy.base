@@ -51,6 +51,13 @@
         name="lmu.policy.base.AvailableLanguages"
         />
 
+<!--
+    <utility
+        component="lmu.policy.base.controlpanel.TimeDeltasVocabularyFactory"
+        name="lmu.policy.base.TimeDeltas"
+        />
+-->
+
     <browser:page
         name="lmu-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"

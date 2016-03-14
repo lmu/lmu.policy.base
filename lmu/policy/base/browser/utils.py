@@ -10,7 +10,7 @@ from Products.Five.browser import BrowserView
 from zope.component import getUtility
 from zope.interface import alsoProvides
 
-logging = getLogger(__name__)
+log = getLogger(__name__)
 
 
 def strip_text(item, length=500, ellipsis='...', item_type='richtext'):
@@ -43,7 +43,7 @@ def isDBReadOnly():
     conn = Globals.DB.open()
     isReadOnly = conn.isReadOnly()
     conn.close()
-    logging.debug("DB is readOnly: %s", isReadOnly)
+    log.debug("DB is readOnly: %s", isReadOnly)
     return isReadOnly
 
 
@@ -80,4 +80,6 @@ class Repair(BrowserView):
     def __call__(self):
         registry = getUtility(IRegistry)
         registry.registerInterface(ILMUSettings)
+        #lmu_settings = registry.forInterface(ILMUSettings)
+        alsoProvides(self.request, IDisableCSRFProtection)
         return "Update erfolgreich"

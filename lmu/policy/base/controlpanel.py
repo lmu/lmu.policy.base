@@ -41,6 +41,17 @@ class AvailableLanguagesVocabulary(object):
 AvailableLanguagesVocabularyFactory = AvailableLanguagesVocabulary()
 
 
+timedeltas_vocabulary = SimpleVocabulary([
+    SimpleTerm(token='0', value=u'0', title=_(u'immediat')),
+    SimpleTerm(token='1', value=u'1', title=_(u'1 day')),
+    SimpleTerm(token='7', value=u'7', title=_(u'1 week')),
+    SimpleTerm(token='14', value=u'14', title=_(u'2 weeks')),
+    SimpleTerm(token='30', value=u'30', title=_(u'1 month')),
+    SimpleTerm(token='90', value=u'90', title=_(u'3 month')),
+    SimpleTerm(token='180', value=u'180', title=_(u'6 month')),
+])
+
+
 class ITitleLanguagePair(Interface):
     language = schema.Choice(
         title=_(u"Language"),
@@ -123,6 +134,13 @@ class ILMUSettings(Interface):
                       " others that may be used in parallel"),
         required=False,
         default=u"Plone",
+    )
+    del_timedelta = schema.Choice(
+        title=_(u"Delete Timedelta"),
+        description=_(u"When sould expired Entries be deleted automaticaly"),
+        required=False,
+        default='90',
+        vocabulary=timedeltas_vocabulary,
     )
 
 
