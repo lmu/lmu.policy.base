@@ -12,6 +12,7 @@ from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
+from plone.app.imagecropping.browser.editor import CroppingEditor
 from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 from plone.dexterity.browser import add
@@ -367,6 +368,38 @@ class LMUCommentsViewlet(CommentsViewlet):
         if not uIsDBReadOnly() and (is_blog_entry or is_pinnwand_entry) and is_private:
             return False
         return super(LMUCommentsViewlet, self).can_reply()
+
+
+class LMUCroppingEditor(CroppingEditor):
+
+    template = ViewPageTemplateFile('templates/cropping-editor.pt')
+
+    def __call__(self):
+        return super(LMUCroppingEditor, self).__call__()
+
+    def _crop(self):
+        def coordinate(x):
+            return int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        default_scales = self.scales()
+        filtered_scales = [
+            x for x in default_scales if x['id'].find('_teaser') > 0]
+        for scale_name in [scale['id'] for scale in filtered_scales]:
+            cropping_util = self.context.restrictedTraverse('@@crop-image')
+            cropping_util._crop(fieldname=self.fieldname,
+                                scale=scale_name,
+                                box=(x1, y1, x2, y2))
+
+    def lmu_scales(self, fieldname=None):
+        default_scales = self.scales(fieldname=fieldname)
+        filtered_scales = [
+            x for x in default_scales if x['id'].find('_teaser') > 0]
+        return [sorted(
+            filtered_scales, key=lambda x: x['thumb_width'], reverse=True)[0]]
+
 
 
 def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):

@@ -122,4 +122,12 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        class=".content.LMUCroppingEditor"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+        name="croppingeditor"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
 </configure>

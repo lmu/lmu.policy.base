@@ -151,7 +151,7 @@
                   <a class="toogle button radius small right helper-margin-bottom-s inline"
                      id="image_sort_button"
                      href="@@content_sort_images_view"
-                     i18n:translate="" 
+                     i18n:translate=""
                      tal:define="images view/images;
                                  nimages python: len(images);"
                      tal:condition="python: nimages > 1">Sort Images</a>
@@ -161,8 +161,8 @@
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
                       <div class="column small-2" >
 
-                        <a class="th" role="button" aria-label="Thumbnails" 
-                           tal:attributes="href item/absolute_url;" 
+                        <a class="th" role="button" aria-label="Thumbnails"
+                           tal:attributes="href item/absolute_url;"
                            tal:on-error=" item">
 
                           <img tal:define="scales item/@@images;"
@@ -186,7 +186,7 @@
                                     <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
                                   </a>
                               </li>
-                              <li tal:condition="nothing">
+                              <li>
                                   <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
                                     <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
                                   </a>
@@ -209,7 +209,7 @@
                   <a class="toogle button radius small right"
                      id="file_sort_button"
                      href="@@content_sort_files_view"
-                     i18n:translate="" 
+                     i18n:translate=""
                      tal:define="files view/files;
                                  nfiles python: len(files);"
                      tal:condition="python: nfiles > 1">Sort Files</a>
