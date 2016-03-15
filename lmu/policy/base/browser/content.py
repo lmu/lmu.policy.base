@@ -24,6 +24,7 @@ from z3c.form.interfaces import INPUT_MODE
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.event import notify
+from zope.i18n import translate
 from zope.interface import alsoProvides
 
 from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
@@ -376,12 +377,28 @@ class LMUCommentsViewlet(CommentsViewlet):
         return super(LMUCommentsViewlet, self).can_reply()
 
 
-class TeaserCroppingEditor(CroppingEditor):
+class _LMUCroppingEditor(CroppingEditor):
+
+    def __call__(self):
+        plt = api.portal.get_tool('portal_languages')
+        self.lang = plt.getPreferredLanguage()
+        return super(_LMUCroppingEditor, self).__call__()
+
+    @property
+    def title(self):
+        return translate(self._title, target_language=self.lang)
+
+    @property
+    def description(self):
+        return translate(self._description, target_language=self.lang)
+
+
+class TeaserCroppingEditor(_LMUCroppingEditor):
 
     template = ViewPageTemplateFile('templates/cropping-editor.pt')
 
-    title = _(u"Choose image detail")
-    description = _(
+    _title = _(u"Choose image detail")
+    _description = _(
         u"Here you can choose a section of the image that will be shown as "
         u"teaser image on listings and overviews. The aspect ratio is forced "
         u"to 16×9. You can later on pick a different section, or remove your "
@@ -418,12 +435,12 @@ class TeaserCroppingEditor(CroppingEditor):
         )[0]
 
 
-class HardCroppingEditor(CroppingEditor):
+class HardCroppingEditor(_LMUCroppingEditor):
 
     template = ViewPageTemplateFile('templates/cropping-editor.pt')
 
-    title = _(u"Crop Image")
-    description = _(
+    _title = _(u"Crop Image")
+    _description = _(
         u"Here you can optionally crop the image, that means choose a section"
         u" of the image that you consider relevant. The parts of the image "
         u"that are not part of your selection will be removed permanently. "
