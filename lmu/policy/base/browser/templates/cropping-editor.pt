@@ -4,9 +4,9 @@
   xmlns:tal="http://xml.zope.org/namespaces/tal"
   i18n:domain="plone.app.imagecropping">
 
-  <body>
-
-    <metal:main fill-slot="main">
+<body>
+  <metal:main fill-slot="main">
+    <div id="content-core">
       <h1 class="documentFirstHeading" tal:content="view/title">Title</h1>
 
       <tal:noScales condition="not: view/showCropping">
@@ -23,8 +23,9 @@
 
       <tal:scales condition="view/showCropping">
         <p class="documentDescription" tal:content="view/description">description</p>
-        <div tal:define="scale view/get_lmu_scale">
-
+        <tal:scale define="scale view/get_lmu_scale">
+          <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
+                                                             tal:condition="scale">
             <ul class="scales visualNoMarker hidden">
               <li tal:attributes="data-jcrop_config scale/config;
                                   data-scale_name scale/id;
@@ -43,12 +44,8 @@
               </li>
             </ul>
 
-
             <div class="cell width-1:2 position-1:4"
                  tal:define="fieldname request/fieldname|view/fieldname">
-
-              <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
-                                                             tal:condition="scale">
 
                   <!--JCrop Editor-->
                   <img class="cropbox" tal:attributes="src python:view.image_url(fieldname);" />
@@ -63,43 +60,38 @@
                     <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value fieldname" />
 
                   </div>
-                  <input type="submit"
-                    class="context"
-                    value="Save cropping information"
-                    i18n:attributes="value"
-                    name="form.button.Save"
-                    />
-                  <div class="discreet tooltip"
-                       i18n:translate="">
-                      Save this cropping area for the selected scale.
-                  </div>
-                  <input type="submit"
-                    class="context"
-                    value="Remove cropping information"
-                    i18n:attributes="value"
-                    name="form.button.Delete"
-                    />
-                  <div class="discreet tooltip"
-                       i18n:translate="">
-                      The selected scale gets reverted to the default behaviour: resize, no crop.
-                  </div>
-                  <input type="submit"
-                    class="standalone"
-                    value="Close"
-                    tal:condition="ajax_load"
-                    i18n:attributes="value"
-                    name="form.button.Cancel"
-                    />
-
-                  <input type="hidden" name="ajax_load"
-                      tal:condition="ajax_load"
-                      tal:attributes="value ajax_load" />
-              </form>
 
             </div>
 
             <div class="visualClear"><!-- --></div>
-        </div>
+            <div class="formControls">
+              <input type="submit"
+                class="context button-field"
+                value="Save cropping information"
+                i18n:attributes="value"
+                name="form.button.Save"
+                />
+              <input type="submit"
+                tal:condition="view/show_delete|string:1"
+                class="context button-field"
+                value="Remove cropping information"
+                i18n:attributes="value"
+                name="form.button.Delete"
+                />
+              <input type="submit"
+                class="standalone button-field"
+                value="Close"
+                tal:condition="ajax_load"
+                i18n:attributes="value"
+                name="form.button.Cancel"
+                />
+
+              <input type="hidden" name="ajax_load"
+                  tal:condition="ajax_load"
+                  tal:attributes="value ajax_load" />
+                  </div>
+          </form>
+        </tal:scale>
 
       <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
       <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
@@ -112,8 +104,8 @@
           });"></script>
 
     </tal:scales>
-    </metal:main>
-
-  </body>
+  </div>
+</metal:main>
+</body>
 
 </html>

@@ -429,6 +429,8 @@ class HardCroppingEditor(CroppingEditor):
         u"that are not part of your selection will be removed permanently. "
         u"This cannot be undone!"
     )
+    # We do not want to show the "delete cropping information" button
+    show_delete = False
 
     def get_lmu_scale(self):
         """ Manually construct a pseudo-scale with free aspect ratio """
