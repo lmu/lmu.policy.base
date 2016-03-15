@@ -89,20 +89,19 @@
               <input type="hidden" name="ajax_load"
                   tal:condition="ajax_load"
                   tal:attributes="value ajax_load" />
-                  </div>
+            </div>
+            <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+            <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+            <script type="application/javascript"
+                    tal:content="string:
+                var imagecropping = new ImageCropping();
+                imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
+                jQuery(function(jq) {
+                   imagecropping.init_editor();
+                });"></script>
+            <script type="application/javascript">$(document).ready( function() {alert('Proof: javascript loaded!'); });</script>
           </form>
         </tal:scale>
-
-      <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-      <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
-      <script type="application/javascript"
-              tal:content="string:
-          var imagecropping = new ImageCropping();
-          imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
-          jQuery(function(jq) {
-             imagecropping.init_editor();
-          });"></script>
-
     </tal:scales>
   </div>
 </metal:main>

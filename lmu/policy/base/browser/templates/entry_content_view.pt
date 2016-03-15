@@ -65,6 +65,22 @@
                 onLoad: ajaxify_overlay_form
             }
         });
+        $("a[href$='@@teasercroppingeditor'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a[href$='@@hardcroppingeditor'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_overlay_form
+            }
+        });
         $("a[href$='delete_confirmation'].popup").prepOverlay({
             subtype:'ajax',
             selector:'#content',
@@ -187,12 +203,12 @@
                                   </a>
                               </li>
                               <li tal:condition="repeat/item/start">
-                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor" title="Choose image detail" i18n:attributes="title">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor" title="Choose image detail" i18n:attributes="title">
                                     <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Choose image detail</span>
                                   </a>
                               </li>
                               <li>
-                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
                                     <i class="fi-photo helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
                                   </a>
                               </li>
