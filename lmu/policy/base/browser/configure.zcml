@@ -123,9 +123,17 @@
         />
 
     <browser:page
-        class=".content.LMUCroppingEditor"
+        class=".content.TeaserCroppingEditor"
         for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
-        name="croppingeditor"
+        name="teasercroppingeditor"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
+    <browser:page
+        class=".content.HardCroppingEditor"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+        name="hardcroppingeditor"
         layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         permission="cmf.ModifyPortalContent"
         />

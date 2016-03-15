@@ -177,18 +177,23 @@
                       <div class="column small-2">
                           <ul class="inline-list right">
                               <li>
-                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit" title="Edit" i18n:attributes="title">
                                       <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
                                   </a>
                               </li>
                               <li>
-                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation" title="Delete" i18n:attributes="title">
                                     <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
                                   </a>
                               </li>
+                              <li tal:condition="repeat/item/start">
+                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor" title="Choose image detail" i18n:attributes="title">
+                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Choose image detail</span>
+                                  </a>
+                              </li>
                               <li>
-                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
-                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
+                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
+                                    <i class="fi-photo helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
                                   </a>
                               </li>
                           </ul>
