@@ -45,6 +45,14 @@
             });
         }
     };
+    function ajaxify_cropping_form() {
+        ajaxify_overlay_form();
+        var imagecropping = new ImageCropping();
+        imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
+        jQuery(function(jq) {
+           imagecropping.init_editor();
+        });
+    };
 
     function set_up_functions() {
         $("a[href$='@@contained_image_edit'].popup").prepOverlay({
@@ -70,7 +78,7 @@
             selector:'#content-core',
             closeselector:"input[name='form.button.Cancel']",
             config: {
-                onLoad: ajaxify_overlay_form
+                onLoad: ajaxify_cropping_form
             }
         });
         $("a[href$='@@hardcroppingeditor'].popup").prepOverlay({
@@ -78,7 +86,7 @@
             selector:'#content-core',
             closeselector:"input[name='form.button.Cancel']",
             config: {
-                onLoad: ajaxify_overlay_form
+                onLoad: ajaxify_cropping_form
             }
         });
         $("a[href$='delete_confirmation'].popup").prepOverlay({
