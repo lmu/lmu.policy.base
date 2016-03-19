@@ -15,7 +15,6 @@ def getURL(self, relative=False):
 
     try:
         url = self.request.physicalPathToURL(path, relative)
-        #import ipdb; ipdb.set_trace()
         domain = self.get('domain')[0]
 
         if self.get('cms_system') != cms_system() or domain != portal_domains()[0]:

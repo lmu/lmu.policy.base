@@ -104,14 +104,12 @@ class Search(BaseSearch):
         else:
             catalog = getToolByName(self.context, 'portal_catalog')
             try:
-                #import ipdb; ipdb.set_trace()
                 results = catalog(**query)
             except ParseError:
                 return []
         qtime = timedelta(0)
         if isinstance(results, SolrResponse) and results.responseHeader and 'QTime' in results.responseHeader:
             qtime = timedelta(milliseconds=results.responseHeader.get('QTime'))
-        #import ipdb;ipdb.set_trace()
 
         log.debug("Raw Results: %s", getattr(results, '__dict__', {}))
         results = IContentListing(results)
@@ -131,7 +129,6 @@ class Search(BaseSearch):
     def filter_query(self, query):
         query = super(Search, self).filter_query(query)
         if query:
-            #import ipdb; ipdb.set_trace()
             if query['path'] == getNavigationRoot(self.context) or query['path'] is None:
                 query['path'] = search_paths()
                 log.debug('Make general path search, request was for "%s".', getNavigationRoot(self.context))
@@ -149,7 +146,6 @@ class Search(BaseSearch):
     def breadcrumbs(self, item):
         breadcrumbs = []
         schema = 'https://'
-        #import ipdb; ipdb.set_trace()
         try:
             flare = getattr(item, 'flare', {})
             # Lookup primary Domain Name:
@@ -197,7 +193,6 @@ class Search(BaseSearch):
             log.warn('During Breadcrumb generation has happend an Attribute error, "%s" is not found', e)
         except Exception as e:
             log.warn('%s during Breadcrumb generation for UID: "%s" => %s', type(e), item.uuid(), e)
-            #import ipdb; ipdb.set_trace()
             return None
         return breadcrumbs
 
@@ -206,7 +201,6 @@ class Search(BaseSearch):
 
     def getPortalInfo(self, item):
         portal_info = None
-        #import ipdb; ipdb.set_trace()
 
         try:
             flare = getattr(item, 'flare', {})
@@ -380,7 +374,6 @@ class UserInfo(BrowserView, _IncludeMixin):
         portrait = pm.getPersonalPortrait()
         #image = Image.open(StringIO.StringIO(portrait.data))
         #self.portrait = image.resize((30, 30))
-        #import ipdb; ipdb.set_trace()
         #small_portrait, mimetype = scale_image(StringIO.StringIO(portrait.data), (30, 30))
         #self.portrait = OFSImage.Image(id=user.getUserName(), file=small_portrait, title='')
         self.portrait = portrait

@@ -14,52 +14,86 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
+#: ./controlpanel.py:46
+msgid "1 day"
+msgstr ""
+
+#: ./controlpanel.py:49
+msgid "1 month"
+msgstr ""
+
+#: ./controlpanel.py:47
+msgid "1 week"
+msgstr ""
+
+#: ./controlpanel.py:48
+msgid "2 weeks"
+msgstr ""
+
+#: ./controlpanel.py:50
+msgid "3 month"
+msgstr ""
+
+#: ./controlpanel.py:51
+msgid "6 month"
+msgstr ""
+
 #: ./profiles/default/propertiestool.xml
 msgid "Blog Entry"
 msgstr "Blog-Beitrag"
 
-#: ./controlpanel.py:78
+#: ./controlpanel.py:89
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
 
-#: ./controlpanel.py:70
+#: ./controlpanel.py:81
 msgid "Breadcrumb override level 1 - Title"
 msgstr ""
 
-#: ./controlpanel.py:98
+#: ./controlpanel.py:109
 msgid "Breadcrumb override level 2 - Link"
 msgstr ""
 
-#: ./controlpanel.py:90
+#: ./controlpanel.py:101
 msgid "Breadcrumb override level 2 - Title"
 msgstr ""
 
-#: ./controlpanel.py:121
+#: ./controlpanel.py:132
 msgid "CMS System"
 msgstr "CMS-System"
 
-#: ./browser/templates/entry_content_view.pt:191
+#: ./browser/content.py:400
+#: ./browser/templates/entry_content_view.pt:190
+msgid "Choose image detail"
+msgstr "Bildausschnitt wählen"
+
+#: ./browser/content.py:442
+#: ./browser/templates/entry_content_view.pt:195
 msgid "Crop Image"
-msgstr "Bild bescheiden"
+msgstr "Bild beschneiden"
 
 #: ./browser/templates/entry_content_view.pt:146
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:186
+#: ./browser/templates/entry_content_view.pt:185
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
+
+#: ./controlpanel.py:139
+msgid "Delete Timedelta"
+msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "Document"
 msgstr "Dokument"
 
-#: ./controlpanel.py:109
+#: ./controlpanel.py:120
 msgid "Domain(s)"
 msgstr "Domain(s)"
 
-#: ./controlpanel.py:110
+#: ./controlpanel.py:121
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
@@ -67,7 +101,7 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:181
+#: ./browser/templates/entry_content_view.pt:180
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -75,13 +109,21 @@ msgstr "Bearbeiten"
 msgid "File"
 msgstr "Datei"
 
-#: ./browser/templates/entry_content_view.pt:216
+#: ./browser/templates/entry_content_view.pt:221
 msgid "Files"
 msgstr "Dateien"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Folder"
 msgstr "Ordner"
+
+#: ./browser/content.py:401
+msgid "Here you can choose a section of the image that will be shown as teaser image on listings and overviews. The aspect ratio is forced to 16×9. You can later on pick a different section, or remove your selection completely to revert to the default."
+msgstr "Hier können Sie einen Bildausschnitt wählen, der als Teaser-Bild in Auflistungen und Übersichtsseiten auftaucht. Das Seitenverhältnis ist auf 16×9 beschränkt. Sie können die getroffene Auswahl jederzeit ändern oder ganz entfernen."
+
+#: ./browser/content.py:443
+msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
+msgstr "Hier können Sie falls nötig das Bild zuschneiden, das heisst einen beliebigen Ausschnitt des Bildes wähen, den Sie für relevant halten. Der nicht in der Auswahl enthaltene Teil des Bildes wird entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden!"
 
 #: ./browser/templates/entry_content_view.pt:158
 msgid "Images"
@@ -91,11 +133,11 @@ msgstr "Bilder"
 msgid "LMU Settings"
 msgstr "LMU Einstellungen"
 
-#: ./controlpanel.py:46
+#: ./controlpanel.py:57
 msgid "Language"
 msgstr "Sprache"
 
-#: ./controlpanel.py:122
+#: ./controlpanel.py:133
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
@@ -103,11 +145,11 @@ msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizie
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:244
+#: ./browser/templates/entry_content_view.pt:249
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:203
+#: ./browser/templates/entry_content_view.pt:208
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
@@ -127,7 +169,7 @@ msgstr "Veröffentlichung"
 msgid "Search"
 msgstr "Suche"
 
-#: ./controlpanel.py:115
+#: ./controlpanel.py:126
 msgid "Search Path(s)"
 msgstr "Such-Pfade"
 
@@ -143,15 +185,15 @@ msgstr "Suchergebnisse für ${term}"
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./controlpanel.py:83
+#: ./controlpanel.py:94
 msgid "Show Breadcrumb override level 1"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 1"
 
-#: ./controlpanel.py:103
+#: ./controlpanel.py:114
 msgid "Show Breadcrumb override level 2"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 
-#: ./controlpanel.py:116
+#: ./controlpanel.py:127
 msgid "Solr Path_parrents that should be searched"
 msgstr "Solr Pfade die durchsucht werden sollen"
 
@@ -159,7 +201,7 @@ msgstr "Solr Pfade die durchsucht werden sollen"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:209
+#: ./browser/templates/entry_content_view.pt:214
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
@@ -167,13 +209,17 @@ msgstr "Dateien sortieren"
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./controlpanel.py:49
+#: ./controlpanel.py:60
 msgid "Title"
 msgstr "Titel"
 
 #: ./browser/templates/entry_content_view.pt:133
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
+
+#: ./controlpanel.py:140
+msgid "When sould expired Entries be deleted automaticaly"
+msgstr ""
 
 #. Default: "This item can not be deleted because it is currently locked by another user."
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:18
@@ -206,12 +252,12 @@ msgid "batch_x_items_matching_your_criteria"
 msgstr "${number} Inhalte gefunden."
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:240
+#: ./browser/templates/search.pt:248
 msgid "box_last_modified"
 msgstr "zuletzt verändert"
 
 #. Default: "published"
-#: ./browser/templates/search.pt:230
+#: ./browser/templates/search.pt:238
 msgid "box_published"
 msgstr "Veröffentlicht"
 
@@ -228,13 +274,17 @@ msgstr "Keine Inhalte gefunden"
 msgid "down"
 msgstr "runter"
 
-#: ./browser/templates/search.pt:255
+#: ./browser/templates/search.pt:263
 msgid "filed under:"
 msgstr "Keywords"
 
 #: ./profiles/default/propertiestool.xml
 msgid "generic"
 msgstr "Dokumente, Dateien und Bilder"
+
+#: ./controlpanel.py:45
+msgid "immediat"
+msgstr ""
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
@@ -243,7 +293,7 @@ msgid "label_advanced_search"
 msgstr "Erweiterte Suche"
 
 #. Default: "by ${author}"
-#: ./browser/templates/search.pt:215
+#: ./browser/templates/search.pt:222
 msgid "label_by_author"
 msgstr "Autor: ${author}"
 
@@ -382,11 +432,11 @@ msgstr "Task"
 msgid "zuv_weiterbildung"
 msgstr "Weiterbildungsangebot"
 
-#: ./browser/content.py:154
+#: ./browser/content.py:170
 msgid "Überschrift 1"
 msgstr "Überschrift 1"
 
-#: ./browser/content.py:155
+#: ./browser/content.py:171
 msgid "Überschrift 2"
 msgstr "Überschrift 2"
 

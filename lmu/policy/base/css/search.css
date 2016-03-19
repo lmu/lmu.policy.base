@@ -17,3 +17,7 @@
 .searchPage #searchfields {
     overflow: visible;
 }
+
+.hidden {
+    display: none;
+}

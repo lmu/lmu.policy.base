@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import time
 
+from cStringIO import StringIO
 from email import utils
 from datetime import datetime
-from datetime import tzinfo
 
 from Products.CMFCore import permissions
 from Products.Five.browser import BrowserView
@@ -12,14 +12,19 @@ from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
 from plone import api
 from plone.app.discussion.browser.comments import CommentsViewlet
+from plone.app.imagecropping.browser.editor import CroppingEditor
 from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
+from z3c.caching.purge import Purge
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import INPUT_MODE
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
+from zope.event import notify
+from zope.i18n import translate
 from zope.interface import alsoProvides
 
 from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
@@ -28,6 +33,9 @@ from lmu.policy.base.browser.utils import isDBReadOnly as uIsDBReadOnly
 from lmu.policy.base.browser.utils import _IncludeMixin
 #from lmu.policy.base.browser.utils import strip_text as ustrip_text
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
+
+import json
+import PIL.Image
 
 from logging import getLogger
 
@@ -367,6 +375,147 @@ class LMUCommentsViewlet(CommentsViewlet):
         if not uIsDBReadOnly() and (is_blog_entry or is_pinnwand_entry) and is_private:
             return False
         return super(LMUCommentsViewlet, self).can_reply()
+
+
+class _LMUCroppingEditor(CroppingEditor):
+
+    def __call__(self):
+        plt = api.portal.get_tool('portal_languages')
+        self.lang = plt.getPreferredLanguage()
+        return super(_LMUCroppingEditor, self).__call__()
+
+    @property
+    def title(self):
+        return translate(self._title, target_language=self.lang)
+
+    @property
+    def description(self):
+        return translate(self._description, target_language=self.lang)
+
+
+class TeaserCroppingEditor(_LMUCroppingEditor):
+
+    template = ViewPageTemplateFile('templates/cropping-editor.pt')
+
+    _title = _(u"Choose image detail")
+    _description = _(
+        u"Here you can choose a section of the image that will be shown as "
+        u"teaser image on listings and overviews. The aspect ratio is forced "
+        u"to 16×9. You can later on pick a different section, or remove your "
+        u"selection completely to revert to the default."
+    )
+
+    def _filter_scales(self, scales):
+        return [x for x in scales if x['id'].find('_teaser') > 0]
+
+    def _crop(self):
+        """ Filter for all 'teaser' scales and apply the chosen cropping """
+        def coordinate(x):
+            return int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        scales = self.scales(fieldname=self.fieldname)
+        scale_names = [scale['id'] for scale in self._filter_scales(scales)]
+        for scale_name in scale_names:
+            cropping_util = self.context.restrictedTraverse('@@crop-image')
+            cropping_util._crop(fieldname=self.fieldname,
+                                scale=scale_name,
+                                box=(x1, y1, x2, y2))
+
+    def get_lmu_scale(self):
+        """ Find all 'teaser' scales and return the largest one"""
+        scales = self.scales(fieldname=self.fieldname)
+        if not len(scales):
+            return None
+        return sorted(
+            self._filter_scales(scales),
+            key=lambda x: x['thumb_width'], reverse=True
+        )[0]
+
+
+class HardCroppingEditor(_LMUCroppingEditor):
+
+    template = ViewPageTemplateFile('templates/cropping-editor.pt')
+
+    _title = _(u"Crop Image")
+    _description = _(
+        u"Here you can optionally crop the image, that means choose a section"
+        u" of the image that you consider relevant. The parts of the image "
+        u"that are not part of your selection will be removed permanently. "
+        u"This cannot be undone!"
+    )
+    # We do not want to show the "delete cropping information" button
+    show_delete = False
+
+    def get_lmu_scale(self):
+        """ Manually construct a pseudo-scale with free aspect ratio """
+        field = getattr(self.context, self.fieldname)
+        image_size = field.getImageSize()
+        scale = dict()
+        select_box = (0, 0, image_size[0], image_size[1])
+        large_image_url = self.image_url(self.fieldname)
+        config = dict([
+            ('allowResize', True),
+            ('allowMove', True),
+            ('trueSize', [image_size[0], image_size[1]]),
+            ('boxWidth', self.default_editor_size[0]),
+            ('boxHeight', self.default_editor_size[1]),
+            ('setSelect', select_box),
+            # No fixed aspect ratio
+            ('aspectRatio', None),
+            # provide a sensible minimal size without being too restrictive
+            ('minSize', [50, 50]),
+            ('maxSize', [image_size[0], image_size[1]]),
+            ('imageURL', large_image_url),
+        ])
+        scale['config'] = json.dumps(config)
+        # which scale to use for showing the crop area? - we pick 'large'
+        scale['id'] = 'large'
+        scale['title'] = u'Hard crop'
+        scale['selected'] = 'selected'
+        scale['is_cropped'] = False
+        scale['thumb_width'] = image_size[0]
+        scale['thumb_height'] = image_size[1]
+        scale['image_url'] = large_image_url
+        return scale
+
+    def _crop(self):
+        def coordinate(x):
+            return int(round(float(self.request.form.get(x))))
+        x1 = coordinate('x1')
+        y1 = coordinate('y1')
+        x2 = coordinate('x2')
+        y2 = coordinate('y2')
+        box = (x1, y1, x2, y2)
+        field = getattr(self.context, self.fieldname, None)
+        image_size = field.getImageSize()
+
+        # short-cut: if the "crop" contains the whole image, do nothing
+        if (0, 0, image_size[0], image_size[1]) == box:
+            return
+
+        data = field.data
+        original_file = StringIO(data)
+        image = PIL.Image.open(original_file)
+        image_format = image.format or self.DEFAULT_FORMAT
+        cropped_image = image.crop(box)
+        cropped_image_file = StringIO()
+        cropped_image.save(cropped_image_file, image_format, quality=100)
+        cropped_image_file.seek(0)
+        # Overwrite the image field data
+        field.data = cropped_image_file.read()
+
+        # Throw away saved scales and cropping info
+        annotations = IAnnotations(self.context)
+        if 'plone.scale' in annotations:
+            del annotations['plone.scale']
+        if 'plone.app.imagecropping' in annotations:
+            del annotations['plone.app.imagecropping']
+
+        # Purge caches if needed
+        notify(Purge(self.context))
 
 
 def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):

@@ -1,0 +1,109 @@
+<html metal:use-macro="context/main_template/macros/master"
+  xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+  xmlns:metal="http://xml.zope.org/namespaces/metal"
+  xmlns:tal="http://xml.zope.org/namespaces/tal"
+  i18n:domain="plone.app.imagecropping">
+
+<body>
+  <metal:main fill-slot="main">
+    <div id="content-core">
+      <h1 class="documentFirstHeading" tal:content="view/title">Title</h1>
+
+      <tal:noScales condition="not: view/showCropping">
+        <p class="documentDescription"
+            i18n:translate="noscales_message">
+          There are no scales to crop. Make sure to add them to the
+          <a href="#" i18n:name="link" i18n:translate=""
+            tal:define="portal context/@@plone_portal_state/portal_url"
+            tal:attributes="href string:$portal/@@imagecropping-settings">
+            List of scales with crop support</a>
+          in the controlpanel.
+        </p>
+      </tal:noScales>
+
+      <tal:scales condition="view/showCropping">
+        <p class="documentDescription" tal:content="view/description">description</p>
+        <tal:scale define="scale view/get_lmu_scale">
+          <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
+                                                             tal:condition="scale">
+            <ul class="scales visualNoMarker hidden">
+              <li tal:attributes="data-jcrop_config scale/config;
+                                  data-scale_name scale/id;
+                                  class scale/selected">
+                  <a href="javascript:void(0)"
+                     tal:attributes="id string:imagescale_${scale/id}">
+
+                      <div class="thumbPreview"
+                           tal:attributes="id string:preview-${scale/id};
+                                           style string:width:${scale/thumb_width}px;;max-width:100%">
+                          <img tal:define="is_cropped scale/is_cropped;
+                                           src python:'%s/@@images/%s/%s' % (context.absolute_url(), view.fieldname, scale['id'])"
+                               tal:attributes="src src" />
+                      </div>
+                  </a>
+              </li>
+            </ul>
+
+            <div class="cell width-1:2 position-1:4"
+                 tal:define="fieldname request/fieldname|view/fieldname">
+
+                  <!--JCrop Editor-->
+                  <img class="cropbox" tal:attributes="src python:view.image_url(fieldname);" />
+
+                  <div>
+                    <input type="hidden" size="4" id="x1" name="x1" />
+                    <input type="hidden" size="4" id="y1" name="y1" />
+                    <input type="hidden" size="4" id="x2" name="x2" />
+                    <input type="hidden" size="4" id="y2" name="y2" />
+                    <input type="hidden" id="scalename" name="scalename" value=""
+                      tal:attributes="value scale/id" />
+                    <input type="hidden" id="fieldname" name="fieldname" value="" tal:attributes="value fieldname" />
+
+                  </div>
+
+            </div>
+
+            <div class="visualClear"><!-- --></div>
+            <div class="formControls">
+              <input type="submit"
+                class="context button-field"
+                value="Save cropping information"
+                i18n:attributes="value"
+                name="form.button.Save"
+                />
+              <input type="submit"
+                tal:condition="view/show_delete|string:1"
+                class="context button-field"
+                value="Remove cropping information"
+                i18n:attributes="value"
+                name="form.button.Delete"
+                />
+              <input type="submit"
+                class="standalone button-field"
+                value="Close"
+                tal:condition="ajax_load"
+                i18n:attributes="value"
+                name="form.button.Cancel"
+                />
+
+              <input type="hidden" name="ajax_load"
+                  tal:condition="ajax_load"
+                  tal:attributes="value ajax_load" />
+            </div>
+            <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+            <script type="application/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
+            <script type="application/javascript"
+                    tal:content="string:
+                var imagecropping = new ImageCropping();
+                imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
+                jQuery(function(jq) {
+                   imagecropping.init_editor();
+                });"></script>
+          </form>
+        </tal:scale>
+    </tal:scales>
+  </div>
+</metal:main>
+</body>
+
+</html>

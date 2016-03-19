@@ -45,6 +45,14 @@
             });
         }
     };
+    function ajaxify_cropping_form() {
+        ajaxify_overlay_form();
+        var imagecropping = new ImageCropping();
+        imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
+        jQuery(function(jq) {
+           imagecropping.init_editor();
+        });
+    };
 
     function set_up_functions() {
         $("a[href$='@@contained_image_edit'].popup").prepOverlay({
@@ -63,6 +71,22 @@
             closeselector:"input[name='form.buttons.cancel']",
             config: {
                 onLoad: ajaxify_overlay_form
+            }
+        });
+        $("a[href$='@@teasercroppingeditor'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_cropping_form
+            }
+        });
+        $("a[href$='@@hardcroppingeditor'].popup").prepOverlay({
+            subtype:'ajax',
+            selector:'#content-core',
+            closeselector:"input[name='form.button.Cancel']",
+            config: {
+                onLoad: ajaxify_cropping_form
             }
         });
         $("a[href$='delete_confirmation'].popup").prepOverlay({
@@ -151,7 +175,7 @@
                   <a class="toogle button radius small right helper-margin-bottom-s inline"
                      id="image_sort_button"
                      href="@@content_sort_images_view"
-                     i18n:translate="" 
+                     i18n:translate=""
                      tal:define="images view/images;
                                  nimages python: len(images);"
                      tal:condition="python: nimages > 1">Sort Images</a>
@@ -161,8 +185,8 @@
                     <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
                       <div class="column small-2" >
 
-                        <a class="th" role="button" aria-label="Thumbnails" 
-                           tal:attributes="href item/absolute_url;" 
+                        <a class="th" role="button" aria-label="Thumbnails"
+                           tal:attributes="href item/absolute_url;"
                            tal:on-error=" item">
 
                           <img tal:define="scales item/@@images;"
@@ -177,18 +201,23 @@
                       <div class="column small-2">
                           <ul class="inline-list right">
                               <li>
-                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit" title="Edit" i18n:attributes="title">
                                       <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
                                   </a>
                               </li>
                               <li>
-                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation" title="Delete" i18n:attributes="title">
                                     <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
                                   </a>
                               </li>
-                              <li tal:condition="nothing">
-                                  <a href="#" tal:attributes="href string:${item/absolute_url}/@@croppingeditor">
-                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
+                              <li tal:condition="repeat/item/start">
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor" title="Choose image detail" i18n:attributes="title">
+                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Choose image detail</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
+                                    <i class="fi-photo helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
                                   </a>
                               </li>
                           </ul>
@@ -209,7 +238,7 @@
                   <a class="toogle button radius small right"
                      id="file_sort_button"
                      href="@@content_sort_files_view"
-                     i18n:translate="" 
+                     i18n:translate=""
                      tal:define="files view/files;
                                  nfiles python: len(files);"
                      tal:condition="python: nfiles > 1">Sort Files</a>

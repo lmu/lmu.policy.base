@@ -70,7 +70,6 @@ class _IncludeMixin(object):
             REQUEST.environ['HTTP_X_THEME_DISABLED'] = True
 
             alsoProvides(REQUEST, IDisableCSRFProtection)
-            # import ipdb; ipdb.set_trace()
 
         return self.template()
 
