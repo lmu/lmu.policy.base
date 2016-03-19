@@ -99,7 +99,6 @@
                 jQuery(function(jq) {
                    imagecropping.init_editor();
                 });"></script>
-            <script type="application/javascript">$(document).ready( function() {alert('Proof: javascript loaded!'); });</script>
           </form>
         </tal:scale>
     </tal:scales>
