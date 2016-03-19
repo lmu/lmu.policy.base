@@ -15,9 +15,6 @@ class LMUBaseContent(Container):
             return conversation.total_comments
 
     def images(self):
-        #image_brains = api.content.find(context=self.context, depth=1, portal_type='Image')
-        #images = [item.getObject() for item in image_brains]
-        #import ipdb; ipdb.set_trace()
         images = [item for item in self.values()if item.portal_type == 'Image']
         if None in images:
             images.remove(None)
@@ -27,5 +24,4 @@ class LMUBaseContent(Container):
         files = [item for item in self.values() if item.portal_type == 'File']
         if None in files:
             files.remove(None)
-        #import ipdb; ipdb.set_trace()
         return files
