@@ -10,6 +10,7 @@
 <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
 <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
 <tal:script tal:replace='structure string:<script type="text/javascript">' />
+/* TODO: reduce code duplication between here and the overlay templates */
 (function($) {
     function reload_folder_contents() {
         var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
@@ -43,6 +44,18 @@
             $('.overlay form').ajaxForm({
                 success: reload_sort_previews(mode)
             });
+            var table = '#listing';
+            ploneDnDReorder.table = jQuery(table);
+            if (!ploneDnDReorder.table.length)
+                return;
+            ploneDnDReorder.rows = jQuery(table + " > div");
+            jQuery(table + " > div > .draggable,")
+                .not('.notDraggable')
+                .mousedown(ploneDnDReorder.doDown)
+                .mouseup(ploneDnDReorder.doUp)
+                .addClass("draggingHook")
+                .css("cursor", "ns-resize")
+                .html('&#x28ff;');
         }
     };
     function ajaxify_cropping_form() {

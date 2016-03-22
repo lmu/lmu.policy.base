@@ -21,6 +21,18 @@
                         );
                     }
                 });
+                var table = '#listing';
+                ploneDnDReorder.table = jQuery(table);
+                if (!ploneDnDReorder.table.length)
+                    return;
+                ploneDnDReorder.rows = jQuery(table + " > div");
+                jQuery(table + " > div > .draggable,")
+                    .not('.notDraggable')
+                    .mousedown(ploneDnDReorder.doDown)
+                    .mouseup(ploneDnDReorder.doUp)
+                    .addClass("draggingHook")
+                    .css("cursor", "ns-resize")
+                    .html('&#x28ff;');
             }
             $(function() {
                 set_up_functions();
@@ -35,7 +47,9 @@
             <div id="folder_contents_sort">
                 <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
 
-                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/content_sortinfo">
+                    <div class="draggable row helper-border-top helper-margin-bottom-s"
+                        tal:attributes="id string:folder-contents-item-${item/id}"
+                        tal:repeat="item view/content_sortinfo">
                       <div class="column small-2" tal:condition="python: view.mode == 'images'">
                           <img tal:replace="structure item/tag" tal:on-error="string: Kein Bild Scale"/>
                       </div>
@@ -49,7 +63,7 @@
                           <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
                       </div>
 
-                      <div class="column small-2">
+                      <div class="column small-2 draggable">
                           <form class="itemorder" action="folder_moveitem" method="post" tal:attributes="id string:functions-${item/id}">
                               <input type="hidden" name="item_id" value="test.png" tal:attributes="value item/id" />
                               <input type="hidden" name="subset_ids:list" value="test.png" tal:attributes="value subset_id" tal:repeat="subset_id view/subset_ids" />
