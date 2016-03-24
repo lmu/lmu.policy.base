@@ -81,7 +81,7 @@ class _AbstractLMUBaseContentView(BrowserView):
         size = fileobj.file.getSize()
         if size < 1000:
             size = str(size) + ' Byte'
-        elif size > 1024 and size/1024 < 1000:
+        elif size > 1024 and size / 1024 < 1000:
             size = str(fileobj.file.getSize() / 1024) + ' KB'
         else:
             size = str(fileobj.file.getSize() / 1024 / 1024) + ' MB'

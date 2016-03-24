@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-24 12:28+0000\n"
+"POT-Creation-Date: 2016-03-24 16:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,12 +71,16 @@ msgid "CMS System"
 msgstr ""
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:217
+#: ./browser/templates/entry_content_view.pt:209
 msgid "Choose image detail"
 msgstr ""
 
+#: ./browser/templates/cropping-editor.pt:81
+msgid "Close"
+msgstr ""
+
 #: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:204
+#: ./browser/templates/entry_content_view.pt:251
 msgid "Crop Image"
 msgstr ""
 
@@ -84,16 +88,16 @@ msgstr ""
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:238
+#: ./browser/templates/entry_content_view.pt:240
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:293
+#: ./browser/templates/entry_content_view.pt:295
 msgid "Delete File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:239
+#: ./browser/templates/entry_content_view.pt:241
 msgid "Delete Image"
 msgstr ""
 
@@ -117,11 +121,11 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:233
+#: ./browser/templates/entry_content_view.pt:235
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:234
+#: ./browser/templates/entry_content_view.pt:236
 msgid "Edit Title and Caption"
 msgstr ""
 
@@ -129,7 +133,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:276
+#: ./browser/templates/entry_content_view.pt:278
 msgid "Files"
 msgstr ""
 
@@ -157,6 +161,10 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
+#: ./browser/templates/cropping-editor.pt:16
+msgid "List of scales with crop support"
+msgstr ""
+
 #: ./controlpanel.py:133
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
@@ -165,11 +173,11 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:304
+#: ./browser/templates/entry_content_view.pt:306
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:263
+#: ./browser/templates/entry_content_view.pt:265
 msgid "No Images Uploaded"
 msgstr ""
 
@@ -183,6 +191,14 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "Publication"
+msgstr ""
+
+#: ./browser/templates/cropping-editor.pt:74
+msgid "Remove cropping information"
+msgstr ""
+
+#: ./browser/templates/cropping-editor.pt:68
+msgid "Save cropping information"
 msgstr ""
 
 #: ./browser/templates/search.pt:43
@@ -221,7 +237,7 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:269
+#: ./browser/templates/entry_content_view.pt:271
 msgid "Sort Files"
 msgstr ""
 
@@ -229,8 +245,16 @@ msgstr ""
 msgid "Sort Images"
 msgstr ""
 
+#: ./browser/templates/entry_content_view.pt:219
+msgid "Teaser"
+msgstr ""
+
 #: ./browser/templates/entry_content_view.pt:188
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:204
+msgid "Thumbnail"
 msgstr ""
 
 #: ./controlpanel.py:60
@@ -349,6 +373,11 @@ msgstr ""
 #. Default: "LiveSearch &#8595;"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:101
 msgid "legend_livesearch"
+msgstr ""
+
+#. Default: "There are no scales to crop. Make sure to add them to the ${link} in the controlpanel."
+#: ./browser/templates/cropping-editor.pt:16
+msgid "noscales_message"
 msgstr ""
 
 #. Default: "Sort by"
