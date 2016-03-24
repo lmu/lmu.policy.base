@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-15 17:46+0000\n"
+"POT-Creation-Date: 2016-03-24 12:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,22 +71,30 @@ msgid "CMS System"
 msgstr ""
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:190
+#: ./browser/templates/entry_content_view.pt:217
 msgid "Choose image detail"
 msgstr ""
 
 #: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:195
+#: ./browser/templates/entry_content_view.pt:204
 msgid "Crop Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:146
+#: ./browser/templates/entry_content_view.pt:170
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:185
+#: ./browser/templates/entry_content_view.pt:238
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:293
+msgid "Delete File"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:239
+msgid "Delete Image"
 msgstr ""
 
 #: ./controlpanel.py:139
@@ -109,15 +117,19 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:180
+#: ./browser/templates/entry_content_view.pt:233
 msgid "Edit"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:234
+msgid "Edit Title and Caption"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:221
+#: ./browser/templates/entry_content_view.pt:276
 msgid "Files"
 msgstr ""
 
@@ -133,7 +145,7 @@ msgstr ""
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:158
+#: ./browser/templates/entry_content_view.pt:182
 msgid "Images"
 msgstr ""
 
@@ -153,11 +165,11 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:249
+#: ./browser/templates/entry_content_view.pt:304
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:208
+#: ./browser/templates/entry_content_view.pt:263
 msgid "No Images Uploaded"
 msgstr ""
 
@@ -209,19 +221,23 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:214
+#: ./browser/templates/entry_content_view.pt:269
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:151
+#: ./browser/templates/entry_content_view.pt:175
 msgid "Sort Images"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:188
+msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
 #: ./controlpanel.py:60
 msgid "Title"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:133
+#: ./browser/templates/entry_content_view.pt:157
 msgid "Upload Images and Files"
 msgstr ""
 
@@ -269,7 +285,7 @@ msgstr ""
 msgid "box_published"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:146
+#: ./browser/templates/entry_content_view.pt:170
 msgid "dargestellt"
 msgstr ""
 

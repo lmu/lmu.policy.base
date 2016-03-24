@@ -182,47 +182,80 @@
                     <h2 i18n:translate="" class="inline">Images</h2>
                 </div>
                 <div id="images" class="image_listing helper-margin-bottom-l " tal:condition="view/images" >
-                    <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/images">
-                      <div class="column small-2" >
-
-                        <a class="th" role="button" aria-label="Thumbnails"
-                           tal:attributes="href item/absolute_url;"
-                           tal:on-error=" item">
-
-                          <img tal:define="scales item/@@images;"
-                               tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
-                        </a>
-
+                  <div class=" helper-border-top helper-margin-bottom-s" tal:repeat="item view/images" >
+                    <div class="row" tal:define="start repeat/item/start;" tal:condition="start">
+                      <div class="column small-12">
+                        <p><em class="note" i18n:translate="" >This is the Teaser Image, it will be shown larger on the Entry and on Listings.</em></p>
                       </div>
-                      <div class="column small-8" >
+                    </div>
+                    <div class="row" tal:define="start repeat/item/start;" >
+                      <div class="column small-2"
+                           tal:attributes="class klass;"
+                           tal:define="start repeat/item/start;
+                                       klass python: 'column small-4' if start else 'column small-2';" >
+                        <ul class="inline-list" tal:omit-tag="not:start">
+                          <li tal:omit-tag="not: start">
+                            <a class="th popup" role="button" aria-label="Thumbnails"
+                               tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor"
+                               tal:on-error=" item">
+                              <figure >
+                                <img tal:define="scales item/@@images;"
+                                     tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
+                                <figcaption i18n:translate="" >Thumbnail</figcaption>
+                              </figure>
+                            </a>
+                          </li>
+                          <li tal:condition="start">
+                            <a class="th popup" role="button" aria-label="Thumbnails"
+                               tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor"
+                               tal:on-error=" item"
+                               i18n:attributes="title"
+                               title="Choose image detail">
+                              <figure tal:define="scales item/@@images;
+                                                  thumb python: scales.scale('image', scale='entry_teaser', direction='down');"
+                                      style="max-height: 80px; width: auto;"
+                                      tal:on-error="string: Kein Bild Scale" >
+                                <img tal:attributes="src thumb/url;" style="max-height: 80px; width: auto;"/>
+                                <figcaption i18n:translate="" >Teaser</figcaption>
+                              </figure>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <div class="column small-8"
+                           tal:attributes="class klass;"
+                           tal:define="start repeat/item/start;
+                                       klass python: 'column small-5' if start else 'column small-7';" >
                           <h3 tal:content="item/title" >Titel</h3>
                           <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
                       </div>
-                      <div class="column small-2">
-                          <ul class="inline-list right">
+                      <div class="column small-3">
+                          <ul class="no-bullet">
                               <li>
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit" title="Edit" i18n:attributes="title">
-                                      <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                                      <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Title and Caption</span>
                                   </a>
                               </li>
                               <li>
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation" title="Delete" i18n:attributes="title">
-                                    <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                                    <i class="fi-x helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Delete Image</span>
                                   </a>
                               </li>
+                            <tal:comment tal:condition="default" >
                               <li tal:condition="repeat/item/start">
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor" title="Choose image detail" i18n:attributes="title">
-                                    <i class="fi-crop helper-big" ></i><span class="show-for-sr" i18n:translate="">Choose image detail</span>
+                                    <i class="fi-crop helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Choose image detail</span>
                                   </a>
                               </li>
                               <li>
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
-                                    <i class="fi-photo helper-big" ></i><span class="show-for-sr" i18n:translate="">Crop Image</span>
+                                    <i class="fi-photo helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Crop Image</span>
                                   </a>
                               </li>
+                            </tal:comment>
                           </ul>
                       </div>
-
+                    </div>
                   </div>
 
                 </div>
@@ -246,20 +279,20 @@
                 </div>
                 <div id="files" class="file_listing" tal:condition="view/files">
                   <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/files">
-                    <div class="column small-10" >
+                    <div class="column small-9" >
                       <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="python: view.getFileType(item)" />, <span tal:replace="python: view.getFileSize(item)" />)</small></h3>
                       <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
                     </div>
-                    <div class="column small-2">
-                      <ul class="inline-list right">
+                    <div class="column small-3">
+                      <ul class="no-bullet">
                         <li>
                           <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_file_edit">
-                              <i class="fi-pencil helper-big" ></i><span class="show-for-sr" i18n:translate="">Edit</span>
+                              <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Title and Caption</span>
                           </a>
                         </li>
                         <li>
                             <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
-                              <i class="fi-x helper-big" ></i><span class="show-for-sr" i18n:translate="">Delete</span>
+                              <i class="fi-x helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Delete File</span>
                             </a>
                         </li>
                       </ul>

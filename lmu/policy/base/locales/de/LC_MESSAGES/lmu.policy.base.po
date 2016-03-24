@@ -16,27 +16,27 @@ msgstr ""
 
 #: ./controlpanel.py:46
 msgid "1 day"
-msgstr ""
+msgstr "1 Tag"
 
 #: ./controlpanel.py:49
 msgid "1 month"
-msgstr ""
+msgstr "1 Monat"
 
 #: ./controlpanel.py:47
 msgid "1 week"
-msgstr ""
+msgstr "1 Woche"
 
 #: ./controlpanel.py:48
 msgid "2 weeks"
-msgstr ""
+msgstr "2 Wochen"
 
 #: ./controlpanel.py:50
 msgid "3 month"
-msgstr ""
+msgstr "3 Monate"
 
 #: ./controlpanel.py:51
 msgid "6 month"
-msgstr ""
+msgstr "6 Monate"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Blog Entry"
@@ -63,23 +63,31 @@ msgid "CMS System"
 msgstr "CMS-System"
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:190
+#: ./browser/templates/entry_content_view.pt:217
 msgid "Choose image detail"
 msgstr "Bildausschnitt wählen"
 
 #: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:195
+#: ./browser/templates/entry_content_view.pt:204
 msgid "Crop Image"
 msgstr "Bild beschneiden"
 
-#: ./browser/templates/entry_content_view.pt:146
+#: ./browser/templates/entry_content_view.pt:170
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:185
+#: ./browser/templates/entry_content_view.pt:238
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
+
+#: ./browser/templates/entry_content_view.pt:293
+msgid "Delete File"
+msgstr "Lösche Datei"
+
+#: ./browser/templates/entry_content_view.pt:239
+msgid "Delete Image"
+msgstr "Lösche Bild"
 
 #: ./controlpanel.py:139
 msgid "Delete Timedelta"
@@ -101,15 +109,19 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:180
+#: ./browser/templates/entry_content_view.pt:233
 msgid "Edit"
 msgstr "Bearbeiten"
+
+#: ./browser/templates/entry_content_view.pt:234
+msgid "Edit Title and Caption"
+msgstr "Bildinfo bearbeiten"
 
 #: ./profiles/default/propertiestool.xml
 msgid "File"
 msgstr "Datei"
 
-#: ./browser/templates/entry_content_view.pt:221
+#: ./browser/templates/entry_content_view.pt:276
 msgid "Files"
 msgstr "Dateien"
 
@@ -125,7 +137,7 @@ msgstr "Hier können Sie einen Bildausschnitt wählen, der als Teaser-Bild in Au
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr "Hier können Sie falls nötig das Bild zuschneiden, das heisst einen beliebigen Ausschnitt des Bildes wähen, den Sie für relevant halten. Der nicht in der Auswahl enthaltene Teil des Bildes wird entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden!"
 
-#: ./browser/templates/entry_content_view.pt:158
+#: ./browser/templates/entry_content_view.pt:182
 msgid "Images"
 msgstr "Bilder"
 
@@ -145,11 +157,11 @@ msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizie
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:249
+#: ./browser/templates/entry_content_view.pt:304
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:208
+#: ./browser/templates/entry_content_view.pt:263
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
@@ -201,25 +213,29 @@ msgstr "Solr Pfade die durchsucht werden sollen"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:214
+#: ./browser/templates/entry_content_view.pt:269
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:151
+#: ./browser/templates/entry_content_view.pt:175
 msgid "Sort Images"
 msgstr "Bilder sortieren"
+
+#: ./browser/templates/entry_content_view.pt:188
+msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
+msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichten angezeigt."
 
 #: ./controlpanel.py:60
 msgid "Title"
 msgstr "Titel"
 
-#: ./browser/templates/entry_content_view.pt:133
+#: ./browser/templates/entry_content_view.pt:157
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
 
 #: ./controlpanel.py:140
 msgid "When sould expired Entries be deleted automaticaly"
-msgstr ""
+msgstr "Wann sollen abgelaufene Einträge gelöscht werden."
 
 #. Default: "This item can not be deleted because it is currently locked by another user."
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:18
@@ -261,7 +277,7 @@ msgstr "zuletzt verändert"
 msgid "box_published"
 msgstr "Veröffentlicht"
 
-#: ./browser/templates/entry_content_view.pt:146
+#: ./browser/templates/entry_content_view.pt:170
 msgid "dargestellt"
 msgstr "dargestellt"
 
@@ -284,7 +300,7 @@ msgstr "Dokumente, Dateien und Bilder"
 
 #: ./controlpanel.py:45
 msgid "immediat"
-msgstr ""
+msgstr "sofort"
 
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
@@ -439,4 +455,3 @@ msgstr "Überschrift 1"
 #: ./browser/content.py:171
 msgid "Überschrift 2"
 msgstr "Überschrift 2"
-
