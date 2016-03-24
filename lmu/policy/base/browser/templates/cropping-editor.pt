@@ -26,7 +26,7 @@
         <tal:scale define="scale view/get_lmu_scale">
           <form method="post" id="coords" class="coords" tal:attributes="action context_state/current_base_url"
                                                              tal:condition="scale">
-            <ul class="scales visualNoMarker hidden">
+            <ul class="scales visualNoMarker hide">
               <li tal:attributes="data-jcrop_config scale/config;
                                   data-scale_name scale/id;
                                   class scale/selected">
