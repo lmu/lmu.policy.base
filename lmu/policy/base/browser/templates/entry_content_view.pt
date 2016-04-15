@@ -55,7 +55,9 @@
                 .mouseup(ploneDnDReorder.doUp)
                 .addClass("draggingHook")
                 .css("cursor", "ns-resize")
-                .html('&#x28ff;');
+                .css("min-height", "80px")
+                //.html('&#x28ff;')
+                ;
         }
     };
     function ajaxify_cropping_form() {
@@ -207,17 +209,6 @@
                            tal:define="start repeat/item/start;
                                        klass python: 'column small-4' if start else 'column small-2';" >
                         <ul class="inline-list" tal:omit-tag="not:start">
-                          <li tal:omit-tag="not: start">
-                            <a class="th popup" role="button" aria-label="Thumbnails"
-                               tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor"
-                               tal:on-error=" item">
-                              <figure >
-                                <img tal:define="scales item/@@images;"
-                                     tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
-                                <figcaption i18n:translate="" >Thumbnail</figcaption>
-                              </figure>
-                            </a>
-                          </li>
                           <li tal:condition="start">
                             <a class="th popup" role="button" aria-label="Thumbnails"
                                tal:attributes="href string:${item/absolute_url}/@@teasercroppingeditor"
@@ -230,6 +221,17 @@
                                       tal:on-error="string: Kein Bild Scale" >
                                 <img tal:attributes="src thumb/url;" style="max-height: 80px; width: auto;"/>
                                 <figcaption i18n:translate="" >Teaser</figcaption>
+                              </figure>
+                            </a>
+                          </li>
+                          <li tal:omit-tag="not: start">
+                            <a class="th popup" role="button" aria-label="Thumbnails"
+                               tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor"
+                               tal:on-error=" item">
+                              <figure >
+                                <img tal:define="scales item/@@images;"
+                                     tal:replace="structure python: scales.tag('image', width=80, height=80, direction='down')" tal:on-error="string: Kein Bild Scale"/>
+                                <figcaption i18n:translate="" tal:condition="nothing">Thumbnail</figcaption>
                               </figure>
                             </a>
                           </li>
@@ -246,7 +248,7 @@
                           <ul class="no-bullet">
                               <li>
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_image_edit" title="Edit" i18n:attributes="title">
-                                      <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Title and Caption</span>
+                                      <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Image Title and Caption</span>
                                   </a>
                               </li>
                               <li>
@@ -300,7 +302,7 @@
                       <ul class="no-bullet">
                         <li>
                           <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_file_edit">
-                              <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Title and Caption</span>
+                              <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit File Title and Caption</span>
                           </a>
                         </li>
                         <li>

@@ -63,7 +63,7 @@ msgid "CMS System"
 msgstr "CMS-System"
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:209
+#: ./browser/templates/entry_content_view.pt:224
 msgid "Choose image detail"
 msgstr "Bildausschnitt wählen"
 
@@ -72,26 +72,26 @@ msgid "Close"
 msgstr "Schließen"
 
 #: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:251
+#: ./browser/templates/entry_content_view.pt:266
 msgid "Crop Image"
 msgstr "Bild beschneiden"
 
-#: ./browser/templates/entry_content_view.pt:170
+#: ./browser/templates/entry_content_view.pt:185
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:240
+#: ./browser/templates/entry_content_view.pt:255
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
 
-#: ./browser/templates/entry_content_view.pt:295
+#: ./browser/templates/entry_content_view.pt:310
 msgid "Delete File"
-msgstr "Lösche Datei"
+msgstr "Datei löschen"
 
-#: ./browser/templates/entry_content_view.pt:241
+#: ./browser/templates/entry_content_view.pt:256
 msgid "Delete Image"
-msgstr "Lösche Bild"
+msgstr "Bild löschen"
 
 #: ./controlpanel.py:139
 msgid "Delete Timedelta"
@@ -109,23 +109,31 @@ msgstr "Domain(s)"
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
-#: ./browser/templates/entry_sort_items_view.pt:83
+#: ./browser/templates/entry_sort_items_view.pt:102
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:235
+#: ./browser/templates/entry_content_view.pt:250
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:236
-msgid "Edit Title and Caption"
-msgstr "Bildinfo bearbeiten"
+#: ./browser/templates/entry_content_view.pt:305
+msgid "Edit File Title and Caption"
+msgstr "Dateiinfos bearbeiten"
+
+#: ./browser/templates/entry_content_view.pt:251
+msgid "Edit Image Title and Caption"
+msgstr "Bildinfos bearbeiten"
+
+#: ./configure.zcml:21
+msgid "Extension profile for LMU Base Policy - never install standalone use a specific instead."
+msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "File"
 msgstr "Datei"
 
-#: ./browser/templates/entry_content_view.pt:278
+#: ./browser/templates/entry_content_view.pt:293
 msgid "Files"
 msgstr "Dateien"
 
@@ -141,9 +149,13 @@ msgstr "Hier können Sie einen Bildausschnitt wählen, der als Teaser-Bild in Au
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr "Hier können Sie falls nötig das Bild zuschneiden, das heißt einen beliebigen Ausschnitt des Bildes wählen, den Sie für relevant halten. Der nicht in der Auswahl enthaltene Teil des Bildes wird entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden!"
 
-#: ./browser/templates/entry_content_view.pt:182
+#: ./browser/templates/entry_content_view.pt:197
 msgid "Images"
 msgstr "Bilder"
+
+#: ./configure.zcml:21
+msgid "LMU Base-Policy"
+msgstr ""
 
 #: ./profiles/default/controlpanel.xml
 msgid "LMU Settings"
@@ -161,15 +173,15 @@ msgstr "Bildgrößen für Cropping Editor"
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
-#: ./browser/templates/entry_sort_items_view.pt:78
+#: ./browser/templates/entry_sort_items_view.pt:97
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:306
+#: ./browser/templates/entry_content_view.pt:321
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:265
+#: ./browser/templates/entry_content_view.pt:280
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
@@ -180,6 +192,10 @@ msgstr "Sonstige"
 #: ./profiles/default/propertiestool.xml
 msgid "Pinnwand Entry"
 msgstr "Pinnwand-Eintrag"
+
+#: ./browser/templates/entry_sort_items_view.pt:49
+msgid "Please sort elements by clicking the up down buttons or via drag and drop."
+msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "Publication"
@@ -225,27 +241,27 @@ msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 msgid "Solr Path_parrents that should be searched"
 msgstr "Solr Pfade die durchsucht werden sollen"
 
-#: ./browser/templates/entry_sort_items_view.pt:34
+#: ./browser/templates/entry_sort_items_view.pt:48
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:271
+#: ./browser/templates/entry_content_view.pt:286
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:175
+#: ./browser/templates/entry_content_view.pt:190
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./browser/templates/entry_content_view.pt:219
+#: ./browser/templates/entry_content_view.pt:234
 msgid "Teaser"
 msgstr "Teaser"
 
-#: ./browser/templates/entry_content_view.pt:188
+#: ./browser/templates/entry_content_view.pt:203
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
-msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichten angezeigt."
+msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichtsseiten angezeigt."
 
-#: ./browser/templates/entry_content_view.pt:204
+#: ./browser/templates/entry_content_view.pt:219
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
@@ -253,7 +269,15 @@ msgstr "Thumbnail"
 msgid "Title"
 msgstr "Titel"
 
-#: ./browser/templates/entry_content_view.pt:157
+#: ./configure.zcml:29
+msgid "Uninstall LMU Base-Policy"
+msgstr ""
+
+#: ./configure.zcml:29
+msgid "Uninstall profile for LMU Base Policy"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:172
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
 
@@ -301,7 +325,7 @@ msgstr "zuletzt verändert"
 msgid "box_published"
 msgstr "Veröffentlicht"
 
-#: ./browser/templates/entry_content_view.pt:170
+#: ./browser/templates/entry_content_view.pt:185
 msgid "dargestellt"
 msgstr "dargestellt"
 
@@ -310,7 +334,7 @@ msgstr "dargestellt"
 msgid "description_no_results_found"
 msgstr "Keine Inhalte gefunden"
 
-#: ./browser/templates/entry_sort_items_view.pt:66
+#: ./browser/templates/entry_sort_items_view.pt:85
 msgid "down"
 msgstr "runter"
 
@@ -397,7 +421,7 @@ msgstr "Such Seite"
 msgid "title_subscribe_rss_feed"
 msgstr "RSS Feed abonnieren"
 
-#: ./browser/templates/entry_sort_items_view.pt:61
+#: ./browser/templates/entry_sort_items_view.pt:80
 msgid "up"
 msgstr "hoch"
 

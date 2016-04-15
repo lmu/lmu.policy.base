@@ -7,98 +7,103 @@
       i18n:domain="lmu.policy.base"
       tal:omit-tag="omit" >
 
-    <metal:block fill-slot="javascript_head_slot">
-        <tal:script tal:replace='structure string:<script type="text/javascript">' />
-        (function($) {
-            function set_up_functions() {
-                $('.itemorder').ajaxForm({
-                    success: function () {
-                        $.ajax().done(
-                            function(html) {
-                                $("#listing").replaceWith($(html).find("#listing"));
-                                set_up_functions();
-                            }
-                        );
-                    }
-                });
-                var table = '#listing';
-                ploneDnDReorder.table = jQuery(table);
-                if (!ploneDnDReorder.table.length)
-                    return;
-                ploneDnDReorder.rows = jQuery(table + " > div");
-                jQuery(table + " > div > .draggable,")
-                    .not('.notDraggable')
-                    .mousedown(ploneDnDReorder.doDown)
-                    .mouseup(ploneDnDReorder.doUp)
-                    .addClass("draggingHook")
-                    .css("cursor", "ns-resize")
-                    .html('&#x28ff;');
-            }
-            $(function() {
-                set_up_functions();
-            })
-        })(jQuery);
-        <tal:script tal:replace='structure string:</script>' />
-    </metal:block>
+  <metal:block fill-slot="javascript_head_slot">
+    <tal:script tal:replace='structure string:<script type="text/javascript">' />
+      (function($) {
+          function set_up_functions() {
+              $('.itemorder').ajaxForm({
+                  success: function () {
+                      $.ajax().done(
+                          function(html) {
+                              $("#listing").replaceWith($(html).find("#listing"));
+                              set_up_functions();
+                          }
+                      );
+                  }
+              });
+              var table = '#listing';
+              ploneDnDReorder.table = jQuery(table);
+              if (!ploneDnDReorder.table.length)
+                  return;
+              ploneDnDReorder.rows = jQuery(table + " > div");
+              jQuery(table + " > div > .draggable,")
+                  .not('.notDraggable')
+                  .mousedown(ploneDnDReorder.doDown)
+                  .mouseup(ploneDnDReorder.doUp)
+                  .addClass("draggingHook")
+                  .css("cursor", "ns-resize")
+                  .css("min-height", "80px")
+                  //.html('&#x28ff;')
+                  ;
+          }
+          $(function() {
+              set_up_functions();
+          })
+      })(jQuery);
+    <tal:script tal:replace='structure string:</script>' />
+  </metal:block>
 
-    <metal:block fill-slot="main">
-        <div id="content-core">
-            <h1 i18n:translate="" class="helper-margin-bottom-l">Sort</h1>
-            <div id="folder_contents_sort">
-                <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
+  <metal:block fill-slot="main">
+    <div id="content-core">
+      <h1 i18n:translate="" class="helper-margin-bottom-l">Sort</h1>
+      <p i18n:translate="" >Please sort elements by clicking the up down buttons or via drag and drop.</p>
+      <div id="folder_contents_sort">
+        <div id="listing" class="helper-margin-bottom-l " tal:condition="view/content_sortinfo" >
 
-                    <div class="draggable row helper-border-top helper-margin-bottom-s"
-                        tal:attributes="id string:folder-contents-item-${item/id}"
-                        tal:repeat="item view/content_sortinfo">
-                      <div class="column small-2" tal:condition="python: view.mode == 'images'">
-                          <img tal:replace="structure item/tag" tal:on-error="string: Kein Bild Scale"/>
-                      </div>
-                      <div class="column small-8" tal:condition="python: view.mode == 'images'">
-                          <h3 tal:content="item/title" >Titel</h3>
-                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
-                      </div>
+          <div class="draggable row helper-border-top helper-margin-bottom-s"
+               tal:attributes="id string:folder-contents-item-${item/id}"
+               tal:repeat="item view/content_sortinfo">
 
-                      <div class="column small-10" tal:condition="python: view.mode == 'files'">
-                          <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="item/type" />, <span tal:replace="item/size" />)</small></h3>
-                          <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
-                      </div>
+            <form class="itemorder draggable" action="folder_moveitem" method="post" tal:attributes="id string:functions-${item/id}" >
+              <input type="hidden" name="item_id" value="test.png" tal:attributes="value item/id" />
+              <input type="hidden" name="subset_ids:list" value="test.png" tal:attributes="value subset_id" tal:repeat="subset_id view/subset_ids" />
+              <span tal:replace="structure context/@@authenticator/authenticator" />
 
-                      <div class="column small-2 draggable">
-                          <form class="itemorder" action="folder_moveitem" method="post" tal:attributes="id string:functions-${item/id}">
-                              <input type="hidden" name="item_id" value="test.png" tal:attributes="value item/id" />
-                              <input type="hidden" name="subset_ids:list" value="test.png" tal:attributes="value subset_id" tal:repeat="subset_id view/subset_ids" />
-                              <span tal:replace="structure context/@@authenticator/authenticator" />
+              <div class="column small-2" tal:condition="python: view.mode == 'images'">
+                <img tal:replace="structure item/tag" tal:on-error="string: Kein Bild Scale"/>
+              </div>
 
-                              <ul class="inline-list right helper-no-margin-left">
-                                  <li tal:condition="item/delta_up|nothing">
-                                    <button type="submit" name="delta:int" value="1" class="tiny" tal:attributes="value item/delta_up">
-                                      <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
-                                    </button>
-                                  </li>
-                                  <li tal:condition="item/delta_down|nothing">
-                                    <button type="submit" name="delta:int" value="-1" class="tiny" tal:attributes="value item/delta_down">
-                                      <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
-                                    </button>
-                                  </li>
-                              </ul>
-                          </form>
-                      </div>
+              <div class="column small-8" tal:condition="python: view.mode == 'images'">
+                <h3 tal:content="item/title" >Titel</h3>
+                <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+              </div>
 
-                  </div>
-                </div>
-                <div id="listing" tal:condition="not: view/content_sortinfo" >
-                    <div class="row helper-border-top helper-margin-bottom-s" >
-                        <div class="column small-10" >
-                            <p i18n:translate="">No <tal:label replace="view/mode_label">Images</tal:label> Uploaded</p>
-                        </div>
-                    </div>
-                </div>
+              <div class="column small-10" tal:condition="python: view.mode == 'files'">
+                <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="item/type" />, <span tal:replace="item/size" />)</small></h3>
+                <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+              </div>
 
-                <a class="button small close-reveal-modal" href="#" tal:attributes="href string:${context/absolute_url}/edit" i18n:translate="">Done</a>
+              <div class="column small-2">
+                <ul class="inline-list right helper-no-margin-left">
+                  <li tal:condition="item/delta_up|nothing">
+                    <button type="submit" name="delta:int" value="1" class="tiny" tal:attributes="value item/delta_up">
+                      <i class="fi-arrow-up"></i><span class="show-for-sr" i18n:translate="">up</span>
+                    </button>
+                  </li>
+                  <li tal:condition="item/delta_down|nothing">
+                    <button type="submit" name="delta:int" value="-1" class="tiny" tal:attributes="value item/delta_down">
+                      <i class="fi-arrow-down"></i><span class="show-for-sr" i18n:translate="">down</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </form>
 
+          </div>
+        </div>
+        <div id="listing" tal:condition="not: view/content_sortinfo" >
+          <div class="row helper-border-top helper-margin-bottom-s" >
+            <div class="column small-10" >
+              <p i18n:translate="">No <tal:label replace="view/mode_label">Images</tal:label> Uploaded</p>
             </div>
+          </div>
         </div>
 
-    </metal:block>
+        <a class="button small close-reveal-modal" href="#" tal:attributes="href string:${context/absolute_url}/edit" i18n:translate="">Done</a>
+
+      </div>
+    </div>
+
+  </metal:block>
 </html>
 </tal:doctype>

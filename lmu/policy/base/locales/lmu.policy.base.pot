@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-03-24 16:08+0000\n"
+"POT-Creation-Date: 2016-04-15 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgid "CMS System"
 msgstr ""
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:209
+#: ./browser/templates/entry_content_view.pt:224
 msgid "Choose image detail"
 msgstr ""
 
@@ -80,24 +80,24 @@ msgid "Close"
 msgstr ""
 
 #: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:251
+#: ./browser/templates/entry_content_view.pt:266
 msgid "Crop Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:170
+#: ./browser/templates/entry_content_view.pt:185
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:240
+#: ./browser/templates/entry_content_view.pt:255
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:295
+#: ./browser/templates/entry_content_view.pt:310
 msgid "Delete File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:241
+#: ./browser/templates/entry_content_view.pt:256
 msgid "Delete Image"
 msgstr ""
 
@@ -117,23 +117,31 @@ msgstr ""
 msgid "Domain(s) that the content of this site is valid for"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:83
+#: ./browser/templates/entry_sort_items_view.pt:102
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:235
+#: ./browser/templates/entry_content_view.pt:250
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:236
-msgid "Edit Title and Caption"
+#: ./browser/templates/entry_content_view.pt:305
+msgid "Edit File Title and Caption"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:251
+msgid "Edit Image Title and Caption"
+msgstr ""
+
+#: ./configure.zcml:21
+msgid "Extension profile for LMU Base Policy - never install standalone use a specific instead."
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:278
+#: ./browser/templates/entry_content_view.pt:293
 msgid "Files"
 msgstr ""
 
@@ -149,8 +157,12 @@ msgstr ""
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:182
+#: ./browser/templates/entry_content_view.pt:197
 msgid "Images"
+msgstr ""
+
+#: ./configure.zcml:21
+msgid "LMU Base-Policy"
 msgstr ""
 
 #: ./profiles/default/controlpanel.xml
@@ -169,15 +181,15 @@ msgstr ""
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:78
+#: ./browser/templates/entry_sort_items_view.pt:97
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:306
+#: ./browser/templates/entry_content_view.pt:321
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:265
+#: ./browser/templates/entry_content_view.pt:280
 msgid "No Images Uploaded"
 msgstr ""
 
@@ -187,6 +199,10 @@ msgstr ""
 
 #: ./profiles/default/propertiestool.xml
 msgid "Pinnwand Entry"
+msgstr ""
+
+#: ./browser/templates/entry_sort_items_view.pt:49
+msgid "Please sort elements by clicking the up down buttons or via drag and drop."
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -233,27 +249,27 @@ msgstr ""
 msgid "Solr Path_parrents that should be searched"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:34
+#: ./browser/templates/entry_sort_items_view.pt:48
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:271
+#: ./browser/templates/entry_content_view.pt:286
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:175
+#: ./browser/templates/entry_content_view.pt:190
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:219
+#: ./browser/templates/entry_content_view.pt:234
 msgid "Teaser"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:188
+#: ./browser/templates/entry_content_view.pt:203
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:204
+#: ./browser/templates/entry_content_view.pt:219
 msgid "Thumbnail"
 msgstr ""
 
@@ -261,7 +277,15 @@ msgstr ""
 msgid "Title"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:157
+#: ./configure.zcml:29
+msgid "Uninstall LMU Base-Policy"
+msgstr ""
+
+#: ./configure.zcml:29
+msgid "Uninstall profile for LMU Base Policy"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:172
 msgid "Upload Images and Files"
 msgstr ""
 
@@ -309,7 +333,7 @@ msgstr ""
 msgid "box_published"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:170
+#: ./browser/templates/entry_content_view.pt:185
 msgid "dargestellt"
 msgstr ""
 
@@ -318,7 +342,7 @@ msgstr ""
 msgid "description_no_results_found"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:66
+#: ./browser/templates/entry_sort_items_view.pt:85
 msgid "down"
 msgstr ""
 
@@ -405,7 +429,7 @@ msgstr ""
 msgid "title_subscribe_rss_feed"
 msgstr ""
 
-#: ./browser/templates/entry_sort_items_view.pt:61
+#: ./browser/templates/entry_sort_items_view.pt:80
 msgid "up"
 msgstr ""
 
@@ -492,4 +516,3 @@ msgstr ""
 #: ./browser/content.py:171
 msgid "Überschrift 2"
 msgstr ""
-
