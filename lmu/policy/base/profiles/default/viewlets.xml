@@ -7,4 +7,12 @@
   <hidden manager="plone.abovecontent" skinname="*">
     <viewlet name="plone.path_bar" />
   </hidden>
+
+  <order manager="plone.belowcontent" skinname="*">
+    <viewlet name="lmu.comments" insert-before="*" />
+  </order>
+
+  <hidden manager="plone.belowcontent" skinname="*">
+    <viewlet name="plone.comments" />
+  </hidden>
 </object>
