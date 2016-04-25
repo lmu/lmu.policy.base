@@ -16,7 +16,7 @@
   <div class="reply helper-clear"
        tal:condition="python:isAnon and not isAnonymousDiscussionAllowed">
     <form tal:attributes="action view/login_action">
-      <input class="standalone loginbutton button"
+      <input class="standalone loginbutton button tiny radius"
              type="submit"
              value="Log in to add comments"
              i18n:attributes="value label_login_to_add_comments;"
@@ -55,13 +55,14 @@
                     tal:condition="canReview"
                     tal:attributes="action string:${reply/absolute_url}/@@moderate-delete-comment">
                 <input name="form.button.DeleteComment"
-                       class="destructive button"
+                       class="destructive button tiny radius"
                        type="submit"
                        value="Delete"
                        i18n:attributes="value label_delete;"
                        />
               </form>
-            </li><li>
+            </li>
+            <li>
               <form name="edit"
                     action=""
                     method="get"
@@ -69,7 +70,7 @@
                     tal:condition="python:isEditCommentAllowed and canEdit"
                     tal:attributes="action string:${reply/absolute_url}/@@edit-comment">
                 <input name="form.button.EditComment"
-                       class="context button tiny"
+                       class="context button tiny radius"
                        type="submit"
                        value="Edit"
                        i18n:attributes="value label_edit;"
@@ -87,7 +88,7 @@
                                     name action/id">
                 <input type="hidden" name="workflow_action" tal:attributes="value action/id" />
                 <input name="form.button.PublishComment"
-                       class="context button tiny"
+                       class="context button tiny radius"
                        type="submit"
                        tal:attributes="value action/title"
                        i18n:attributes="value"
@@ -159,7 +160,7 @@
   <div class="reply helper-clear"
        tal:condition="python:has_replies and (isAnon and not isAnonymousDiscussionAllowed)">
     <form tal:attributes="action view/login_action">
-      <input class="standalone loginbutton"
+      <input class="standalone loginbutton button tiny radius"
              type="submit"
              value="Log in to add comments"
              i18n:attributes="value label_login_to_add_comments;"
