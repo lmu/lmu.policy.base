@@ -63,7 +63,7 @@ msgid "CMS System"
 msgstr "CMS-System"
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:224
+#: ./browser/templates/entry_content_view.pt:213
 msgid "Choose image detail"
 msgstr "Bildausschnitt wählen"
 
@@ -127,7 +127,7 @@ msgstr "Bildinfos bearbeiten"
 
 #: ./configure.zcml:21
 msgid "Extension profile for LMU Base Policy - never install standalone use a specific instead."
-msgstr ""
+msgstr "Erweiterungsprofil für LMU Base Policy - niemals alleine installieren, wird von den Portal Policies benötigt und installiert."
 
 #: ./profiles/default/propertiestool.xml
 msgid "File"
@@ -155,7 +155,7 @@ msgstr "Bilder"
 
 #: ./configure.zcml:21
 msgid "LMU Base-Policy"
-msgstr ""
+msgstr "LMU Base-Policy"
 
 #: ./profiles/default/controlpanel.xml
 msgid "LMU Settings"
@@ -195,7 +195,7 @@ msgstr "Pinnwand-Eintrag"
 
 #: ./browser/templates/entry_sort_items_view.pt:49
 msgid "Please sort elements by clicking the up down buttons or via drag and drop."
-msgstr ""
+msgstr "Bitte Sortieren Sie durch drücken der Hoch oder Runter Buttons, oder via Drag & Drop"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Publication"
@@ -253,7 +253,7 @@ msgstr "Dateien sortieren"
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./browser/templates/entry_content_view.pt:234
+#: ./browser/templates/entry_content_view.pt:223
 msgid "Teaser"
 msgstr "Teaser"
 
@@ -261,7 +261,7 @@ msgstr "Teaser"
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichtsseiten angezeigt."
 
-#: ./browser/templates/entry_content_view.pt:219
+#: ./browser/templates/entry_content_view.pt:234
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
@@ -271,11 +271,11 @@ msgstr "Titel"
 
 #: ./configure.zcml:29
 msgid "Uninstall LMU Base-Policy"
-msgstr ""
+msgstr "LMU Base Policy deinstallieren"
 
 #: ./configure.zcml:29
 msgid "Uninstall profile for LMU Base Policy"
-msgstr ""
+msgstr "Deinstallations Profil für LMU Base Policy"
 
 #: ./browser/templates/entry_content_view.pt:172
 msgid "Upload Images and Files"
@@ -350,6 +350,11 @@ msgstr "Dokumente, Dateien und Bilder"
 msgid "immediat"
 msgstr "sofort"
 
+#. Default: "Add comment"
+#: ./browser/templates/comments.pt:178
+msgid "label_add_comment"
+msgstr "Kommentieren"
+
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
@@ -366,10 +371,35 @@ msgstr "Autor: ${author}"
 msgid "label_cancel"
 msgstr "Abbrechen"
 
+#. Default: "Comments"
+#: ./browser/templates/comments.pt:33
+msgid "label_comments"
+msgstr "Kommentare"
+
+#. Default: "Delete"
+#: ./browser/templates/comments.pt:98
+msgid "label_delete"
+msgstr "Löschen"
+
+#. Default: "Edit"
+#: ./browser/templates/comments.pt:112
+msgid "label_edit"
+msgstr "Bearbeiten"
+
+#. Default: "Log in to add comments"
+#: ./browser/templates/comments.pt:19
+msgid "label_login_to_add_comments"
+msgstr "Loggen Sie Sich ein zum Kommentieren"
+
 #. Default: "No matching results found."
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:102
 msgid "label_no_results_found"
 msgstr "Keine Ergebnisse gefunden"
+
+#. Default: "Reply"
+#: ./browser/templates/comments.pt:145
+msgid "label_reply"
+msgstr "Antworten"
 
 #. Default: "Search"
 #: ./template_overrides/collective.solr.browser.searchbox.pt:22

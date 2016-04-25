@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-04-15 13:43+0000\n"
+"POT-Creation-Date: 2016-04-25 15:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,7 +71,7 @@ msgid "CMS System"
 msgstr ""
 
 #: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:224
+#: ./browser/templates/entry_content_view.pt:213
 msgid "Choose image detail"
 msgstr ""
 
@@ -261,7 +261,7 @@ msgstr ""
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:234
+#: ./browser/templates/entry_content_view.pt:223
 msgid "Teaser"
 msgstr ""
 
@@ -269,7 +269,7 @@ msgstr ""
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:219
+#: ./browser/templates/entry_content_view.pt:234
 msgid "Thumbnail"
 msgstr ""
 
@@ -358,6 +358,11 @@ msgstr ""
 msgid "immediat"
 msgstr ""
 
+#. Default: "Add comment"
+#: ./browser/templates/comments.pt:178
+msgid "label_add_comment"
+msgstr ""
+
 #. Default: "Advanced Search…"
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:104
 #: ./template_overrides/collective.solr.browser.searchbox.pt:50
@@ -374,9 +379,34 @@ msgstr ""
 msgid "label_cancel"
 msgstr ""
 
+#. Default: "Comments"
+#: ./browser/templates/comments.pt:33
+msgid "label_comments"
+msgstr ""
+
+#. Default: "Delete"
+#: ./browser/templates/comments.pt:98
+msgid "label_delete"
+msgstr ""
+
+#. Default: "Edit"
+#: ./browser/templates/comments.pt:112
+msgid "label_edit"
+msgstr ""
+
+#. Default: "Log in to add comments"
+#: ./browser/templates/comments.pt:19
+msgid "label_login_to_add_comments"
+msgstr ""
+
 #. Default: "No matching results found."
 #: ./template_overrides/Products.CMFPlone.skins.plone_scripts.livesearch_reply.py:102
 msgid "label_no_results_found"
+msgstr ""
+
+#. Default: "Reply"
+#: ./browser/templates/comments.pt:145
+msgid "label_reply"
 msgstr ""
 
 #. Default: "Search"

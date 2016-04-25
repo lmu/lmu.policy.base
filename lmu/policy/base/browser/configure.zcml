@@ -111,32 +111,12 @@
         class=".content.LMURenderWidget"
         permission="zope.Public"
         />
-<!--
-    <browser:viewlet
-        name="plone.comments"
-        for="Products.CMFCore.interfaces.IContentish"
-        layer="lmu.policy.base.interfaces.IProductLayer"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        view="plone.app.layout.globals.interfaces.IViewView"
-        class=".content.LMUCommentsViewlet"
-        permission="zope2.View"
-        />
 
     <browser:viewlet
-        name="plone.comments"
-        for="lmu.contenttypes.blog.interfaces.IBlogEntry"
-        layer="lmu.policy.base.interfaces.IProductLayer"
-        manager="plone.app.layout.viewlets.interfaces.IBelowContent"
-        view="plone.app.layout.globals.interfaces.IViewView"
-        class=".content.LMUCommentsViewlet"
-        permission="zope2.View"
-        />
--->
-    <browser:viewlet
         name="lmu.comments"
-        for="Products.CMFCore.interfaces.IContentish"
-        layer="lmu.policy.base.interfaces.IProductLayer"
         manager="plone.app.layout.viewlets.interfaces.IBelowContent"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        for="Products.CMFCore.interfaces.IContentish"
         view="plone.app.layout.globals.interfaces.IViewView"
         class="lmu.policy.base.browser.content.LMUCommentsViewlet"
         permission="zope2.View"
