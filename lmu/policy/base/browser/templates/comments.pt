@@ -139,7 +139,7 @@
           <div class="commentBody" tal:content="structure reply/getText" >
             Comment
           </div>
-          <button class="context reply-to-comment-button hide allowMultiSubmit"
+          <button class="context reply-to-comment-button hide allowMultiSubmit button tiny radius"
                   tal:condition="python:isDiscussionAllowed and (isAnon and isAnonymousDiscussionAllowed or userHasReplyPermission)"
                   i18n:translate="label_reply">
             Reply
