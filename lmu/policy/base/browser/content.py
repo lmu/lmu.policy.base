@@ -11,6 +11,7 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
 from plone import api
+from plone.namedfile.utils import rotate_image
 from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.imagecropping.browser.editor import CroppingEditor
 from plone.app.textfield.interfaces import ITransformer
@@ -35,7 +36,6 @@ from lmu.policy.base.browser.utils import _IncludeMixin
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
 
 import json
-import piexif
 import PIL.Image
 
 from logging import getLogger
@@ -525,40 +525,18 @@ class ImageRotator(BrowserView):
         direction = self.request.get("direction", None)
         if not direction:
             return 0
+        elif direction == 'right' or direction == '90':
+            method = 6
+        elif direction == 'left' or direction == '270' or direction == '-90':
+            method = 8
+        else:
+            method = 1
+
         image_data = self.context.image._getData()
-        if getattr(image_data, 'read', None):
-            img = PIL.Image.open(image_data)
-        else:
-            img = PIL.Image.open(StringIO(image_data))
 
-        if 'exif' in img.info:
-            exif_data = piexif.load(img.info['exif'])
-        else:
-            width, height = img.size
-            exif_data = {
-                '0th': {
-                    piexif.ImageIFD.XResolution: (width, 1),
-                    piexif.ImageIFD.YResolution: (height, 1),
-                }
-            }
+        new_image_data, width, height, exif_data = rotate_image(image_data, method=method)
 
-        fmt = img.format
-        if direction == 'right':
-            img = img.transpose(PIL.Image.ROTATE_270)
-        elif direction == 'left':
-            img = img.transpose(PIL.Image.ROTATE_90)
-
-        try:
-            exif_bytes = piexif.dump(exif_data)
-        except:
-            del(exif_data['Exif'][piexif.ExifIFD.SceneType])
-            # This Element piexif.ExifIFD.SceneType cause error on dump
-            exif_bytes = piexif.dump(exif_data)
-
-        output_image_data = StringIO()
-        img.save(output_image_data, format=fmt, exif=exif_bytes)
-
-        self.context.image._setData(output_image_data.getvalue())
+        self.context.image._setData(new_image_data)
 
         # Throw away saved scales and cropping info
         annotations = IAnnotations(self.context)
