@@ -35,6 +35,7 @@ from lmu.policy.base.browser.utils import _IncludeMixin
 from lmu.policy.base.interfaces import ILMUCommentFormLayer
 
 import json
+import piexif
 import PIL.Image
 
 from logging import getLogger
@@ -516,6 +517,60 @@ class HardCroppingEditor(_LMUCroppingEditor):
 
         # Purge caches if needed
         notify(Purge(self.context))
+
+
+class ImageRotator(BrowserView):
+
+    def __call__(self):
+        direction = self.request.get("direction", None)
+        if not direction:
+            return 0
+        image_data = self.context.image._getData()
+        if getattr(image_data, 'read', None):
+            img = PIL.Image.open(image_data)
+        else:
+            img = PIL.Image.open(StringIO(image_data))
+
+        if 'exif' in img.info:
+            exif_data = piexif.load(img.info['exif'])
+        else:
+            width, height = img.size
+            exif_data = {
+                '0th': {
+                    piexif.ImageIFD.XResolution: (width, 1),
+                    piexif.ImageIFD.YResolution: (height, 1),
+                }
+            }
+
+        fmt = img.format
+        if direction == 'right':
+            img = img.transpose(PIL.Image.ROTATE_270)
+        elif direction == 'left':
+            img = img.transpose(PIL.Image.ROTATE_90)
+
+        try:
+            exif_bytes = piexif.dump(exif_data)
+        except:
+            del(exif_data['Exif'][piexif.ExifIFD.SceneType])
+            # This Element piexif.ExifIFD.SceneType cause error on dump
+            exif_bytes = piexif.dump(exif_data)
+
+        output_image_data = StringIO()
+        img.save(output_image_data, format=fmt, exif=exif_bytes)
+
+        self.context.image._setData(output_image_data.getvalue())
+
+        # Throw away saved scales and cropping info
+        annotations = IAnnotations(self.context)
+        if 'plone.scale' in annotations:
+            del annotations['plone.scale']
+        if 'plone.app.imagecropping' in annotations:
+            del annotations['plone.app.imagecropping']
+
+        # Purge caches if needed
+        notify(Purge(self.context))
+
+        return 1
 
 
 def formHelper(form, fields_to_show=[], fields_to_input=[], fields_to_hide=[], fields_to_omit=[]):
