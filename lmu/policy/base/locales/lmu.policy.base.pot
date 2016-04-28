@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-04-25 15:17+0000\n"
+"POT-Creation-Date: 2016-04-28 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/content.py:261
+#: ./browser/content.py:262
 #: ./controlpanel.py:82
 msgid ""
 msgstr ""
@@ -70,8 +70,8 @@ msgstr ""
 msgid "CMS System"
 msgstr ""
 
-#: ./browser/content.py:400
-#: ./browser/templates/entry_content_view.pt:213
+#: ./browser/content.py:401
+#: ./browser/templates/entry_content_view.pt:221
 msgid "Choose image detail"
 msgstr ""
 
@@ -79,25 +79,25 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ./browser/content.py:442
-#: ./browser/templates/entry_content_view.pt:266
+#: ./browser/content.py:443
+#: ./browser/templates/entry_content_view.pt:274
 msgid "Crop Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:185
+#: ./browser/templates/entry_content_view.pt:193
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:255
+#: ./browser/templates/entry_content_view.pt:263
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:310
+#: ./browser/templates/entry_content_view.pt:328
 msgid "Delete File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:256
+#: ./browser/templates/entry_content_view.pt:264
 msgid "Delete Image"
 msgstr ""
 
@@ -121,15 +121,15 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:250
+#: ./browser/templates/entry_content_view.pt:258
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:305
+#: ./browser/templates/entry_content_view.pt:323
 msgid "Edit File Title and Caption"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:251
+#: ./browser/templates/entry_content_view.pt:259
 msgid "Edit Image Title and Caption"
 msgstr ""
 
@@ -141,7 +141,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:293
+#: ./browser/templates/entry_content_view.pt:311
 msgid "Files"
 msgstr ""
 
@@ -149,15 +149,15 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: ./browser/content.py:401
+#: ./browser/content.py:402
 msgid "Here you can choose a section of the image that will be shown as teaser image on listings and overviews. The aspect ratio is forced to 16×9. You can later on pick a different section, or remove your selection completely to revert to the default."
 msgstr ""
 
-#: ./browser/content.py:443
+#: ./browser/content.py:444
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:197
+#: ./browser/templates/entry_content_view.pt:205
 msgid "Images"
 msgstr ""
 
@@ -185,11 +185,11 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:321
+#: ./browser/templates/entry_content_view.pt:339
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:280
+#: ./browser/templates/entry_content_view.pt:298
 msgid "No Images Uploaded"
 msgstr ""
 
@@ -211,6 +211,14 @@ msgstr ""
 
 #: ./browser/templates/cropping-editor.pt:74
 msgid "Remove cropping information"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:279
+msgid "Rotate left by 90 degrees"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:284
+msgid "Rotate right by 90 degrees"
 msgstr ""
 
 #: ./browser/templates/cropping-editor.pt:68
@@ -253,23 +261,23 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:286
+#: ./browser/templates/entry_content_view.pt:304
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:190
+#: ./browser/templates/entry_content_view.pt:198
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:223
+#: ./browser/templates/entry_content_view.pt:231
 msgid "Teaser"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:203
+#: ./browser/templates/entry_content_view.pt:211
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:234
+#: ./browser/templates/entry_content_view.pt:242
 msgid "Thumbnail"
 msgstr ""
 
@@ -285,7 +293,7 @@ msgstr ""
 msgid "Uninstall profile for LMU Base Policy"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:172
+#: ./browser/templates/entry_content_view.pt:180
 msgid "Upload Images and Files"
 msgstr ""
 
@@ -333,7 +341,7 @@ msgstr ""
 msgid "box_published"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:185
+#: ./browser/templates/entry_content_view.pt:193
 msgid "dargestellt"
 msgstr ""
 
@@ -359,7 +367,7 @@ msgid "immediat"
 msgstr ""
 
 #. Default: "Add comment"
-#: ./browser/templates/comments.pt:178
+#: ./browser/templates/comments.pt:173
 msgid "label_add_comment"
 msgstr ""
 
@@ -385,12 +393,12 @@ msgid "label_comments"
 msgstr ""
 
 #. Default: "Delete"
-#: ./browser/templates/comments.pt:98
+#: ./browser/templates/comments.pt:57
 msgid "label_delete"
 msgstr ""
 
 #. Default: "Edit"
-#: ./browser/templates/comments.pt:112
+#: ./browser/templates/comments.pt:72
 msgid "label_edit"
 msgstr ""
 
@@ -405,7 +413,7 @@ msgid "label_no_results_found"
 msgstr ""
 
 #. Default: "Reply"
-#: ./browser/templates/comments.pt:145
+#: ./browser/templates/comments.pt:142
 msgid "label_reply"
 msgstr ""
 
@@ -539,10 +547,10 @@ msgstr ""
 msgid "zuv_weiterbildung"
 msgstr ""
 
-#: ./browser/content.py:170
+#: ./browser/content.py:171
 msgid "Überschrift 1"
 msgstr ""
 
-#: ./browser/content.py:171
+#: ./browser/content.py:172
 msgid "Überschrift 2"
 msgstr ""
