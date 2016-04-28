@@ -138,4 +138,12 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <browser:page
+        class=".content.ImageRotator"
+        for="plone.app.imagecropping.interfaces.IImageCroppingMarker"
+        name="rotate_image"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        permission="cmf.ModifyPortalContent"
+        />
+
 </configure>

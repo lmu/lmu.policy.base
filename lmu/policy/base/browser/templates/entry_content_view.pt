@@ -130,6 +130,14 @@
                 onClose: reload_folder_contents
             }
         });
+        $('a.rotate-image').click(function(event) {
+          event.preventDefault();
+          $.get(this.href, function(data) {
+            if (data==1) {
+             reload_folder_contents();
+            }
+          })
+        });
     }
     $(function() {
         $.ajax({cache: false});
@@ -265,6 +273,16 @@
                               <li>
                                   <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@hardcroppingeditor" title="Crop Image" i18n:attributes="title">
                                     <i class="fi-photo helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Crop Image</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="rotate-image" tal:attributes="href string:${item/absolute_url}/@@rotate_image?direction=left" title="Rotate left by 90 degrees" i18n:attributes="title">
+                                    <i class="fi-arrow-left helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Rotate left by 90 degrees</span>
+                                  </a>
+                              </li>
+                              <li>
+                                  <a href="#" class="rotate-image" tal:attributes="href string:${item/absolute_url}/@@rotate_image?direction=right" title="Rotate right by 90 degrees" i18n:attributes="title">
+                                    <i class="fi-arrow-right helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Rotate right by 90 degrees</span>
                                   </a>
                               </li>
                             </tal:comment>
