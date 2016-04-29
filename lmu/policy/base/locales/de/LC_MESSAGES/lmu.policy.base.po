@@ -195,7 +195,7 @@ msgstr "Pinnwand-Eintrag"
 
 #: ./browser/templates/entry_sort_items_view.pt:49
 msgid "Please sort elements by clicking the up down buttons or via drag and drop."
-msgstr "Bitte Sortieren Sie durch drücken der Hoch oder Runter Buttons, oder via Drag & Drop"
+msgstr "Bitte sortieren Sie über Buttons (hoch bzw. runter) oder via Drag & Drop."
 
 #: ./profiles/default/propertiestool.xml
 msgid "Publication"
