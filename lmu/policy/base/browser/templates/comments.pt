@@ -63,7 +63,7 @@
                        />
               </form>
             </li>
-            <li tal:condition="python:isEditCommentAllowed and canEdit and not canEditOwn">
+            <li tal:condition="python:isEditCommentAllowed and canEdit">
               <form name="edit"
                     action=""
                     method="get"
