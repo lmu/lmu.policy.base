@@ -41,7 +41,8 @@
                          has_author_link python:author_home_url and not isAnon;
                          portrait_url python:view.get_commenter_portrait(reply.author_username);
 	                       review_state python:wtool.getInfoFor(reply, 'review_state', 'none');
-	                       canEdit python:view.can_edit(reply);"
+	                       canEdit python:view.can_edit(reply);
+	                       canEditOwn python:view.can_edit_own(reply);"
              tal:attributes="class python:'comment helper-padding-top-m helper-clear replyTreeLevel'+str(depth)+' state-'+str(review_state);
                              id string:${reply/getId}"
              tal:condition="python:canReview or review_state == 'published'">
@@ -62,13 +63,26 @@
                        />
               </form>
             </li>
-            <li>
+            <li tal:condition="python:isEditCommentAllowed and canEdit and not canEditOwn">
               <form name="edit"
                     action=""
                     method="get"
                     class="commentactionsform"
-                    tal:condition="python:isEditCommentAllowed and canEdit"
                     tal:attributes="action string:${reply/absolute_url}/@@edit-comment">
+                <input name="form.button.EditComment"
+                       class="context button tiny radius"
+                       type="submit"
+                       value="Edit"
+                       i18n:attributes="value label_edit;"
+                       />
+              </form>
+            </li>
+            <li tal:condition="python:isEditCommentAllowed and canEditOwn">
+              <form name="edit"
+                    action=""
+                    method="get"
+                    class="commentactionsform"
+                    tal:attributes="action string:${reply/absolute_url}/@@edit-own-comment">
                 <input name="form.button.EditComment"
                        class="context button tiny radius"
                        type="submit"
