@@ -126,7 +126,7 @@ class _EntryViewMixin(object):
             api.content.get_state(obj=self.context) in ['private', 'closed', 'banned']
 
     def can_hide(self):
-        return False and api.user.has_permission(permissions.RequestReview, obj=self.context) and \
+        return api.user.has_permission(permissions.RequestReview, obj=self.context) and \
             any(role in ['Owner', 'Site Administrator', 'Manager'] for role in api.user.get_roles(obj=self.context)) and \
             api.content.get_state(obj=self.context) in ['internally_published', 'open']
 
@@ -159,14 +159,18 @@ class _EntryViewMixin(object):
 
 
 class RichTextWidgetConfig(object):
-    allow_buttons = ('style',
-                     'bold',
-                     'italic',
-                     'numlist',
-                     'bullist',
-                     'link',
-                     'unlink',
-                     )
+    allow_buttons = (
+        'style',
+        'bold',
+        'italic',
+        'bullist',
+        'numlist',
+        'outdent',
+        'indent',
+        'emotions',
+        'link',
+        'unlink',
+    )
     redefine_parastyles = True
     parastyles = (_(u'Überschrift 1') + u'|h2|',
                   _(u'Überschrift 2') + u'|h3|',
