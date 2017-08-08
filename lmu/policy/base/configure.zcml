@@ -46,6 +46,11 @@
         layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
+    <browser:resourceDirectory
+        name="lmu.base"
+        directory="static"
+        />
+
     <utility
         component="lmu.policy.base.controlpanel.AvailableLanguagesVocabularyFactory"
         name="lmu.policy.base.AvailableLanguages"

@@ -1,3 +1,4 @@
+from plone import api
 from plone.dexterity.content import Container
 from plone.app.discussion.interfaces import IConversation
 
@@ -21,7 +22,27 @@ class LMUBaseContent(Container):
         return images
 
     def files(self):
-        files = [item for item in self.values() if item.portal_type == 'File']
+        portal = api.portal.get()
+        mtr = portal.mimetypes_registry
+        files = [
+            item
+            for item
+            in self.values()
+            if item.portal_type == 'File' and mtr.lookup(item.file.contentType)[0].id != 'MPEG-4 video'
+        ]
         if None in files:
             files.remove(None)
         return files
+
+    def videos(self):
+        portal = api.portal.get()
+        mtr = portal.mimetypes_registry
+        videos = [
+            item
+            for item
+            in self.values()
+            if item.portal_type == 'File' and mtr.lookup(item.file.contentType)[0].id == 'MPEG-4 video'
+        ]
+        if None in videos:
+            videos.remove(None)
+        return videos
