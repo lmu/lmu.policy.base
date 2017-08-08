@@ -39,7 +39,7 @@
           <input type="hidden" name="advanced_search" value="False" />
           <input type="hidden" name="sort_on" value="" />
 
-          <fieldset id="search-field" class="noborder"> 
+          <fieldset id="search-field" class="noborder">
             <legend i18n:translate="">Search</legend>
             <div class="row collapse">
               <div class="small-11 columns ">
@@ -75,7 +75,7 @@
                       Search Term
                   </strong>
               </h1>
-              <p id="rss-subscription" 
+              <p id="rss-subscription"
                  tal:define="syndication context/@@tools/syndication|nothing"
                  tal:condition="syndication/isSiteSyndicationAllowed|nothing">
                 <img src="" alt="RSS"
@@ -107,7 +107,7 @@
                       </span>
 
                       <span i18n:translate="batch_within_seconds" tal:condition="nothing">
-                          within 
+                          within
                           <strong i18n:name="time" id="search-results-time"
                                   tal:content="batch/qtime/total_seconds|string:0">234</strong>
                           seconds.
@@ -164,12 +164,15 @@
                                                     klass string:${item/ContentTypeClass} helper-margin-bottom-l helper-border-light-top clearfix"
                                         tal:attributes="class klass;">
                                       <!--img tal:replace="structure item/getIcon" /-->
-                                      <header class="helper-margin-bottom-m">
+                                      <header class="helper-margin-bottom-m"
+                                              tal:define="breadcrumbs python: view.breadcrumbs(item);
+                                                          zuv_portal python:'intranet' if breadcrumbs[0].Title == 'ZUV-Intranet' else 'serviceportal';"
+                                              tal:attributes="class string:helper-margin-bottom-m ${zuv_portal} documentLocation;">
                                         <div class="documentLocation link-location helper-font-size-small"
                                              tal:on-error="string: no breadcrumbs available"
-                                             tal:define="breadcrumbs python: view.breadcrumbs(item);
-                                                         is_rtl context/@@plone_portal_state/is_rtl;"
-                                             tal:attributes="dir python:is_rtl and 'rtl' or 'ltr';" 
+                                             tal:define="is_rtl context/@@plone_portal_state/is_rtl;"
+                                             tal:attributes="dir python:is_rtl and 'rtl' or 'ltr';
+                                                             class string:documentLocation ${zuv_portal} link-location helper-font-size-small;"
                                              tal:condition='breadcrumbs'>
                                           <tal:items tal:repeat="crumb breadcrumbs" >
                                             <tal:item tal:define="is_last repeat/crumb/end;
@@ -210,7 +213,7 @@
                                              tal:content="item_url" class="link helper-font-light">Link</a>
                                         </div>
 
-                                        <div class="discreet helper-font-light" 
+                                        <div class="discreet helper-font-light"
                                              tal:condition="python: (item_type == 'Blog Entry' or item_type == 'Pinnwand Entry') and show_about">
                                           <span class="documentAuthor"
                                                 i18n:translate="label_by_author"
@@ -230,7 +233,7 @@
                                             </tal:block>
                                           </span>
 
-                                          <span tal:on-error="string: Fiona Date missing" 
+                                          <span tal:on-error="string: Fiona Date missing"
                                                 tal:define="publication_date item/EffectiveDate;
                                                             modification_date item/ModificationDate" >
 
@@ -292,7 +295,7 @@
                                       </tal:img>
 
                                       <div tal:define="hdesc item/CroppedDescription;
-                                                       desc python:view.strip_tags(hdesc);" 
+                                                       desc python:view.strip_tags(hdesc);"
                                            tal:content="desc"
                                            tal:condition="item/CroppedDescription">
                                         Cropped description
