@@ -4,6 +4,8 @@ from Products.CMFPlone.PloneBatch import Batch
 from lmu.policy.base.browser.utils import _IncludeMixin
 from lmu.policy.base.browser.content import _AbstractLMUBaseContentView
 from plone import api
+import datetime
+import DateTime
 
 
 class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
@@ -28,6 +30,17 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
         self.pcatalog = self.context.portal_catalog
         if self.request.get('author'):
             self.content_filter['Creator'] = self.request.get('author')
+        if self.request.get('duration'):
+            amount = int(self.request.get('duration'))
+            start_date = DateTime.DateTime(datetime.datetime.today() - datetime.timedelta(days=amount))
+            end_date = DateTime.DateTime()
+            self.content_filter['effective'] = {
+                'query': (
+                    start_date,
+                    end_date,
+                ),
+                'range': 'min:max'
+            }
 
     def absolute_length(self):
         return len(self.pcatalog.searchResults(self.content_filter))
@@ -35,10 +48,10 @@ class _AbstractLMUBaseListingView(_AbstractLMUBaseContentView):
     def entries(self):
         entries = []
         if self.container_interface.providedBy(self.context):
-
             entries = self.pcatalog.searchResults(
                 self.content_filter,
-                sort_on=self.sort_on, sort_order='reverse',
+                sort_on=self.sort_on,
+                sort_order='reverse',
             )
 
         return entries
