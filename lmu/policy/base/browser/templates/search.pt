@@ -166,7 +166,7 @@
                                       <!--img tal:replace="structure item/getIcon" /-->
                                       <header class="helper-margin-bottom-m"
                                               tal:define="breadcrumbs python: view.breadcrumbs(item);
-                                                          zuv_portal python:'intranet' if breadcrumbs[0].Title == 'ZUV-Intranet' else 'serviceportal';"
+                                                          zuv_portal python:'intranet' if breadcrumbs[0].get('Title') == 'ZUV-Intranet' else 'serviceportal';"
                                               tal:attributes="class string:helper-margin-bottom-m ${zuv_portal} documentLocation;">
                                         <div class="documentLocation link-location helper-font-size-small"
                                              tal:on-error="string: no breadcrumbs available"
