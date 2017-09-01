@@ -196,7 +196,7 @@
             <div id="folder_contents">
                 <div class="clearfix helper-margin-top-l">
                     <h2 i18n:translate="" class="inline">Video</h2>
-                    <p i18n:translate="" >The Blog shows only one video.</p>
+                    <p i18n:translate="" >The Entry shows only one video.</p>
                 </div>
                 <div id="videos" class="video_listing helper-margin-bottom-l" tal:condition="view/videos" >
                   <div class="row helper-border-top helper-margin-bottom-s" tal:repeat="item view/videos">

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-04-28 14:02+0000\n"
+"POT-Creation-Date: 2017-09-01 12:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: manual\n"
 
-#: ./browser/content.py:262
+#: ./browser/content.py:286
 #: ./controlpanel.py:82
 msgid ""
 msgstr ""
@@ -70,8 +70,8 @@ msgstr ""
 msgid "CMS System"
 msgstr ""
 
-#: ./browser/content.py:401
-#: ./browser/templates/entry_content_view.pt:221
+#: ./browser/content.py:425
+#: ./browser/templates/entry_content_view.pt:256
 msgid "Choose image detail"
 msgstr ""
 
@@ -79,8 +79,8 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ./browser/content.py:443
-#: ./browser/templates/entry_content_view.pt:274
+#: ./browser/content.py:467
+#: ./browser/templates/entry_content_view.pt:309
 msgid "Crop Image"
 msgstr ""
 
@@ -88,21 +88,25 @@ msgstr ""
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:263
+#: ./browser/templates/entry_content_view.pt:298
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:328
+#: ./browser/templates/entry_content_view.pt:363
 msgid "Delete File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:264
+#: ./browser/templates/entry_content_view.pt:299
 msgid "Delete Image"
 msgstr ""
 
 #: ./controlpanel.py:139
 msgid "Delete Timedelta"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:216
+msgid "Delete Video"
 msgstr ""
 
 #: ./profiles/default/propertiestool.xml
@@ -121,16 +125,20 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:258
+#: ./browser/templates/entry_content_view.pt:293
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:323
+#: ./browser/templates/entry_content_view.pt:358
 msgid "Edit File Title and Caption"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:259
+#: ./browser/templates/entry_content_view.pt:294
 msgid "Edit Image Title and Caption"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:211
+msgid "Edit Video Title and Caption"
 msgstr ""
 
 #: ./configure.zcml:21
@@ -141,7 +149,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:311
+#: ./browser/templates/entry_content_view.pt:346
 msgid "Files"
 msgstr ""
 
@@ -149,15 +157,15 @@ msgstr ""
 msgid "Folder"
 msgstr ""
 
-#: ./browser/content.py:402
+#: ./browser/content.py:426
 msgid "Here you can choose a section of the image that will be shown as teaser image on listings and overviews. The aspect ratio is forced to 16×9. You can later on pick a different section, or remove your selection completely to revert to the default."
 msgstr ""
 
-#: ./browser/content.py:444
+#: ./browser/content.py:468
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:205
+#: ./browser/templates/entry_content_view.pt:239
 msgid "Images"
 msgstr ""
 
@@ -185,12 +193,16 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:339
+#: ./browser/templates/entry_content_view.pt:374
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:298
+#: ./browser/templates/entry_content_view.pt:333
 msgid "No Images Uploaded"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:227
+msgid "No Videos Uploaded"
 msgstr ""
 
 #: ./browser/templates/facets.pt:37
@@ -213,11 +225,11 @@ msgstr ""
 msgid "Remove cropping information"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:279
+#: ./browser/templates/entry_content_view.pt:314
 msgid "Rotate left by 90 degrees"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:284
+#: ./browser/templates/entry_content_view.pt:319
 msgid "Rotate right by 90 degrees"
 msgstr ""
 
@@ -261,23 +273,27 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:304
+#: ./browser/templates/entry_content_view.pt:339
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:198
+#: ./browser/templates/entry_content_view.pt:232
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:231
+#: ./browser/templates/entry_content_view.pt:266
 msgid "Teaser"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:211
+#: ./browser/templates/entry_content_view.pt:199
+msgid "The Entry shows only one video."
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:246
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:242
+#: ./browser/templates/entry_content_view.pt:277
 msgid "Thumbnail"
 msgstr ""
 
@@ -295,6 +311,10 @@ msgstr ""
 
 #: ./browser/templates/entry_content_view.pt:180
 msgid "Upload Images and Files"
+msgstr ""
+
+#: ./browser/templates/entry_content_view.pt:198
+msgid "Video"
 msgstr ""
 
 #: ./controlpanel.py:140
@@ -332,12 +352,12 @@ msgid "batch_x_items_matching_your_criteria"
 msgstr ""
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:248
+#: ./browser/templates/search.pt:251
 msgid "box_last_modified"
 msgstr ""
 
 #. Default: "published"
-#: ./browser/templates/search.pt:238
+#: ./browser/templates/search.pt:241
 msgid "box_published"
 msgstr ""
 
@@ -354,7 +374,7 @@ msgstr ""
 msgid "down"
 msgstr ""
 
-#: ./browser/templates/search.pt:263
+#: ./browser/templates/search.pt:266
 msgid "filed under:"
 msgstr ""
 
@@ -367,7 +387,7 @@ msgid "immediat"
 msgstr ""
 
 #. Default: "Add comment"
-#: ./browser/templates/comments.pt:173
+#: ./browser/templates/comments.pt:187
 msgid "label_add_comment"
 msgstr ""
 
@@ -378,7 +398,7 @@ msgid "label_advanced_search"
 msgstr ""
 
 #. Default: "by ${author}"
-#: ./browser/templates/search.pt:222
+#: ./browser/templates/search.pt:225
 msgid "label_by_author"
 msgstr ""
 
@@ -393,7 +413,7 @@ msgid "label_comments"
 msgstr ""
 
 #. Default: "Delete"
-#: ./browser/templates/comments.pt:57
+#: ./browser/templates/comments.pt:58
 msgid "label_delete"
 msgstr ""
 
@@ -413,7 +433,7 @@ msgid "label_no_results_found"
 msgstr ""
 
 #. Default: "Reply"
-#: ./browser/templates/comments.pt:142
+#: ./browser/templates/comments.pt:156
 msgid "label_reply"
 msgstr ""
 
@@ -547,10 +567,10 @@ msgstr ""
 msgid "zuv_weiterbildung"
 msgstr ""
 
-#: ./browser/content.py:171
+#: ./browser/content.py:195
 msgid "Überschrift 1"
 msgstr ""
 
-#: ./browser/content.py:172
+#: ./browser/content.py:196
 msgid "Überschrift 2"
 msgstr ""

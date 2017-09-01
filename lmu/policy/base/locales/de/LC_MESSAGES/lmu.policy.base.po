@@ -62,8 +62,8 @@ msgstr ""
 msgid "CMS System"
 msgstr "CMS-System"
 
-#: ./browser/content.py:401
-#: ./browser/templates/entry_content_view.pt:221
+#: ./browser/content.py:425
+#: ./browser/templates/entry_content_view.pt:256
 msgid "Choose image detail"
 msgstr "Bildausschnitt wählen"
 
@@ -71,8 +71,8 @@ msgstr "Bildausschnitt wählen"
 msgid "Close"
 msgstr "Schließen"
 
-#: ./browser/content.py:443
-#: ./browser/templates/entry_content_view.pt:274
+#: ./browser/content.py:467
+#: ./browser/templates/entry_content_view.pt:309
 msgid "Crop Image"
 msgstr "Bild beschneiden"
 
@@ -80,22 +80,26 @@ msgstr "Bild beschneiden"
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:263
+#: ./browser/templates/entry_content_view.pt:298
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
 
-#: ./browser/templates/entry_content_view.pt:328
+#: ./browser/templates/entry_content_view.pt:363
 msgid "Delete File"
 msgstr "Datei löschen"
 
-#: ./browser/templates/entry_content_view.pt:264
+#: ./browser/templates/entry_content_view.pt:299
 msgid "Delete Image"
 msgstr "Bild löschen"
 
 #: ./controlpanel.py:139
 msgid "Delete Timedelta"
 msgstr "Löschen nach"
+
+#: ./browser/templates/entry_content_view.pt:216
+msgid "Delete Video"
+msgstr "Video löschen"
 
 #: ./profiles/default/propertiestool.xml
 msgid "Document"
@@ -113,17 +117,21 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:258
+#: ./browser/templates/entry_content_view.pt:293
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:323
+#: ./browser/templates/entry_content_view.pt:358
 msgid "Edit File Title and Caption"
 msgstr "Dateiinfos bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:259
+#: ./browser/templates/entry_content_view.pt:294
 msgid "Edit Image Title and Caption"
 msgstr "Bildinfos bearbeiten"
+
+#: ./browser/templates/entry_content_view.pt:211
+msgid "Edit Video Title and Caption"
+msgstr "Videoinfos bearbeiten"
 
 #: ./configure.zcml:21
 msgid "Extension profile for LMU Base Policy - never install standalone use a specific instead."
@@ -133,7 +141,7 @@ msgstr "Erweiterungsprofil für LMU Base Policy - niemals alleine installieren, 
 msgid "File"
 msgstr "Datei"
 
-#: ./browser/templates/entry_content_view.pt:311
+#: ./browser/templates/entry_content_view.pt:346
 msgid "Files"
 msgstr "Dateien"
 
@@ -141,15 +149,15 @@ msgstr "Dateien"
 msgid "Folder"
 msgstr "Ordner"
 
-#: ./browser/content.py:402
+#: ./browser/content.py:426
 msgid "Here you can choose a section of the image that will be shown as teaser image on listings and overviews. The aspect ratio is forced to 16×9. You can later on pick a different section, or remove your selection completely to revert to the default."
 msgstr "Hier können Sie einen Bildausschnitt wählen, der als Teaser-Bild in Auflistungen und Übersichtsseiten erscheint. Das Seitenverhältnis ist auf 16×9 beschränkt. Sie können die getroffene Auswahl jederzeit ändern oder ganz entfernen."
 
-#: ./browser/content.py:444
+#: ./browser/content.py:468
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr "Hier können Sie falls nötig das Bild zuschneiden, das heißt einen beliebigen Ausschnitt des Bildes wählen, den Sie für relevant halten. Der nicht in der Auswahl enthaltene Teil des Bildes wird entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden!"
 
-#: ./browser/templates/entry_content_view.pt:205
+#: ./browser/templates/entry_content_view.pt:239
 msgid "Images"
 msgstr "Bilder"
 
@@ -177,13 +185,17 @@ msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizie
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:339
+#: ./browser/templates/entry_content_view.pt:374
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:298
+#: ./browser/templates/entry_content_view.pt:333
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
+
+#: ./browser/templates/entry_content_view.pt:227
+msgid "No Videos Uploaded"
+msgstr "Kein Video hochgeladen"
 
 #: ./browser/templates/facets.pt:37
 msgid "Other"
@@ -205,11 +217,11 @@ msgstr "Veröffentlichung"
 msgid "Remove cropping information"
 msgstr "Bildausschnitt verwerfen"
 
-#: ./browser/templates/entry_content_view.pt:279
+#: ./browser/templates/entry_content_view.pt:314
 msgid "Rotate left by 90 degrees"
 msgstr "Um 90° nach links drehen"
 
-#: ./browser/templates/entry_content_view.pt:284
+#: ./browser/templates/entry_content_view.pt:319
 msgid "Rotate right by 90 degrees"
 msgstr "Um 90° nach rechts drehen"
 
@@ -253,23 +265,27 @@ msgstr "Solr Pfade die durchsucht werden sollen"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:304
+#: ./browser/templates/entry_content_view.pt:339
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:198
+#: ./browser/templates/entry_content_view.pt:232
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./browser/templates/entry_content_view.pt:231
+#: ./browser/templates/entry_content_view.pt:266
 msgid "Teaser"
 msgstr "Teaser"
 
-#: ./browser/templates/entry_content_view.pt:211
+#: ./browser/templates/entry_content_view.pt:199
+msgid "The Entry shows only one video."
+msgstr "Sie können zu Ihrem Beitrag ein Video hinzufügen."
+
+#: ./browser/templates/entry_content_view.pt:246
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichtsseiten angezeigt."
 
-#: ./browser/templates/entry_content_view.pt:242
+#: ./browser/templates/entry_content_view.pt:277
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
@@ -288,6 +304,10 @@ msgstr "Deinstallations Profil für LMU Base Policy"
 #: ./browser/templates/entry_content_view.pt:180
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
+
+#: ./browser/templates/entry_content_view.pt:198
+msgid "Video"
+msgstr "Video"
 
 #: ./controlpanel.py:140
 msgid "When sould expired Entries be deleted automaticaly"
@@ -324,12 +344,12 @@ msgid "batch_x_items_matching_your_criteria"
 msgstr "${number} Inhalte gefunden."
 
 #. Default: "last modified"
-#: ./browser/templates/search.pt:248
+#: ./browser/templates/search.pt:251
 msgid "box_last_modified"
 msgstr "zuletzt verändert"
 
 #. Default: "published"
-#: ./browser/templates/search.pt:238
+#: ./browser/templates/search.pt:241
 msgid "box_published"
 msgstr "Veröffentlicht"
 
@@ -346,7 +366,7 @@ msgstr "Keine Inhalte gefunden"
 msgid "down"
 msgstr "runter"
 
-#: ./browser/templates/search.pt:263
+#: ./browser/templates/search.pt:266
 msgid "filed under:"
 msgstr "Keywords"
 
@@ -359,7 +379,7 @@ msgid "immediat"
 msgstr "sofort"
 
 #. Default: "Add comment"
-#: ./browser/templates/comments.pt:173
+#: ./browser/templates/comments.pt:187
 msgid "label_add_comment"
 msgstr "Kommentieren"
 
@@ -370,7 +390,7 @@ msgid "label_advanced_search"
 msgstr "Erweiterte Suche"
 
 #. Default: "by ${author}"
-#: ./browser/templates/search.pt:222
+#: ./browser/templates/search.pt:225
 msgid "label_by_author"
 msgstr "Autor: ${author}"
 
@@ -385,7 +405,7 @@ msgid "label_comments"
 msgstr "Kommentare"
 
 #. Default: "Delete"
-#: ./browser/templates/comments.pt:57
+#: ./browser/templates/comments.pt:58
 msgid "label_delete"
 msgstr "Löschen"
 
@@ -405,7 +425,7 @@ msgid "label_no_results_found"
 msgstr "Keine Ergebnisse gefunden"
 
 #. Default: "Reply"
-#: ./browser/templates/comments.pt:142
+#: ./browser/templates/comments.pt:156
 msgid "label_reply"
 msgstr "Antworten"
 
@@ -539,10 +559,10 @@ msgstr "Task"
 msgid "zuv_weiterbildung"
 msgstr "Weiterbildungsangebot"
 
-#: ./browser/content.py:171
+#: ./browser/content.py:195
 msgid "Überschrift 1"
 msgstr "Überschrift 1"
 
-#: ./browser/content.py:172
+#: ./browser/content.py:196
 msgid "Überschrift 2"
 msgstr "Überschrift 2"
