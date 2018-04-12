@@ -2,7 +2,7 @@
              tal:define="omit view/omit|nothing"
              tal:omit-tag="omit" >
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmln:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
       xmlns:i18n="http://xml.zope.org/namespaces/i18n"
       i18n:domain="lmu.policy.base"
       tal:omit-tag="omit" >
