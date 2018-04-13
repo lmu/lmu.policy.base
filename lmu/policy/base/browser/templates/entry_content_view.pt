@@ -7,171 +7,180 @@
       i18n:domain="lmu.policy.base"
       tal:omit-tag="omit" >
 
-<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-<script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
-<tal:script tal:replace='structure string:<script type="text/javascript">' />
-/* TODO: reduce code duplication between here and the overlay templates */
-(function($) {
-    function reload_folder_contents() {
-        var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
-        $("#folder_contents").load(url + " #folder_contents", set_up_functions);
-    };
-    function close_and_reload_folder_contents() {
-        $('.close a').click();
-        reload_folder_contents();
-    };
-    function reload_sort_previews(mode) {
-        var url;
-        if (mode == 'images') {
-            url = "@@content_sort_images_view";
-        } else {
-            url = "@@content_sort_files_view";
-        }
-        return function() {
-            $('#folder_contents_sort #listing').load(
-                url + " #folder_contents_sort #listing",
-                ajaxify_sort_form(mode)
-            );
-        }
-    }
-    function ajaxify_overlay_form() {
-        $('.overlay form').ajaxForm({
-            success: close_and_reload_folder_contents
-        });
-    };
-    function ajaxify_sort_form(mode) {
-        return function() {
-            $('.overlay form').ajaxForm({
-                success: reload_sort_previews(mode)
-            });
-            var table = '#listing';
-            ploneDnDReorder.table = jQuery(table);
-            if (!ploneDnDReorder.table.length)
-                return;
-            ploneDnDReorder.rows = jQuery(table + " > div");
-            jQuery(table + " > div > .draggable,")
-                .not('.notDraggable')
-                .mousedown(ploneDnDReorder.doDown)
-                .mouseup(ploneDnDReorder.doUp)
-                .addClass("draggingHook")
-                .css("cursor", "ns-resize")
-                .css("min-height", "80px")
-                //.html('&#x28ff;')
-                ;
-        }
-    };
-    function ajaxify_cropping_form() {
-        ajaxify_overlay_form();
-        var imagecropping = new ImageCropping();
-        imagecropping.i18n_message_ids.confirm_discard_changes = '${view/translated_confirm_discard_changes}';
-        jQuery(function(jq) {
-           imagecropping.init_editor();
-        });
-    };
+<tal:cropping tal:condition="images"
+              tal:define="images view/images;"
+>
+  <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+  <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
+  <script type="text/javascript"
+          tal:define="
+            first_image python:images[0];
+            translated_confirm_discard_changes first_image/@@croppingeditor/translated_confirm_discard_changes;
+          "
+  >
+  /* TODO: reduce code duplication between here and the overlay templates */
+  (function($) {
+      function reload_folder_contents() {
+          var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
+          $("#folder_contents").load(url + " #folder_contents", set_up_functions);
+      };
+      function close_and_reload_folder_contents() {
+          $('.close a').click();
+          reload_folder_contents();
+      };
+      function reload_sort_previews(mode) {
+          var url;
+          if (mode == 'images') {
+              url = "@@content_sort_images_view";
+          } else {
+              url = "@@content_sort_files_view";
+          }
+          return function() {
+              $('#folder_contents_sort #listing').load(
+                  url + " #folder_contents_sort #listing",
+                  ajaxify_sort_form(mode)
+              );
+          }
+      }
+      function ajaxify_overlay_form() {
+          $('.overlay form').ajaxForm({
+              success: close_and_reload_folder_contents
+          });
+      };
+      function ajaxify_sort_form(mode) {
+          return function() {
+              $('.overlay form').ajaxForm({
+                  success: reload_sort_previews(mode)
+              });
+              var table = '#listing';
+              ploneDnDReorder.table = jQuery(table);
+              if (!ploneDnDReorder.table.length)
+                  return;
+              ploneDnDReorder.rows = jQuery(table + " > div");
+              jQuery(table + " > div > .draggable,")
+                  .not('.notDraggable')
+                  .mousedown(ploneDnDReorder.doDown)
+                  .mouseup(ploneDnDReorder.doUp)
+                  .addClass("draggingHook")
+                  .css("cursor", "ns-resize")
+                  .css("min-height", "80px")
+                  //.html('&#x28ff;')
+                  ;
+          }
+      };
+      function ajaxify_cropping_form() {
+          ajaxify_overlay_form();
+          var imagecropping = new ImageCropping();
+          imagecropping.i18n_message_ids.confirm_discard_changes = '<tal:msg replace="translated_confirm_discard_changes"/>';
+          jQuery(function(jq) {
+             imagecropping.init_editor();
+          });
+      };
 
-    function set_up_functions() {
-        $("a[href$='@@contained_image_edit'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content-core',
-            closeselector:"input[name='form.buttons.cancel']",
-            afterpost:reload_folder_contents,
-            config: {
-                onLoad: ajaxify_overlay_form
-            }
-        });
+      function set_up_functions() {
+          $("a[href$='@@contained_image_edit'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content-core',
+              closeselector:"input[name='form.buttons.cancel']",
+              afterpost:reload_folder_contents,
+              config: {
+                  onLoad: ajaxify_overlay_form
+              }
+          });
 
-        $("a[href$='@@contained_file_edit'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content-core',
-            closeselector:"input[name='form.buttons.cancel']",
-            config: {
-                onLoad: ajaxify_overlay_form
-            }
-        });
-        $("a[href$='@@teasercroppingeditor'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content-core',
-            closeselector:"input[name='form.button.Cancel']",
-            config: {
-                onLoad: ajaxify_cropping_form
-            }
-        });
-        $("a[href$='@@hardcroppingeditor'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content-core',
-            closeselector:"input[name='form.button.Cancel']",
-            config: {
-                onLoad: ajaxify_cropping_form
-            }
-        });
-        $("a[href$='delete_confirmation'].popup").prepOverlay({
-            subtype:'ajax',
-            selector:'#content',
-            closeselector:"input[name='form.button.Cancel']",
-            config: {
-                onLoad: ajaxify_overlay_form
-            }
-        });
-        $("a#image_sort_button").prepOverlay({
-            subtype:'ajax',
-            selector:'#content',
-            closeselector:"a.close-reveal-modal",
-            config: {
-                onLoad: ajaxify_sort_form("images"),
-                onClose: reload_folder_contents
-            }
-        });
-        $("a#file_sort_button").prepOverlay({
-            subtype:'ajax',
-            selector:'#content',
-            closeselector:"a.close-reveal-modal",
-            config: {
-                onLoad: ajaxify_sort_form("files"),
-                onClose: reload_folder_contents
-            }
-        });
-        $('a.rotate-image').click(function(event) {
-          event.preventDefault();
-          $.get(this.href, function(data) {
-            if (data==1) {
-             reload_folder_contents();
-            }
-          })
-        });
-    }
-    $(function() {
-        $.ajax({cache: false});
-        $.ajaxSetup({cache: false});
+          $("a[href$='@@contained_file_edit'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content-core',
+              closeselector:"input[name='form.buttons.cancel']",
+              config: {
+                  onLoad: ajaxify_overlay_form
+              }
+          });
+          $("a[href$='@@teasercroppingeditor'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content-core',
+              closeselector:"input[name='form.button.Cancel']",
+              config: {
+                  onLoad: ajaxify_cropping_form
+              }
+          });
+          $("a[href$='@@hardcroppingeditor'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content-core',
+              closeselector:"input[name='form.button.Cancel']",
+              config: {
+                  onLoad: ajaxify_cropping_form
+              }
+          });
+          $("a[href$='delete_confirmation'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content',
+              closeselector:"input[name='form.button.Cancel']",
+              config: {
+                  onLoad: ajaxify_overlay_form
+              }
+          });
+          $("a#image_sort_button").prepOverlay({
+              subtype:'ajax',
+              selector:'#content',
+              closeselector:"a.close-reveal-modal",
+              config: {
+                  onLoad: ajaxify_sort_form("images"),
+                  onClose: reload_folder_contents
+              }
+          });
+          $("a#file_sort_button").prepOverlay({
+              subtype:'ajax',
+              selector:'#content',
+              closeselector:"a.close-reveal-modal",
+              config: {
+                  onLoad: ajaxify_sort_form("files"),
+                  onClose: reload_folder_contents
+              }
+          });
+          $('a.rotate-image').click(function(event) {
+            event.preventDefault();
+            $.get(this.href, function(data) {
+              if (data==1) {
+               reload_folder_contents();
+              }
+            })
+          });
+      }
+      $(function() {
+          $.ajax({cache: false});
+          $.ajaxSetup({cache: false});
 
-        set_up_functions();
-        // workaround this MSIE bug :
-        // https://dev.plone.org/plone/ticket/10894
-        //if ($.browser.msie) $("#settings").remove();
-        Browser.onUploadComplete = reload_folder_contents;
-        loadUploader = function() {
-            var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
-            ulContainer.each(function(){
-                var uploadUrl =  $('.uploadUrl', this).val();
-                var uploadData =  $('.uploadData', this).val();
-                var UlDiv = $(this);
-            $.ajax({
-                type: 'GET',
-                url: uploadUrl,
-                data: uploadData,
-                dataType: 'html',
-                contentType: 'text/html; charset=utf-8',
-                success: function(html) {
-                    if (html.indexOf('quick-uploader') != -1) {
-                        UlDiv.html(html);
-                    }
-                } });
-            });
-        }
-    $(document).ready(loadUploader);
+          set_up_functions();
+          // workaround this MSIE bug :
+          // https://dev.plone.org/plone/ticket/10894
+          //if ($.browser.msie) $("#settings").remove();
+          Browser.onUploadComplete = reload_folder_contents;
+          loadUploader = function() {
+              var ulContainer = $('.QuickUploadPortlet .uploaderContainer');
+              ulContainer.each(function(){
+                  var uploadUrl =  $('.uploadUrl', this).val();
+                  var uploadData =  $('.uploadData', this).val();
+                  var UlDiv = $(this);
+              $.ajax({
+                  type: 'GET',
+                  url: uploadUrl,
+                  data: uploadData,
+                  dataType: 'html',
+                  contentType: 'text/html; charset=utf-8',
+                  success: function(html) {
+                      if (html.indexOf('quick-uploader') != -1) {
+                          UlDiv.html(html);
+                      }
+                  } });
+              });
+          }
+      $(document).ready(loadUploader);
 
-    })
-})(jQuery);
-<tal:script tal:replace='structure string:</script>' />
+      })
+  })(jQuery);
+  </script>
+</tal:cropping>
 
 
 <div class="field">
