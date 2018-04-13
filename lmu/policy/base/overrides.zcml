@@ -7,6 +7,8 @@
     xmlns:plone="http://namespaces.plone.org/plone"
     i18n_domain="lmu">
 
+    <include package="plone.app.imagecropping" />
+
     <browser:jbot
         directory="template_overrides"
         layer=".interfaces.ILMUBaseThemeLayer"
@@ -17,5 +19,7 @@
         widget="plone.formwidget.namedfile.interfaces.INamedImageWidget"
         template="template_overrides/plone.formwidget.namedfile.image_input.pt"
         />
+
+    <adapter factory=".cropdx.LMUCroppingUtilsDexterity" />
 
 </configure>
