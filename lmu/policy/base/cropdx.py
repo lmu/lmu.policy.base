@@ -21,7 +21,13 @@ class LMUCroppingUtilsDexterity(CroppingUtilsDexterity):
         w, h = sizes[scale]
 
         def crop_factory(fieldname, **parameters):
-            result = scaleImage(image_file.read(), **parameters)
+            # LMU patch: remove the scale parameter
+            _parameters = {
+                key: value
+                for key, value in parameters.iteritems()
+                if key != 'scale'
+            }
+            result = scaleImage(image_file.read(), **_parameters)
             if result is not None:
                 data, format, dimensions = result
                 mimetype = 'image/{0:s}'.format(format.lower())
@@ -44,10 +50,12 @@ class LMUCroppingUtilsDexterity(CroppingUtilsDexterity):
         # saved in plone.scale.storage.AnnotationStorage will not match the
         # key used for retrieval (= the cropped scaled image will not be
         # found)
+        # LMU patch: add the scale parameter
         storage.scale(
             factory=crop_factory,
             direction='thumbnail',
             fieldname=fieldname,
+            scale=scale,
             width=w,
             height=h,
         )
