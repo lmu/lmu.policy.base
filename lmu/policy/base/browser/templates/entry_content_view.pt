@@ -214,6 +214,14 @@
                     <div class="column small-9" >
                       <h3 ><span tal:replace="item/title" >Titel</span> <small>(<span tal:replace="python: view.getFileType(item)" />, <span tal:replace="python: view.getFileSize(item)" />)</small></h3>
                       <p tal:content="item/description" tal:condition="item/description" tal:on-error="nothing">Description</p>
+                      <p>
+                        <figure tal:define="scales item/@@images;
+                                            thumb python: scales.scale('video_thumb', scale='entry_teaser', direction='down');"
+                                style="max-height: 80px; width: auto;"
+                                tal:on-error="string: Kein Bild Scale" >
+                          <img tal:attributes="src thumb/url;" style="max-height: 80px; width: auto;"/>
+                        </figure>
+                      </p>
                     </div>
                     <div class="column small-3">
                       <ul class="no-bullet">
