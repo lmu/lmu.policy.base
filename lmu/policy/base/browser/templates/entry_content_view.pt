@@ -8,10 +8,13 @@
       tal:omit-tag="omit" >
 
 <tal:cropping tal:condition="images"
-              tal:define="images view/images;"
+              tal:define="
+                images view/images;
+                portal_url here/portal_url;
+              "
 >
-  <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
-  <script type="text/javascript" tal:attributes="src string:/++resource++plone.app.imagecropping.static/cropping.js"></script>
+  <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/jquery.Jcrop.min.js"></script>
+  <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
   <script type="text/javascript"
           tal:define="
             first_image python:images[0];
@@ -148,7 +151,6 @@
           });
       }
       $(function() {
-          $.ajax({cache: false});
           $.ajaxSetup({cache: false});
 
           set_up_functions();
