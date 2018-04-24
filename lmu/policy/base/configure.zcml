@@ -74,6 +74,7 @@
     <adapter name="cms_system" factory=".indexers.cms_system" />
     <adapter name="context_path_string" factory=".indexers.context_path_string" />
 
+    <include package=".adapters" />
     <include package=".browser" />
     <include file="overrides.zcml" />
 

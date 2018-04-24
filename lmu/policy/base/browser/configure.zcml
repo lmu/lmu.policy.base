@@ -146,4 +146,26 @@
         permission="cmf.ModifyPortalContent"
         />
 
+    <class class="plone.app.discussion.comment.Comment">
+      <!-- This is needed to store image scale on the Comment objects -->
+      <implements interface="zope.annotation.interfaces.IAttributeAnnotatable" />
+      <!-- This is needed to generate thumbnails from a Video -->
+      <implements interface="lmu.contenttypes.blog.behaviors.video_thumb.IVideoThumbAware" />
+    </class>
+
+    <browser:page
+        for="plone.app.discussion.interfaces.IComment"
+        name="images"
+        class=".comments.CommentImageScaling"
+        allowed_interface="plone.app.imaging.interfaces.IImageScaling"
+        permission="zope2.View"
+        />
+
+    <browser:page
+        for="plone.app.discussion.interfaces.IComment"
+        name="download"
+        class=".comments.CommentDownload"
+        permission="zope2.View"
+        />
+
 </configure>
