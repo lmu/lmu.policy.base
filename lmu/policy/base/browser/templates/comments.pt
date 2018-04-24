@@ -153,6 +153,52 @@
           <div class="commentBody" tal:content="structure reply/getText" >
             Comment
           </div>
+          <div tal:condition="reply/image|nothing">
+            <a class="th"
+               aria-label="Thumbnails"
+               role="button"
+               tal:define="images reply/@@images"
+               tal:attributes="href string:${reply/absolute_url}/@@download/image/${reply/image/filename};"
+            >
+              <img tal:define="thumb python: images.scale('image', scale='listing_teaser', direction='down');"
+                   tal:attributes="src thumb/url;"
+              />
+            </a>
+          </div>
+          <div tal:define="
+                 file reply/file|nothing;
+                 content_type file/contentType|nothing;
+                 is_video python:(content_type or '').startswith('video/');
+               "
+               tal:condition="file"
+          >
+            <tal:is_video condition="is_video">
+              <video width="320"
+                     height="auto"
+                     controls="controls"
+                     preload="metadata"
+                     tal:define="
+                       images reply/@@images;
+                       thumb python: images.scale('video_thumb', scale='listing_teaser', direction='down');
+                     "
+                     tal:attributes="
+                       poster thumb/url|nothing;
+                       width thumb/width|string:320;
+                     "
+              >
+                <source tal:attributes="
+                          src string:${reply/absolute_url}/@@download/file/${file/filename};
+                          type: content_type;
+                        "
+                />
+              </video>
+            </tal:is_video>
+            <tal:not_video condition="not:is_video">
+              <a tal:content="file/filename"
+                 tal:attributes="href string:${reply/absolute_url}/@@download/file/${reply/file/filename};"
+                >File name</a>
+            </tal:not_video>
+          </div>
           <button class="context reply-to-comment-button hide allowMultiSubmit button tiny radius"
                   tal:condition="python:isDiscussionAllowed and (isAnon and isAnonymousDiscussionAllowed or userHasReplyPermission)"
                   i18n:translate="label_reply">
