@@ -24,7 +24,7 @@
   /* TODO: reduce code duplication between here and the overlay templates */
   (function($) {
       function reload_folder_contents() {
-          var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
+          var url = $('base').attr('href') + "/content_view";
           $("#folder_contents").load(url + " #folder_contents", set_up_functions);
       };
       function close_and_reload_folder_contents() {
