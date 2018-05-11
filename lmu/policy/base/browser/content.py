@@ -1,24 +1,31 @@
 # -*- coding: utf-8 -*-
-import time
-
-from cStringIO import StringIO
-from email import utils
-from datetime import datetime
-
-from Products.CMFCore import permissions
-from Products.Five.browser import BrowserView
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.quickupload.portlet.quickuploadportlet import Assignment
 from collective.quickupload.portlet.quickuploadportlet import Renderer
+from cStringIO import StringIO
+from datetime import datetime
+from email import utils
+from lmu.contenttypes.blog.behaviors.video_thumb import IVideoThumb
+from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
+from lmu.policy.base.browser.utils import isDBReadOnly as uIsDBReadOnly
+from lmu.policy.base.browser.utils import _IncludeMixin
+from lmu.policy.base.browser.utils import str2bool
+#from lmu.policy.base.browser.utils import strip_text as ustrip_text
+from lmu.policy.base.interfaces import ILMUCommentFormLayer
+from logging import getLogger
 from plone import api
-from plone.namedfile.utils import rotate_image
 from plone.app.discussion.browser.comments import CommentsViewlet
 from plone.app.imagecropping.browser.editor import CroppingEditor
 from plone.app.textfield.interfaces import ITransformer
 from plone.app.z3cform.templates import RenderWidget
 from plone.dexterity.browser import add
 from plone.dexterity.browser import edit
+from plone.namedfile.utils import rotate_image
+from Products.CMFCore import permissions
+from Products.Five.browser import BrowserView
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from z3c.caching.purge import Purge
+from z3c.form import field
+from z3c.form import form
 from z3c.form.interfaces import DISPLAY_MODE
 from z3c.form.interfaces import HIDDEN_MODE
 from z3c.form.interfaces import INPUT_MODE
@@ -28,17 +35,10 @@ from zope.event import notify
 from zope.i18n import translate
 from zope.interface import alsoProvides
 
-from lmu.policy.base import MESSAGE_FACTORY as _  # XXX move translations
-from lmu.policy.base.browser.utils import str2bool
-from lmu.policy.base.browser.utils import isDBReadOnly as uIsDBReadOnly
-from lmu.policy.base.browser.utils import _IncludeMixin
-#from lmu.policy.base.browser.utils import strip_text as ustrip_text
-from lmu.policy.base.interfaces import ILMUCommentFormLayer
-
 import json
 import PIL.Image
+import time
 
-from logging import getLogger
 
 logging = getLogger(__name__)
 
@@ -350,6 +350,25 @@ class ContainedObjectEditForm(edit.DefaultEditForm):
 
     def label(self):
         return None
+
+
+class ChangeThumbnailEditForm(edit.DefaultEditForm):
+
+    label = _('Change video thumbnail')
+    description = _('Upload an image related to the video contents')
+    schema = IVideoThumb
+
+    def updateFields(self):
+        self.fields = field.Fields(self.schema)
+
+    def applyChanges(self, data):
+        video_thumb = data.pop('video_thumb', None)
+        result = super(ChangeThumbnailEditForm, self).applyChanges(data)
+        if video_thumb:
+            self.context.video_thumb = video_thumb
+            self.context.video_thumb._video_size = self.context.file.size
+            self.context.__annotations__.pop('plone.scale', None)
+        return result
 
 
 class ContainedFileEditForm(ContainedObjectEditForm):

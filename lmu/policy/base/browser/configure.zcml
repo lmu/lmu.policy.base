@@ -91,6 +91,13 @@
         />
 
     <browser:page
+        for="plone.app.contenttypes.interfaces.IFile"
+        name="change_video_thumb"
+        permission="cmf.ModifyPortalContent"
+        class=".content.ChangeThumbnailEditForm"
+        />
+
+    <browser:page
         for="plone.app.contenttypes.interfaces.IImage"
         name="contained_image_edit"
         permission="cmf.ModifyPortalContent"
