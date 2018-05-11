@@ -243,7 +243,7 @@
                         </li>
                         <li>
                             <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@change_video_thumb">
-                              <i class="fi-photo helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Change thumbnail</span>
+                              <i class="fi-photo helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Change Thumbnail</span>
                             </a>
                         </li>
                         <li>
