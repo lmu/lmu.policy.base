@@ -24,7 +24,7 @@
   /* TODO: reduce code duplication between here and the overlay templates */
   (function($) {
       function reload_folder_contents() {
-          var url = "<tal:url tal:replace="context/absolute_url" />/content_view";
+          var url = $('base').attr('href') + "/content_view";
           $("#folder_contents").load(url + " #folder_contents", set_up_functions);
       };
       function close_and_reload_folder_contents() {
@@ -99,6 +99,17 @@
                   onLoad: ajaxify_overlay_form
               }
           });
+
+          $("a[href$='@@change_video_thumb'].popup").prepOverlay({
+              subtype:'ajax',
+              selector:'#content-core',
+              closeselector:"input[name='form.buttons.cancel']",
+              afterpost:reload_folder_contents,
+              config: {
+                  onLoad: ajaxify_overlay_form
+              }
+          });
+
           $("a[href$='@@teasercroppingeditor'].popup").prepOverlay({
               subtype:'ajax',
               selector:'#content-core',
@@ -229,6 +240,11 @@
                           <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@contained_file_edit">
                               <i class="fi-pencil helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Edit Video Title and Caption</span>
                           </a>
+                        </li>
+                        <li>
+                            <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/@@change_video_thumb">
+                              <i class="fi-photo helper-big" ></i> <span class="nshow-for-sr" i18n:translate="">Change Thumbnail</span>
+                            </a>
                         </li>
                         <li>
                             <a href="#" class="popup" tal:attributes="href string:${item/absolute_url}/delete_confirmation">
