@@ -7,8 +7,7 @@
       i18n:domain="lmu.policy.base"
       tal:omit-tag="omit" >
 
-<tal:cropping tal:condition="images"
-              tal:define="
+<tal:cropping tal:define="
                 images view/images;
                 portal_url here/portal_url;
               "
@@ -17,8 +16,8 @@
   <script type="text/javascript" tal:attributes="src string:${portal_url}/++resource++plone.app.imagecropping.static/cropping.js"></script>
   <script type="text/javascript"
           tal:define="
-            first_image python:images[0];
-            translated_confirm_discard_changes first_image/@@croppingeditor/translated_confirm_discard_changes;
+            first_image python:images[0] if images else '';
+            translated_confirm_discard_changes first_image/@@croppingeditor/translated_confirm_discard_changes|nothing;
           "
   >
   /* TODO: reduce code duplication between here and the overlay templates */
