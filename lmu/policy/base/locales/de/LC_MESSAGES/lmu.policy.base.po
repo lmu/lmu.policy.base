@@ -14,27 +14,27 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: ./controlpanel.py:46
+#: ./controlpanel.py:47
 msgid "1 day"
 msgstr "1 Tag"
 
-#: ./controlpanel.py:49
+#: ./controlpanel.py:50
 msgid "1 month"
 msgstr "1 Monat"
 
-#: ./controlpanel.py:47
+#: ./controlpanel.py:48
 msgid "1 week"
 msgstr "1 Woche"
 
-#: ./controlpanel.py:48
+#: ./controlpanel.py:49
 msgid "2 weeks"
 msgstr "2 Wochen"
 
-#: ./controlpanel.py:50
+#: ./controlpanel.py:51
 msgid "3 month"
 msgstr "3 Monate"
 
-#: ./controlpanel.py:51
+#: ./controlpanel.py:52
 msgid "6 month"
 msgstr "6 Monate"
 
@@ -42,28 +42,36 @@ msgstr "6 Monate"
 msgid "Blog Entry"
 msgstr "Blog-Beitrag"
 
-#: ./controlpanel.py:89
+#: ./controlpanel.py:90
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
 
-#: ./controlpanel.py:81
+#: ./controlpanel.py:82
 msgid "Breadcrumb override level 1 - Title"
 msgstr ""
 
-#: ./controlpanel.py:109
+#: ./controlpanel.py:110
 msgid "Breadcrumb override level 2 - Link"
 msgstr ""
 
-#: ./controlpanel.py:101
+#: ./controlpanel.py:102
 msgid "Breadcrumb override level 2 - Title"
 msgstr ""
 
-#: ./controlpanel.py:132
+#: ./controlpanel.py:133
 msgid "CMS System"
 msgstr "CMS-System"
 
-#: ./browser/content.py:425
-#: ./browser/templates/entry_content_view.pt:256
+#: ./browser/templates/entry_content_view.pt:245
+msgid "Change Thumbnail"
+msgstr "Teaser Bild ändern"
+
+#: ./browser/content.py:357
+msgid "Change video thumbnail"
+msgstr "Video Teaser Bild ändern"
+
+#: ./browser/content.py:444
+#: ./browser/templates/entry_content_view.pt:290
 msgid "Choose image detail"
 msgstr "Bildausschnitt wählen"
 
@@ -71,33 +79,33 @@ msgstr "Bildausschnitt wählen"
 msgid "Close"
 msgstr "Schließen"
 
-#: ./browser/content.py:467
-#: ./browser/templates/entry_content_view.pt:309
+#: ./browser/content.py:486
+#: ./browser/templates/entry_content_view.pt:343
 msgid "Crop Image"
 msgstr "Bild beschneiden"
 
-#: ./browser/templates/entry_content_view.pt:193
+#: ./browser/templates/entry_content_view.pt:214
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr "Das erste Bild wird auf den Übersichtsseiten und groß im"
 
-#: ./browser/templates/entry_content_view.pt:298
+#: ./browser/templates/entry_content_view.pt:332
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr "Löschen"
 
-#: ./browser/templates/entry_content_view.pt:363
+#: ./browser/templates/entry_content_view.pt:397
 msgid "Delete File"
 msgstr "Datei löschen"
 
-#: ./browser/templates/entry_content_view.pt:299
+#: ./browser/templates/entry_content_view.pt:333
 msgid "Delete Image"
 msgstr "Bild löschen"
 
-#: ./controlpanel.py:139
+#: ./controlpanel.py:140
 msgid "Delete Timedelta"
 msgstr "Löschen nach"
 
-#: ./browser/templates/entry_content_view.pt:216
+#: ./browser/templates/entry_content_view.pt:250
 msgid "Delete Video"
 msgstr "Video löschen"
 
@@ -105,11 +113,11 @@ msgstr "Video löschen"
 msgid "Document"
 msgstr "Dokument"
 
-#: ./controlpanel.py:120
+#: ./controlpanel.py:121
 msgid "Domain(s)"
 msgstr "Domain(s)"
 
-#: ./controlpanel.py:121
+#: ./controlpanel.py:122
 msgid "Domain(s) that the content of this site is valid for"
 msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 
@@ -117,19 +125,19 @@ msgstr "Domain(s) für welche der Inhalt dieses Portals gültig ist"
 msgid "Done"
 msgstr "Fertig"
 
-#: ./browser/templates/entry_content_view.pt:293
+#: ./browser/templates/entry_content_view.pt:327
 msgid "Edit"
 msgstr "Bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:358
+#: ./browser/templates/entry_content_view.pt:392
 msgid "Edit File Title and Caption"
 msgstr "Dateiinfos bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:294
+#: ./browser/templates/entry_content_view.pt:328
 msgid "Edit Image Title and Caption"
 msgstr "Bildinfos bearbeiten"
 
-#: ./browser/templates/entry_content_view.pt:211
+#: ./browser/templates/entry_content_view.pt:240
 msgid "Edit Video Title and Caption"
 msgstr "Videoinfos bearbeiten"
 
@@ -141,7 +149,7 @@ msgstr "Erweiterungsprofil für LMU Base Policy - niemals alleine installieren, 
 msgid "File"
 msgstr "Datei"
 
-#: ./browser/templates/entry_content_view.pt:346
+#: ./browser/templates/entry_content_view.pt:380
 msgid "Files"
 msgstr "Dateien"
 
@@ -149,15 +157,15 @@ msgstr "Dateien"
 msgid "Folder"
 msgstr "Ordner"
 
-#: ./browser/content.py:426
+#: ./browser/content.py:445
 msgid "Here you can choose a section of the image that will be shown as teaser image on listings and overviews. The aspect ratio is forced to 16×9. You can later on pick a different section, or remove your selection completely to revert to the default."
 msgstr "Hier können Sie einen Bildausschnitt wählen, der als Teaser-Bild in Auflistungen und Übersichtsseiten erscheint. Das Seitenverhältnis ist auf 16×9 beschränkt. Sie können die getroffene Auswahl jederzeit ändern oder ganz entfernen."
 
-#: ./browser/content.py:468
+#: ./browser/content.py:487
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr "Hier können Sie falls nötig das Bild zuschneiden, das heißt einen beliebigen Ausschnitt des Bildes wählen, den Sie für relevant halten. Der nicht in der Auswahl enthaltene Teil des Bildes wird entfernt. Dieser Vorgang kann nicht rückgängig gemacht werden!"
 
-#: ./browser/templates/entry_content_view.pt:239
+#: ./browser/templates/entry_content_view.pt:273
 msgid "Images"
 msgstr "Bilder"
 
@@ -169,7 +177,7 @@ msgstr "LMU Base-Policy"
 msgid "LMU Settings"
 msgstr "LMU Einstellungen"
 
-#: ./controlpanel.py:57
+#: ./controlpanel.py:58
 msgid "Language"
 msgstr "Sprache"
 
@@ -177,7 +185,7 @@ msgstr "Sprache"
 msgid "List of scales with crop support"
 msgstr "Bildgrößen für Cropping Editor"
 
-#: ./controlpanel.py:133
+#: ./controlpanel.py:134
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizieren, für die Suche"
 
@@ -185,15 +193,15 @@ msgstr "Name des CMS-Systems, wird genutzt um das Backend System zu indentifizie
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr "Keine ${DYNAMIC_CONTENT} hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:374
+#: ./browser/templates/entry_content_view.pt:408
 msgid "No Files Uploaded"
 msgstr "Keine Dateien hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:333
+#: ./browser/templates/entry_content_view.pt:367
 msgid "No Images Uploaded"
 msgstr "Keine Bilder hochgeladen"
 
-#: ./browser/templates/entry_content_view.pt:227
+#: ./browser/templates/entry_content_view.pt:261
 msgid "No Videos Uploaded"
 msgstr "Kein Video hochgeladen"
 
@@ -217,11 +225,11 @@ msgstr "Veröffentlichung"
 msgid "Remove cropping information"
 msgstr "Bildausschnitt verwerfen"
 
-#: ./browser/templates/entry_content_view.pt:314
+#: ./browser/templates/entry_content_view.pt:348
 msgid "Rotate left by 90 degrees"
 msgstr "Um 90° nach links drehen"
 
-#: ./browser/templates/entry_content_view.pt:319
+#: ./browser/templates/entry_content_view.pt:353
 msgid "Rotate right by 90 degrees"
 msgstr "Um 90° nach rechts drehen"
 
@@ -233,7 +241,7 @@ msgstr "Bildausschnitt speichern"
 msgid "Search"
 msgstr "Suche"
 
-#: ./controlpanel.py:126
+#: ./controlpanel.py:127
 msgid "Search Path(s)"
 msgstr "Such-Pfade"
 
@@ -249,15 +257,15 @@ msgstr "Suchergebnisse für ${term}"
 msgid "Show Blog Rules"
 msgstr "Zu den Blog-Regeln"
 
-#: ./controlpanel.py:94
+#: ./controlpanel.py:95
 msgid "Show Breadcrumb override level 1"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 1"
 
-#: ./controlpanel.py:114
+#: ./controlpanel.py:115
 msgid "Show Breadcrumb override level 2"
 msgstr "Zeige 'Breadcrumb' Überschreiber für Level 2"
 
-#: ./controlpanel.py:127
+#: ./controlpanel.py:128
 msgid "Solr Path_parrents that should be searched"
 msgstr "Solr Pfade die durchsucht werden sollen"
 
@@ -265,31 +273,31 @@ msgstr "Solr Pfade die durchsucht werden sollen"
 msgid "Sort"
 msgstr "Sortieren"
 
-#: ./browser/templates/entry_content_view.pt:339
+#: ./browser/templates/entry_content_view.pt:373
 msgid "Sort Files"
 msgstr "Dateien sortieren"
 
-#: ./browser/templates/entry_content_view.pt:232
+#: ./browser/templates/entry_content_view.pt:266
 msgid "Sort Images"
 msgstr "Bilder sortieren"
 
-#: ./browser/templates/entry_content_view.pt:266
+#: ./browser/templates/entry_content_view.pt:300
 msgid "Teaser"
 msgstr "Teaser"
 
-#: ./browser/templates/entry_content_view.pt:199
+#: ./browser/templates/entry_content_view.pt:220
 msgid "The Entry shows only one video."
-msgstr "Sie können zu Ihrem Beitrag ein Video hinzufügen."
+msgstr "Sie können zu Ihrem Beitrag ein Video (mp4) hinzufügen."
 
-#: ./browser/templates/entry_content_view.pt:246
+#: ./browser/templates/entry_content_view.pt:280
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr "Das erste Bild wird als Teaser genutzt, es wird im Eintrag größer dargestellt und auf den Übersichtsseiten angezeigt."
 
-#: ./browser/templates/entry_content_view.pt:277
+#: ./browser/templates/entry_content_view.pt:311
 msgid "Thumbnail"
 msgstr "Thumbnail"
 
-#: ./controlpanel.py:60
+#: ./controlpanel.py:61
 msgid "Title"
 msgstr "Titel"
 
@@ -301,15 +309,27 @@ msgstr "LMU Base Policy deinstallieren"
 msgid "Uninstall profile for LMU Base Policy"
 msgstr "Deinstallations Profil für LMU Base Policy"
 
-#: ./browser/templates/entry_content_view.pt:180
+#: ./browser/templates/entry_content_view.pt:201
 msgid "Upload Images and Files"
 msgstr "Bilder und Dateien hochladen"
 
-#: ./browser/templates/entry_content_view.pt:198
+#: ./adapters/comments.py:27
+msgid "Upload a file"
+msgstr "Datei hochladen"
+
+#: ./adapters/comments.py:22
+msgid "Upload an image"
+msgstr "Bild hochladen"
+
+#: ./browser/content.py:358
+msgid "Upload an image related to the video contents"
+msgstr "Laden Sie ein Bild zum Video hoch"
+
+#: ./browser/templates/entry_content_view.pt:219
 msgid "Video"
 msgstr "Video"
 
-#: ./controlpanel.py:140
+#: ./controlpanel.py:141
 msgid "When sould expired Entries be deleted automaticaly"
 msgstr "Wann sollen abgelaufene Einträge gelöscht werden."
 
@@ -353,7 +373,7 @@ msgstr "zuletzt verändert"
 msgid "box_published"
 msgstr "Veröffentlicht"
 
-#: ./browser/templates/entry_content_view.pt:193
+#: ./browser/templates/entry_content_view.pt:214
 msgid "dargestellt"
 msgstr "dargestellt"
 
@@ -374,12 +394,12 @@ msgstr "Keywords"
 msgid "generic"
 msgstr "Dokumente, Dateien und Bilder"
 
-#: ./controlpanel.py:45
+#: ./controlpanel.py:46
 msgid "immediat"
 msgstr "sofort"
 
 #. Default: "Add comment"
-#: ./browser/templates/comments.pt:187
+#: ./browser/templates/comments.pt:233
 msgid "label_add_comment"
 msgstr "Kommentieren"
 
@@ -425,7 +445,7 @@ msgid "label_no_results_found"
 msgstr "Keine Ergebnisse gefunden"
 
 #. Default: "Reply"
-#: ./browser/templates/comments.pt:156
+#: ./browser/templates/comments.pt:202
 msgid "label_reply"
 msgstr "Antworten"
 
