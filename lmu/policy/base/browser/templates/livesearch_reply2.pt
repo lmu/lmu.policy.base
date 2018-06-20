@@ -26,19 +26,23 @@
                         p_info python: view.getPortalInfo(result);
                         display_title python:view.display_title(result.Title());
                         display_description python:view.display_description(result.Description());
-                        klass python:'contenttype-' + plone_view.normalizeString(item_type);
+                        domain result/flare/domain | string:unknown;
+                        zuv_portal python:'intranet' if domain == ['www.intranet.verwaltung.uni-muenchen.de'] else 'serviceportal';
+                        a_klass python:'contenttype-' + plone_view.normalizeString(item_type);
+                        li_klass python:'LSRow LSResultItem documentLocation ' + zuv_portal;
                         p_klass string:shortcut-icon ${p_info/klass} right;
                         p_own p_info/own;
                         fshow_psign python: bool(view.request.environ.get('show_psign', False));
                         show_psign python: False and (not p_own or fshow_psign);
-                        ">
+                        "
+            tal:attributes="class li_klass;">
             <a href="#" title="" class="contenttype"
                tal:attributes="title result/Title;
                                href item_url;
                                tabindex repeat/result/number;
                                id string:result${repeat/result/number};
                                target python:None if p_own else '_blank';
-                               class klass">
+                               class a_klass">
                 <img replace="structure python:plone_view.getIcon(result).html_tag()" tal:condition="nothing" class="right" />
                 <img replace="structure python:view.getPortalIcon(result).html_tag()" tal:condition="nothing" tal:on-error="string:" />
                 <span class="" tal:attributes="class p_klass" tal:content="p_info/sign" tal:condition="show_psign">Shortcut Sign</span>
