@@ -50,13 +50,13 @@
             </a>
         </li>
         </tal:result>
-        <li class="LSRow">
+        <li class="LSRow LSMore">
             <a href="@@search" class="advancedsearchlink" i18n:translate="label_advanced_search" tal:attributes="href string:${context/@@plone_portal_state/portal_url}/@@search?SearchableText=${view/searchterms}">Advanced Search&#8230;</a>
             <tal:script_wrapper tal:replace="structure string:<script >" />
                 window.setTimeout(_paq.push(['trackSiteSearch','<tal:searchword tal:replace="view/searchterms" >Searchword</tal:searchword>','live_search', <tal:num_results tal:replace="num_results" >0</tal:num_results>]), 500);
             <tal:script_wrapper tal:replace="structure string:</script>" />
         </li>
-        <li class="LSRow" tal:condition="not:view/live_results/islastpage">
+        <li class="LSRow LSMore" tal:condition="not:view/live_results/islastpage">
             <a href="#" class="advancedsearchlink show-all-items"
                 tal:attributes="href string:search?SearchableText=${view/searchterms}" i18n:translate="label_show_all">Show all items</a>
         </li>

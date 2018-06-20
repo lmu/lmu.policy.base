@@ -198,7 +198,7 @@
                                              tal:attributes="href python:item_type in use_view_action and (item_url + '/view') or item_url;
                                                              class string:state-${item/review_state};
                                                              target python:None if p_own else '_blank';">
-                                            <span class="helper-font-size-small show-for-sr" >
+                                            <span class="helper-font-size-small search_item_type" >
                                               <span tal:replace="item_type" i18n:translate="">Type</span>:
                                             </span>
                                             <span tal:define="item_htitle item/Title | item/getId;

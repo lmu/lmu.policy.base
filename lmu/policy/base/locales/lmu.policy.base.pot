@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-09-01 12:12+0000\n"
+"POT-Creation-Date: 2018-05-15 22:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,31 +18,31 @@ msgstr ""
 "Domain: manual\n"
 
 #: ./browser/content.py:286
-#: ./controlpanel.py:82
+#: ./controlpanel.py:83
 msgid ""
 msgstr ""
 
-#: ./controlpanel.py:46
+#: ./controlpanel.py:47
 msgid "1 day"
 msgstr ""
 
-#: ./controlpanel.py:49
+#: ./controlpanel.py:50
 msgid "1 month"
 msgstr ""
 
-#: ./controlpanel.py:47
+#: ./controlpanel.py:48
 msgid "1 week"
 msgstr ""
 
-#: ./controlpanel.py:48
+#: ./controlpanel.py:49
 msgid "2 weeks"
 msgstr ""
 
-#: ./controlpanel.py:50
+#: ./controlpanel.py:51
 msgid "3 month"
 msgstr ""
 
-#: ./controlpanel.py:51
+#: ./controlpanel.py:52
 msgid "6 month"
 msgstr ""
 
@@ -50,28 +50,28 @@ msgstr ""
 msgid "Blog Entry"
 msgstr ""
 
-#: ./controlpanel.py:89
+#: ./controlpanel.py:90
 msgid "Breadcrumb override level 1 - Link"
 msgstr ""
 
-#: ./controlpanel.py:81
+#: ./controlpanel.py:82
 msgid "Breadcrumb override level 1 - Title"
 msgstr ""
 
-#: ./controlpanel.py:109
+#: ./controlpanel.py:110
 msgid "Breadcrumb override level 2 - Link"
 msgstr ""
 
-#: ./controlpanel.py:101
+#: ./controlpanel.py:102
 msgid "Breadcrumb override level 2 - Title"
 msgstr ""
 
-#: ./controlpanel.py:132
+#: ./controlpanel.py:133
 msgid "CMS System"
 msgstr ""
 
 #: ./browser/content.py:425
-#: ./browser/templates/entry_content_view.pt:256
+#: ./browser/templates/entry_content_view.pt:275
 msgid "Choose image detail"
 msgstr ""
 
@@ -80,32 +80,32 @@ msgid "Close"
 msgstr ""
 
 #: ./browser/content.py:467
-#: ./browser/templates/entry_content_view.pt:309
+#: ./browser/templates/entry_content_view.pt:328
 msgid "Crop Image"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:193
+#: ./browser/templates/entry_content_view.pt:204
 msgid "Das erste Bild wird auf den Uebersichtsseiten und gross im"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:298
+#: ./browser/templates/entry_content_view.pt:317
 #: ./template_overrides/Products.CMFPlone.skins.plone_forms.delete_confirmation_page.cpt:58
 msgid "Delete"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:363
+#: ./browser/templates/entry_content_view.pt:382
 msgid "Delete File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:299
+#: ./browser/templates/entry_content_view.pt:318
 msgid "Delete Image"
 msgstr ""
 
-#: ./controlpanel.py:139
+#: ./controlpanel.py:140
 msgid "Delete Timedelta"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:216
+#: ./browser/templates/entry_content_view.pt:235
 msgid "Delete Video"
 msgstr ""
 
@@ -113,11 +113,11 @@ msgstr ""
 msgid "Document"
 msgstr ""
 
-#: ./controlpanel.py:120
+#: ./controlpanel.py:121
 msgid "Domain(s)"
 msgstr ""
 
-#: ./controlpanel.py:121
+#: ./controlpanel.py:122
 msgid "Domain(s) that the content of this site is valid for"
 msgstr ""
 
@@ -125,19 +125,19 @@ msgstr ""
 msgid "Done"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:293
+#: ./browser/templates/entry_content_view.pt:312
 msgid "Edit"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:358
+#: ./browser/templates/entry_content_view.pt:377
 msgid "Edit File Title and Caption"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:294
+#: ./browser/templates/entry_content_view.pt:313
 msgid "Edit Image Title and Caption"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:211
+#: ./browser/templates/entry_content_view.pt:230
 msgid "Edit Video Title and Caption"
 msgstr ""
 
@@ -149,7 +149,7 @@ msgstr ""
 msgid "File"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:346
+#: ./browser/templates/entry_content_view.pt:365
 msgid "Files"
 msgstr ""
 
@@ -165,7 +165,7 @@ msgstr ""
 msgid "Here you can optionally crop the image, that means choose a section of the image that you consider relevant. The parts of the image that are not part of your selection will be removed permanently. This cannot be undone!"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:239
+#: ./browser/templates/entry_content_view.pt:258
 msgid "Images"
 msgstr ""
 
@@ -177,7 +177,7 @@ msgstr ""
 msgid "LMU Settings"
 msgstr ""
 
-#: ./controlpanel.py:57
+#: ./controlpanel.py:58
 msgid "Language"
 msgstr ""
 
@@ -185,7 +185,7 @@ msgstr ""
 msgid "List of scales with crop support"
 msgstr ""
 
-#: ./controlpanel.py:133
+#: ./controlpanel.py:134
 msgid "Name that this CMS system uses to be identified among others that may be used in parallel"
 msgstr ""
 
@@ -193,15 +193,15 @@ msgstr ""
 msgid "No ${DYNAMIC_CONTENT} Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:374
+#: ./browser/templates/entry_content_view.pt:393
 msgid "No Files Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:333
+#: ./browser/templates/entry_content_view.pt:352
 msgid "No Images Uploaded"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:227
+#: ./browser/templates/entry_content_view.pt:246
 msgid "No Videos Uploaded"
 msgstr ""
 
@@ -225,11 +225,11 @@ msgstr ""
 msgid "Remove cropping information"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:314
+#: ./browser/templates/entry_content_view.pt:333
 msgid "Rotate left by 90 degrees"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:319
+#: ./browser/templates/entry_content_view.pt:338
 msgid "Rotate right by 90 degrees"
 msgstr ""
 
@@ -241,7 +241,7 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: ./controlpanel.py:126
+#: ./controlpanel.py:127
 msgid "Search Path(s)"
 msgstr ""
 
@@ -257,15 +257,15 @@ msgstr ""
 msgid "Show Blog Rules"
 msgstr ""
 
-#: ./controlpanel.py:94
+#: ./controlpanel.py:95
 msgid "Show Breadcrumb override level 1"
 msgstr ""
 
-#: ./controlpanel.py:114
+#: ./controlpanel.py:115
 msgid "Show Breadcrumb override level 2"
 msgstr ""
 
-#: ./controlpanel.py:127
+#: ./controlpanel.py:128
 msgid "Solr Path_parrents that should be searched"
 msgstr ""
 
@@ -273,31 +273,31 @@ msgstr ""
 msgid "Sort"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:339
+#: ./browser/templates/entry_content_view.pt:358
 msgid "Sort Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:232
+#: ./browser/templates/entry_content_view.pt:251
 msgid "Sort Images"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:266
+#: ./browser/templates/entry_content_view.pt:285
 msgid "Teaser"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:199
+#: ./browser/templates/entry_content_view.pt:210
 msgid "The Entry shows only one video."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:246
+#: ./browser/templates/entry_content_view.pt:265
 msgid "This is the Teaser Image, it will be shown larger on the Entry and on Listings."
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:277
+#: ./browser/templates/entry_content_view.pt:296
 msgid "Thumbnail"
 msgstr ""
 
-#: ./controlpanel.py:60
+#: ./controlpanel.py:61
 msgid "Title"
 msgstr ""
 
@@ -309,15 +309,15 @@ msgstr ""
 msgid "Uninstall profile for LMU Base Policy"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:180
+#: ./browser/templates/entry_content_view.pt:191
 msgid "Upload Images and Files"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:198
+#: ./browser/templates/entry_content_view.pt:209
 msgid "Video"
 msgstr ""
 
-#: ./controlpanel.py:140
+#: ./controlpanel.py:141
 msgid "When sould expired Entries be deleted automaticaly"
 msgstr ""
 
@@ -361,7 +361,7 @@ msgstr ""
 msgid "box_published"
 msgstr ""
 
-#: ./browser/templates/entry_content_view.pt:193
+#: ./browser/templates/entry_content_view.pt:204
 msgid "dargestellt"
 msgstr ""
 
@@ -382,7 +382,7 @@ msgstr ""
 msgid "generic"
 msgstr ""
 
-#: ./controlpanel.py:45
+#: ./controlpanel.py:46
 msgid "immediat"
 msgstr ""
 
