@@ -21,6 +21,11 @@
             <tr>
                 <th>Env</th>
                 <td tal:content="view/request/environ"></td>
+            </tr>
+            <tr>
+                <th>HTTP_UID</th>
+                <td tal:content="view/request/environ/HTTP_UID"></td>
+            </tr>
         </table>
         <h1>User</h1>
         <table>
