@@ -23,6 +23,10 @@
                 <td tal:content="view/request/environ"></td>
             </tr>
             <tr>
+                <td>AUTHENTICATED_USER</td>
+                <td tal:content="view/request/AUTHENTICATED_USER"></td>
+            </tr>
+            <tr>
                 <td>HTTP_UID</td>
                 <td tal:content="view/request/environ/HTTP_UID"></td>
             </tr>
