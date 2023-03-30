@@ -20,10 +20,6 @@
         <table>
             <tr>
                 <td>username</td>
-                <td tal:content="view/user_keys">username</td>
-            </tr>
-            <tr>
-                <td>username</td>
                 <td tal:content="python: view.user.getProperty('username')">username</td>
             </tr>
             <tr>
