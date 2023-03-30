@@ -16,8 +16,10 @@
 </head>
 <body tal:omit-tag="omit" >
     <div id="user" >
+        <h1>Request</h1>
+        <span tal:content="struture view/request">request</span>
+        <h1>User</h1>
         <span tal:content="view/user">user</span>
-        <span tal:content="view/request">request</span>
         <span tal:define="username view/username;
                           username python: username if username else 'Failover System'"
               class="siteheader-name helper-margin-left-s"
