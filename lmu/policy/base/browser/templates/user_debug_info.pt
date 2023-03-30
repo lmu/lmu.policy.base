@@ -19,27 +19,27 @@
         <h1>Relevant Request </h1>
         <table>
             <tr>
-                <th>Env</th>
+                <td>Env</td>
                 <td tal:content="view/request/environ"></td>
             </tr>
             <tr>
-                <th>HTTP_UID</th>
+                <td>HTTP_UID</td>
                 <td tal:content="view/request/environ/HTTP_UID"></td>
             </tr>
             <tr>
-                <th>HTTP_EDUPERSONPRINCIPALNAME</th>
+                <td>HTTP_EDUPERSONPRINCIPALNAME</td>
                 <td tal:content="view/request/environ/HTTP_EDUPERSONPRINCIPALNAME"></td>
             </tr>
             <tr>
-                <th>HTTP_REMOTE_USER</th>
+                <td>HTTP_REMOTE_USER</td>
                 <td tal:content="view/request/environ/HTTP_REMOTE_USER"></td>
             </tr>
             <tr>
-                <th>HTTP_CN</th>
+                <td>HTTP_CN</td>
                 <td tal:content="view/request/environ/HTTP_CN"></td>
             </tr>
             <tr tal:define="groups python:view.request.environ['HTTP_GROUPMEMBERSHIP'].split(';')">
-                <th>HTTP_GROUPMEMBERSHIP</th>
+                <td>HTTP_GROUPMEMBERSHIP</td>
                 <td>
                     <ul>
                         <tal:list tal:repeat="group groups">
@@ -52,19 +52,19 @@
         <h1>User</h1>
         <table>
             <tr>
-                <th>username</th>
+                <td>username</td>
                 <td tal:content="view/user/keys">username</td>
             </tr>
             <tr>
-                <th>fullname</th>
+                <td>fullname</td>
                 <td tal:content="view/user/fullname">username</td>
             </tr>
             <tr>
-                <th>description</th>
+                <td>description</td>
                 <td tal:content="view/user">description</td>
             </tr>
             <tr>
-                <th>email</th>
+                <td>email</td>
                 <td tal:content="view/user">email</td>
             </tr>
         </table>
