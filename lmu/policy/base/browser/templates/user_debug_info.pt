@@ -38,7 +38,7 @@
                 <th>HTTP_CN</th>
                 <td tal:content="view/request/environ/HTTP_CN"></td>
             </tr>
-            <tr tal:define="groups python:view.request.environ['HTTP_GROUPMEMBERSHIP'].split(',')">
+            <tr tal:define="groups python:view.request.environ['HTTP_GROUPMEMBERSHIP'].split(';')">
                 <th>HTTP_GROUPMEMBERSHIP</th>
                 <td>
                     <ul>
