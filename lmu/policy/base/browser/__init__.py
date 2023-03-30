@@ -382,7 +382,7 @@ class UserInfo(BrowserView, _IncludeMixin):
 
 class UserDebugInfo(BrowserView, _IncludeMixin):
 
-    template = ViewPageTemplateFile('templates/user_info.pt')
+    template = ViewPageTemplateFile('templates/user_debug_info.pt')
 
     def __init__(self, context, request):
         self.context = context
