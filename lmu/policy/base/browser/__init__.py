@@ -389,7 +389,9 @@ class UserDebugInfo(BrowserView, _IncludeMixin):
         self.request = request
 
     def __call__(self):
-        self.user = api.user.get_current()
+        user = api.user.get_current()
+        self.user = user
+        self.user_keys = user.keys()
         pm = api.portal.get_tool('portal_membership')
         #self.username = user.getProperty('fullname')
         self.username = self.user.getProperty('description')
