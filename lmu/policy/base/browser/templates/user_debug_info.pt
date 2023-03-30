@@ -38,9 +38,13 @@
                 <th>HTTP_CN</th>
                 <td tal:content="view/request/environ/HTTP_CN"></td>
             </tr>
-            <tr>
+            <tr tal:define="gropus python:view.request.environ['HTTP_GROUPMEMBERSHIP'].split(',')">
                 <th>HTTP_GROUPMEMBERSHIP</th>
-                <td tal:content="view/request/environ/HTTP_GROUPMEMBERSHIP"></td>
+                <td>
+                    <ul tal:repeat="groups">
+                        <li tal:content="item"></li>
+                    </ul>
+                </td>
             </tr>
         </table>
         <h1>User</h1>
