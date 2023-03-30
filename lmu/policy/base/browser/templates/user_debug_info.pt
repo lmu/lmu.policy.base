@@ -41,8 +41,8 @@
             <tr tal:define="gropus python:view.request.environ['HTTP_GROUPMEMBERSHIP'].split(',')">
                 <th>HTTP_GROUPMEMBERSHIP</th>
                 <td>
-                    <ul tal:repeat="groups">
-                        <li tal:content="item"></li>
+                    <ul tal:repeat="group groups">
+                        <li tal:content="group"></li>
                     </ul>
                 </td>
             </tr>
