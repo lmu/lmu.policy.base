@@ -54,6 +54,14 @@
         layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
         />
 
+    <browser:page
+        for="*"
+        name="user_debug_info.include"
+        class="lmu.policy.base.browser.UserDebugInfo"
+        permission="zope2.View"
+        layer="lmu.policy.base.interfaces.ILMUBaseThemeLayer"
+        />
+
     <browser:viewlet
         name="lmu.path_bar"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"

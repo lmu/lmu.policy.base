@@ -1,0 +1,26 @@
+<tal:doctype xmlns:tal="http://xml.zope.org/namespaces/tal"
+             tal:define="omit view/omit"
+             tal:condition="not:omit" >
+<!DOCTYPE html >
+</tal:doctype>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="lmu.policy.base"
+      lang="en"
+      tal:define="omit view/omit"
+      tal:omit-tag="omit" >
+<head tal:condition="not:omit">
+
+</head>
+<body tal:omit-tag="omit" >
+    <div id="user" >
+        <span tal:content="view/user">user</span>
+        <span tal:define="username view/username;
+                          username python: username if username else 'Failover System'"
+              class="siteheader-name helper-margin-left-s"
+              tal:content="username"></span>
+    </div>
+</body>
+</html>
