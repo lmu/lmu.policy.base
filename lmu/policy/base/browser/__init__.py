@@ -393,13 +393,7 @@ class UserDebugInfo(BrowserView, _IncludeMixin):
         pm = api.portal.get_tool('portal_membership')
         #self.username = user.getProperty('fullname')
         self.username = self.user.getProperty('description')
-        portrait = pm.getPersonalPortrait()
-        #image = Image.open(StringIO.StringIO(portrait.data))
-        #self.portrait = image.resize((30, 30))
-        #small_portrait, mimetype = scale_image(StringIO.StringIO(portrait.data), (30, 30))
-        #self.portrait = OFSImage.Image(id=user.getUserName(), file=small_portrait, title='')
-        self.portrait = portrait
-        return super(UserInfo, self).__call__()
+        return super(UserDebugInfo, self).__call__()
 
 class PathBarViewlet(common.PathBarViewlet):
     """Replace the "Home" breadcrumb with the overrides from the control

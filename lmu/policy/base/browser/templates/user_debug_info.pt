@@ -17,6 +17,7 @@
 <body tal:omit-tag="omit" >
     <div id="user" >
         <span tal:content="view/user">user</span>
+        <span tal:content="view/request">request</span>
         <span tal:define="username view/username;
                           username python: username if username else 'Failover System'"
               class="siteheader-name helper-margin-left-s"
