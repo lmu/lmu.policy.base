@@ -26,19 +26,19 @@
         <table>
             <tr>
                 <th>username</th>
-                <td tal:content="view/user/username">username</td>
+                <td tal:content="view/user">username</td>
             </tr>
             <tr>
                 <th>fullname</th>
-                <td tal:content="view/user/fullname">username</td>
+                <td tal:content="view/user">username</td>
             </tr>
             <tr>
                 <th>description</th>
-                <td tal:content="view/user/description">description</td>
+                <td tal:content="view/user">description</td>
             </tr>
             <tr>
                 <th>email</th>
-                <td tal:content="view/user/email">email</td>
+                <td tal:content="view/user">email</td>
             </tr>
         </table>
         <h1>Raw Request</h1>
