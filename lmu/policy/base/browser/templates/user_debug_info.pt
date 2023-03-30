@@ -19,8 +19,8 @@
         <h1>User</h1>
         <table>
             <tr>
-                <td>username</td>
-                <td tal:content="python: view.user.getProperty('username')">username</td>
+                <td>id</td>
+                <td tal:content="python: view.user.getProperty('id')">username</td>
             </tr>
             <tr>
                 <td>fullname</td>
