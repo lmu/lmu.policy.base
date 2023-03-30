@@ -36,7 +36,13 @@
             </tr>
             <tr>
                 <td>Groups</td>
-                <td tal:content="view/request/AUTHENTICATED_USER/getGroupNames">email</td>
+                <td>
+                    <ul>
+                        <tal:list tal:repeat="group view/request/AUTHENTICATED_USER/getGroupNames">
+                            <li tal:content="group"></li>
+                        </tal:list>
+                    </ul> 
+                </td>
             </tr>
         </table>
         <h1>Relevant Request </h1>
@@ -44,10 +50,6 @@
             <tr>
                 <td>AUTHENTICATED_USER</td>
                 <td tal:content="view/request/AUTHENTICATED_USER"></td>
-            </tr>
-            <tr>
-                <td>AUTHENTICATED_USER</td>
-                <td tal:content="view/request/AUTHENTICATED_USER/keys"></td>
             </tr>
             <tr>
                 <td>HTTP_UID</td>
