@@ -53,7 +53,7 @@
         <table>
             <tr>
                 <td>username</td>
-                <td tal:content="view/user/keys">username</td>
+                <td tal:content="view/user_keys">username</td>
             </tr>
             <tr>
                 <td>fullname</td>
