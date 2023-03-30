@@ -20,7 +20,7 @@
         <table>
             <tr>
                 <th>Env</th>
-                <td tal:content="view/request/env"></td>
+                <td tal:content="view/request"></td>
         </table>
         <h1>User</h1>
         <table>
