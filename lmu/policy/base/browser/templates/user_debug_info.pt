@@ -26,6 +26,22 @@
                 <th>HTTP_UID</th>
                 <td tal:content="view/request/environ/HTTP_UID"></td>
             </tr>
+            <tr>
+                <th>HTTP_EDUPERSONPRINCIPALNAME</th>
+                <td tal:content="view/request/environ/HTTP_EDUPERSONPRINCIPALNAME"></td>
+            </tr>
+            <tr>
+                <th>HTTP_REMOTE_USER</th>
+                <td tal:content="view/request/environ/HTTP_REMOTE_USER"></td>
+            </tr>
+            <tr>
+                <th>HTTP_CN</th>
+                <td tal:content="view/request/environ/HTTP_CN"></td>
+            </tr>
+            <tr>
+                <th>HTTP_GROUPMEMBERSHIP</th>
+                <td tal:content="view/request/environ/HTTP_GROUPMEMBERSHIP"></td>
+            </tr>
         </table>
         <h1>User</h1>
         <table>
