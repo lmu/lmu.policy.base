@@ -393,6 +393,7 @@ class UserDebugInfo(BrowserView, _IncludeMixin):
         pm = api.portal.get_tool('portal_membership')
         #self.username = user.getProperty('fullname')
         self.username = self.user.getProperty('description')
+        self.groupmembership = self.request.environ['HTTP_GROUPMEMBERSHIP'].split(';')
         print(self.user.__dict__)
         print(self.request.__dict__)
         return super(UserDebugInfo, self).__call__()
