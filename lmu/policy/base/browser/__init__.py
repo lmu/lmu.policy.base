@@ -393,6 +393,8 @@ class UserDebugInfo(BrowserView, _IncludeMixin):
         pm = api.portal.get_tool('portal_membership')
         #self.username = user.getProperty('fullname')
         self.username = self.user.getProperty('description')
+        print(self.user.__dict__)
+        print(self.request.__dict__)
         return super(UserDebugInfo, self).__call__()
 
 class PathBarViewlet(common.PathBarViewlet):
