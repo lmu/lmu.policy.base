@@ -17,7 +17,7 @@
 <body tal:omit-tag="omit" >
     <div id="user" >
         <h1>Request</h1>
-        <span tal:content="struture view/request">request</span>
+        <span tal:content="structure view/request">request</span>
         <h1>User</h1>
         <span tal:content="view/user">user</span>
         <span tal:define="username view/username;
