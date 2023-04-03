@@ -60,6 +60,10 @@
                 <td tal:content="view/request/environ/HTTP_EDUPERSONPRINCIPALNAME"></td>
             </tr>
             <tr>
+                <td>HTTP_DISPLAYNAME</td>
+                <td tal:content="view/request/environ/HTTP_DISPLAYNAME"></td>
+            </tr>
+            <tr>
                 <td>HTTP_REMOTE_USER</td>
                 <td tal:content="view/request/environ/HTTP_REMOTE_USER"></td>
             </tr>
